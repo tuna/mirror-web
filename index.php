@@ -11,7 +11,7 @@
 <p>
 我们是清华大学开源镜像站管理团队，这是正在建设中的清华大学开源镜像网站。
 
-<p>如果你有任何问题或建议，请在我们的 <a href="http://bugs.tuna.tsinghua.edu.cn">bugzilla</a>
+<p>如果你有任何问题或建议，请在我们的 <a href="http://issues.tuna.tsinghua.edu.cn">issue tracker</a>
  上提交 bug，或者访问我们的<a
  href="https://groups.google.com/forum/#%21forum/thu-opensource-mirror-admin">Google
 Groups</a>，或直接向 Google Groups 的邮件列表<a
@@ -28,26 +28,28 @@ $mirrors = array(
 	array('archlinux', '滚动更新的Linux发行版，极简主义哲学。'),
 	array('centos', '由社区维护的与Redhat企业版Linux完全兼容的发行版。'),
 	array('chakra', '基于KDE SC、无Gtk的桌面环境。前身是Archlinux的[kde-mod]。'),
-	array('cygwin', 'Windows平台下的类Unix环境.'),
-	array('CTAN', 'Comprehensive TeX Archive Network。'),
-	array('debian', '一个完全由社区维护的Linux发行版。'),
-	array('debian-cd', 'Debian CD镜像。'),
-	array('debian-multimedia', 'Debian非官方多媒体套件。'),
-	array('debian-security', 'Debian安全情报'),
-	array('debian-weekly-builds', 'Debian CD镜像每周构建。'),
-	array('epel', 'Redhat企业版Linux额外软件包。'),
-	array('fedora', '自由前卫的Linux，Redhat公司鼎力赞助。'),
-	array('freebsd', '拥有辉煌历史的BSD的一个重要分支。'),
+	array('cygwin', 'Windows平台下的类Unix环境.', 'BYVoid'),
+	array('CTAN', 'Comprehensive TeX Archive Network。', 'lunarshaddow'),
+	array('debian', '一个完全由社区维护的Linux发行版。', 'lunarshaddow'),
+	array('debian-backports', '', 'lunarshaddow'),
+	array('debian-cd', 'Debian CD镜像。', 'lunarshaddow'),
+	array('debian-multimedia', 'Debian非官方多媒体套件。', 'lunarshaddow'),
+	array('debian-security', 'Debian安全情报', 'lunarshaddow'),
+	array('debian-weekly-builds', 'Debian CD镜像每周构建。', 'lunarshaddow'),
+	array('epel', 'Redhat企业版Linux额外软件包。', 'BYVoid'),
+	array('fedora', '自由前卫的Linux，Redhat公司鼎力赞助。', 'BYVoid'),
+	array('freebsd', '拥有辉煌历史的BSD的一个重要分支。', 'xiaq'),
 	array('frugalware', 'Slackware和Archlinux哲学的混血，独特的半滚动发行模式。'),
 	array('gentoo', '一个快速的元发行版，软件包系统使用源代码。'),
 	array('gentoo-portage', 'Gentoo 的 ports collection。'),
-	array('gnu', 'GNU/Linux的基础软件。'),
-	array('kernel', 'Linux内核。'),
-	array('opensuse', '由Novell支持的Linux发行版。'),
+	array('gnu', 'GNU/Linux的基础软件。', 'lunarshaddow'),
+	array('kernel', 'Linux内核。', 'BYVoid'),
+	array('opensuse', '由Novell支持的Linux发行版。', 'BYVoid'),
 	array('rpmfusion', '一个提供Fedora和RHEL兼容的额外软件包。'),
-	array('scientific', '由美国费米实验室维护的与Redhat企业版兼容的发行版。'),
-	array('slackware', '最有资历的Linux发行版。'),
-	array('ubuntu', '基于Debian的以桌面应用为主的Linux发行版。'),
+	array('scientific', '由美国费米实验室维护的与Redhat企业版兼容的发行版。', 'BYVoid'),
+	array('slackware', '最有资历的Linux发行版。', 'BYVoid'),
+	array('ubuntu', '基于Debian的以桌面应用为主的Linux发行版。', 'BYVoid'),
+        array('ubuntu-releases', 'Ubuntu CD镜像。', 'MichaelChou'),
 );
 
 
@@ -105,6 +107,7 @@ function format_size($size)
 	<tr>
 		<td>名称</td>
 		<td>描述</td>
+		<td>维护者</td>
 		<td>状态</td>
 		<td>大小</td>
 		<td>文件总数</td>
@@ -119,6 +122,7 @@ function format_size($size)
 			</a>
 		</td>
 		<td><?php echo $mirrorinfo[1] ?></td>
+		<td><?php echo $mirrorinfo[2] ?></td>
 		<?php if ($info['done']): ?>
 			<td style="background-color: #00FF00">同步完成</td>
 			<td><?php echo format_size($info['size']) ?></td>
@@ -141,7 +145,7 @@ function format_size($size)
 	</tr>
 <?php endforeach ?>
 </table>
-<p><a href="http://mirrors.tuna.tsinghua.edu.cn:3000">流量统计</a></p>
+<p><!--<a href="http://mirrors.tuna.tsinghua.edu.cn:3000">流量统计</a> --><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>
 
 </body>
 </html>
