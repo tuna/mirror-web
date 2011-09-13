@@ -23,7 +23,8 @@ Groups</a>，或直接向 Google Groups 的邮件列表<a
 <?php
 date_default_timezone_set('Asia/Shanghai');
 $status_file = '/home/ftp/log/status.txt';
-$status = initialize_status($status_file);
+$ftp3_status_file = 'http://ftp3.tsinghua.edu.cn/status.txt';
+$status = initialize_status($status_file, $ftp3_status_file);
 $mirrors = array(
 	array('archlinux', '滚动更新的Linux发行版，极简主义哲学。'),
 	array('centos', '由社区维护的与Redhat企业版Linux完全兼容的发行版。'),
@@ -53,7 +54,7 @@ $mirrors = array(
 );
 
 
-function initialize_status($status_file)
+function initialize_status($status_file, $ftp3_status_file)
 {
 	$lines = explode("\n", file_get_contents($status_file));
 	$status['stamp'] = $lines[0];
@@ -84,6 +85,35 @@ function initialize_status($status_file)
 			$mirrors[$mirror]['bytes_received'] = $sec[14];
 		}
 	}
+
+    $lines = explode("\n", file_get_contents($ftp3_status_file));
+    $lines_count = count($lines);
+	for ($i = 1; $i < $lines_count; $i++)
+	{
+		$sec = explode(", ", $lines[$i]);
+		if (count($sec) < 3)
+			continue;
+		$mirror = $sec[0];
+		$mirrors[$mirror]['status'] = (int)$sec[1];
+		$mirrors[$mirror]['done'] = (int)$sec[2];
+		if ($mirrors[$mirror]['status'] && $mirrors[$mirror]['done'])
+		{
+			$mirrors[$mirror]['stamp'] = $sec[3];
+			$mirrors[$mirror]['files_count'] = $sec[4];
+			$mirrors[$mirror]['files_transferred_count'] = $sec[5];
+			$mirrors[$mirror]['size'] = $sec[6];
+			#$mirrors[$mirror]['size_transferred'] = $sec[7];
+			#$mirrors[$mirror]['literal'] = $sec[8];
+			#$mirrors[$mirror]['matched'] = $sec[9];
+			#$mirrors[$mirror]['file_list_size'] = $sec[10];
+			#$mirrors[$mirror]['file_list_generate_time'] = $sec[11];
+			#$mirrors[$mirror]['file_list_transfer_time'] = $sec[12];
+			#$mirrors[$mirror]['bytes_sent'] = $sec[13];
+			#$mirrors[$mirror]['bytes_received'] = $sec[14];
+		}
+	}
+
+	
 	
 	$status['mirrors'] = $mirrors;
 	return $status;
