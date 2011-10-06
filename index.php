@@ -2,11 +2,12 @@
 <html>
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	<link href="mirrors.tuna.css" rel="stylesheet" type="text/css" />
 	<title>清华大学开源镜像站</title>
 </head>
 <body>
 <h1>清华大学开源镜像站</h1>
-<h2>Portal of Tsinghua University OSS Mirror Sites</h2>
+<h2>Portal of Tsinghua University Open Source Software Mirror Sites</h2>
 
 <p>
 我们是清华大学开源镜像站管理团队，这是正在建设中的清华大学开源镜像网站。
@@ -17,8 +18,12 @@
 Groups</a>，或直接向 Google Groups 的邮件列表<a
  href="mailto:thu-opensource-mirror-admin@googlegroups.com">寄信</a>。
 </p>
-<p><strong>本站公开测试中，欢迎大家使用。请通过本站域名访问</strong>: <a
- href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a></p>
+<p><strong>本站公开测试中，欢迎大家使用。请通过本站域名访问</strong>:</p>
+<ul>
+<li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a></li>
+<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a>(IPv6 only)</li>
+<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a>(IPv4 only)</li>
+</ul>
 
 <?php
 date_default_timezone_set('Asia/Shanghai');
@@ -26,11 +31,11 @@ $status_file = '/home/ftp/log/status.txt';
 $ftp3_status_file = 'http://ftp3.tsinghua.edu.cn/status.txt';
 $status = initialize_status($status_file, $ftp3_status_file);
 $mirrors = array(
-	array('archlinux', '滚动更新的Linux发行版，极简主义哲学。'),
-	array('centos', '由社区维护的与Redhat企业版Linux完全兼容的发行版。'),
-	array('chakra', '基于KDE SC、无Gtk的桌面环境。前身是Archlinux的[kde-mod]。'),
+	array('archlinux', '滚动更新的Linux发行版，极简主义哲学。', 'xiaq'),
+	array('centos', '由社区维护的与Redhat企业版Linux完全兼容的发行版。', 'alick'),
+	array('chakra', '基于KDE SC、无Gtk的桌面环境。前身是Archlinux的[kde-mod]。', ''),
 	array('cygwin', 'Windows平台下的类Unix环境.', 'BYVoid'),
-	array('CTAN', 'Comprehensive TeX Archive Network。', 'lunarshaddow'),
+	array('CTAN', 'Comprehensive TeX Archive Network。', 'MichaelChou'),
 	array('debian', '一个完全由社区维护的Linux发行版。', 'lunarshaddow'),
 	array('debian-backports', '', 'lunarshaddow'),
 	array('debian-cd', 'Debian CD镜像。', 'lunarshaddow'),
@@ -40,13 +45,13 @@ $mirrors = array(
 	array('epel', 'Redhat企业版Linux额外软件包。', 'BYVoid'),
 	array('fedora', '自由前卫的Linux，Redhat公司鼎力赞助。', 'BYVoid'),
 	array('freebsd', '拥有辉煌历史的BSD的一个重要分支。', 'xiaq'),
-	array('frugalware', 'Slackware和Archlinux哲学的混血，独特的半滚动发行模式。'),
-	array('gentoo', '一个快速的元发行版，软件包系统使用源代码。'),
-	array('gentoo-portage', 'Gentoo 的 ports collection。'),
-	array('gnu', 'GNU/Linux的基础软件。', 'lunarshaddow'),
+	array('frugalware', 'Slackware和Archlinux哲学的混血，独特的半滚动发行模式。', ''),
+	array('gentoo', '一个快速的元发行版，软件包系统使用源代码。', ''),
+	array('gentoo-portage', 'Gentoo 的 ports collection。', ''),
+	array('gnu', 'GNU/Linux的基础软件。', 'MichaelChou'),
 	array('kernel', 'Linux内核。', 'BYVoid'),
 	array('opensuse', '由Novell支持的Linux发行版。', 'BYVoid'),
-	array('rpmfusion', '一个提供Fedora和RHEL兼容的额外软件包。'),
+	array('rpmfusion', '一个提供Fedora和RHEL兼容的额外软件包。', 'alick'),
 	array('scientific', '由美国费米实验室维护的与Redhat企业版兼容的发行版。', 'BYVoid'),
 	array('slackware', '最有资历的Linux发行版。', 'BYVoid'),
 	array('ubuntu', '基于Debian的以桌面应用为主的Linux发行版。', 'BYVoid'),
@@ -133,7 +138,9 @@ function format_size($size)
 
 <p>列表更新时间：<?php echo date('Y-m-d H:i:s', $status['stamp']) ?></p>
 
-<table border="1">
+<div class="mirrors-stat">
+<table>
+	<thead>
 	<tr>
 		<td>名称</td>
 		<td>描述</td>
@@ -143,6 +150,8 @@ function format_size($size)
 		<td>文件总数</td>
 		<td>同步完成时间</td>
 	</tr>
+	</thead>
+	<tbody>
 <?php foreach ($mirrors as $mirrorinfo): ?>
 	<?php $info = $status['mirrors'][$mirrorinfo[0]] ?>
 	<tr>
@@ -151,7 +160,7 @@ function format_size($size)
 				<?php echo $mirrorinfo[0] ?>
 			</a>
 		</td>
-		<td><?php echo $mirrorinfo[1] ?></td>
+		<td class="description"><?php echo $mirrorinfo[1] ?></td>
 		<td><?php echo $mirrorinfo[2] ?></td>
 		<?php if ($info['done']): ?>
 			<td style="background-color: #00FF00">同步完成</td>
@@ -174,8 +183,16 @@ function format_size($size)
 		<?php endif ?>
 	</tr>
 <?php endforeach ?>
+	<tbody>
 </table>
+</div>
 <p><!--<a href="http://mirrors.tuna.tsinghua.edu.cn:3000">流量统计</a> --><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>
+
+<div class="tuna-logo">
+<p>Powered by <a href="http://tuna.tsinghua.edu.cn/">
+<img src="http://tuna.tsinghua.edu.cn/files/logo-01.png" alt="TUNA" /></a>
+</p>
+</div>
 
 </body>
 </html>

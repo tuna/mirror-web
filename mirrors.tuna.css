@@ -1,0 +1,22 @@
+.mirrors-stat table td {
+	border: 1px solid gray;
+}
+.mirrors-stat table {
+	border-collapse: collapse;
+}
+.mirrors-stat td {
+	padding: 3px;
+}
+.mirrors-stat thead {
+	text-align: center;
+	font-weight: bolder;
+}
+.description {
+	width: 20em;
+}
+
+.tuna-logo img {
+	vertical-align: middle;
+	border-style: none;
+}
+
