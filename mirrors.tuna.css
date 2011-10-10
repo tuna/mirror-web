@@ -12,7 +12,8 @@
 	font-weight: bolder;
 }
 .description {
-	width: 20em;
+	font-size: smaller;
+	width: auto;
 }
 
 .tuna-logo img {
@@ -20,3 +21,19 @@
 	border-style: none;
 }
 
+.sync-state {
+	white-space: nowrap;
+}
+
+.sync-ed {
+	background-color: #00ff00;
+}
+.sync-ing {
+	background-color: #ffff00;
+}
+.sync-unknown {
+	background-color: #00ffff;
+}
+.sync-fail {
+	background-color: #ff0000;
+}

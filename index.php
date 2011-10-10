@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html>
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
@@ -143,12 +143,12 @@ function format_size($size)
 	<thead>
 	<tr>
 		<td>名称</td>
-		<td>描述</td>
 		<td>维护者</td>
 		<td>状态</td>
 		<td>大小</td>
 		<td>文件总数</td>
 		<td>同步完成时间</td>
+		<td>描述</td>
 	</tr>
 	</thead>
 	<tbody>
@@ -160,30 +160,30 @@ function format_size($size)
 				<?php echo $mirrorinfo[0] ?>
 			</a>
 		</td>
-		<td class="description"><?php echo $mirrorinfo[1] ?></td>
 		<td><?php echo $mirrorinfo[2] ?></td>
 		<?php if ($info['done']): ?>
-			<td style="background-color: #00FF00">同步完成</td>
+			<td class="sync-state sync-ed">同步完成</td>
 			<td><?php echo format_size($info['size']) ?></td>
 			<td><?php echo $info['files_count'] ?></td>
 			<td><?php echo date('Y-m-d H:i:s', $info['stamp']) ?></td>
 		<?php else: ?>
 			<?php if ($info['status']): ?>
-				<td style="background-color: #FFFF00">正在同步</td>
+				<td class="sync-state sync-ing">正在同步</td>
 			<?php else: ?>
 				<?php if (!isset($info['status'])): ?>
-					<td style="background-color: #00FFFF">未知</td>
+					<td class="sync-state sync-unknown">未知</td>
 				<?php else: ?>
-					<td style="background-color: #FF0000">同步失败</td>
+					<td class="sync-state sync-fail">同步失败</td>
 				<?php endif ?>
 			<?php endif ?>
-			<td>&nbsp</td>
-			<td>&nbsp</td>
-			<td>&nbsp</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
 		<?php endif ?>
+		<td class="description"><?php echo $mirrorinfo[1] ?></td>
 	</tr>
 <?php endforeach ?>
-	<tbody>
+	</tbody>
 </table>
 </div>
 <p><!--<a href="http://mirrors.tuna.tsinghua.edu.cn:3000">流量统计</a> --><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>
