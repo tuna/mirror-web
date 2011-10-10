@@ -37,7 +37,7 @@ $mirrors = array(
 	array('cygwin', 'Windows平台下的类Unix环境.', 'BYVoid'),
 	array('CTAN', 'Comprehensive TeX Archive Network。', 'MichaelChou'),
 	array('debian', '一个完全由社区维护的Linux发行版。', 'heroxbd'),
-	array('debian-backports', '', 'heroxbd'),
+	array('debian-backports', 'Debian Stable 上用的 Testing/Unstable 扩展包。', 'heroxbd'),
 	array('debian-cd', 'Debian CD镜像。', 'heroxbd'),
 	array('debian-multimedia', 'Debian非官方多媒体套件。', 'heroxbd'),
 	array('debian-security', 'Debian安全情报', 'heroxbd'),
