@@ -33,7 +33,7 @@ $status = initialize_status($status_file, $ftp3_status_file);
 $mirrors = array(
 	array('archlinux', '滚动更新的Linux发行版，极简主义哲学。', 'xiaq'),
 	array('centos', '由社区维护的与Redhat企业版Linux完全兼容的发行版。', 'alick'),
-	array('chakra', '基于KDE SC、无Gtk的桌面环境。前身是Archlinux的[kde-mod]。', ''),
+	array('chakra', '基于KDE SC、无Gtk的桌面环境。前身是Archlinux的[kde-mod]。', 'xiaq'),
 	array('cygwin', 'Windows平台下的类Unix环境.', 'BYVoid'),
 	array('CTAN', 'Comprehensive TeX Archive Network。', 'MichaelChou'),
 	array('debian', '一个完全由社区维护的Linux发行版。', 'heroxbd'),
@@ -45,7 +45,7 @@ $mirrors = array(
 	array('epel', 'Redhat企业版Linux额外软件包。', 'BYVoid'),
 	array('fedora', '自由前卫的Linux，Redhat公司鼎力赞助。', 'BYVoid'),
 	array('freebsd', '拥有辉煌历史的BSD的一个重要分支。', 'xiaq'),
-	array('frugalware', 'Slackware和Archlinux哲学的混血，独特的半滚动发行模式。', ''),
+	array('frugalware', 'Slackware和Archlinux哲学的混血，独特的半滚动发行模式。', 'xiaq'),
 	array('gentoo', '一个快速的元发行版，软件包系统使用源代码。', 'cuckoo'),
 	array('gentoo-portage', 'Gentoo 的 ports collection。', 'cuckoo'),
 	array('gnu', 'GNU/Linux的基础软件。', 'MichaelChou'),
