@@ -91,7 +91,12 @@ function initialize_status($status_file, $ftp3_status_file)
 		}
 	}
 
-    $lines = explode("\n", file_get_contents($ftp3_status_file));
+    $timeout = stream_context_create(array(
+        'http' => array(
+            'timeout' => 3
+            )
+    ));
+    $lines = explode("\n", file_get_contents($ftp3_status_file,0,$timeout));
     $lines_count = count($lines);
 	for ($i = 1; $i < $lines_count; $i++)
 	{
@@ -127,6 +132,9 @@ function initialize_status($status_file, $ftp3_status_file)
 function format_size($size)
 {
 	$size = explode(' ', $size);
+	if ($size[0] === 'na') {
+		return 'na';
+	}
 	$size = (float)$size[0];
 	$size /= 1048576;
 	if ($size <= 1000)
