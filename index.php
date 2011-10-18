@@ -58,6 +58,18 @@ $mirrors = array(
         array('ubuntu-releases', 'Ubuntu CD镜像。', 'MichaelChou'),
 );
 
+function maintainer($name)
+{
+	$mters = array(
+		'BYVoid' => 'http://www.byvoid.com/',
+		'xiaq' => 'http://linuxtoy.org/archives/author/cheer_xiao',
+		'MichaelChou' => 'http://michael.yuespot.org/',
+	);
+	if (isset($mters[$name]))
+		return "<a href='{$mters[$name]}' target='_blank'>{$name}</a>";
+	else
+		return $name;
+}
 
 function initialize_status($status_file, $ftp3_status_file)
 {
@@ -168,7 +180,7 @@ function format_size($size)
 				<?php echo $mirrorinfo[0] ?>
 			</a>
 		</td>
-		<td><?php echo $mirrorinfo[2] ?></td>
+		<td><?php echo maintainer($mirrorinfo[2]) ?></td>
 		<?php if ($info['done']): ?>
 			<td class="sync-state sync-ed">同步完成</td>
 			<td><?php echo format_size($info['size']) ?></td>
