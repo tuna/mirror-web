@@ -64,6 +64,7 @@ function maintainer($name)
 		'BYVoid' => 'http://www.byvoid.com/',
 		'xiaq' => 'http://linuxtoy.org/archives/author/cheer_xiao',
 		'MichaelChou' => 'http://michael.yuespot.org/',
+		'heroxbd' => 'http://http://www.awa.tohoku.ac.jp/~benda/',
 	);
 	if (isset($mters[$name]))
 		return "<a href='{$mters[$name]}' target='_blank'>{$name}</a>";
