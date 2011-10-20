@@ -65,6 +65,7 @@ function maintainer($name)
 		'xiaq' => 'http://linuxtoy.org/archives/author/cheer_xiao',
 		'MichaelChou' => 'http://michael.yuespot.org/',
 		'heroxbd' => 'http://www.awa.tohoku.ac.jp/~benda/',
+		'alick' => 'http://wiki.tuna.tsinghua.edu.cn/alick',
 	);
 	if (isset($mters[$name]))
 		return "<a href='{$mters[$name]}' target='_blank'>{$name}</a>";
