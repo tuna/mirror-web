@@ -15,8 +15,7 @@
 <p>如果你有任何问题或建议，请在我们的 <a href="http://issues.tuna.tsinghua.edu.cn">issue tracker</a>
  上提交 bug，或者访问我们的<a
  href="https://groups.google.com/forum/#%21forum/thu-opensource-mirror-admin">Google
-Groups</a>，或直接向 Google Groups 的邮件列表<a
- href="mailto:thu-opensource-mirror-admin@googlegroups.com">寄信</a>。
+Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-admin [SPAM] googlegroups [SPAM] com 寄信</a>。
 </p>
 <p><strong>本站公开测试中，欢迎大家使用。请通过本站域名访问</strong>:</p>
 <ul>
@@ -48,6 +47,7 @@ $mirrors = array(
 	array('frugalware', 'Slackware和Archlinux哲学的混血，独特的半滚动发行模式。', 'xiaq'),
 	array('gentoo', '一个快速的元发行版，软件包系统使用源代码。', 'cuckoo'),
 	array('gentoo-portage', 'Gentoo 的 ports collection。', 'cuckoo'),
+	array('gentoo-portage-prefix', 'Gentoo on a different level', 'heroxbd'),
 	array('gnu', 'GNU/Linux的基础软件。', 'MichaelChou'),
 	array('kernel', 'Linux内核。', 'BYVoid'),
 	array('opensuse', '由Novell支持的Linux发行版。', 'BYVoid'),
