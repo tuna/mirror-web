@@ -145,16 +145,7 @@ function initialize_status($status_file, $ftp3_status_file)
 
 function format_size($size)
 {
-	$size = explode(' ', $size);
-	if ($size[0] === 'na') {
-		return 'na';
-	}
-	$size = (float)$size[0];
-	$size /= 1048576;
-	if ($size <= 1000)
-		return sprintf("%.2f MB", $size);
-	$size /= 1024;
-	return sprintf("%.2f GB", $size);
+	return str_replace(' bytes', 'B', $size);
 }
 ?>
 
