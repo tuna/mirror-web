@@ -75,7 +75,7 @@ function maintainer($name)
 
 function initialize_status($status_file, $ftp3_status_file)
 {
-	$lines = explode("\n", file_get_contents($status_file));
+	$lines = file($status_file, FILE_IGNORE_NEW_LINES);
 	$status['stamp'] = $lines[0];
 	$mirrors = array();
 	
@@ -110,7 +110,7 @@ function initialize_status($status_file, $ftp3_status_file)
             'timeout' => 3
             )
     ));
-    $lines = explode("\n", file_get_contents($ftp3_status_file,0,$timeout));
+    $lines = file($ftp3_status_file, FILE_IGNORE_NEW_LINES, $timeout);
     $lines_count = count($lines);
 	for ($i = 1; $i < $lines_count; $i++)
 	{
