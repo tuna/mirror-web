@@ -205,6 +205,7 @@ function format_size($size)
 <p>Powered by <a href="http://tuna.tsinghua.edu.cn/">
 <img src="http://tuna.tsinghua.edu.cn/files/logo-01.png" alt="TUNA" /></a>
 </p>
+<p>本站的网络和硬件由清华大学网络工程研究中心提供支持。</p>
 </div>
 
 </body>
