@@ -52,7 +52,7 @@ $mirrors = array(
 	array('gentoo-portage-prefix', 'Gentoo on a different level', 'heroxbd'),
 	array('gnu', 'GNU/Linux 的基础软件。', 'MichaelChou'),
 	array('kernel', 'Linux 内核。', 'BYVoid'),
-	array('opensuse', '由 Novell 支持的 Linux 发行版。', 'BYVoid'),
+	array('opensuse', '由 Novell 支持的 Linux 发行版。', 'xiaq'),
 	array('rpmfusion', '一个用于 Fedora 和 RHEL 等的第三方软件仓库。', 'alick'),
 	array('scientific', '由美国费米实验室维护的与 RHEL 兼容的发行版。', 'BYVoid'),
 	array('slackware', '最有资历的 Linux 发行版。', 'BYVoid'),
