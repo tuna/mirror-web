@@ -11,6 +11,7 @@
 
 <p>
 我们是清华大学开源镜像站管理团队，这是正在建设中的清华大学开源镜像网站。
+</p>
 
 <p>如果你有任何问题或建议，请在我们的 <a href="http://issues.tuna.tsinghua.edu.cn">issue tracker</a>
  上提交 bug，或者访问我们的<a
@@ -26,9 +27,8 @@ Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-ad
 
 <?php
 date_default_timezone_set('Asia/Shanghai');
-$status_file = '/home/ftp/log/status.txt';
-$ftp3_status_file = 'http://ftp3.tsinghua.edu.cn/status.txt';
-$status = initialize_status($status_file, $ftp3_status_file);
+$status = initialize_status(array(
+	'/home/ftp/log/status.txt', 'http://ftp3.tsinghua.edu.cn/status.txt'));
 $mirrors = array(
 	array('archlinux', '滚动更新的 Linux 发行版，极简主义哲学。', 'xiaq'),
 	array('centos', '由社区维护的与 RHEL 完全兼容的发行版。', 'alick'),
@@ -57,7 +57,7 @@ $mirrors = array(
 	array('scientific', '由美国费米实验室维护的与 RHEL 兼容的发行版。', 'BYVoid'),
 	array('slackware', '最有资历的 Linux 发行版。', 'BYVoid'),
 	array('ubuntu', '基于 Debian 的以桌面应用为主的 Linux 发行版。', 'BYVoid'),
-        array('ubuntu-releases', 'Ubuntu CD 镜像。', 'MichaelChou'),
+	array('ubuntu-releases', 'Ubuntu CD 镜像。', 'MichaelChou'),
 );
 
 function maintainer($name)
@@ -75,72 +75,46 @@ function maintainer($name)
 		return $name;
 }
 
-function initialize_status($status_file, $ftp3_status_file)
+function initialize_status($status_files)
 {
-	$lines = file($status_file, FILE_IGNORE_NEW_LINES);
-	$status['stamp'] = $lines[0];
-	$mirrors = array();
-	
-	$lines_count = count($lines);
-	for ($i = 1; $i < $lines_count; $i++)
+	$context = stream_context_create(array(
+		'http' => array(
+			'timeout' => 3
+		)
+	));
+	foreach ($status_files as $file_idx => $status_file)
 	{
-		$sec = explode(", ", $lines[$i]);
-		if (count($sec) < 3)
-			continue;
-		$mirror = $sec[0];
-		$mirrors[$mirror]['status'] = (int)$sec[1];
-		$mirrors[$mirror]['done'] = (int)$sec[2];
-		if ($mirrors[$mirror]['status'] && $mirrors[$mirror]['done'])
+		$lines = file($status_file, FILE_IGNORE_NEW_LINES, $context);
+		# XXX Bad hack.
+		if ($file_idx == 0)
 		{
-			$mirrors[$mirror]['stamp'] = $sec[3];
-			$mirrors[$mirror]['files_count'] = $sec[4];
-			$mirrors[$mirror]['files_transferred_count'] = $sec[5];
-			$mirrors[$mirror]['size'] = $sec[6];
-			$mirrors[$mirror]['size_transferred'] = $sec[7];
-			$mirrors[$mirror]['literal'] = $sec[8];
-			$mirrors[$mirror]['matched'] = $sec[9];
-			$mirrors[$mirror]['file_list_size'] = $sec[10];
-			$mirrors[$mirror]['file_list_generate_time'] = $sec[11];
-			$mirrors[$mirror]['file_list_transfer_time'] = $sec[12];
-			$mirrors[$mirror]['bytes_sent'] = $sec[13];
-			$mirrors[$mirror]['bytes_received'] = $sec[14];
+			$status['stamp'] = $lines[0];
+		}
+		$mirrors = array();
+
+		foreach ($lines as $line)
+		{
+			$sec = explode(", ", $line);
+			if (count($sec) < 3)
+				continue;
+			$mirror = $mirrors[$sec[0]];
+			$mirror['status'] = (int)$sec[1];
+			$mirror['done'] = (int)$sec[2];
+			if ($mirror['status'] && $mirror['done'])
+			{
+				$fields = array(
+					3 => 'stamp', 'files_count', 'files_transferred_count',
+					'size', 'size_transferred', 'literal', 'matched',
+					'file_list_size', 'file_list_generate_time',
+					'file_list_transfer_time', 'bytes_sent', 'bytes_received'
+				);
+				for ($i = 3; $i < count($sec); $i++)
+				{
+					$mirror[$fields[$j]] = $sec[$i];
+				}
+			}
 		}
 	}
-
-    $timeout = stream_context_create(array(
-        'http' => array(
-            'timeout' => 3
-            )
-    ));
-    $lines = file($ftp3_status_file, FILE_IGNORE_NEW_LINES, $timeout);
-    $lines_count = count($lines);
-	for ($i = 1; $i < $lines_count; $i++)
-	{
-		$sec = explode(", ", $lines[$i]);
-		if (count($sec) < 3)
-			continue;
-		$mirror = $sec[0];
-		$mirrors[$mirror]['status'] = (int)$sec[1];
-		$mirrors[$mirror]['done'] = (int)$sec[2];
-		if ($mirrors[$mirror]['status'] && $mirrors[$mirror]['done'])
-		{
-			$mirrors[$mirror]['stamp'] = $sec[3];
-			$mirrors[$mirror]['files_count'] = $sec[4];
-			$mirrors[$mirror]['files_transferred_count'] = $sec[5];
-			$mirrors[$mirror]['size'] = $sec[6];
-			#$mirrors[$mirror]['size_transferred'] = $sec[7];
-			#$mirrors[$mirror]['literal'] = $sec[8];
-			#$mirrors[$mirror]['matched'] = $sec[9];
-			#$mirrors[$mirror]['file_list_size'] = $sec[10];
-			#$mirrors[$mirror]['file_list_generate_time'] = $sec[11];
-			#$mirrors[$mirror]['file_list_transfer_time'] = $sec[12];
-			#$mirrors[$mirror]['bytes_sent'] = $sec[13];
-			#$mirrors[$mirror]['bytes_received'] = $sec[14];
-		}
-	}
-
-	
-	
 	$status['mirrors'] = $mirrors;
 	return $status;
 }
@@ -212,3 +186,4 @@ function format_size($size)
 
 </body>
 </html>
+<!-- vi: se noet ts=4: -->
