@@ -77,6 +77,7 @@ function maintainer($name)
 
 function initialize_status($status_files)
 {
+	$mirrors = array();
 	$context = stream_context_create(array(
 		'http' => array(
 			'timeout' => 3
@@ -90,14 +91,13 @@ function initialize_status($status_files)
 		{
 			$status['stamp'] = $lines[0];
 		}
-		$mirrors = array();
 
 		foreach ($lines as $line)
 		{
 			$sec = explode(", ", $line);
 			if (count($sec) < 3)
 				continue;
-			$mirror = $mirrors[$sec[0]];
+			$mirror = array();
 			$mirror['status'] = (int)$sec[1];
 			$mirror['done'] = (int)$sec[2];
 			if ($mirror['status'] && $mirror['done'])
@@ -110,9 +110,10 @@ function initialize_status($status_files)
 				);
 				for ($i = 3; $i < count($sec); $i++)
 				{
-					$mirror[$fields[$j]] = $sec[$i];
+					$mirror[$fields[$i]] = $sec[$i];
 				}
 			}
+			$mirrors[$sec[0]] = $mirror;
 		}
 	}
 	$status['mirrors'] = $mirrors;
