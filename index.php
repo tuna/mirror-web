@@ -28,8 +28,9 @@ Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-ad
 <?php
 date_default_timezone_set('Asia/Shanghai');
 $status = initialize_status(array(
-	'/home/ftp/log/status.txt', 'http://ftp3.tsinghua.edu.cn/status.txt'));
-$mirrors = array(
+	'/home/ftp/log/newstatus.txt',
+	'http://ftp3.tsinghua.edu.cn/newstatus.txt'));
+$specs = array(
 	array('archlinux', '滚动更新的 Linux 发行版，极简主义哲学。', 'xiaq'),
 	array('centos', '由社区维护的与 RHEL 完全兼容的发行版。', 'alick'),
 	array('chakra', '基于 KDE SC、无 Gtk 的桌面环境。前身是 Archlinux 的 [kde-mod]。', 'xiaq'),
@@ -77,7 +78,7 @@ function maintainer($name)
 
 function initialize_status($status_files)
 {
-	$mirrors = array();
+	$status = array();
 	$context = stream_context_create(array(
 		'http' => array(
 			'timeout' => 3
@@ -86,37 +87,26 @@ function initialize_status($status_files)
 	foreach ($status_files as $file_idx => $status_file)
 	{
 		$lines = file($status_file, FILE_IGNORE_NEW_LINES, $context);
-		# XXX Bad hack.
-		if ($file_idx == 0)
-		{
-			$status['stamp'] = $lines[0];
-		}
-
 		foreach ($lines as $line)
 		{
-			$sec = explode(", ", $line);
-			if (count($sec) < 3)
+			$sec = explode(",", $line);
+			if (count($sec) < 2)
 				continue;
 			$mirror = array();
-			$mirror['status'] = (int)$sec[1];
-			$mirror['done'] = (int)$sec[2];
-			if ($mirror['status'] && $mirror['done'])
+			$fields = array(
+				'name', 'current',
+				'stamp', 'files_count', 'files_transferred_count',
+				'size', 'size_transferred', 'literal', 'matched',
+				'file_list_size', 'file_list_generate_time',
+				'file_list_transfer_time', 'bytes_sent', 'bytes_received'
+			);
+			for ($i = 0; $i < count($sec); $i++)
 			{
-				$fields = array(
-					3 => 'stamp', 'files_count', 'files_transferred_count',
-					'size', 'size_transferred', 'literal', 'matched',
-					'file_list_size', 'file_list_generate_time',
-					'file_list_transfer_time', 'bytes_sent', 'bytes_received'
-				);
-				for ($i = 3; $i < count($sec); $i++)
-				{
-					$mirror[$fields[$i]] = $sec[$i];
-				}
+				$mirror[$fields[$i]] = $sec[$i];
 			}
-			$mirrors[$sec[0]] = $mirror;
+			$status[$mirror['name']] = $mirror;
 		}
 	}
-	$status['mirrors'] = $mirrors;
 	return $status;
 }
 
@@ -125,8 +115,6 @@ function format_size($size)
 	return str_replace(' bytes', 'B', $size);
 }
 ?>
-
-<p>列表更新时间：<?php echo date('Y-m-d H:i:s', $status['stamp']) ?></p>
 
 <div class="mirrors-stat">
 <table>
@@ -142,35 +130,30 @@ function format_size($size)
 	</tr>
 	</thead>
 	<tbody>
-<?php foreach ($mirrors as $mirrorinfo): ?>
-	<?php $info = $status['mirrors'][$mirrorinfo[0]] ?>
+<?php foreach ($specs as $spec): ?>
+	<?php $info = $status[$spec[0]] ?>
 	<tr>
 		<td>
-			<a href="<?php echo $mirrorinfo[0] ?>/">
-				<?php echo $mirrorinfo[0] ?>
+			<a href="<?php echo $spec[0] ?>/">
+				<?php echo $spec[0] ?>
 			</a>
 		</td>
-		<td><?php echo maintainer($mirrorinfo[2]) ?></td>
-		<?php if ($info['done']): ?>
+		<td><?php echo maintainer($spec[2]) ?></td>
+		<?php if ($info['current'] == 'success'): ?>
 			<td class="sync-state sync-ed">同步完成</td>
-			<td><?php echo format_size($info['size']) ?></td>
-			<td><?php echo $info['files_count'] ?></td>
-			<td><?php echo date('Y-m-d H:i:s', $info['stamp']) ?></td>
+		<?php elseif ($info['current'] == 'syncing'): ?>
+			<td class="sync-state sync-ing">正在同步</td>
+		<?php elseif ($info['current'] == 'failed'): ?>
+			<td class="sync-state sync-fail">同步失败</td>
 		<?php else: ?>
-			<?php if ($info['status']): ?>
-				<td class="sync-state sync-ing">正在同步</td>
-			<?php else: ?>
-				<?php if (!isset($info['status'])): ?>
-					<td class="sync-state sync-unknown">未知</td>
-				<?php else: ?>
-					<td class="sync-state sync-fail">同步失败</td>
-				<?php endif ?>
-			<?php endif ?>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
+			<!--<td class="sync-state sync-unknown">未知</td>-->
+			<td class="sync-state sync-unknown"><?php echo $info['current']?></td>
 		<?php endif ?>
-		<td class="description"><?php echo $mirrorinfo[1] ?></td>
+
+		<td><?php echo format_size($info['size']) ?></td>
+		<td><?php echo $info['files_count'] ?></td>
+		<td><?php echo $info['stamp'] ? date('Y-m-d H:i:s', $info['stamp']) : '' ?></td>
+		<td class="description"><?php echo $spec[1] ?></td>
 	</tr>
 <?php endforeach ?>
 	</tbody>
