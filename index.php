@@ -146,8 +146,7 @@ function format_size($size)
 		<?php elseif ($info['current'] == 'failed'): ?>
 			<td class="sync-state sync-fail">同步失败</td>
 		<?php else: ?>
-			<!--<td class="sync-state sync-unknown">未知</td>-->
-			<td class="sync-state sync-unknown"><?php echo $info['current']?></td>
+			<td class="sync-state sync-unknown">未知</td>
 		<?php endif ?>
 
 		<td><?php echo format_size($info['size']) ?></td>
