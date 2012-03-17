@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-	<link href="mirrors.tuna.css" rel="stylesheet" type="text/css" />
+	<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />
 	<title>清华大学开源镜像站</title>
 </head>
 <body>
