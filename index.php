@@ -53,6 +53,7 @@ $specs = array(
 	array('gentoo-portage-prefix', 'Gentoo on a different level', 'heroxbd'),
 	array('gnu', 'GNU/Linux 的基础软件。', 'MichaelChou'),
 	array('kernel', 'Linux 内核。', 'BYVoid'),
+        array('macports', 'Mac OS X 与 Darwin 的包管理软件，GUI与CLI的结合。', 'VuryLeo')
 	array('opensuse', '由 Novell 支持的 Linux 发行版。', 'xiaq'),
 	array('rpmfusion', '一个用于 Fedora 和 RHEL 等的第三方软件仓库。', 'alick'),
 	array('scientific', '由美国费米实验室维护的与 RHEL 兼容的发行版。', 'BYVoid'),
@@ -69,6 +70,7 @@ function maintainer($name)
 		'MichaelChou' => 'http://michael.yuespot.org/',
 		'heroxbd' => 'http://www.awa.tohoku.ac.jp/~benda/',
 		'alick' => 'http://wiki.tuna.tsinghua.edu.cn/alick',
+                'VuryLeo' => 'http://www.vuryleo.com/',
 	);
 	if (isset($mters[$name]))
 		return "<a href='{$mters[$name]}' target='_blank'>{$name}</a>";
