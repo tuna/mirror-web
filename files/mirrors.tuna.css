@@ -1,3 +1,7 @@
+.nospam {
+	display: none;
+}
+
 .mirrors-stat table td {
 	border: 1px solid gray;
 }
@@ -37,3 +41,4 @@
 .sync-fail {
 	background-color: #ff0000;
 }
+/* vi: se noet: */
