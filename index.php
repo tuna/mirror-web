@@ -66,7 +66,7 @@ function maintainer($name)
 {
 	$mters = array(
 		'BYVoid' => 'http://www.byvoid.com/',
-		'xiaq' => 'http://linuxtoy.org/archives/author/cheer_xiao',
+		'xiaq' => 'http://wiki.tuna.tsinghua.edu.cn/xiaq',
 		'MichaelChou' => 'http://michael.yuespot.org/',
 		'heroxbd' => 'http://www.awa.tohoku.ac.jp/~benda/',
 		'alick' => 'http://wiki.tuna.tsinghua.edu.cn/alick',
