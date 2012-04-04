@@ -41,4 +41,11 @@
 .sync-fail {
 	background-color: #ff0000;
 }
-/* vi: se noet: */
+
+@media screen and (min-width: 1000px) {
+	#wrapper {
+		margin: 0 10% 0 10%
+		width: auto;
+	}
+}
+/* vi: se noet ts=8 sw=8: */
