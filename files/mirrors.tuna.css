@@ -44,7 +44,7 @@
 
 @media screen and (min-width: 1000px) {
 	#wrapper {
-		margin: 0 10% 0 10%
+		margin: 0 10% 0 10%;
 		width: auto;
 	}
 }
