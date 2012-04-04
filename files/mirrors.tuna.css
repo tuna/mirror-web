@@ -59,5 +59,9 @@
 		margin-left: 10px;
 		margin-right: 10px;
 	}
+
+	#status-table {
+		text-align: center;
+	}
 }
 /* vi: se noet ts=8 sw=8: */

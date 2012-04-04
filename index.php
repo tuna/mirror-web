@@ -9,10 +9,13 @@
 <div id="wrapper">
 <div id="header">
 <h1>清华大学开源镜像站</h1>
-<h2>Portal of Tsinghua University Open Source Software Mirror Sites</h2>
+<div class="tagline">
+Portal of Tsinghua University Open Source Software Mirror Sites
+</div>
 </div> <!-- end of header div -->
 
 <div id="content">
+<h2>简介</h2>
 <p>
 我们是清华大学开源镜像站管理团队，这是正在建设中的清华大学开源镜像网站。
 </p>
@@ -125,6 +128,8 @@ function format_size($size)
 ?>
 
 <div class="mirrors-stat">
+<h2>状态</h2>
+<div id="status-table">
 <table>
 	<thead>
 	<tr>
@@ -164,8 +169,9 @@ function format_size($size)
 <?php endforeach ?>
 	</tbody>
 </table>
-</div>
+</div> <!-- end of status-table div -->
 <p><!--<a href="http://mirrors.tuna.tsinghua.edu.cn:3000">流量统计</a> --><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>
+</div> <!-- end of mirrors-stat div -->
 </div> <!-- end of content div -->
 
 <div id="footer">
