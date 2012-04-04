@@ -61,7 +61,11 @@
 	}
 
 	.tagline {
+		/*
+		font-family: serif;
 		font-style: italic;
+		*/
+		color: #7A7A7A;
 	}
 }
 /* vi: se noet ts=8 sw=8: */
