@@ -6,6 +6,7 @@
 	<title>清华大学开源镜像站</title>
 </head>
 <body>
+<div id="wrapper">
 <h1>清华大学开源镜像站</h1>
 <h2>Portal of Tsinghua University Open Source Software Mirror Sites</h2>
 
@@ -130,7 +131,7 @@ function format_size($size)
 		<td>大小</td>
 		<td>文件总数</td>
 		<td>同步完成时间</td>
-		<td>描述</td>
+		<!--<td>描述</td>-->
 	</tr>
 	</thead>
 	<tbody>
@@ -138,7 +139,7 @@ function format_size($size)
 	<?php $info = $status[$spec[0]] ?>
 	<tr>
 		<td>
-			<a href="<?php echo $spec[0] ?>/">
+		<a href="<?php echo $spec[0] ?>/" title="<?php echo $spec[1] ?>">
 				<?php echo $spec[0] ?>
 			</a>
 		</td>
@@ -156,7 +157,6 @@ function format_size($size)
 		<td><?php echo format_size($info['size']) ?></td>
 		<td><?php echo $info['files_count'] ?></td>
 		<td><?php echo $info['stamp'] ? date('Y-m-d H:i:s', $info['stamp']) : '' ?></td>
-		<td class="description"><?php echo $spec[1] ?></td>
 	</tr>
 <?php endforeach ?>
 	</tbody>
@@ -171,6 +171,7 @@ function format_size($size)
 <p>本站的网络和硬件由清华大学网络工程研究中心提供支持。</p>
 </div>
 
+</div> <!-- end of div wrapper -->
 </body>
 </html>
 <!-- vi: se noet ts=4: -->
