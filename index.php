@@ -7,9 +7,12 @@
 </head>
 <body>
 <div id="wrapper">
+<div id="header">
 <h1>清华大学开源镜像站</h1>
 <h2>Portal of Tsinghua University Open Source Software Mirror Sites</h2>
+</div> <!-- end of header div -->
 
+<div id="content">
 <p>
 我们是清华大学开源镜像站管理团队，这是正在建设中的清华大学开源镜像网站。
 </p>
@@ -163,13 +166,18 @@ function format_size($size)
 </table>
 </div>
 <p><!--<a href="http://mirrors.tuna.tsinghua.edu.cn:3000">流量统计</a> --><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>
+</div> <!-- end of content div -->
 
+<div id="footer">
 <div class="tuna-logo">
 <p>Powered by <a href="http://tuna.tsinghua.edu.cn/">
 <img src="http://tuna.tsinghua.edu.cn/files/logo-01.png" alt="TUNA" /></a>
 </p>
+</div>
+<div class="ack">
 <p>本站的网络和硬件由清华大学网络工程研究中心提供支持。</p>
 </div>
+</div> <!-- end of footer div -->
 
 </div> <!-- end of div wrapper -->
 </body>

@@ -54,5 +54,10 @@
 		margin: 0 15% 0 15%;
 		width: auto;
 	}
+
+	#header, #content, #footer {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
 }
 /* vi: se noet ts=8 sw=8: */
