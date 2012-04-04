@@ -43,8 +43,15 @@
 }
 
 @media screen and (min-width: 1000px) {
+	body {
+		background-color: #883388;
+		font-size: 16px;
+	}
+
 	#wrapper {
-		margin: 0 10% 0 10%;
+		background-color: #FFFFFF;
+		border-radius: 5px;
+		margin: 0 15% 0 15%;
 		width: auto;
 	}
 }
