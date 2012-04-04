@@ -18,14 +18,14 @@
  href="https://groups.google.com/forum/#%21forum/thu-opensource-mirror-admin">Google
 Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-admin <span class="nospam">[SPAM]</span> AT googlegroups <span class="nospam">[SPAM]</span> DOT com 寄信</a>。
 </p>
-<p><strong>本站公开测试中，欢迎大家使用。请通过本站域名访问</strong>:</p>
+<p>本站可以在校内外通过 IPv4/IPv6 使用。本站域名有：</p>
 <ul>
-<li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a></li>
-<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a>(IPv6 only)</li>
-<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a>(IPv4 only)</li>
+<li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
+<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
+<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
 </ul>
 
-<p><strong>镜像使用指南参见 <a href="http://wiki.tuna.tsinghua.edu.cn/MirrorUseHowto">Wiki</a></strong></p>
+<p><strong>镜像使用指南参见 <a href="http://wiki.tuna.tsinghua.edu.cn/MirrorUseHowto">Wiki</a></strong>。</p>
 
 <?php
 date_default_timezone_set('Asia/Shanghai');
