@@ -25,6 +25,8 @@ Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-ad
 <li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a>(IPv4 only)</li>
 </ul>
 
+<p><strong>镜像使用指南参见 <a href="http://wiki.tuna.tsinghua.edu.cn/MirrorUseHowto">Wiki</a></strong></p>
+
 <?php
 date_default_timezone_set('Asia/Shanghai');
 $status = initialize_status(array(
