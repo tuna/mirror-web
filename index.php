@@ -17,14 +17,9 @@ Portal of Tsinghua University Open Source Software Mirror Sites
 <div id="content">
 <h2>简介</h2>
 <p>
-我们是清华大学开源镜像站管理团队，这是正在建设中的清华大学开源镜像网站。
+欢迎来到清华大学开源镜像网站，它由清华大学开源镜像站管理团队维护管理。
 </p>
 
-<p>如果你有任何问题或建议，请在我们的 <a href="http://issues.tuna.tsinghua.edu.cn">issue tracker</a>
- 上提交 bug，或者访问我们的<a
- href="https://groups.google.com/forum/#%21forum/thu-opensource-mirror-admin">Google
-Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-admin <span class="nospam">[SPAM]</span> AT googlegroups <span class="nospam">[SPAM]</span> DOT com 寄信</a>。
-</p>
 <p>本站可以在校内外通过 IPv4/IPv6 使用。本站域名有：</p>
 <ul>
 <li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
@@ -32,7 +27,13 @@ Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-ad
 <li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
 </ul>
 
-<p><strong>镜像使用指南参见 <a href="http://wiki.tuna.tsinghua.edu.cn/MirrorUseHowto">Wiki</a></strong>。</p>
+<p><strong>镜像使用所需配置参见 <a href="http://wiki.tuna.tsinghua.edu.cn/MirrorUseHowto">Wiki</a></strong>。</p>
+
+<p>如果您有任何问题或建议，请在我们的 <a href="http://issues.tuna.tsinghua.edu.cn">issue tracker</a>
+ 上提交 bug，或者访问我们的<a
+ href="https://groups.google.com/forum/#%21forum/thu-opensource-mirror-admin">Google
+Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-admin <span class="nospam">[SPAM]</span> AT googlegroups <span class="nospam">[SPAM]</span> DOT com 寄信</a>。
+</p>
 
 <?php
 date_default_timezone_set('Asia/Shanghai');
