@@ -56,8 +56,8 @@
 	}
 
 	#header, #content, #footer {
-		margin-left: 10px;
-		margin-right: 10px;
+		margin-left: 1em;
+		margin-right: 1em;
 	}
 
 	.tagline {
