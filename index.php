@@ -65,6 +65,7 @@ $specs = array(
 	array('kernel', 'Linux 内核。', 'BYVoid'),
 	array('macports', 'Mac OS X 与 Darwin 的包管理软件，GUI与CLI的结合。', 'VuryLeo'),
 	array('opensuse', '由 Novell 支持的 Linux 发行版。', 'xiaq'),
+	array('pypi', 'Python Package Index', 'fqj1994'),
 	array('rpmfusion', '一个用于 Fedora 和 RHEL 等的第三方软件仓库。', 'alick'),
 	array('scientific', '由美国费米实验室维护的与 RHEL 兼容的发行版。', 'BYVoid'),
 	array('slackware', '最有资历的 Linux 发行版。', 'BYVoid'),
@@ -81,6 +82,7 @@ function maintainer($name)
 		'heroxbd' => 'http://www.awa.tohoku.ac.jp/~benda/',
 		'alick' => 'http://wiki.tuna.tsinghua.edu.cn/alick',
 		'VuryLeo' => 'http://www.vuryleo.com/',
+		'fqj1994' => 'http://www.fqj1994.com',
 	);
 	if (isset($mters[$name]))
 		return "<a href='{$mters[$name]}' target='_blank'>{$name}</a>";
