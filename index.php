@@ -32,7 +32,7 @@ Portal of Tsinghua University Open Source Software Mirror Sites
 <p>如果您有任何问题或建议，请在我们的 <a href="http://issues.tuna.tsinghua.edu.cn">issue tracker</a>
  上提交 bug，或者访问我们的<a
  href="https://groups.google.com/forum/#%21forum/thu-opensource-mirror-admin">Google
-Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-admin <span class="nospam">[SPAM]</span> AT googlegroups <span class="nospam">[SPAM]</span> DOT com 寄信</a>。
+Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-admin <span class="nospam">[SPAM]</span> AT googlegroups <span class="nospam">[SPAM]</span> DOT com 寄信。
 </p>
 
 <?php
