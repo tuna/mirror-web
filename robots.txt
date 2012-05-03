@@ -1,0 +1,25 @@
+# robots.txt for http://mirrors.tuna.tsinghua.edu.cn
+
+User-agent: *
+
+Disallow: /CTAN
+Disallow: /cygwin
+Disallow: /debian
+Disallow: /epel
+Disallow: /fedora
+Disallow: /freebsd
+Disallow: /gnu
+Disallow: /kernel
+Disallow: /opensuse
+Disallow: /scientific
+Disallow: /slackware
+Disallow: /tex-archive
+Disallow: /ubuntu
+Disallow: /archlinux
+Disallow: /centos
+Disallow: /chakra
+Disallow: /frugalware
+Disallow: /gentoo
+Disallow: /rpmfusion
+Disallow: /stg
+
