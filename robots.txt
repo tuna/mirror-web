@@ -2,24 +2,36 @@
 
 User-agent: *
 
+Disallow: /archlinux
+Disallow: /centos
+Disallow: /chakra
 Disallow: /CTAN
 Disallow: /cygwin
 Disallow: /debian
+Disallow: /debian-backports
+Disallow: /debian-cd
+Disallow: /debian-multimedia
+Disallow: /debian-security
+Disallow: /debian-weekly-builds
+Disallow: /deepin
+Disallow: /deepin-releases
 Disallow: /epel
 Disallow: /fedora
 Disallow: /freebsd
+Disallow: /frugalware
+Disallow: /gentoo
+Disallow: /gentoo-portage
 Disallow: /gnu
 Disallow: /kernel
+Disallow: /macports
 Disallow: /opensuse
+Disallow: /pypi
+Disallow: /rpmfusion
 Disallow: /scientific
 Disallow: /slackware
 Disallow: /tex-archive
 Disallow: /ubuntu
-Disallow: /archlinux
-Disallow: /centos
-Disallow: /chakra
-Disallow: /frugalware
-Disallow: /gentoo
-Disallow: /rpmfusion
+Disallow: /ubuntu-releases
+
 Disallow: /stg
 
