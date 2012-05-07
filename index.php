@@ -42,6 +42,7 @@ $status = initialize_status(array(
 	'http://ftp3.tsinghua.edu.cn/newstatus.txt'));
 $specs = array(
 	array('archlinux', '滚动更新的 Linux 发行版，极简主义哲学。', 'xiaq'),
+	array('archlinuxarm', 'Archlinux ARM port.', 'xiaq'),
 	array('centos', '由社区维护的与 RHEL 完全兼容的发行版。', 'alick'),
 	array('chakra', '基于 KDE SC、无 Gtk 的桌面环境。前身是 Archlinux 的 [kde-mod]。', 'xiaq'),
 	array('cygwin', 'Windows 平台下的类 Unix环境.', 'BYVoid'),
