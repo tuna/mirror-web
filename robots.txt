@@ -3,6 +3,7 @@
 User-agent: *
 
 Disallow: /archlinux
+Disallow: /archlinuxarm
 Disallow: /centos
 Disallow: /chakra
 Disallow: /CTAN
