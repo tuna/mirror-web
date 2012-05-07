@@ -51,7 +51,7 @@ $specs = array(
 	array('debian-cd', 'Debian CD 镜像。', 'heroxbd'),
 	array('debian-multimedia', 'Debian 非官方多媒体套件。', 'heroxbd'),
 	array('debian-security', 'Debian 安全情报', 'heroxbd'),
-	array('debian-weekly-builds', 'Debian CD 镜像每周构建。', 'heroxbd'),
+	array('debian-weekly-builds', 'Debian CD 镜像每周构建。', 'fqj1994'),
 	array('deepin', '基于 Ubuntu 的面向中文桌面用户的发行版。', 'xiaq'),
 	array('deepin-releases', 'Deepin 稳定版的 CD 镜像。', 'xiaq'),
 	array('epel', 'Fedora 社区为 RHEL 等提供的额外软件包。', 'BYVoid'),
