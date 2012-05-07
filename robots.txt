@@ -36,3 +36,4 @@ Disallow: /ubuntu-releases
 
 Disallow: /stg
 
+Disallow: /~
