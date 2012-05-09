@@ -6,13 +6,15 @@ $statbydistro = array(
 function stat_by_distro_init($filename, $mark) {
 	global $statbydistro;
 	$f = fopen($filename, 'r');
-	while (!feof($f)) {
-		$line = fgets($f);
-		$t = explode(',', $line);
-		if (count($t) == 2) {
-			list($distro, $c) = $t;
+	if ($f) {
+		while (!feof($f)) {
+			$line = fgets($f);
+			$t = explode(',', $line);
+			if (count($t) == 2) {
+				list($distro, $c) = $t;
+			}
+			$statbydistro[$mark][$distro] = $c;
 		}
-		$statbydistro[$mark][$distro] = $c;
 	}
 }
 
