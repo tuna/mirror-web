@@ -1,3 +1,6 @@
+<?php
+include "includes/bydistro.php";
+?>
 <!doctype html>
 <html>
 <head>
@@ -143,6 +146,7 @@ function format_size($size)
 		<td>大小</td>
 		<td>文件总数</td>
 		<td>同步完成时间</td>
+		<td>近七日请求数</td>
 	</tr>
 	</thead>
 	<tbody>
@@ -168,6 +172,7 @@ function format_size($size)
 		<td><?php echo format_size($info['size']) ?></td>
 		<td><?php echo $info['files_count'] ?></td>
 		<td><?php echo $info['stamp'] ? date('Y-m-d H:i:s', $info['stamp']) : '' ?></td>
+		<td><?php echo stat_by_distro_get($spec[0], 'week');?></td>
 	</tr>
 <?php endforeach ?>
 	</tbody>
