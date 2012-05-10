@@ -52,7 +52,7 @@ $specs = array(
 	array('CTAN', 'Comprehensive TeX Archive Network。', 'MichaelChou'),
 	array('debian', '一个完全由社区维护的 Linux 发行版。', 'heroxbd'),
 	array('debian-backports', 'Debian Stable 上用的 Testing/Unstable 扩展包。', 'heroxbd'),
-	array('debian-cd', 'Debian CD 镜像。', 'heroxbd'),
+	array('debian-cd', 'Debian CD 镜像。', 'fqj1994'),
 	array('debian-multimedia', 'Debian 非官方多媒体套件。', 'heroxbd'),
 	array('debian-security', 'Debian 安全情报', 'heroxbd'),
 	array('debian-weekly-builds', 'Debian CD 镜像每周构建。', 'fqj1994'),
