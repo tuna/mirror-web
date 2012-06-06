@@ -44,6 +44,7 @@ $status = initialize_status(array(
 	'/home/ftp/log/newstatus.txt',
 	'http://ftp3.tsinghua.edu.cn/newstatus.txt'));
 $specs = array(
+	array('apache', 'apache software foundation的软件', 'fqj1994'),
 	array('archlinux', '滚动更新的 Linux 发行版，极简主义哲学。', 'xiaq'),
 	array('archlinuxarm', 'Archlinux ARM port.', 'xiaq'),
 	array('centos', '由社区维护的与 RHEL 完全兼容的发行版。', 'alick'),
