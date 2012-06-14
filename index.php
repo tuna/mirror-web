@@ -68,6 +68,7 @@ $specs = array(
 	array('gentoo-portage-prefix', 'Gentoo on a different level', 'heroxbd'),
 	array('gnu', 'GNU/Linux 的基础软件。', 'MichaelChou'),
 	array('kernel', 'Linux 内核。', 'BYVoid'),
+	array('linuxmint', '基于Ubuntu的发行版', 'fqj1994'),
 	array('macports', 'Mac OS X 与 Darwin 的包管理软件，GUI与CLI的结合。', 'VuryLeo'),
 	array('opensuse', '由 Novell 支持的 Linux 发行版。', 'xiaq'),
 	array('pypi', 'Python Package Index', 'fqj1994'),
