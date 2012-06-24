@@ -36,4 +36,7 @@ Disallow: /ubuntu-releases
 
 Disallow: /stg
 
+Disallow: /git
+Disallow: /gitweb
+
 Disallow: /~
