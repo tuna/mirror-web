@@ -58,7 +58,7 @@ $specs = array(
 	array('epel', 'Fedora 社区为 RHEL 等提供的额外软件包。', 'BYVoid'),
 	array('fedora', '自由友爱杰出前卫的 Linux 发行版，Red Hat 公司赞助的社区项目。', 'BYVoid'),
 	array('freebsd', '拥有辉煌历史的 BSD 的一个重要分支。', 'xiaq'),
-	array('frugalware', 'Slackware 和 Archlinux 哲学的混血，独特的半滚动发行模式。', 'xiaq'),
+	// array('frugalware', 'Slackware 和 Archlinux 哲学的混血，独特的半滚动发行模式。', 'xiaq'),
 	array('gentoo', '一个快速的元发行版，软件包系统使用源代码。', 'cuckoo'),
 	array('gentoo-portage', 'Gentoo 的 ports collection。', 'cuckoo'),
 	array('gentoo-portage-prefix', 'Gentoo on a different level', 'heroxbd'),
