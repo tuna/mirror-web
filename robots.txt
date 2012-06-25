@@ -2,6 +2,7 @@
 
 User-agent: *
 
+Disallow: /apache
 Disallow: /archlinux
 Disallow: /archlinuxarm
 Disallow: /centos
@@ -24,6 +25,8 @@ Disallow: /gentoo
 Disallow: /gentoo-portage
 Disallow: /gnu
 Disallow: /kernel
+Disallow: /linuxmint
+Disallow: /linuxmint-cd
 Disallow: /macports
 Disallow: /opensuse
 Disallow: /pypi
@@ -35,5 +38,8 @@ Disallow: /ubuntu
 Disallow: /ubuntu-releases
 
 Disallow: /stg
+
+Disallow: /git
+Disallow: /gitweb
 
 Disallow: /~

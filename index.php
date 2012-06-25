@@ -1,3 +1,6 @@
+<?php
+include "includes/bydistro.php";
+?>
 <!doctype html>
 <html>
 <head>
@@ -41,6 +44,7 @@ $status = initialize_status(array(
 	'/home/ftp/log/newstatus.txt',
 	'http://ftp3.tsinghua.edu.cn/newstatus.txt'));
 $specs = array(
+	array('apache', 'apache software foundation的软件', 'fqj1994'),
 	array('archlinux', '滚动更新的 Linux 发行版，极简主义哲学。', 'xiaq'),
 	array('archlinuxarm', 'Archlinux ARM port.', 'xiaq'),
 	array('centos', '由社区维护的与 RHEL 完全兼容的发行版。', 'alick'),
@@ -49,7 +53,7 @@ $specs = array(
 	array('CTAN', 'Comprehensive TeX Archive Network。', 'MichaelChou'),
 	array('debian', '一个完全由社区维护的 Linux 发行版。', 'heroxbd'),
 	array('debian-backports', 'Debian Stable 上用的 Testing/Unstable 扩展包。', 'heroxbd'),
-	array('debian-cd', 'Debian CD 镜像。', 'heroxbd'),
+	array('debian-cd', 'Debian CD 镜像。', 'fqj1994'),
 	array('debian-multimedia', 'Debian 非官方多媒体套件。', 'heroxbd'),
 	array('debian-security', 'Debian 安全情报', 'heroxbd'),
 	array('debian-weekly-builds', 'Debian CD 镜像每周构建。', 'fqj1994'),
@@ -64,6 +68,8 @@ $specs = array(
 	array('gentoo-portage-prefix', 'Gentoo on a different level', 'heroxbd'),
 	array('gnu', 'GNU/Linux 的基础软件。', 'MichaelChou'),
 	array('kernel', 'Linux 内核。', 'BYVoid'),
+	array('linuxmint', '基于Ubuntu的发行版', 'fqj1994'),
+	array('linuxmint-cd', 'LinuxMint的CD/DVD镜像', 'fqj1994'),
 	array('macports', 'Mac OS X 与 Darwin 的包管理软件，GUI与CLI的结合。', 'VuryLeo'),
 	array('opensuse', '由 Novell 支持的 Linux 发行版。', 'xiaq'),
 	array('pypi', 'Python Package Index', 'fqj1994'),
@@ -143,6 +149,7 @@ function format_size($size)
 		<td>大小</td>
 		<td>文件总数</td>
 		<td>同步完成时间</td>
+		<td>近七日请求(HTTP)</td>
 	</tr>
 	</thead>
 	<tbody>
@@ -168,6 +175,7 @@ function format_size($size)
 		<td><?php echo format_size($info['size']) ?></td>
 		<td><?php echo $info['files_count'] ?></td>
 		<td><?php echo $info['stamp'] ? date('Y-m-d H:i:s', $info['stamp']) : '' ?></td>
+		<td><?php $stat = stat_by_distro_get($spec[0], 'week');echo $stat[0], '次/', convert_byte_to_text($stat[1]);?></td>
 	</tr>
 <?php endforeach ?>
 	</tbody>
