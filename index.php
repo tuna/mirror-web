@@ -41,7 +41,7 @@ Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-ad
 <?php
 date_default_timezone_set('Asia/Shanghai');
 $status = initialize_status(array(
-	'/home/mirror/log/newstatus.txt',
+	'/home/mirror/log/status.txt',
 	'http://ftp3.tsinghua.edu.cn/newstatus.txt'));
 $specs = array(
 	array('apache', 'apache software foundation的软件', 'fqj1994'),
