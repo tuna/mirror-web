@@ -40,5 +40,5 @@ function convert_byte_to_text($byte) {
 }
 
 
-stat_by_distro_init('/home/ftp/log/_http/bydistro/yesterday.csv', 'yesterday');
-stat_by_distro_init('/home/ftp/log/_http/bydistro/week.csv', 'week');
+stat_by_distro_init('/home/mirror/log/_http/bydistro/yesterday.csv', 'yesterday');
+stat_by_distro_init('/home/mirror/log/_http/bydistro/week.csv', 'week');
