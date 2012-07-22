@@ -39,7 +39,29 @@ include "includes/bydistro.php";
 				return the_number;
 			},
 			type: 'numeric'
-		})
+		});
+		$.tablesorter.addParser({
+			id : 'httprequest',
+			is : function(s) {
+				return false;
+			},
+			format: function(s) {
+				slash = s.indexOf('/') + 1;
+				s = s.substring(slash);
+				the_number = parseFloat(s);
+				if (s.indexOf('K') >= 0) {
+					the_number = the_number * 1024;
+				}
+				if (s.indexOf('M') >= 0) {
+					the_number = the_number * 1024 * 1024;
+				}
+				if (s.indexOf('G') >= 0) {
+					the_number = the_number * 1024 * 1024 * 1024;
+				}
+				return the_number;
+			},
+			type: 'numeric'
+		});
 		$('#status-main-table').tablesorter({
 			sortList: [[0,0]],
 			headers : {
@@ -48,6 +70,9 @@ include "includes/bydistro.php";
 				},
 				3: {
 					'sorter' : 'size'
+				},
+				6: {
+					'sorter' : 'httprequest'
 				}
 			}
 		});
