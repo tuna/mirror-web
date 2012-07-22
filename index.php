@@ -5,7 +5,14 @@ include "includes/bydistro.php";
 <html>
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-	<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />
+	<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />	
+	<script type="text/javascript" src="http://tablesorter.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="http://tablesorter.com/__jquery.tablesorter.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#status-main-table').tablesorter();
+	});
+	</script>
 	<title>清华大学开源镜像站</title>
 </head>
 <body>
@@ -140,7 +147,7 @@ function format_size($size)
 <div class="mirrors-stat">
 <h2>状态</h2>
 <div id="status-table">
-<table>
+<table class="tablesorter" id="status-main-table">
 	<thead>
 	<tr>
 		<th>名称</th>
