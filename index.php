@@ -20,11 +20,34 @@ include "includes/bydistro.php";
 			},
 			type: 'numeric'
 		});
+		$.tablesorter.addParser({
+			id : 'size',
+			is : function(s) {
+				return false;
+			},
+			format: function(s) {
+				the_number = parseFloat(s);
+				if (s.indexOf('K') >= 0) {
+					the_number = the_number * 1024;
+				}
+				if (s.indexOf('M') >= 0) {
+					the_number = the_number * 1024 * 1024;
+				}
+				if (s.indexOf('G') >= 0) {
+					the_number = the_number * 1024 * 1024 * 1024;
+				}
+				return the_number;
+			},
+			type: 'numeric'
+		})
 		$('#status-main-table').tablesorter({
 			sortList: [[0,0]],
 			headers : {
 				2: {
 					'sorter' : 'status'
+				},
+				3: {
+					'sorter' : 'size'
 				}
 			}
 		});
