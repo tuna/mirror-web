@@ -42,6 +42,33 @@
 	background-color: #ff0000;
 }
 
+
+/* tables */
+
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #FFFFFF;
+	border: 1px solid #000;
+	font-size: 8pt;
+	padding: 4px;
+}
+table.tablesorter thead tr .header {
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(asc.gif);
+}
+
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(desc.gif);
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+	background-color: #8dbdd8;
+}
+
 @media screen and (min-width: 1000px) {
 	body {
 		background-color: #883388;
