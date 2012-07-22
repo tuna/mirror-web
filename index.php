@@ -6,8 +6,8 @@ include "includes/bydistro.php";
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 	<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />	
-	<script type="text/javascript" src="http://tablesorter.com/jquery-latest.js"></script>
-	<script type="text/javascript" src="http://tablesorter.com/__jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="files/jquery-latest.js"></script>
+	<script type="text/javascript" src="files/__jquery.tablesorter.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$.tablesorter.addParser({
