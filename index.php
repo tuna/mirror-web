@@ -143,13 +143,13 @@ function format_size($size)
 <table>
 	<thead>
 	<tr>
-		<td>名称</td>
-		<td>维护者</td>
-		<td>状态</td>
-		<td>大小</td>
-		<td>文件总数</td>
-		<td>同步完成时间</td>
-		<td>近七日请求(HTTP)</td>
+		<th>名称</th>
+		<th>维护者</th>
+		<th>状态</th>
+		<th>大小</th>
+		<th>文件总数</th>
+		<th>同步完成时间</th>
+		<th>近七日请求(HTTP)</th>
 	</tr>
 	</thead>
 	<tbody>
