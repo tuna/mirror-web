@@ -10,7 +10,9 @@ include "includes/bydistro.php";
 	<script type="text/javascript" src="http://tablesorter.com/__jquery.tablesorter.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		$('#status-main-table').tablesorter();
+		$('#status-main-table').tablesorter({
+			sortList: [[0,0]]
+		});
 	});
 	</script>
 	<title>清华大学开源镜像站</title>
