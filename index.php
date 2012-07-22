@@ -14,10 +14,10 @@ include "includes/bydistro.php";
 			id : 'status',
 			is : function(s) {
 				return false;
-			}
+			},
 			format: function(s) {
 				return s.replace('未知', 0).replace('同步失败', 1).replace('正在同步', 2).replace('同步完成', 3);
-			}
+			},
 			type: 'numeric'
 		});
 		$('#status-main-table').tablesorter({
