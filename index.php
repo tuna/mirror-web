@@ -254,7 +254,22 @@ function format_size($size)
 </table>
 <p>注：对于正在同步和同步失败的镜像，大小、文件总数、同步完成时间等信息取自最近一次成功同步时的日志。</p>
 </div> <!-- end of status-table div -->
-<p><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>
+<p>
+<table border="0">
+<tr>
+<th>网络</th>
+<th>最近24小时流量图</th>
+</tr>
+<tr>
+<td>TUNET (IPv4 + IPv6)</td>
+<td><img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth0-day.png" /></td>
+</tr>
+<tr>
+<td>CERNET (IPv4 only)</td>
+<td><img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth1-day.png" /></td>
+</tr>
+</table>
+<!--<p><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>-->
 </div> <!-- end of mirrors-stat div -->
 </div> <!-- end of content div -->
 
