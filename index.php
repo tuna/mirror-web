@@ -254,6 +254,7 @@ function format_size($size)
 </table>
 <p>注：对于正在同步和同步失败的镜像，大小、文件总数、同步完成时间等信息取自最近一次成功同步时的日志。</p>
 </div> <!-- end of status-table div -->
+<p><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>
 <p>
 <table border="0">
 <tr>
