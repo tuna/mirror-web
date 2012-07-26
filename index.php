@@ -236,7 +236,7 @@ function format_size($size)
 <?php foreach ($specs as $spec): ?>
 	<?php $info = $status[$spec[0]] ?>
 	<tr>
-	<td><?php
+	<td class="official"><?php
 switch ($spec[3][0]) {
 case 'A':
 	echo '<a href="http://', $spec[3]['url'] ,'" target="_blank"><img height="16px" width="16px" src="files/yes.png"/></a>';
@@ -269,8 +269,8 @@ case 'U':
 			<td class="sync-state sync-unknown">未知</td>
 		<?php endif ?>
 
-		<td><?php echo format_size($info['size']) ?></td>
-		<td><?php echo $info['files_count'] ?></td>
+		<td class="size"><?php echo format_size($info['size']) ?></td>
+		<td class="files_count"><?php echo $info['files_count'] ?></td>
 		<td><?php echo $info['stamp'] ? date('Y-m-d H:i:s', $info['stamp']) : '' ?></td>
 		<td><?php $stat = stat_by_distro_get($spec[0], 'week');echo $stat[0], '次/', convert_byte_to_text($stat[1]);?></td>
 	</tr>

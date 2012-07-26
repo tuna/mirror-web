@@ -11,6 +11,12 @@
 .mirrors-stat td {
 	padding: 3px;
 }
+.mirrors-stat td.official {
+	text-align: center;
+}
+.mirrors-stat td.size, .mirrors-stat td.files_count {
+	text-align: right;
+}
 .mirrors-stat thead {
 	text-align: center;
 	font-weight: bolder;
