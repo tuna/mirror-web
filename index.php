@@ -222,7 +222,8 @@ function format_size($size)
 <table class="tablesorter" id="status-main-table">
 	<thead>
 	<tr>
-		<th>官方</th>
+		<th><img height="16px" width="16px" src="files/official-header.png"
+				alt="Is an official mirror?"/></th>
 		<th>名称</th>
 		<th>维护者</th>
 		<th>状态</th>
@@ -239,16 +240,16 @@ function format_size($size)
 	<td class="official"><?php
 switch ($spec[3][0]) {
 case 'A':
-	echo '<a href="http://', $spec[3]['url'] ,'" target="_blank"><img height="16px" width="16px" src="files/official.png"/></a>';
+	echo '<a href="http://', $spec[3]['url'] ,'" target="_blank"><img height="16px" width="16px" src="files/official.png" alt="official"/></a>';
 	break;
 case 'B':
-	echo '<img height="16px" width="16px" src="files/official.png"/>';
+	echo '<img height="16px" width="16px" src="files/official.png" alt="official"/>';
 	break;
 case 'N':
-	echo '<img height="16px" width="16px" src="files/non-official.png"/>';
+	echo '<img height="16px" width="16px" src="files/non-official.png" alt="non-official"/>';
 	break;
 case 'U':
-	echo '<img height="16px" width="16px" src="files/unknown.png"/>';
+	echo '<img height="16px" width="16px" src="files/unknown.png" alt="unknown"/>';
 	break;
 }
 ?></td>
