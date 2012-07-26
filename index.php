@@ -168,6 +168,7 @@ function maintainer($name)
 		'MichaelChou' => 'http://michael.yuespot.org/',
 		'heroxbd' => 'http://www.awa.tohoku.ac.jp/~benda/',
 		'alick' => 'http://wiki.tuna.tsinghua.edu.cn/alick',
+		'ray' => 'http://wiki.tuna.tsinghua.edu.cn/ray',
 		'VuryLeo' => 'http://www.vuryleo.com/',
 		'fqj1994' => 'http://www.fqj1994.com',
 	);
