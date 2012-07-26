@@ -287,11 +287,11 @@ case 'U':
 <th>最近24小时流量图</th>
 </tr>
 <tr>
-<td>TUNET (IPv4 + IPv6)</td>
+<td>TUNET</td>
 <td><img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth0-day.png" /></td>
 </tr>
 <tr>
-<td>CERNET (IPv4 only)</td>
+<td>CERNET</td>
 <td><img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth1-day.png" /></td>
 </tr>
 </table>
