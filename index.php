@@ -239,13 +239,13 @@ function format_size($size)
 	<td class="official"><?php
 switch ($spec[3][0]) {
 case 'A':
-	echo '<a href="http://', $spec[3]['url'] ,'" target="_blank"><img height="16px" width="16px" src="files/yes.png"/></a>';
+	echo '<a href="http://', $spec[3]['url'] ,'" target="_blank"><img height="16px" width="16px" src="files/official.png"/></a>';
 	break;
 case 'B':
-	echo '<img height="16px" width="16px" src="files/yes.png"/>';
+	echo '<img height="16px" width="16px" src="files/official.png"/>';
 	break;
 case 'N':
-	echo '<img height="16px" width="16px" src="files/no.png"/>';
+	echo '<img height="16px" width="16px" src="files/non-official.png"/>';
 	break;
 case 'U':
 	echo '<img height="16px" width="16px" src="files/unknown.png"/>';
