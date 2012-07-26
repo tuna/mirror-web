@@ -6,7 +6,6 @@ include "includes/bydistro.php";
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 	<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />
-	<link href="files/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="files/jquery-latest.js"></script>
 	<script type="text/javascript" src="files/__jquery.tablesorter.min.js"></script>
 	<script type="text/javascript">
@@ -142,7 +141,6 @@ $specs = array(
 	array('epel', 'Fedora 社区为 RHEL 等提供的额外软件包。', 'BYVoid', array('N')),
 	array('fedora', '自由友爱杰出前卫的 Linux 发行版，Red Hat 公司赞助的社区项目。', 'BYVoid', array('N')),
 	array('freebsd', '拥有辉煌历史的 BSD 的一个重要分支。', 'xiaq', array('N')),
-	// array('frugalware', 'Slackware 和 Archlinux 哲学的混血，独特的半滚动发行模式。', 'xiaq'),
 	array('gentoo', '一个快速的元发行版，软件包系统使用源代码。', 'cuckoo', array('N')),
 	array('gentoo-portage', 'Gentoo 的 ports collection。', 'cuckoo', array('N')),
 	array('gentoo-portage-prefix', 'Gentoo on a different level', 'heroxbd', array('A', 'url' => 'rsync.cn.prefix.freens.org')),
@@ -297,7 +295,6 @@ case 'U':
 <td><img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth1-day.png" /></td>
 </tr>
 </table>
-<!--<p><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>-->
 </div> <!-- end of mirrors-stat div -->
 </div> <!-- end of content div -->
 
