@@ -5,8 +5,8 @@ include "includes/bydistro.php";
 <html>
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-	<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />	
-	<link href="files/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css" />	
+	<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />
+	<link href="files/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="files/jquery-latest.js"></script>
 	<script type="text/javascript" src="files/__jquery.tablesorter.min.js"></script>
 	<script type="text/javascript">
@@ -128,6 +128,7 @@ $specs = array(
 	array('centos', '由社区维护的与 RHEL 完全兼容的发行版。', 'alick', array('B')),
 	array('chakra', '基于 KDE SC、无 Gtk 的桌面环境。前身是 Archlinux 的 [kde-mod]。', 'xiaq', array('N')),
 	array('CPAN', 'Comprehensive Perl Archive Network。', 'fqj1994', array('N')),
+	array('CRAN', 'Comprehensive Rerl Archive Network。', 'ray', array('N')),
 	array('CTAN', 'Comprehensive TeX Archive Network。', 'MichaelChou', array('N')),
 	array('cygwin', 'Windows 平台下的类 Unix环境.', 'BYVoid', array('N')),
 	array('debian', '一个完全由社区维护的 Linux 发行版。', 'heroxbd', array('N')),
