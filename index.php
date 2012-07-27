@@ -151,7 +151,7 @@ function format_size($size)
 <table class="tablesorter" id="status-main-table">
 	<thead>
 	<tr>
-		<th><img height="16px" width="16px" src="files/official-header.png"
+		<th><img height="16" width="16" src="files/official-header.png"
 				alt="Is an official mirror?"/></th>
 		<th>名称</th>
 		<th>维护者</th>
@@ -170,16 +170,16 @@ function format_size($size)
 	<td class="official"><?php
 switch ($spec[3][0]) {
 case 'A':
-	echo '<a href="http://', $spec[3]['url'] ,'" target="_blank"><img height="16px" width="16px" src="files/official.png" alt="official"/></a>';
+	echo '<a href="http://', $spec[3]['url'] ,'" target="_blank"><img height="16" width="16" src="files/official.png" alt="official"/></a>';
 	break;
 case 'B':
-	echo '<img height="16px" width="16px" src="files/official.png" alt="official"/>';
+	echo '<img height="16" width="16" src="files/official.png" alt="official"/>';
 	break;
 case 'N':
-	echo '<img height="16px" width="16px" src="files/non-official.png" alt="non-official"/>';
+	echo '<img height="16" width="16" src="files/non-official.png" alt="non-official"/>';
 	break;
 case 'U':
-	echo '<img height="16px" width="16px" src="files/unknown.png" alt="unknown"/>';
+	echo '<img height="16" width="16" src="files/unknown.png" alt="unknown"/>';
 	break;
 }
 ?></td>
@@ -221,8 +221,8 @@ case 'U':
 <h3><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></h3>
 <div id="flux-stat">
 <h3>最近24小时流量图</h3>
-<img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth0-day.png" />
-<img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth1-day.png" />
+<img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth0-day.png" alt="eth0-day" />
+<img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth1-day.png" alt="eth1-day" />
 </div> <!-- end of flux-stat div -->
 </div> <!-- end of mirrors-stat div -->
 </div> <!-- end of content div -->
