@@ -18,13 +18,13 @@ $(document).ready(function () {
         format: function (s) {
             var the_number = parseFloat(s);
             if (s.indexOf('K') >= 0) {
-                the_number = the_number * 1024;
+                the_number = the_number * 1000;
             }
             if (s.indexOf('M') >= 0) {
-                the_number = the_number * 1024 * 1024;
+                the_number = the_number * 1000 * 1000;
             }
             if (s.indexOf('G') >= 0) {
-                the_number = the_number * 1024 * 1024 * 1024;
+                the_number = the_number * 1000 * 1000 * 1000;
             }
             return the_number;
         },

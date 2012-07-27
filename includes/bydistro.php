@@ -32,8 +32,8 @@ function convert_byte_to_text($byte) {
 	$dw = array('B', 'KB', 'MB', 'GB', 'TB');
 	$cur = 0;
 	$num = (double)$byte;
-	while ($num > 1024) {
-		$num /= 1024;
+	while ($num > 1000) {
+		$num /= 1000;
 		$cur++;
 	}
 	return sprintf("%0.2lf%s", $num, $dw[$cur]);
