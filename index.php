@@ -288,24 +288,14 @@ case 'U':
 <li>对于正在同步和同步失败的镜像，大小、文件总数、同步完成时间等信息取自最近一次成功同步时的日志。</li>
 <li>请求次数/数据量取自最近七日的 HTTP 请求。</li>
 </ul>
-</div> <!-- end of status-table-footnote -->
+</div> <!-- end of status-table-footnote div -->
 </div> <!-- end of status-table div -->
-<p><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>
-<p>
-<table border="0">
-<tr>
-<th>网络</th>
-<th>最近24小时流量图</th>
-</tr>
-<tr>
-<td>TUNET</td>
-<td><img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth0-day.png" /></td>
-</tr>
-<tr>
-<td>CERNET</td>
-<td><img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth1-day.png" /></td>
-</tr>
-</table>
+<h3><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></h3>
+<div id="flux-stat">
+<h3>最近24小时流量图</h3>
+<img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth0-day.png" />
+<img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth1-day.png" />
+</div> <!-- end of flux-stat div -->
 </div> <!-- end of mirrors-stat div -->
 </div> <!-- end of content div -->
 
