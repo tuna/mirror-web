@@ -1,21 +1,22 @@
-$(document).ready(function() {
+$(document).ready(function () {
+    'use strict';
     $.tablesorter.addParser({
         id : 'status',
-        is : function(s) {
+        is : function (s) {
             return false;
         },
-        format: function(s) {
+        format: function (s) {
             return s.replace('未知', 0).replace('同步失败', 1).replace('正在同步', 2).replace('同步完成', 3);
         },
         type: 'numeric'
     });
     $.tablesorter.addParser({
         id : 'size',
-        is : function(s) {
+        is : function (s) {
             return false;
         },
-        format: function(s) {
-            the_number = parseFloat(s);
+        format: function (s) {
+            var the_number = parseFloat(s);
             if (s.indexOf('K') >= 0) {
                 the_number = the_number * 1024;
             }
@@ -30,10 +31,10 @@ $(document).ready(function() {
         type: 'numeric'
     });
     $('#status-main-table').tablesorter({
-        sortList: [[1,0]],
-        textExtraction: function(s){
-            var $el = $(s);
-            $img = $el.find('img');
+        sortList: [[1, 0]],
+        textExtraction: function (s) {
+            var $el = $(s),
+                $img = $el.find('img');
             return $img.length ? $img.attr('alt') : $el.text();
         },
         headers : {
