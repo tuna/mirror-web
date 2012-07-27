@@ -7,7 +7,7 @@ include "includes/bydistro.php";
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 	<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="files/jquery-latest.js"></script>
-	<script type="text/javascript" src="files/__jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="files/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript" src="files/sort-status-table.js"></script>
 	<title>清华大学开源镜像站</title>
 </head>
