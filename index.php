@@ -40,42 +40,20 @@ include "includes/bydistro.php";
 			},
 			type: 'numeric'
 		});
-		$.tablesorter.addParser({
-			id : 'httprequest',
-			is : function(s) {
-				return false;
-			},
-			format: function(s) {
-				slash = s.indexOf('/') + 1;
-				s = s.substring(slash);
-				the_number = parseFloat(s);
-				if (s.indexOf('K') >= 0) {
-					the_number = the_number * 1024;
-				}
-				if (s.indexOf('M') >= 0) {
-					the_number = the_number * 1024 * 1024;
-				}
-				if (s.indexOf('G') >= 0) {
-					the_number = the_number * 1024 * 1024 * 1024;
-				}
-				return the_number;
-			},
-			type: 'numeric'
-		});
 		$('#status-main-table').tablesorter({
 			sortList: [[1,0]],
 			headers : {
-				0: {
-					'sorter' : false
-				},
+				//0: {
+					//'sorter' : false
+				//},
 				3: {
 					'sorter' : 'status'
 				},
 				4: {
 					'sorter' : 'size'
 				},
-				7: {
-					'sorter' : 'httprequest'
+				8: {
+					'sorter' : 'size'
 				}
 			}
 		});
@@ -276,8 +254,8 @@ case 'U':
 		<td class="files_count"><?php echo $info['files_count'] ?></td>
 		<td><?php echo $info['stamp'] ? date('Y-m-d H:i:s', $info['stamp']) : '' ?></td>
 		<?php $stat = stat_by_distro_get($spec[0], 'week'); ?>
-		<td><?php echo $stat[0]; ?></td>
-		<td><?php echo convert_byte_to_text($stat[1]);?></td>
+		<td class="req_files_count"><?php echo $stat[0]; ?></td>
+		<td class="req_size"><?php echo convert_byte_to_text($stat[1]);?></td>
 	</tr>
 <?php endforeach ?>
 	</tbody>

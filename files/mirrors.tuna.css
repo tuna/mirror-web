@@ -17,6 +17,9 @@
 .mirrors-stat td.size, .mirrors-stat td.files_count {
 	text-align: right;
 }
+.mirrors-stat td.req_size, .mirrors-stat td.req_files_count {
+	text-align: right;
+}
 .mirrors-stat thead {
 	text-align: center;
 	font-weight: bolder;
