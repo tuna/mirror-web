@@ -75,6 +75,10 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 	background-color: #8dbdd8;
 }
 
+#status-table-footnote {
+	font-size: smaller;
+}
+
 @media screen and (min-width: 1000px) {
 	body {
 		background-color: #883388;

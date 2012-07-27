@@ -217,8 +217,9 @@ function format_size($size)
 ?>
 
 <div class="mirrors-stat">
-<h2>状态</h2>
+<h2>状态统计</h2>
 <div id="status-table">
+<h3>各镜像状态表<a href="#status-table-footnote" title="到表尾脚注">↓</a></h3>
 <table class="tablesorter" id="status-main-table">
 	<thead>
 	<tr>
@@ -230,7 +231,8 @@ function format_size($size)
 		<th>大小</th>
 		<th>文件总数</th>
 		<th>同步完成时间</th>
-		<th>近七日请求(HTTP)</th>
+		<th>近七日请求次数</th>
+		<th>近七日请求数据量</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -273,12 +275,14 @@ case 'U':
 		<td class="size"><?php echo format_size($info['size']) ?></td>
 		<td class="files_count"><?php echo $info['files_count'] ?></td>
 		<td><?php echo $info['stamp'] ? date('Y-m-d H:i:s', $info['stamp']) : '' ?></td>
-		<td><?php $stat = stat_by_distro_get($spec[0], 'week');echo $stat[0], '次/', convert_byte_to_text($stat[1]);?></td>
+		<?php $stat = stat_by_distro_get($spec[0], 'week'); ?>
+		<td><?php echo $stat[0]; ?></td>
+		<td><?php echo convert_byte_to_text($stat[1]);?></td>
 	</tr>
 <?php endforeach ?>
 	</tbody>
-</table>
-<p>注：对于正在同步和同步失败的镜像，大小、文件总数、同步完成时间等信息取自最近一次成功同步时的日志。</p>
+</table> <!-- id="status-main-table" -->
+<p id="#status-table-footnote">注：对于正在同步和同步失败的镜像，大小、文件总数、同步完成时间等信息取自最近一次成功同步时的日志。</p>
 </div> <!-- end of status-table div -->
 <p><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>
 <p>
