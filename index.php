@@ -231,8 +231,8 @@ function format_size($size)
 		<th>大小</th>
 		<th>文件总数</th>
 		<th>同步完成时间</th>
-		<th>近七日请求次数</th>
-		<th>近七日请求数据量</th>
+		<th>请求次数</th>
+		<th>请求数据量</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -282,7 +282,13 @@ case 'U':
 <?php endforeach ?>
 	</tbody>
 </table> <!-- id="status-main-table" -->
-<p id="#status-table-footnote">注：对于正在同步和同步失败的镜像，大小、文件总数、同步完成时间等信息取自最近一次成功同步时的日志。</p>
+<div id="status-table-footnote">
+<ul>
+<li>第一列显示是否为发行版/项目的官方软件源。</li>
+<li>对于正在同步和同步失败的镜像，大小、文件总数、同步完成时间等信息取自最近一次成功同步时的日志。</li>
+<li>请求次数/数据量取自最近七日的 HTTP 请求。</li>
+</ul>
+</div> <!-- end of status-table-footnote -->
 </div> <!-- end of status-table div -->
 <p><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></p>
 <p>

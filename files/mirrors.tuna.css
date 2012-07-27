@@ -79,6 +79,10 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 	font-size: smaller;
 }
 
+#status-table h3 a {
+	text-decoration: none;
+}
+
 @media screen and (min-width: 1000px) {
 	body {
 		background-color: #883388;
