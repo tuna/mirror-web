@@ -221,8 +221,8 @@ case 'U':
 <h3><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></h3>
 <div id="flux-stat">
 <h3>最近24小时流量图</h3>
-<img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth0-day.png" alt="eth0-day" />
-<img src="http://mirrors.tuna.tsinghua.edu.cn:8000/eth1-day.png" alt="eth1-day" />
+<img src="http://solar.tuna.tsinghua.edu.cn:8000/eth0-day.png" alt="eth0-day" />
+<img src="http://solar.tuna.tsinghua.edu.cn:8000/eth1-day.png" alt="eth1-day" />
 </div> <!-- end of flux-stat div -->
 </div> <!-- end of mirrors-stat div -->
 </div> <!-- end of content div -->
