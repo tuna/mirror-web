@@ -82,8 +82,8 @@ $specs = array(
 	array('rpmfusion', '一个用于 Fedora 和 RHEL 等的第三方软件仓库。', 'alick', array('N')),
 	array('scientific', '由美国费米实验室维护的与 RHEL 兼容的发行版。', 'BYVoid', array('N')),
 	array('slackware', '最有资历的 Linux 发行版。', 'BYVoid', array('N')),
-	array('ubuntu', '基于 Debian 的以桌面应用为主的 Linux 发行版。', 'BYVoid', array('N')),
-	array('ubuntu-releases', 'Ubuntu CD 镜像。', 'MichaelChou', array('N')),
+	array('ubuntu', '基于 Debian 的以桌面应用为主的 Linux 发行版。', 'BYVoid', array('B')),
+	array('ubuntu-releases', 'Ubuntu CD 镜像。', 'MichaelChou', array('B')),
 );
 
 function maintainer($name)
