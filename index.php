@@ -196,6 +196,8 @@ case 'U':
 			<td class="sync-state sync-ing">正在同步</td>
 		<?php elseif ($info['current'] == 'failed'): ?>
 			<td class="sync-state sync-fail">同步失败</td>
+		<?php elseif ($info['current'] == 'checking'): ?>
+			<td class="sync-state sync-fail">紧急维护中</font></td>
 		<?php else: ?>
 			<td class="sync-state sync-unknown">未知</td>
 		<?php endif ?>
