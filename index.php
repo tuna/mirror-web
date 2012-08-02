@@ -78,7 +78,7 @@ $specs = array(
 	array('linuxmint-cd', 'LinuxMint的CD/DVD镜像', 'fqj1994', array('N')),
 	array('macports', 'Mac OS X 与 Darwin 的包管理软件，GUI与CLI的结合。', 'VuryLeo', array('N')),
 	array('opensuse', '由 Novell 支持的 Linux 发行版。', 'xiaq', array('N')),
-	array('pypi', 'Python Package Index', 'fqj1994', array('N')),
+	array('pypi', 'Python Package Index', 'fqj1994', array('A', 'url' => 'e.pypi.python.org/')),
 	array('rpmfusion', '一个用于 Fedora 和 RHEL 等的第三方软件仓库。', 'alick', array('N')),
 	array('scientific', '由美国费米实验室维护的与 RHEL 兼容的发行版。', 'BYVoid', array('N')),
 	array('slackware', '最有资历的 Linux 发行版。', 'BYVoid', array('N')),
