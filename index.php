@@ -197,14 +197,14 @@ case 'U':
 		<?php elseif ($info['current'] == 'failed'): ?>
 			<td class="sync-state sync-fail">同步失败</td>
 		<?php elseif ($info['current'] == 'checking'): ?>
-			<td class="sync-state sync-fail">人工维护中</font></td>
+			<td class="sync-state sync-fail">人工维护</font></td>
 		<?php else: ?>
 			<td class="sync-state sync-unknown">未知</td>
 		<?php endif ?>
 
 		<td class="size"><?php echo format_size($info['size']) ?></td>
 		<td class="files_count"><?php echo $info['files_count'] ?></td>
-		<td><?php echo $info['stamp'] ? date('Y-m-d H:i:s', $info['stamp']) : '' ?></td>
+		<td><?php echo $info['stamp'] ? date('Y-m-d H:i', $info['stamp']) : '' ?></td>
 		<?php $stat = stat_by_distro_get($spec[0], 'week'); ?>
 		<td class="req_files_count"><?php echo $stat[0]; ?></td>
 		<td class="req_size"><?php echo convert_byte_to_text($stat[1]);?></td>
