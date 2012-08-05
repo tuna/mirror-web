@@ -16,7 +16,8 @@ $(document).ready(function () {
             return false;
         },
         format: function (s) {
-            var the_number = parseFloat(s);
+            // Assume unknown size as zero.
+            var the_number = (s !== '-') ? parseFloat(s) : 0;
             if (s.indexOf('K') >= 0) {
                 the_number = the_number * 1000;
             }
