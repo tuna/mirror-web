@@ -45,7 +45,7 @@ Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-ad
 date_default_timezone_set('Asia/Shanghai');
 $status = initialize_status(array(
 	'/home/mirror/log/status.txt',
-	'http://ftp3.tsinghua.edu.cn/newstatus.txt'));
+	'/srv/ftp3/newstatus.txt'));
 $specs = array(
 	//第四个（下标3）表示是否为官方源，N表示不是，A表示是（并且官方分配了另外的域名）
 	//B表示是（但是没有官方的域名），U表示不知道
