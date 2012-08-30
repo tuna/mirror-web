@@ -227,6 +227,24 @@ case 'U':
 <p>最近24小时流量图</p>
 <img src="http://solar.tuna.tsinghua.edu.cn:8000/eth0-day.png" alt="eth0-day" />
 <img src="http://solar.tuna.tsinghua.edu.cn:8000/eth1-day.png" alt="eth1-day" />
+<!-- IP地址可用性状态 -->
+<?php
+	$ips = json_decode(file_get_contents("http://dns-failover.z.tuna.tsinghua.edu.cn/ips.txt"), TRUE);
+	if (is_array($ips)) {
+		$ip4 = $ips['v4']; $ip6 = $ips['v6'];
+		echo '<!-- IPv4 -->', PHP_EOL;
+		foreach ($ip4 as $key => $value) {
+			$up = $value ? "连接正常" : "无法连接";
+			echo "<!-- $key $up -->\n";
+		}
+		echo "<!-- IPv6 -->\n";
+		foreach ($ip6 as $key => $value) {
+			$up = $value ? "连接正常" : "无法连接";
+			echo "<!-- $key $up -->\n";
+		}
+
+	}
+?>
 </div> <!-- end of flux-stat div -->
 </div> <!-- end of mirrors-stat div -->
 </div> <!-- end of content div -->
