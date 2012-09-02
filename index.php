@@ -49,7 +49,7 @@ $status = initialize_status(array(
 $specs = array(
 	//第四个（下标3）表示是否为官方源，N表示不是，A表示是（并且官方分配了另外的域名）
 	//B表示是（但是没有官方的域名），U表示不知道
-	array('apache', 'apache software foundation的软件', 'fqj1994', array('N')),
+	array('apache', 'apache software foundation的软件', 'fqj1994', array('B')),
 	array('archlinux', '滚动更新的 Linux 发行版，极简主义哲学。', 'xiaq', array('N')),
 	array('archlinuxarm', 'Archlinux ARM port.', 'xiaq', array('A', 'url' => 'cn.mirror.archlinuxarm.org')),
 	array('centos', '由社区维护的与 RHEL 完全兼容的发行版。', 'alick', array('B')),
