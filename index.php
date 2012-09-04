@@ -232,7 +232,7 @@ case 'U':
 <div id="footer">
 <div class="tuna-logo">
 <p>Powered by <a href="http://tuna.tsinghua.edu.cn/">
-<img src="http://tuna.tsinghua.edu.cn/files/logo-01.png" alt="TUNA" /></a>
+<img src="files/logo-01.png" alt="TUNA" /></a>
 </p>
 </div>
 <div class="ack">
