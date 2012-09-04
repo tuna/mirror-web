@@ -7,6 +7,8 @@ Disallow: /archlinux
 Disallow: /archlinuxarm
 Disallow: /centos
 Disallow: /chakra
+Disallow: /CPAN
+Disallow: /CRAN
 Disallow: /CTAN
 Disallow: /cygwin
 Disallow: /debian
@@ -30,7 +32,9 @@ Disallow: /linuxmint-cd
 Disallow: /macports
 Disallow: /opensuse
 Disallow: /pypi
+Disallow: /_pypi
 Disallow: /rpmfusion
+Disallow: /sagemath
 Disallow: /scientific
 Disallow: /slackware
 Disallow: /tex-archive

@@ -45,18 +45,18 @@ Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-ad
 date_default_timezone_set('Asia/Shanghai');
 $status = initialize_status(array(
 	'/home/mirror/log/status.txt',
-	'http://ftp3.tsinghua.edu.cn/newstatus.txt'));
+	'/srv/ftp3/newstatus.txt'));
 $specs = array(
 	//第四个（下标3）表示是否为官方源，N表示不是，A表示是（并且官方分配了另外的域名）
 	//B表示是（但是没有官方的域名），U表示不知道
-	array('apache', 'apache software foundation的软件', 'fqj1994', array('N')),
+	array('apache', 'apache software foundation的软件', 'fqj1994', array('B')),
 	array('archlinux', '滚动更新的 Linux 发行版，极简主义哲学。', 'xiaq', array('N')),
 	array('archlinuxarm', 'Archlinux ARM port.', 'xiaq', array('A', 'url' => 'cn.mirror.archlinuxarm.org')),
 	array('centos', '由社区维护的与 RHEL 完全兼容的发行版。', 'alick', array('B')),
 	array('chakra', '基于 KDE SC、无 Gtk 的桌面环境。前身是 Archlinux 的 [kde-mod]。', 'xiaq', array('N')),
-	array('CPAN', 'Comprehensive Perl Archive Network。', 'fqj1994', array('N')),
-	array('CRAN', 'Comprehensive Rerl Archive Network。', 'ray', array('N')),
-	array('CTAN', 'Comprehensive TeX Archive Network。', 'MichaelChou', array('N')),
+	array('CPAN', 'Comprehensive Perl Archive Network', 'fqj1994', array('N')),
+	array('CRAN', 'The Comprehensive R Archive Network', 'ray', array('N')),
+	array('CTAN', 'Comprehensive TeX Archive Network', 'MichaelChou', array('N')),
 	array('cygwin', 'Windows 平台下的类 Unix环境.', 'BYVoid', array('N')),
 	array('debian', '一个完全由社区维护的 Linux 发行版。', 'heroxbd', array('N')),
 	array('debian-backports', 'Debian Stable 上用的 Testing/Unstable 扩展包。', 'heroxbd', array('N')),
@@ -74,13 +74,14 @@ $specs = array(
 	array('gentoo-portage-prefix', 'Gentoo on a different level', 'heroxbd', array('A', 'url' => 'rsync.cn.prefix.freens.org')),
 	array('gnu', 'GNU/Linux 的基础软件。', 'MichaelChou', array('N')),
 	array('kernel', 'Linux 内核。', 'BYVoid', array('N')),
-	array('linuxmint', '基于Ubuntu的发行版', 'fqj1994', array('N')),
-	array('linuxmint-cd', 'LinuxMint的CD/DVD镜像', 'fqj1994', array('N')),
+	array('linuxmint', '基于Ubuntu的发行版', 'fqj1994', array('B')),
+	array('linuxmint-cd', 'LinuxMint的CD/DVD镜像', 'fqj1994', array('B')),
 	array('macports', 'Mac OS X 与 Darwin 的包管理软件，GUI与CLI的结合。', 'VuryLeo', array('N')),
 	array('opensuse', '由 Novell 支持的 Linux 发行版。', 'xiaq', array('N')),
 	array('pypi', 'Python Package Index', 'fqj1994', array('A', 'url' => 'e.pypi.python.org/')),
 	array('rpmfusion', '一个用于 Fedora 和 RHEL 等的第三方软件仓库。', 'alick', array('N')),
 	array('scientific', '由美国费米实验室维护的与 RHEL 兼容的发行版。', 'BYVoid', array('N')),
+	array('sagemath', '一个整合了多个开源数学工具的开源数学工具。', 'fqj1994', array('B')),
 	array('slackware', '最有资历的 Linux 发行版。', 'BYVoid', array('N')),
 	array('ubuntu', '基于 Debian 的以桌面应用为主的 Linux 发行版。', 'BYVoid', array('B')),
 	array('ubuntu-releases', 'Ubuntu CD 镜像。', 'MichaelChou', array('B')),
@@ -222,9 +223,28 @@ case 'U':
 </div> <!-- end of status-table div -->
 <h3><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></h3>
 <div id="flux-stat">
-<h3>最近24小时流量图</h3>
+<h3><a href="http://solar.tuna.tsinghua.edu.cn:8000">流量统计</a></h3>
+<p>最近24小时流量图</p>
 <img src="http://solar.tuna.tsinghua.edu.cn:8000/eth0-day.png" alt="eth0-day" />
 <img src="http://solar.tuna.tsinghua.edu.cn:8000/eth1-day.png" alt="eth1-day" />
+<!-- IP地址可用性状态 -->
+<?php
+	$ips = json_decode(file_get_contents("http://dns-failover.z.tuna.tsinghua.edu.cn/ips.txt"), TRUE);
+	if (is_array($ips)) {
+		$ip4 = $ips['v4']; $ip6 = $ips['v6'];
+		echo '<!-- IPv4 -->', PHP_EOL;
+		foreach ($ip4 as $key => $value) {
+			$up = $value ? "连接正常" : "无法连接";
+			echo "<!-- $key $up -->\n";
+		}
+		echo "<!-- IPv6 -->\n";
+		foreach ($ip6 as $key => $value) {
+			$up = $value ? "连接正常" : "无法连接";
+			echo "<!-- $key $up -->\n";
+		}
+
+	}
+?>
 </div> <!-- end of flux-stat div -->
 </div> <!-- end of mirrors-stat div -->
 </div> <!-- end of content div -->
