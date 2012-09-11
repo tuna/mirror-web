@@ -84,6 +84,7 @@ $specs = array(
 	array('sagemath', '一个整合了多个开源数学工具的开源数学工具。', 'fqj1994', array('B')),
 	array('slackware', '最有资历的 Linux 发行版。', 'BYVoid', array('N')),
 	array('ubuntu', '基于 Debian 的以桌面应用为主的 Linux 发行版。', 'BYVoid', array('B')),
+	array('ubuntu-ppa', 'Ubuntu PPA 精选镜像', 'aron', array('N')),
 	array('ubuntu-releases', 'Ubuntu CD 镜像。', 'MichaelChou', array('B')),
 );
 
