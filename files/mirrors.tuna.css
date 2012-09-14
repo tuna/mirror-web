@@ -115,7 +115,7 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 
 @media screen and (min-width: 1000px) {
 	body {
-		background-color: #883388;
+		background-color: #82318E; /* tsinghua purple */
 		font-size: 16px;
 	}
 
