@@ -87,7 +87,7 @@ $specs = array(
 	array('ubuntu', '基于 Debian 的以桌面应用为主的 Linux 发行版。', 'BYVoid', array('B')),
 	array('ubuntu-ppa', 'Ubuntu PPA 精选镜像', 'aron', array('N')),
 	array('ubuntu-releases', 'Ubuntu CD 镜像。', 'MichaelChou', array('B')),
-	array('raspbian', 'raspberry-pi debian镜像 剑桥大学发起的25美元的微小型廉价电脑', 'scateu', array('N')),
+	array('raspbian', 'raspberry-pi debian镜像 剑桥大学发起的25美元的微小型廉价电脑', 'scateu', array('B')),
 );
 
 function maintainer($name)
