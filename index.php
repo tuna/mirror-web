@@ -226,7 +226,7 @@ case 'U':
 </ul>
 </div> <!-- end of status-table-footnote div -->
 </div> <!-- end of status-table div -->
-<h3><a href="http://mirrors.tuna.tsinghua.edu.cn/awffull/index.html">HTTP统计</a></h3>
+<h3><a href="http://mirrors.tuna.tsinghua.edu.cn/webalizer/index.html">HTTP统计</a></h3>
 <div id="flux-stat">
 <h3><a href="http://solar.tuna.tsinghua.edu.cn:8000">流量统计</a></h3>
 <p>最近24小时流量图</p>
