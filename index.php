@@ -81,6 +81,7 @@ $specs = array(
 	array('opensuse', '由 Novell 支持的 Linux 发行版。', 'xiaq', array('N')),
 	array('pypi', 'Python Package Index', 'fqj1994', array('A', 'url' => 'e.pypi.python.org/')),
 	array('rpmfusion', '一个用于 Fedora 和 RHEL 等的第三方软件仓库。', 'alick', array('N')),
+	array('rubygems', 'Ruby Gems的仓库', 'fqj1994', array('N')),
 	array('scientific', '由美国费米实验室维护的与 RHEL 兼容的发行版。', 'BYVoid', array('N')),
 	array('sagemath', '一个整合了多个开源数学工具的开源数学工具。', 'fqj1994', array('B')),
 	array('slackware', '最有资历的 Linux 发行版。', 'BYVoid', array('N')),
