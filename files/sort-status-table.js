@@ -6,7 +6,7 @@ $(document).ready(function () {
             return false;
         },
         format: function (s) {
-            return s.replace('未知', 0).replace('人工维护中', 1).replace('同步失败', 2).replace('正在同步', 3).replace('同步完成', 4);
+            return s.replace('未知', 0).replace('人工维护', 1).replace('同步失败', 2).replace('正在同步', 3).replace('同步完成', 4);
         },
         type: 'numeric'
     });
