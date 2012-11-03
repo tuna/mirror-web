@@ -61,6 +61,7 @@ $specs = array(
 	array('debian', '一个完全由社区维护的 Linux 发行版。', 'heroxbd', array('N')),
 	array('debian-backports', 'Debian Stable 上用的 Testing/Unstable 扩展包。', 'heroxbd', array('N')),
 	array('debian-cd', 'Debian CD 镜像。', 'fqj1994', array('N')),
+	array('debian-firmware', 'Debian 的闭源 firmware 和含有闭源 firmware 的 netinst CD。', 'fqj1994', array('N')),
 	array('debian-multimedia', 'Debian 非官方多媒体套件。', 'heroxbd', array('N')),
 	array('debian-security', 'Debian 安全情报', 'heroxbd', array('N')),
 	array('debian-weekly-builds', 'Debian CD 镜像每周构建。', 'fqj1994', array('N')),
