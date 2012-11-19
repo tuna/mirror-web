@@ -9,7 +9,21 @@ include "includes/bydistro.php";
 	<script type="text/javascript" src="files/jquery-latest.js"></script>
 	<script type="text/javascript" src="files/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript" src="files/sort-status-table.js"></script>
+	<script type="text/javascript" src="files/jquery-ui.js"></script>
+	<link rel="stylesheet" href="files/jquery-ui.css"></script>
 	<title>清华大学开源镜像站</title>
+<?php
+date_default_timezone_set('Asia/Shanghai');
+$status = initialize_status(array(
+	'/home/mirror/log/status.txt',
+	'/srv/ftp3/newstatus.txt'));
+$diskusage = get_disk_usage('/home/mirror/log/disk.txt');
+?>
+	<script>
+		$(function() {
+			$("#diskusage").progressbar({value : <?php echo $diskusage['percent_int'];?>});
+		});
+	</script>
 </head>
 <body>
 <div id="wrapper">
@@ -42,10 +56,6 @@ Groups</a>，或直接向 Google Groups 的邮件列表 thu-opensource-mirror-ad
 </p>
 
 <?php
-date_default_timezone_set('Asia/Shanghai');
-$status = initialize_status(array(
-	'/home/mirror/log/status.txt',
-	'/srv/ftp3/newstatus.txt'));
 $specs = array(
 	//第四个（下标3）表示是否为官方源，N表示不是，A表示是（并且官方分配了另外的域名）
 	//B表示是（但是没有官方的域名），U表示不知道
@@ -110,6 +120,38 @@ function maintainer($name)
 		return "<a href='{$mters[$name]}' target='_blank'>{$name}</a>";
 	else
 		return $name;
+}
+
+function format_bytes($bytes, $precision = 2) {
+	$units = array('B', 'KB', 'MB', 'GB', 'TB'); 
+	$bytes = max($bytes, 0);
+	$pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+	$pow = min($pow, count($units) - 1);
+	$bytes /= (1 << (10 * $pow));
+	return round($bytes, $precision) . ' '. $units[$pow];
+}
+
+function get_disk_usage($file) {
+	$usage = array('total' => 0, 'used' => 0, 'free' => 0);
+	$lines = file($file, FILE_IGNORE_NEW_LINES);
+	if ($lines) {
+		foreach ($lines as $line) {
+			$sec = explode(" ", $line);
+			$usage['total'] += (int)($sec[0]);
+			$usage['used'] += (int)($sec[1]);
+			$usage['free'] += (int)($sec[2]);
+		}
+		$percent = $usage['used'] * 100.0 / $usage['total'];
+		foreach ($usage as $key => $value) {
+			$usage[$key] = format_bytes($value * 1024);
+		}
+		$usage['percent'] = (string)(round($percent, 2));
+		$usage['percent_int'] = (string)(round($percent));
+	} else {
+		$usage['total'] = $usage['used'] = $usage['free'] = $usage['percent'] = '未知';
+		$usage['percent_int'] = '0';
+	}
+	return $usage;
 }
 
 function initialize_status($status_files)
@@ -228,6 +270,13 @@ case 'U':
 </ul>
 </div> <!-- end of status-table-footnote div -->
 </div> <!-- end of status-table div -->
+<p>磁盘使用：<br/>
+<?php
+echo sprintf("总容量：%s&nbsp;&nbsp;已使用：%s&nbsp;&nbsp;剩余容量：%s&nbsp;&nbsp;使用比例：%s%%",
+	$diskusage['total'], $diskusage['used'], $diskusage['free'], $diskusage['percent']);
+?><br/>
+<div id="diskusage" style="height:15px"></div>
+</p>
 <h3><a href="http://mirrors.tuna.tsinghua.edu.cn/webalizer/index.html">HTTP统计</a></h3>
 <div id="flux-stat">
 <h3><a href="http://solar.tuna.tsinghua.edu.cn:8000">流量统计</a></h3>
