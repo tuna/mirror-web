@@ -89,6 +89,7 @@ $specs = array(
 	array('linuxmint', '基于Ubuntu的发行版', 'fqj1994', array('B')),
 	array('linuxmint-cd', 'LinuxMint的CD/DVD镜像', 'fqj1994', array('B')),
 	array('macports', 'Mac OS X 与 Darwin 的包管理软件，GUI与CLI的结合。', 'VuryLeo', array('N')),
+	array('npm', 'Node Packaged Modules', 'ray', array('N')),
 	array('opensuse', '由 Novell 支持的 Linux 发行版。', 'xiaq', array('N')),
 	array('pypi', 'Python Package Index', 'fqj1994', array('A', 'url' => 'e.pypi.python.org/')),
 	array('rpmfusion', '一个用于 Fedora 和 RHEL 等的第三方软件仓库。', 'alick', array('N')),
@@ -111,7 +112,7 @@ function maintainer($name)
 		'MichaelChou' => 'http://michael.yuespot.org/',
 		'heroxbd' => 'http://www.awa.tohoku.ac.jp/~benda/',
 		'alick' => 'http://wiki.tuna.tsinghua.edu.cn/alick',
-		'ray' => 'http://wiki.tuna.tsinghua.edu.cn/ray',
+		'ray' => 'http://maskray.me',
 		'VuryLeo' => 'http://www.vuryleo.com/',
 		'fqj1994' => 'http://www.fqj1994.com',
 		'scateu' => 'http://wiki.tuna.tsinghua.edu.cn/scateu',
@@ -123,7 +124,7 @@ function maintainer($name)
 }
 
 function format_bytes($bytes, $precision = 2) {
-	$units = array('B', 'KB', 'MB', 'GB', 'TB'); 
+	$units = array('B', 'KB', 'MB', 'GB', 'TB');
 	$bytes = max($bytes, 0);
 	$pow = floor(($bytes ? log($bytes) : 0) / log(1024));
 	$pow = min($pow, count($units) - 1);
