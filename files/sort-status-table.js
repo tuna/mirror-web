@@ -27,6 +27,9 @@ $(document).ready(function () {
             if (s.indexOf('G') >= 0) {
                 the_number = the_number * 1000 * 1000 * 1000;
             }
+            if (s.indexOf('T') >= 0) {
+                the_number = the_number * 1000 * 1000 * 1000 * 1000;
+            }
             return the_number;
         },
         type: 'numeric'
