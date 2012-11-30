@@ -1,0 +1,65 @@
+@import 'nib'
+
+.clearfix::after
+  display block
+  clear both
+  content '.'
+  height 0
+  visibility hidden
+
+::selection
+  background #adf
+
+a
+  text-decoration none
+
+pre
+  font-family Consolas, Monaco, monospace
+  white-space pre-wrap
+  border 1px solid #bbb
+  background #faf8f0
+  padding 0.5em 1em
+
+ul
+  list-style-type none
+  padding 0
+
+li
+  margin 0
+
+h1
+  color #640
+  text-align center
+  font-size bold
+
+h2
+  color #37b
+  text-align center
+  text-shadow 1px 1px 1px #000
+
+h3
+  color #b37
+  border-bottom 1px solid
+
+.container
+  margin 0 auto
+  width 90%
+
+.schemes
+  li
+    display block
+    padding 1em
+    border-radius 1em
+    float left
+    background linear-gradient(top, #fff 55%, #D3F5E4 130%)
+    margin 0 1em 0 0
+
+section
+  margin 10px auto
+  padding 10px 20px
+  border-radius 1em
+
+footer
+  border-top 3px double #ccc
+  text-align center
+  font-size small
