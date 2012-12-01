@@ -5,6 +5,7 @@ include "includes/bydistro.php";
 <html>
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	<meta name="google-translate-customization" content="275efe018e191117-4ad5760d63e54508-g1acd9273226ae414-1d"></meta>
 	<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="files/jquery-latest.js"></script>
 	<script type="text/javascript" src="files/jquery.tablesorter.min.js"></script>
@@ -316,6 +317,12 @@ echo sprintf("总容量：%s&nbsp;&nbsp;已使用：%s&nbsp;&nbsp;剩余容量�
 <p>本站的网络和硬件由清华大学网络工程研究中心提供支持。</p>
 </div>
 </div> <!-- end of footer div -->
+<div id="google_translate_element" style="display:none;"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'de,en,es,fr,ja,ko,ru,zh-TW', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT, multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
 
 </div> <!-- end of div wrapper -->
 </body>
