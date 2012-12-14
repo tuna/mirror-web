@@ -7,11 +7,13 @@ include "includes/bydistro.php";
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 	<meta name="google-translate-customization" content="275efe018e191117-4ad5760d63e54508-g1acd9273226ae414-1d"></meta>
 	<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />
+	<link href="files/humane/bigbox.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="files/jquery-ui.css"></script>
 	<script type="text/javascript" src="files/jquery-latest.js"></script>
 	<script type="text/javascript" src="files/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript" src="files/sort-status-table.js"></script>
 	<script type="text/javascript" src="files/jquery-ui.js"></script>
-	<link rel="stylesheet" href="files/jquery-ui.css"></script>
+	<script type="text/javascript" src="files/humane/humane.js"></script>
 	<title>清华大学开源镜像站</title>
 <?php
 date_default_timezone_set('Asia/Shanghai');
@@ -24,6 +26,7 @@ $diskusage = get_disk_usage('/home/mirror/log/disk.txt');
 		$(function() {
 			$("#diskusage").progressbar({value : <?php echo $diskusage['percent_int'];?>});
 		});
+		humane.timeout = 30000;
 	</script>
 </head>
 <body>
@@ -35,7 +38,13 @@ Portal of Tsinghua University Open Source Software Mirror Sites
 </div>
 </div> <!-- end of header div -->
 <?php
-include "includes/notice.html";
+if (file_exists("notice.html")) {
+?>
+	<script type="text/javascript">
+		humane.log("<?php echo addslashes(str_replace(array("\r", "\n"), '', file_get_contents('notice.html')));?>");
+	</script>
+<?php
+}
 ?>
 <div id="content">
 <h2>简介</h2>
