@@ -34,7 +34,9 @@ $diskusage = get_disk_usage('/home/mirror/log/disk.txt');
 Portal of Tsinghua University Open Source Software Mirror Sites
 </div>
 </div> <!-- end of header div -->
-
+<?php
+include "includes/notice.html";
+?>
 <div id="content">
 <h2>简介</h2>
 <p>
