@@ -130,7 +130,7 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 		width: auto;
 	}
 
-	#header, #content, #footer {
+	#header, #emergency-notice, #content, #footer {
 		margin-left: 1em;
 		margin-right: 1em;
 	}
