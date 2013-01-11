@@ -18,8 +18,7 @@ include "includes/bydistro.php";
 <?php
 date_default_timezone_set('Asia/Shanghai');
 $status = initialize_status(array(
-	'/home/mirror/log/status.txt',
-	'/srv/ftp3/newstatus.txt'));
+	'/home/mirror/log/status.txt'));
 $diskusage = get_disk_usage('/home/mirror/log/disk.txt');
 ?>
 	<script>
