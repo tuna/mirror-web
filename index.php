@@ -327,15 +327,6 @@ echo sprintf("总容量：%s&nbsp;&nbsp;已使用：%s&nbsp;&nbsp;剩余容量�
 <div class="ack">
 <p>本站的网络和硬件由清华大学网络工程研究中心提供支持。</p>
 </div>
-<div id=ipv6_enabled_www_test_logo></div>
-<script language="JavaScript" type="text/javascript">
-var Ipv6_Js_Server = (("https:" == document.location.protocol) ? "https://" :
-"http://");
-document.write(unescape("%3Cscript src='" + Ipv6_Js_Server +
-"www.ipv6forum.com/ipv6_enabled/sa/SA1.php?id=0" +
-"' type='text/javascript'%3E%3C/script%3E"));
-</script>
-</div>
 </div> <!-- end of footer div -->
 <div id="google_translate_element" style="display:none;"></div><script type="text/javascript">
 function googleTranslateElementInit() {
