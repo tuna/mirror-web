@@ -1,4 +1,5 @@
 <?php
+ini_set('default_socket_timeout', 3);    
 include "includes/bydistro.php";
 ?>
 <!doctype html>
