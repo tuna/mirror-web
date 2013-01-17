@@ -19,8 +19,7 @@ include "includes/bydistro.php";
 <?php
 date_default_timezone_set('Asia/Shanghai');
 $status = initialize_status(array(
-	'/home/mirror/log/status.txt',
-	'/srv/ftp3/newstatus.txt'));
+	'/home/mirror/log/status.txt'));
 $diskusage = get_disk_usage('/home/mirror/log/disk.txt');
 ?>
 	<script>
@@ -261,7 +260,7 @@ case 'U':
 		<?php elseif ($info['current'] == 'failed'): ?>
 			<td class="sync-state sync-fail">同步失败</td>
 		<?php elseif ($info['current'] == 'checking'): ?>
-			<td class="sync-state sync-fail">人工维护</font></td>
+			<td class="sync-state sync-fail">人工维护</td>
 		<?php else: ?>
 			<td class="sync-state sync-unknown">未知</td>
 		<?php endif ?>
