@@ -38,7 +38,7 @@ Portal of Tsinghua University Open Source Software Mirror Sites
 </div>
 </div> <!-- end of header div -->
 <?php
-if (file_exists("notice.html")) {
+if (file_exists('notice.html') && filesize('notice.html') != 0) {
 ?>
 	<script type="text/javascript">
 		humane.log("<?php echo addslashes(str_replace(array("\r", "\n"), '', file_get_contents('notice.html')));?>",
