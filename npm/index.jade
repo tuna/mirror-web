@@ -1,4 +1,4 @@
-doctype html
+!!! 5
 html
   head
     meta(charset='utf-8')
@@ -6,22 +6,27 @@ html
     - title = '清华大学Node Packaged Modules镜像'
     title= title
     meta(name='keywords', content='tuna, mirror, npm, node.js')
-    link(media='screen, projection', rel='stylesheet', href='css/style.css')
+    link(rel='stylesheet', href='css/style.css')
   body
-    .container
-      h1= title
+    header#masthead.container
+      #logo-container
+        img#nodejs(src='img/nodejs.png')
+        img#ribbon(src='img/ribbon.svg')
+        img#npm(src='img/npm.png')
+      #logo
+        h1= title
 
+    .container
       section
         h2 把我们设置为默认 npm 源
-        ul.schemes.clearfix
-          li
+        .row
+          .span6
             h3 修改 ~/.npmrc
             p
               | 添加
               pre
                 | registry = http://npm.tuna.tsinghua.edu.cn/registry
-
-          li
+          .span6
             h3 使用 npm config
             p
               | 在 shell 里输入：
@@ -30,14 +35,14 @@ html
 
       section
         h2 测试是否配置成功
-        ul.schemes.clearfix
-          li
+        .row
+          .scheme.span6
             h3 把我们设置为了默认源
             p
               | 在 shell 里输入
               pre
                 | npm install &lt;packagename&gt;
-          li
+          .scheme.span6
             h3 未把我们设置为默认源
             p
               | 在 shell 里输入
@@ -46,32 +51,33 @@ html
 
       section
         h2 强制使用 ipv4 或 ipv6
-        ul.schemes.clearfix
-          li
+        .row
+          .scheme.span6
             h3 强制使用ipv4
             p
               | 把上面提到的registry url修改成
               pre http://npm.4.tuna.tsinghua.edu.cn/registry
-          li
+          .scheme.span6
             h3 强制使用ipv6
             p
               | 把上面提到的registry url修改成
               pre http://npm.6.tuna.tsinghua.edu.cn/registry
 
-      section
-        h2 注意
-        p 不支持上传包。
+      .alert
+        p
+          strong 注意
+          | ，不支持上传包。
 
-      footer
-        p
-          | 服务由
-          a(href='http://tuna.tsinghua.edu.cn/about') 清华大学学生网管会
-          | 提供，欢迎使用我们提供的其他
-          a(href='http://mirrors.tuna.tsinghua.edu.cn/') 镜像。
-        p
-          | 如有问题和建议，请写信到
-          a(href='mailto:thu-opensource-mirror-admin@googlegroups.com') thu-opensource-mirror-admin@googlegroups.com
-          | 。
-        p
-          = '© 2012 '
-          a(href='http://maskray.me') Ray Song
+    footer.container
+      p
+        | 服务由
+        a(href='http://tuna.tsinghua.edu.cn/about') 清华大学学生网管会
+        | 提供，欢迎使用我们提供的其他
+        a(href='http://mirrors.tuna.tsinghua.edu.cn/') 软件镜像。
+      p
+        | 如有问题和建议，请写信到
+        a(href='mailto:thu-opensource-mirror-admin@googlegroups.com') thu-opensource-mirror-admin@googlegroups.com
+        | 。
+      p
+        = '© 2012, 2013 '
+        a(href='http://maskray.me') SONG Fangrui
