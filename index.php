@@ -250,7 +250,7 @@ case 'U':
 ?></td>
 
 		<td>
-		<a href="<?php echo $spec[0] ?>/" title="<?php echo $spec[1] ?>">
+		<a name="<?php echo $spec[0] ?>" href="<?php echo $spec[0] ?>/" title="<?php echo $spec[1] ?>">
 				<?php echo $spec[0] ?>
 			</a>
 		</td>
