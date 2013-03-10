@@ -98,6 +98,7 @@ $specs = array(
 	array('gentoo-portage', 'Gentoo 的 ports collection。', 'cuckoo', array('N')),
 	array('gentoo-portage-prefix', 'Gentoo on a different level', 'heroxbd', array('A', 'url' => 'rsync.cn.prefix.freens.org')),
 	array('gnu', 'GNU/Linux 的基础软件。', 'MichaelChou', array('N')),
+	array('hirensbootcd', 'Hirens Boot CD 系统维护工具盘', 'fqj1994', array('N')),
 	array('kernel', 'Linux 内核。', 'BYVoid', array('N')),
 	array('linuxmint', '基于Ubuntu的发行版', 'fqj1994', array('B')),
 	array('linuxmint-cd', 'LinuxMint的CD/DVD镜像', 'fqj1994', array('B')),
