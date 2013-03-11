@@ -41,6 +41,9 @@ Portal of Tsinghua University Open Source Software Mirror Sites
 <p>
 本镜像站目前面临被关闭的危险。请阅读我们的<a href="files/petition.html">公开信</a>，并在下面留下你对镜像站的声援！
 </p>
+<p>
+如果你愿意正式参与我们的联署，请在评论中留下你的姓名和联系方式。
+</p>
 <!-- UY BEGIN -->
 <div id="uyan_frame"></div>
 <script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1752596" async=""></script>
