@@ -37,6 +37,12 @@ $diskusage = get_disk_usage('/home/mirror/log/disk.txt');
 Portal of Tsinghua University Open Source Software Mirror Sites
 </div>
 </div> <!-- end of header div -->
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1752596" async=""></script>
+<!-- UY END -->
+
 <?php
 if (file_exists('notice.html') && filesize('notice.html') != 0) {
 ?>
