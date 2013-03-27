@@ -127,7 +127,7 @@ function maintainer($name)
 		'alick' => 'http://wiki.tuna.tsinghua.edu.cn/alick',
 		'ray' => 'http://maskray.me',
 		'VuryLeo' => 'http://www.vuryleo.com/',
-		'fqj1994' => 'http://www.fqj1994.com',
+		'fqj1994' => 'http://fqj.me/',
 		'scateu' => 'http://wiki.tuna.tsinghua.edu.cn/scateu',
 	);
 	if (isset($mters[$name]))
