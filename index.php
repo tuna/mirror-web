@@ -37,18 +37,6 @@ $diskusage = get_disk_usage('/home/mirror/log/disk.txt');
 Portal of Tsinghua University Open Source Software Mirror Sites
 </div>
 </div> <!-- end of header div -->
-
-<p>
-本镜像站目前面临被关闭的危险。请阅读我们的<a href="files/petition.html">公开信</a>，并在下面留下你对镜像站的声援！
-</p>
-<p>
-如果你愿意正式参与我们的联署，请在评论中留下你的姓名和联系方式。
-</p>
-<!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1752596" async=""></script>
-<!-- UY END -->
-
 <?php
 if (file_exists('notice.html') && filesize('notice.html') != 0) {
 ?>
@@ -110,7 +98,6 @@ $specs = array(
 	array('gentoo-portage', 'Gentoo 的 ports collection。', 'cuckoo', array('N')),
 	array('gentoo-portage-prefix', 'Gentoo on a different level', 'heroxbd', array('A', 'url' => 'rsync.cn.prefix.freens.org')),
 	array('gnu', 'GNU/Linux 的基础软件。', 'MichaelChou', array('N')),
-	array('hirensbootcd', 'Hirens Boot CD 系统维护工具盘', 'fqj1994', array('N')),
 	array('kernel', 'Linux 内核。', 'BYVoid', array('N')),
 	array('linuxmint', '基于Ubuntu的发行版', 'fqj1994', array('B')),
 	array('linuxmint-cd', 'LinuxMint的CD/DVD镜像', 'fqj1994', array('B')),
