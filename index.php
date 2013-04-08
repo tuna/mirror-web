@@ -19,7 +19,7 @@ include "includes/bydistro.php";
 <?php
 date_default_timezone_set('Asia/Shanghai');
 $status = initialize_status(array(
-	'/home/mirror/log/status.txt'));
+	'/home/mirror/log/status.txt', 'http://mirror-nas.tuna.tsinghua.edu.cn/log/status.txt'));
 $diskusage = get_disk_usage('/home/mirror/log/disk.txt');
 ?>
 	<script>
