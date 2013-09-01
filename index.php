@@ -92,7 +92,7 @@ $specs = array(
 	array('deepin-releases', 'Deepin 稳定版的 CD 镜像。', 'xiaq', array('B')),
 	array('elrepo', 'RHEL 及其衍生版的一个社区仓库，软件包主要和硬件相关。', 'alick', array('N')),
 	array('epel', 'Fedora 社区为 RHEL 等提供的额外软件包。', 'BYVoid', array('N')),
-	array('fedora', '自由友爱杰出前卫的 Linux 发行版，Red Hat 公司赞助的社区项目。', 'BYVoid', array('N')),
+	array('fedora', '自由友爱杰出前卫的 Linux 发行版，Red Hat 公司赞助的社区项目。', 'alick', array('N')),
 	array('freebsd', '拥有辉煌历史的 BSD 的一个重要分支。', 'xiaq', array('N')),
 	array('gentoo', '一个快速的元发行版，软件包系统使用源代码。', 'cuckoo', array('N')),
 	array('gentoo-portage', 'Gentoo 的 ports collection。', 'cuckoo', array('N')),
