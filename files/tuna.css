@@ -1,0 +1,9 @@
+.aside {
+  border: 1px solid #777777;
+  background-color: #e6e6e6;
+  border-radius: 6px 6px 6px 6px;
+  -webkit-border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  -o-border-radius: 6px 6px 6px 6px;
+  -ms-border-radius: 6px 6px 6px 6px;
+  padding: 2px 5px; }

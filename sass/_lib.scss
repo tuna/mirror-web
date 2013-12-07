@@ -1,0 +1,183 @@
+
+@mixin border-radius($tl: 5px, $tr: 5px, $br: 5px, $bl: 5px) {
+    border-radius:$tl $tr $br $bl;
+    -webkit-border-radius:$tl $tr $br $bl;
+    -moz-border-radius:$tl $tr $br $bl;
+    -o-border-radius:$tl $tr $br $bl;
+    -ms-border-radius:$tl $tr $br $bl;
+}
+
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content; 
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @-o-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    } 
+}
+
+@mixin columns($count, $gap: 0) {
+    -webkit-column-count: $count;
+    -moz-column-count: $count;
+    -ms-column-count: $count;
+    -o-column-count: $count;
+    column-count: $count;
+    -webkit-column-gap: $gap;
+    -moz-column-gap: $gap;
+    -ms-column-gap: $gap;
+    -o-column-gap: $gap;
+    column-gap: $gap;
+}
+
+@mixin transition($transition-property: all, $transition-time: 200ms, $method: ease-in-out) {
+	-webkit-transition: $transition-property $transition-time $method;
+	-moz-transition: $transition-property $transition-time $method;
+	-ms-transition: $transition-property $transition-time $method;
+	-o-transition: $transition-property $transition-time $method;
+	transition: $transition-property $transition-time $method;
+}
+
+@mixin animation-name($name) {
+    -webkit-animation-name: $name;
+    -moz-animation-name: $name;
+    -ms-animation-name: $name;
+    animation-name: $name;
+}
+
+@mixin animation-duration($name) {
+    -webkit-animation-duration: $name;
+    -moz-animation-duration: $name;
+    -ms-animation-duration: $name;
+    animation-duration: $name;
+}
+
+@mixin animation-timing-function($name) {
+    -webkit-animation-timing-function: $name;
+    -moz-animation-timing-function: $name;
+    -ms-animation-timing-function: $name;
+    animation-timing-function: $name;
+}
+
+@mixin animation-iteration-count($name) {
+    -webkit-animation-iteration-count: $name;
+    -moz-animation-iteration-count: $name;
+    -ms-animation-iteration-count: $name;
+    animation-iteration-count: $name;
+}
+
+@mixin animation-direction($name) {
+    -webkit-animation-direction: $name;
+    -moz-animation-direction: $name;
+    -ms-animation-direction: $name;
+    animation-direction: $name;
+}
+
+@mixin animation-delay($name) {
+    -webkit-animation-delay: $name;
+    -moz-animation-delay: $name;
+    -ms-animation-delay: $name;
+    animation-delay: $name;
+}
+
+@mixin animation-play-state($name) {
+    -webkit-animation-play-state: $name;
+    -moz-animation-play-state: $name;
+    -ms-animation-play-state: $name;
+    animation-play-state: $name;
+}
+
+@mixin animation-fill-mode($name) {
+    -webkit-animation-fill-mode: $name;
+    -moz-animation-fill-mode: $name;
+    -ms-animation-fill-mode: $name;
+    animation-fill-mode: $name;
+}
+
+
+@mixin gradient-vertical($startColor: #555, $endColor: #333) {
+    background-color: mix($startColor, $endColor, 60%);
+    background-image: -moz-linear-gradient(top, $startColor, $endColor); // FF 3.6+
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($startColor), to($endColor)); // Safari 4+, Chrome 2+
+    background-image: -webkit-linear-gradient(top, $startColor, $endColor); // Safari 5.1+, Chrome 10+
+    background-image: -o-linear-gradient(top, $startColor, $endColor); // Opera 11.10
+    background-image: linear-gradient(to bottom, $startColor, $endColor); // Standard, IE10
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=ie-hex-str($startColor), endColorstr=ie-hex-str($endColor),GradientType=0 ); /* IE6-9 */
+}
+
+@mixin gradient-radial($innerColor: #555, $outerColor: #333) {
+    background-color: $outerColor;
+    background-image: -webkit-gradient(radial, center center, 0, center center, 460, from($innerColor), to($outerColor));
+    background-image: -webkit-radial-gradient(circle, $innerColor, $outerColor);
+    background-image: -moz-radial-gradient(circle, $innerColor, $outerColor);
+    background-image: -o-radial-gradient(circle, $innerColor, $outerColor);
+    background-repeat: no-repeat;
+}
+
+@mixin box-shadow($shadow){
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin display-flex() {
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: -moz-flex-box;
+}
+
+@mixin flex-flow($flow: row) {
+    flex-flow: $flow;
+    -webkit-flex-flow: $flow;
+    -ms-flex-flow: $flow;
+    -moz-flex-flow: $flow;
+}
+
+@mixin flex-order($order: 1) {
+    flex-order: $order;
+    -webkit-flex-order: $order;
+    -ms-flex-order: $order;
+    -moz-flex-order: $order;
+    order: $order;
+    -webkit-order: $order;
+    -ms-order: $order;
+    -moz-order: $order;
+}
+
+@mixin flex-wrap($wrap) {
+    flex-wrap: $wrap;
+    -webkit-flex-wrap: $wrap;
+    -ms-flex-wrap: $wrap;
+    -moz-flex-wrap: $wrap;
+}
+
+@mixin flex-align($align) {
+    flex-align: $align;
+    -webkit-flex-align: $align;
+    -ms-flex-align: $align;
+    -moz-flex-align: $align;
+}
+@mixin flex-pack($pack) {
+    flex-pack: $pack;
+    -webkit-flex-pack: $pack;
+    -ms-flex-pack: $pack;
+    -moz-flex-pack: $pack;
+}
+
+@mixin flex($flex) {
+    flex: $flex;
+    -webkit-flex: $flex;
+    -ms-flex: $flex;
+    -moz-flex: $flex;
+}

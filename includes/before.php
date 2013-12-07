@@ -10,6 +10,7 @@ include "includes/bydistro.php";
 	<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />
 	<link href="files/humane/bigbox.css" rel="stylesheet" type="text/css" />
 	<link href="files/pure-0.3.0.min.css" rel="stylesheet" type="text/css" />
+	<link href="files/tuna.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="files/jquery-ui.css"></script>
 	<script type="text/javascript" src="files/jquery-latest.js"></script>
 	<script type="text/javascript" src="files/jquery.tablesorter.min.js"></script>

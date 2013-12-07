@@ -1,0 +1,23 @@
+@import "lib";
+$dark-grey: #222;
+$light-grey: #777;
+$grey: #333;
+$blue: #016ab7;
+$linkColor: #08C;
+$contentBgColor: #efefef;
+
+$color-success: #468847;
+$color-warning: #f89406;
+$color-important: #b94a48;
+$color-info: #3a87ad;
+$navWidth: 120px;
+$footerHeight: 22px;
+$headerHeight: 60px;
+$thucolor: #743481;
+
+.aside {
+    border: 1px solid $light-grey;
+    background-color: darken(#FFF, 10%);
+    @include border-radius(6px, 6px, 6px, 6px);
+    padding: 2px 5px;
+}
