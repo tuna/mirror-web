@@ -2,22 +2,104 @@
 $dark-grey: #222;
 $light-grey: #777;
 $grey: #333;
-$blue: #016ab7;
+$blue: #2c7edf;
+$light-blue: #7cb2d7;
 $linkColor: #08C;
+$thucolor: #71337F;
 $contentBgColor: #efefef;
 
-$color-success: #468847;
-$color-warning: #f89406;
-$color-important: #b94a48;
-$color-info: #3a87ad;
 $navWidth: 120px;
 $footerHeight: 22px;
 $headerHeight: 60px;
-$thucolor: #743481;
 
 .aside {
     border: 1px solid $light-grey;
     background-color: darken(#FFF, 10%);
     @include border-radius(6px, 6px, 6px, 6px);
-    padding: 2px 5px;
+}
+
+.placeholder {
+    height: 1em;
+    width: 100%;
+    display: none;
+    @media screen and (min-width: 1130px) {   
+        display: block;
+    }
+}
+
+body {
+    @media screen and (min-width: 1130px) {
+        background-color: $thucolor; /* tsinghua purple */
+    }
+    font-size: 16px;
+    color: #333;
+    font-family: "WenQuanYi Micro Hei", "STHeiti", "微软雅黑", sans-serif;
+}
+
+#wrapper {
+    background-color: #FFFFFF;
+    @media screen and (min-width: 1130px) {
+        border-radius: 5px;
+        margin: 0 5% 0 5%;
+        width: auto;
+        padding: 1em 1.5em;
+    }
+    @media screen and (max-width: 1129px) {
+        width: 100%;
+    }
+}
+
+#header {
+    margin-bottom: 1em;
+    border-bottom: 1px solid $thucolor;
+    h1 {
+        color: $grey; 
+    }
+    .tagline {
+        margin-bottom: 1.2em; 
+        color: $light-grey;
+    }
+}
+
+.pure-menu {
+    li {
+        &.pure-menu-selected, &.pure-menu-selected:hover {
+            a, a:hover {
+                font-weight: bold;
+                color: white; 
+            }
+            background-color: $thucolor;
+        }
+        a {
+            &:hover {
+                background-color: transparent !important; 
+                color: white;
+            }
+            color: $thucolor; 
+        }
+        &:hover {
+            background-color: $blue; 
+        }
+        height: 100%;
+    }
+}
+
+
+.padding-1-lr {
+    @media screen and (min-width: 1130px) {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+    @media screen and (max-width: 1129px) {
+        padding-left: 1%;
+        padding-right: 1%;
+    } 
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
 }

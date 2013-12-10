@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .aside {
   border: 1px solid #777777;
   background-color: #e6e6e6;
@@ -5,5 +6,72 @@
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   -o-border-radius: 6px 6px 6px 6px;
-  -ms-border-radius: 6px 6px 6px 6px;
-  padding: 2px 5px; }
+  -ms-border-radius: 6px 6px 6px 6px; }
+
+.placeholder {
+  height: 1em;
+  width: 100%;
+  display: none; }
+  @media screen and (min-width: 1130px) {
+    .placeholder {
+      display: block; } }
+
+body {
+  font-size: 16px;
+  color: #333;
+  font-family: "WenQuanYi Micro Hei", "STHeiti", "微软雅黑", sans-serif; }
+  @media screen and (min-width: 1130px) {
+    body {
+      background-color: #71337f;
+      /* tsinghua purple */ } }
+
+#wrapper {
+  background-color: #FFFFFF; }
+  @media screen and (min-width: 1130px) {
+    #wrapper {
+      border-radius: 5px;
+      margin: 0 5% 0 5%;
+      width: auto;
+      padding: 1em 1.5em; } }
+  @media screen and (max-width: 1129px) {
+    #wrapper {
+      width: 100%; } }
+
+#header {
+  margin-bottom: 1em;
+  border-bottom: 1px solid #71337f; }
+  #header h1 {
+    color: #333333; }
+  #header .tagline {
+    margin-bottom: 1.2em;
+    color: #777777; }
+
+.pure-menu li {
+  height: 100%; }
+  .pure-menu li.pure-menu-selected, .pure-menu li.pure-menu-selected:hover {
+    background-color: #71337f; }
+    .pure-menu li.pure-menu-selected a, .pure-menu li.pure-menu-selected a:hover, .pure-menu li.pure-menu-selected:hover a, .pure-menu li.pure-menu-selected:hover a:hover {
+      font-weight: bold;
+      color: white; }
+  .pure-menu li a {
+    color: #71337f; }
+    .pure-menu li a:hover {
+      background-color: transparent !important;
+      color: white; }
+  .pure-menu li:hover {
+    background-color: #2c7edf; }
+
+@media screen and (min-width: 1130px) {
+  .padding-1-lr {
+    padding-left: 1em;
+    padding-right: 1em; } }
+@media screen and (max-width: 1129px) {
+  .padding-1-lr {
+    padding-left: 1%;
+    padding-right: 1%; } }
+
+.pull-right {
+  float: right; }
+
+.pull-left {
+  float: left; }

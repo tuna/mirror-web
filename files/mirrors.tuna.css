@@ -114,31 +114,4 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 	text-decoration: none;
 }
 
-@media screen and (min-width: 1130px) {
-	body {
-		background-color: #82318E; /* tsinghua purple */
-		font-size: 16px;
-	}
-
-	#wrapper {
-		background-color: #FFFFFF;
-		border-radius: 5px;
-		margin: 0 15% 0 15%;
-		width: auto;
-	}
-
-	#header, #emergency-notice, #content, #footer {
-		margin-left: 1em;
-		margin-right: 1em;
-	}
-
-	#header {
-		padding-top: 1px;
-	}
-
-	.tagline {
-		font-family: serif;
-		font-style: italic;
-	}
-}
 /* vi: se noet ts=8 sw=8: */
