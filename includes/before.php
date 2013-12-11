@@ -10,7 +10,6 @@ include "includes/bydistro.php";
 <link rel="shortcut icon" href="/files/favicon.png"> 
 <link href="files/humane/bigbox.css" rel="stylesheet" type="text/css" />
 <link href="files/pure-0.3.0.min.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="files/jquery-ui.css"></script>
 
 <style type="text/css">
 <?php
@@ -38,13 +37,20 @@ $footer_bg_color = $very_light_grey;
 
 include "includes/tuna.css.php";?>
 </style>
-<!-- <link href="files/tuna.css" rel="stylesheet" type="text/css" /> -->
+
+<?php if ($need_jq_ui) {?>
+<link rel="stylesheet" href="files/jquery-ui.css"></script>
+<?php } ?>
 
 <script type="text/javascript" src="files/jquery-latest.js"></script>
+<script type="text/javascript" src="files/humane/humane.js"></script>
+
+<?php if ($need_jq_ui) {?>
 <script type="text/javascript" src="files/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="files/sort-status-table.js"></script>
 <script type="text/javascript" src="files/jquery-ui.js"></script>
-<script type="text/javascript" src="files/humane/humane.js"></script>
+<?php } ?>
+
 <title>清华大学开源镜像站</title>
 </head>
 
