@@ -11,6 +11,28 @@ $navWidth: 120px;
 $footerHeight: 22px;
 $headerHeight: 60px;
 
+@font-face {
+  font-family: 'Open Sans';
+  src: url('fonts/Regular/OpenSans-Regular.eot');
+  src: url('fonts/Regular/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
+       url('fonts/Regular/OpenSans-Regular.woff') format('woff'),
+       url('fonts/Regular/OpenSans-Regular.ttf') format('truetype'),
+       url('fonts/Regular/OpenSans-Regular.svg#OpenSansLight') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('fonts/Semibold/OpenSans-Semibold.eot');
+  src: url('fonts/Semibold/OpenSans-Semibold.eot?#iefix') format('embedded-opentype'),
+       url('fonts/Semibold/OpenSans-Semibold.woff') format('woff'),
+       url('fonts/Semibold/OpenSans-Semibold.ttf') format('truetype'),
+       url('fonts/Semibold/OpenSans-Semibold.svg#OpenSansSemibold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+}
+
 body {
     font-size: 16px;
     color: #444;
