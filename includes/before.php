@@ -8,7 +8,6 @@ include "includes/bydistro.php";
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 <meta name="google-translate-customization" content="275efe018e191117-4ad5760d63e54508-g1acd9273226ae414-1d"></meta>
 <link rel="shortcut icon" href="/files/favicon.png"> 
-<link href="files/mirrors.tuna.css" rel="stylesheet" type="text/css" />
 <link href="files/humane/bigbox.css" rel="stylesheet" type="text/css" />
 <link href="files/pure-0.3.0.min.css" rel="stylesheet" type="text/css" />
 <link href="files/tuna.css" rel="stylesheet" type="text/css" />
@@ -25,9 +24,9 @@ include "includes/bydistro.php";
 <div class="placeholder" ></div>
 <div id="wrapper" class="pure-g-r">
   <div id="header" class="pure-u-1">
-    <div class="padding-1-lr pull-left">
+    <div class="padding-2-lr pull-left">
     <h1>清华大学开源镜像站</h1>
-    <div class="tagline">
+    <div class="tagline pure-hidden-phone">
       Portal of Tsinghua University Open Source Software Mirror Sites
     </div>
     <div class="pure-menu pure-menu-open pure-menu-horizontal pure-u-1">
@@ -40,7 +39,7 @@ include "includes/bydistro.php";
     </div>
     </div>
     <div class="pull-right pure-hidden-phone">
-              <img src="files/logo.png" alt="TUNA" /></a>
+              <img src="files/logo-w.png" alt="TUNA" /></a>
     </div>
   </div> <!-- end of header div -->
   <?php

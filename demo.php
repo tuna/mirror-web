@@ -6,43 +6,52 @@ include "includes/before.php";
 <div id="content" class="pure-u-1">
   <div class="padding-1-lr pure-g-r">
     <div class="pure-u-3-4 pure-g-r">
-      <!--Pure CSS 的表根很难用！！！ -->
-      <table class="pure-table pure-table-striped pure-g-r pure-u-1"> 
-        <thead class="pure-g-r pure-u-1">
-          <tr class="pure-g-r pure-u-1">
-            <th class="pure-u-1-5">发行版</th>
-            <th class="pure-u-1-5">说明</th>
-            <th class="pure-u-1-5">更新时间</th>
-            <th class="pure-u-1-5">帮助</th>
+      <div class="pure-u-1 padding-1-lr">
+        <h2> 镜像列表 </h2>
+        <table id="mirrorlist" border="0" cellspacing="0" cellpadding="0" > 
+          <thead>
+            <tr>
+            <th class="distribution">发行版</th>
+            <th class="description">说明</th>
+            <th class="update">更新时间</th>
+            <th class="help">帮助</th>
           </tr>
-        </thead>
-        <tbody class="pure-u-1">
-        <tr class="pure-u-1">
-          <td class="pure-u-1-5">Archlinux</td>
-          <td class="pure-u-1-5">最好的操作系统</td>
-          <td class="pure-u-1-5">1秒前</td>
-          <td class="pure-u-1-5"><a href="#">点我</a></td>
-        </tr>
-        <tr class="pure-u-1">
-          <td class="pure-u-1-5">Debian</td>
-          <td class="pure-u-1-5">很好的操作系统</td>
-          <td class="pure-u-1-5">1秒前</td>
-          <td class="pure-u-1-5"><a href="#">点我</a></td>
-        </tr>
-        <tr class="pure-u-1">
-          <td class="pure-u-1-5">Ubuntu</td>
-          <td class="pure-u-1-5">一般般的操作系统</td>
-          <td class="pure-u-1-5">1秒前</td>
-          <td class="pure-u-1-5"><a href="#">点我</a></td>
-        </tr>
-        <tr class="pure-u-1">
-          <td class="pure-u-1-5">Deepin</td>
-          <td class="pure-u-1-5">山寨的操作系统</td>
-          <td class="pure-u-1-5">1秒前</td>
-          <td class="pure-u-1-5"><a href="#">点我</a></td>
-        </tr>
-        </tbody>
-      </table> 
+          </thead>
+          <tbody>
+          <tr>
+            <td class="distribution"><a href="/archlinux/">Archlinux</a></td>
+            <td class="description">最好的操作系统</td>
+            <td class="update">1秒前</td>
+            <td class="help"><a href="#">点我</a></td>
+          </tr>
+          <tr>
+            <td class="distribution"><a href="/gentoo/">Gentoo</a></td>
+            <td class="description">很好很耗电的操作系统</td>
+            <td class="update">1秒前</td>
+            <td class="help"><a href="#">点我</a></td>
+          </tr>
+          <tr>
+            <td class="distribution"><a href="/debian/">Debian</a></td>
+            <td class="description">非常好的操作系统</td>
+            <td class="update">1秒前</td>
+            <td class="help"><a href="#">点我</a></td>
+          </tr>
+          <tr>
+            <td class="distribution"><a href="/ubuntu/">Ubuntu</a></td>
+            <td class="description">还凑合的操作系统</td>
+            <td class="update">1秒前</td>
+            <td class="help"><a href="#">点我</a></td>
+          </tr>
+          <tr>
+            <td class="distribution"><a href="/deepin/">Deepin</a></td>
+            <td class="description">山寨的操作系统</td>
+            <td class="update">1秒前</td>
+            <td class="help"><a href="#">点我</a></td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
     </div>
     <div class="pure-u-1-4">
       <div class="aside">

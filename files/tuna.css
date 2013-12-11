@@ -1,12 +1,21 @@
 @charset "UTF-8";
+body {
+  font-size: 16px;
+  color: #444; }
+
+a, a:visited {
+  color: #2c7edf;
+  text-decoration: none; }
+
+a:hover {
+  color: #7cb2d7; }
+
+h1, h2, h3, h4 {
+  color: #71337f; }
+
 .aside {
   border: 1px solid #777777;
-  background-color: #e6e6e6;
-  border-radius: 6px 6px 6px 6px;
-  -webkit-border-radius: 6px 6px 6px 6px;
-  -moz-border-radius: 6px 6px 6px 6px;
-  -o-border-radius: 6px 6px 6px 6px;
-  -ms-border-radius: 6px 6px 6px 6px; }
+  background-color: #e6e6e6; }
 
 .placeholder {
   height: 1em;
@@ -15,51 +24,6 @@
   @media screen and (min-width: 1130px) {
     .placeholder {
       display: block; } }
-
-body {
-  font-size: 16px;
-  color: #333;
-  font-family: "WenQuanYi Micro Hei", "STHeiti", "微软雅黑", sans-serif; }
-  @media screen and (min-width: 1130px) {
-    body {
-      background-color: #71337f;
-      /* tsinghua purple */ } }
-
-#wrapper {
-  background-color: #FFFFFF; }
-  @media screen and (min-width: 1130px) {
-    #wrapper {
-      border-radius: 5px;
-      margin: 0 5% 0 5%;
-      width: auto;
-      padding: 1em 1.5em; } }
-  @media screen and (max-width: 1129px) {
-    #wrapper {
-      width: 100%; } }
-
-#header {
-  margin-bottom: 1em;
-  border-bottom: 1px solid #71337f; }
-  #header h1 {
-    color: #333333; }
-  #header .tagline {
-    margin-bottom: 1.2em;
-    color: #777777; }
-
-.pure-menu li {
-  height: 100%; }
-  .pure-menu li.pure-menu-selected, .pure-menu li.pure-menu-selected:hover {
-    background-color: #71337f; }
-    .pure-menu li.pure-menu-selected a, .pure-menu li.pure-menu-selected a:hover, .pure-menu li.pure-menu-selected:hover a, .pure-menu li.pure-menu-selected:hover a:hover {
-      font-weight: bold;
-      color: white; }
-  .pure-menu li a {
-    color: #71337f; }
-    .pure-menu li a:hover {
-      background-color: transparent !important;
-      color: white; }
-  .pure-menu li:hover {
-    background-color: #2c7edf; }
 
 @media screen and (min-width: 1130px) {
   .padding-1-lr {
@@ -70,8 +34,96 @@ body {
     padding-left: 1%;
     padding-right: 1%; } }
 
+@media screen and (min-width: 1130px) {
+  .padding-2-lr {
+    padding-left: 2em;
+    padding-right: 2em; } }
+@media screen and (max-width: 1129px) {
+  .padding-2-lr {
+    padding-left: 2%;
+    padding-right: 2%; } }
+
 .pull-right {
   float: right; }
 
 .pull-left {
   float: left; }
+
+.nospam {
+  display: none; }
+
+.pure-g-r [class*="pure-u"] {
+  font-family: "Open Sans", "Ubuntu", "Hiragino Sans GB", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", "STHeiti", "微软雅黑", sans-serif; }
+
+#wrapper {
+  background-color: #FFFFFF; }
+  @media screen and (min-width: 1130px) {
+    #wrapper {
+      margin: 0 5% 0 5%;
+      width: auto; } }
+  @media screen and (max-width: 1129px) {
+    #wrapper {
+      width: 100%; } }
+
+#header {
+  margin-bottom: 1em;
+  background-color: #71337f; }
+  #header h1 {
+    color: white;
+    font-weight: normal; }
+  #header .tagline {
+    margin-bottom: 1.2em;
+    color: #e3c8e9; }
+  #header .pure-menu {
+    background-color: transparent; }
+    #header .pure-menu li {
+      background-color: #71337f;
+      height: 100%; }
+      #header .pure-menu li.pure-menu-selected, #header .pure-menu li.pure-menu-selected:hover {
+        background-color: white; }
+        #header .pure-menu li.pure-menu-selected a, #header .pure-menu li.pure-menu-selected a:hover, #header .pure-menu li.pure-menu-selected:hover a, #header .pure-menu li.pure-menu-selected:hover a:hover {
+          font-weight: bold;
+          color: #71337f; }
+      #header .pure-menu li a {
+        color: white; }
+        #header .pure-menu li a:hover {
+          background-color: transparent !important;
+          color: #71337f; }
+      #header .pure-menu li:hover {
+        background-color: white; }
+
+#mirrorlist {
+  width: 100%;
+  border-spacing: 0; }
+  #mirrorlist thead, #mirrorlist tbody, #mirrorlist tr {
+    width: 100%; }
+  #mirrorlist th {
+    color: #71337f; }
+  #mirrorlist th, #mirrorlist td {
+    text-align: left;
+    padding: 4px 0;
+    background-color: transparent; }
+  #mirrorlist thead > tr {
+    border-bottom: 1px solid #DDD; }
+  #mirrorlist tbody > tr:nth-child(even) {
+    background-color: #f6ecf8; }
+  #mirrorlist .distribution {
+    width: 20%; }
+    @media screen and (max-width: 768px) {
+      #mirrorlist .distribution {
+        width: 60%; } }
+  #mirrorlist .description {
+    width: 40%; }
+    @media screen and (max-width: 768px) {
+      #mirrorlist .description {
+        display: none; } }
+  #mirrorlist .update {
+    width: 20%; }
+    @media screen and (max-width: 768px) {
+      #mirrorlist .update {
+        display: none; } }
+  #mirrorlist .help {
+    width: 20%; }
+    @media screen and (max-width: 768px) {
+      #mirrorlist .help {
+        width: 40%; } }
