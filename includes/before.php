@@ -10,8 +10,21 @@ include "includes/bydistro.php";
 <link rel="shortcut icon" href="/files/favicon.png"> 
 <link href="files/humane/bigbox.css" rel="stylesheet" type="text/css" />
 <link href="files/pure-0.3.0.min.css" rel="stylesheet" type="text/css" />
-<link href="files/tuna.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="files/jquery-ui.css"></script>
+
+<style type="text/css">
+<?php
+$tunablue = "#2c7edf";
+$lightblue = "#7daadf";
+$thupurple = "#71337F";
+$grey = "#444";
+$light_grey = "#DDD";
+$light_purple = "#ddb7e1";
+$very_light_purple = "#fef5ff";
+include "includes/tuna.css.php";?>
+</style>
+<!-- <link href="files/tuna.css" rel="stylesheet" type="text/css" /> -->
+
 <script type="text/javascript" src="files/jquery-latest.js"></script>
 <script type="text/javascript" src="files/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="files/sort-status-table.js"></script>
