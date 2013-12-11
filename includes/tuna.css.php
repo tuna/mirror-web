@@ -177,26 +177,26 @@ h1, h2, h3, h4 {
   width: 20%;
 }
 #mirrorlist .description {
-  width: 40%;
+  width: 50%;
 }
 #mirrorlist .update {
   width: 20%;
 }
 #mirrorlist .help {
-  width: 20%;
+  width: 10%;
 }
 
 @media screen and (max-width: 768px) {
   #mirrorlist .distribution {
-    width: 60%;
+    width: 50%;
   }
   #mirrorlist .description {
     display: none;
   }
   #mirrorlist .update {
-    display: none;
+    width: 30%;
   }
   #mirrorlist .help {
-    width: 40%;
+    width: 20%;
   }
 }

@@ -5,7 +5,7 @@ include "includes/before.php";
 
 <div id="content" class="pure-u-1">
   <div class="padding-1-lr pure-g-r">
-    <div class="pure-u-3-4 pure-g-r">
+    <div class="pure-u-2-3 pure-g-r">
       <div class="pure-u-1 padding-1-lr">
         <h2> 镜像列表 </h2>
         <table id="mirrorlist" border="0" cellspacing="0" cellpadding="0" > 
@@ -53,7 +53,7 @@ include "includes/before.php";
 
       </div>
     </div>
-    <div class="pure-u-1-4">
+    <div class="pure-u-1-3">
       <div class="aside">
         <div class="padding-1-lr">
           <h2>简介</h2>
