@@ -21,28 +21,27 @@
 }
 body {
   font-size: 16px;
-  color: #444;
+  color: <?= $text_color ?>;
 }
 a, a:visited {
-  color: <?= $tunablue ?>;
+  color: <?= $link_color ?>;
   text-decoration: none;
 }
 a:hover {
-  color: <?= $light_blue ?>;
+  color: <?= $link_hover_color ?>;
 }
 h1, h2, h3, h4 {
-  color: <?= $thupurple ?>;
+  color: <?= $theme_color ?>;
 }
-
-.aside {
-  border: 1px solid #777777;
-  background-color: #e6e6e6;
+ul {
+  padding:  0 0 0 20px;
 }
 .placeholder {
   height: 1em;
   width: 100%;
   display: none;
 }
+
 .pull-right {
   float: right;
 }
@@ -57,11 +56,18 @@ h1, h2, h3, h4 {
 }
 
 #wrapper {
-  background-color: #FFFFFF;
+  background-color: <?= $bg_color ?>;
+  width: 100%;
 }
 
 
 @media screen and (min-width: 1130px) {
+
+  .container {
+    margin: 0 5% 0 5%;
+    width: auto;
+  }
+
   .placeholder {
     display: block;
   }
@@ -76,15 +82,26 @@ h1, h2, h3, h4 {
     padding-right: 2em;
   }
   
-  #wrapper {
-    margin: 0 5% 0 5%;
+  #mirrorlist-container {
+    margin: 0 1em;
     width: auto;
   }
 
+  
 }
 
 
 @media screen and (max-width: 1129px) {
+  .container {
+    margin: 0;
+    width: 100%;
+  }
+  
+  #mirrorlist-container {
+    margin: 0 2%;
+    width: auto;
+  }
+
   .padding-1-lr {
     padding-left: 1%;
     padding-right: 1%;
@@ -94,24 +111,21 @@ h1, h2, h3, h4 {
     padding-left: 2%;
     padding-right: 2%;
   }
-  #wrapper {
-    width: 100%;
-  }
 }
 
 #header {
   margin-bottom: 1em;
-  background-color: <?= $thupurple ?>;
+  background-color: <?= $header_bg_color ?>;
 }
 
 #header h1 {
-  color: white;
+  color: <?= $header_fg_color ?>;
   font-weight: normal;
 }
 
 #header .tagline {
   margin-bottom: 1.2em;
-  color: <?= $light_purple ?>;
+  color: <?= $header_fg_color_light ?>;
 }
 
 #header .pure-menu {
@@ -119,32 +133,31 @@ h1, h2, h3, h4 {
 }
 
 #header .pure-menu li {
-  background-color: <?= $thupurple ?>;
+  background-color: <?= $menu_inactive_bg_color ?>;
   height: 100%;
 }
 
 #header .pure-menu li.pure-menu-selected, #header .pure-menu li.pure-menu-selected:hover {
-  background-color: white;
+  background-color: <?= $menu_active_bg_color ?>;
 }
 
 #header .pure-menu li.pure-menu-selected a, #header .pure-menu li.pure-menu-selected a:hover, #header .pure-menu li.pure-menu-selected:hover a, #header .pure-menu li.pure-menu-selected:hover a:hover {
   font-weight: bold;
-  color: <?= $thupurple ?>;
+  color: <?= $menu_active_fg_color ?>;
 }
 
 #header .pure-menu li a {
-  color: white;
+  color: <?= $menu_inactive_fg_color ?>;
 }
 
 #header .pure-menu li a:hover {
   background-color: transparent !important;
-  color: <?= $thupurple ?>;
+  color: <?= $menu_active_fg_color ?>;
 }
 
 #header .pure-menu li:hover {
-  background-color: white;
+  background-color: <?= $menu_active_bg_color ?>;
 }
-
 
 #mirrorlist {
   width: 100%;
@@ -166,11 +179,11 @@ h1, h2, h3, h4 {
 }
 
 #mirrorlist thead > tr {
-  border-bottom: 1px solid #DDD;
+  border-bottom: 1px solid <?= $border_color ?>;
 }
 
 #mirrorlist tbody > tr:nth-child(even) {
-  background-color: <?= $very_light_purple ?>;
+  background-color: <?= $strip_color ?>;
 }
 
 #mirrorlist .distribution {
@@ -199,4 +212,14 @@ h1, h2, h3, h4 {
   #mirrorlist .help {
     width: 20%;
   }
+}
+
+
+#footer {
+  border-top: 1px solid <?= $border_color ?>;
+  background-color: <?= $footer_bg_color?>;
+}
+
+#foot-logo {
+  height: 96px;
 }

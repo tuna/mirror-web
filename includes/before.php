@@ -14,13 +14,28 @@ include "includes/bydistro.php";
 
 <style type="text/css">
 <?php
-$tunablue = "#2c7edf";
-$lightblue = "#7daadf";
-$thupurple = "#71337F";
-$grey = "#444";
-$light_grey = "#DDD";
-$light_purple = "#ddb7e1";
-$very_light_purple = "#fef5ff";
+include "includes/colors.php";
+
+$bg_color = $white;
+$theme_color = $thupurple;
+
+$text_color = $grey;
+$link_color = $tunablue;
+$link_hover_color = $lightblue;
+$border_color = $light_grey;
+
+$header_bg_color = $theme_color;
+$header_fg_color = $white;
+$header_fg_color_light = $light_purple;
+
+$menu_active_fg_color = $theme_color;
+$menu_active_bg_color = $white;
+$menu_inactive_fg_color = $white;
+$menu_inactive_bg_color = $theme_color;
+
+$strip_color = $very_light_purple;
+$footer_bg_color = $very_light_grey;
+
 include "includes/tuna.css.php";?>
 </style>
 <!-- <link href="files/tuna.css" rel="stylesheet" type="text/css" /> -->
@@ -34,10 +49,9 @@ include "includes/tuna.css.php";?>
 </head>
 
 <body>
-<div class="placeholder" ></div>
 <div id="wrapper" class="pure-g-r">
   <div id="header" class="pure-u-1">
-    <div class="padding-2-lr pull-left">
+    <div class="container padding-2-lr">
     <h1>清华大学开源镜像站</h1>
     <div class="tagline pure-hidden-phone">
       Portal of Tsinghua University Open Source Software Mirror Sites
@@ -51,9 +65,11 @@ include "includes/tuna.css.php";?>
       </ul>
     </div>
     </div>
+    <!--
     <div class="pull-right pure-hidden-phone">
               <img src="files/logo-w.png" alt="TUNA" /></a>
     </div>
+     -->
   </div> <!-- end of header div -->
   <?php
   if (file_exists('notice.html') && filesize('notice.html') != 0) {

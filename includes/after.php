@@ -1,6 +1,19 @@
 <div id="google_translate_element" style="display:none;"></div>
+
+<div id="footer" class="pure-u-1 pure-g-r">
+  <div class="container">
+  <div class="ack pure-u-3-4">
+    <p>清华大学开源镜像站的网络和硬件由清华大学网络工程研究中心提供支持。</p>
+  </div>
+  <div class="aside pure-u-1-4">
+      <div class="tuna-logo">
+        <p><a href="http://tuna.tsinghua.edu.cn/"><img id="foot-logo" src="files/logo.png" alt="TUNA" /></a></p>
+      </div>
+  </div>
+    </div>
+</div> <!-- end of footer div -->
+
 </div> <!-- end of div wrapper -->
-<div class="placeholder" ></div>
 
 <script type="text/javascript">
 function googleTranslateElementInit() {
