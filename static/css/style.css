@@ -1,0 +1,292 @@
+/*	################################################################
+
+	Author: Carlos Alvarez
+	URL: http://alvarez.is
+
+	Project Name: SOLID - Bootstrap 3 Theme
+	Version: 1.0
+	URL: http://alvarez.is
+	
+################################################################# */
+@import url("prettyPhoto.css") screen;
+@import url("hoverex-all.css") screen;
+/*	################################################################
+	1. GENERAL STRUCTURES
+################################################################# */
+* {
+  margin: 0; }
+
+body {
+  background: #ffffff;
+  margin: 0;
+  height: 100%;
+  color: #384452;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700; }
+
+ul {
+  padding-left: 1em; }
+
+p {
+  padding: 0;
+  margin-bottom: 12px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #384452;
+  margin-top: 10px; }
+
+img {
+  height: auto;
+  max-width: 100%; }
+
+a {
+  color: #088acb;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  -webkit-transition: background-color .4s linear, color .4s linear;
+  -moz-transition: background-color .4s linear, color .4s linear;
+  -o-transition: background-color .4s linear, color .4s linear;
+  -ms-transition: background-color .4s linear, color .4s linear;
+  transition: background-color .4s linear, color .4s linear; }
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: #62bbe7; }
+
+::-moz-selection {
+  color: #fff;
+  text-shadow: none;
+  background: #384452; }
+
+::selection {
+  color: #fff;
+  text-shadow: none;
+  background: #384452; }
+
+.centered {
+  text-align: center; }
+
+/*	################################################################
+	BOOTSTRAP MODIFICATIONS & TWEAKS
+################################################################# */
+.navbar {
+  padding-top: 15px;
+  margin-bottom: 0px; }
+
+.navbar-default {
+  background-color: white;
+  border-color: transparent; }
+  .navbar-default .navbar-nav > li.active > a {
+    color: #82318e;
+    border-bottom: 2px solid #82318e; }
+  .navbar-default .navbar-nav > li > a {
+    color: #384452;
+    background: transparent !important;
+    font-weight: 700;
+    font-size: 12px; }
+    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+      color: #82318e !important;
+      background: transparent !important; }
+
+.navbar-brand {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 900;
+  padding-top: 0px; }
+  .navbar-brand img {
+    margin-right: 5px; }
+
+.navbar-header .navbar-brand {
+  color: #384452; }
+
+.dropdown-menu {
+  background: #384452; }
+
+.dropdown-menu > li > a {
+  color: white;
+  font-weight: 700;
+  font-size: 12px; }
+
+.btn-theme {
+  color: #fff;
+  background-color: #384452;
+  border-color: #384452;
+  margin: 4px; }
+
+.btn-theme:hover,
+.btn-theme:focus,
+.btn-theme:active,
+.btn-theme.active,
+.open .dropdown-toggle.btn-theme {
+  color: #fff;
+  background-color: #82318e;
+  border-color: #82318e; }
+
+.dmbutton:hover,
+.dmbutton:active,
+.dmbutton:focus {
+  color: #ffffff;
+  background-color: #222222;
+  border-color: #ffffff; }
+
+.dmbutton {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  padding-top: 1.025rem;
+  padding-right: 2.25rem;
+  letter-spacing: 0.85px;
+  padding-bottom: 1.0875rem;
+  padding-left: 2.25rem;
+  font-size: 1.55rem;
+  cursor: pointer;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0 0 1.25rem;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  -webkit-transition: background-color 300ms ease-out;
+  -moz-transition: background-color 300ms ease-out;
+  transition: background-color 300ms ease-out;
+  -webkit-appearance: none;
+  font-weight: normal !important; }
+
+.mtb {
+  margin-top: 40px;
+  margin-bottom: 80px; }
+
+.mb {
+  margin-bottom: 60px; }
+
+.mt {
+  margin-top: 60px; }
+
+.hline {
+  border-bottom: 1px solid #384452; }
+
+.hline-w {
+  border-bottom: 1px solid #ffffff;
+  margin-bottom: 25px; }
+
+/*	################################################################
+	SITE WRAPS
+################################################################# */
+#headerwrap {
+  padding-top: 40px;
+  padding-bottom: 0px; }
+  #headerwrap h1 {
+    color: #82318e;
+    margin-bottom: 15px; }
+  #headerwrap h3, #headerwrap h5 {
+    color: #82318e;
+    font-weight: 400;
+    margin-top: 10px; }
+  #headerwrap .img-responsive {
+    margin: 0 auto; }
+
+/* Services Wrap */
+#mirrors {
+  margin-top: 40px;
+  margin-bottom: 40px; }
+  #mirrors tbody {
+    font-size: 12pt; }
+    #mirrors tbody td {
+      border-top: none; }
+    #mirrors tbody .label {
+      font-size: 10pt; }
+
+/* Footer */
+#footerwrap {
+  color: #bfc9d3;
+  margin-top: 100px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background: #384452; }
+  #footerwrap p {
+    color: #bfc9d3; }
+  #footerwrap h4 {
+    color: white; }
+  #footerwrap i, #footerwrap i:hover, #footerwrap a, #footerwrap a:hover {
+    color: #bfc9d3; }
+
+/*	################################################################
+	PAGE CONFIGURATIONS
+################################################################# */
+/* General Tweaks */
+#blue {
+  background: #82318e;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+#blue h3 {
+  color: white;
+  margin-left: 15px; }
+
+.ctitle {
+  color: #384452;
+  font-weight: 700;
+  margin-bottom: 15px; }
+
+csmall {
+  font-size: 12px;
+  color: #b3b3b3; }
+
+.spacing {
+  margin-top: 40px;
+  margin-bottom: 40px; }
+
+.badge-theme {
+  background: #82318e; }
+
+/* Blog Page */
+.popular-posts {
+  margin: 0px;
+  padding-left: 0px; }
+
+.popular-posts li {
+  list-style: none;
+  margin-bottom: 20px;
+  min-height: 70px; }
+
+.popular-posts li a,
+.popular-posts li a:hover {
+  color: #2f2f2f;
+  text-decoration: none; }
+
+.popular-posts li img {
+  float: left;
+  margin-right: 20px; }
+
+.popular-posts li em {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  color: #b3b3b3; }
+
+.popular-posts p {
+  line-height: normal;
+  margin-bottom: auto; }
+
+.share i {
+  padding-right: 15px;
+  font-size: 18px; }
+
+/* Event Page */
+#events-list .row {
+  margin-bottom: 1em; }
+#events-list .event-title h3 {
+  margin-top: 0; }
+#events-list .event-meta {
+  font-size: 1.1em;
+  margin-bottom: 2em; }

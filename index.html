@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="/static/img/favicon.png">
+  <title>清华大学 TUNA 镜像源</title>
+  
+
+  <link href="/static/css/bootstrap.css" rel="stylesheet">
+  <link href="/static/css/style.css" rel="stylesheet">
+  <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+  <script src="/static/js/jquery-2.1.1.min.js"></script>
+  <script src="/static/js/markup.min.js"></script>
+</head>
+<body>
+
+<div class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"><img src="/static/img/logo-small.png" /> 清华大学 TUNA 镜像源</a>
+    </div>
+    <div class="navbar-collapse collapse navbar-right">
+      <ul class="nav navbar-nav">
+        <li><a href="http://www.tuna.tsinghua.edu.cn/">HOME</a></li>
+        <li><a href="http://www.tuna.tsinghua.edu.cn/events/">EVENTS</a></li>
+        <li><a href="http://www.tuna.tsinghua.edu.cn/blog/">BLOG</a></li>
+        <li><a href="http://www.tuna.tsinghua.edu.cn/feed.xml">RSS</a></li>
+        <li class="active"><a href="http://mirrors.tuna.tsinghua.edu.cn/">MIRRORS</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+
+<div id="mirrors">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div>
+          <p> 欢迎来到清华大学开源镜像网站，它由清华大学开源镜像站管理团队维护管理。</p>
+          <p>本站可以在校内外通过 IPv4/IPv6 使用。
+          <br />本站域名有：</p>
+          <ul>
+            <li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
+            <li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
+            <li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
+          </ul>
+        </div>
+        <div class="alert alert-info">
+          清华大学TUNA开源镜像源正在重建，如有任何问题，请发送邮件到 thu-opensource-mirror-admin<span style="hidden"></span>&#64;googlegroups<span style="hide"></span>&#46;com 反馈。<br />
+          Tsinghua TUNA OpenSouce Mirror is being reconstructed，if you have any issues, please email thu-opensource-mirror-admin<span style="hide"></span>&#64;googlegroups<span style="hide"></span>&#46;com.
+        </div>
+        <h3># 镜像源列表 </h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Last Update</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="mirror-list">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div><!--/container -->
+</div><!--/service -->
+
+
+<div id="footerwrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <p>清华大学 TUNA 协会最初叫清华大学学生网管会，其前身为清华大学电脑协会，是由清华大学网络技术和开源软件爱好者、技术宅组成的团体。</p>
+      </div>
+
+      <div class="col-lg-4">
+        <h4>Contact Us</h4>
+        <div>
+          <ul class="social">
+            <li>
+            <a href="https://groups.google.com/forum/#!forum/tuna-general"><i class="fa fa-envelope"></i> Mailing List</a>
+            </li>
+            <li>
+            IRC: <a href="https://webchat.freenode.net/?channels=%23tuna">#tuna at freenode</a>
+            </li>
+            <li>
+            <a href="https://secure.flickr.com/groups/tuna/"><i class="fa fa-flickr"></i> Flickr</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <img class="img-responsive" src="/static/img/logo-white.png" />
+      </div>
+    </div><!--/row -->
+  </div><!--/container -->
+</div><!--/footerwrap -->
+
+</body>
+
+
+<script id="template" type="x-tmpl-markup">
+{{mirrors}}
+<tr>
+  <td><a href="/{{name}}">{{name}}</a></td>
+  <td>{{last_update}}</td>
+  <td><span class="label {{label}}">{{status}}<span></td>
+</tr>
+{{/mirrors}}
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var mir_tmpl = $("#template").text(),
+      label_map = {
+        'unknown': 'label-default',
+        'syncing': 'label-info',
+        'success': 'label-success',
+        'fail': 'label-warning'
+      };
+  $.getJSON("/static/tunasync.json", function(data) {
+    var mirrors = [];
+    for(var k in data) {
+        var d = data[k];
+        d['label'] = label_map[d['status']];
+        mirrors.push(d);
+    }
+    var result = Mark.up(mir_tmpl, {mirrors: mirrors});
+    $('#mirror-list').html(result);
+  });
+});
+</script>
+
+<script src="//use.edgefonts.net/lato.js"></script> 
+
+</html>
