@@ -1,12 +1,12 @@
 /*	################################################################
 
-	Author: Carlos Alvarez
-	URL: http://alvarez.is
+Author: Carlos Alvarez
+URL: http://alvarez.is
 
-	Project Name: SOLID - Bootstrap 3 Theme
-	Version: 1.0
-	URL: http://alvarez.is
-	
+Project Name: SOLID - Bootstrap 3 Theme
+Version: 1.0
+URL: http://alvarez.is
+
 ################################################################# */ 
 
 $color_thu_purple: #82318E;
@@ -22,233 +22,229 @@ $color_footer_heading: #ffffff;
 $color_footer_content: #bfc9d3;
 $color_navbar_bg: #d3d3d3;
 
-
-@import url("prettyPhoto.css") screen;
-@import url("hoverex-all.css") screen;
-
 /*	################################################################
-	1. GENERAL STRUCTURES
+1. GENERAL STRUCTURES
 ################################################################# */
 * { 
-	margin: 0;
-	// padding: 0px;
+    margin: 0;
+    // padding: 0px;
 } 
 
 body { 
-	background: #ffffff; 
-	margin: 0; 
-	height: 100%; 
-	color: $color_secondary;
-	font-family: 'Lato', sans-serif;
-	font-weight: 400;
-	}
+    background: #ffffff; 
+    margin: 0; 
+    height: 100%; 
+    color: $color_secondary;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Lato', sans-serif;
-	font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
 }
 
 ul {
-  padding-left: 1em;
+    padding-left: 1em;
 }
 
 p { 
-	padding: 0; 
-	margin-bottom: 12px; 
-	font-family: 'Lato', sans-serif;
-	font-weight: 400;
-	font-size: 14px; 
-	line-height: 24px;
-	color: $color_secondary ; 
-	margin-top: 10px; 
+    padding: 0; 
+    margin-bottom: 12px; 
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 14px; 
+    line-height: 24px;
+    color: $color_secondary ; 
+    margin-top: 10px; 
 }
 
 img {
-	height: auto;
-	max-width: 100%;
+    height: auto;
+    max-width: 100%;
 }
 
 a { 
-  color:$color_link;
-  padding: 0;
-	margin: 0;
-	text-decoration: none; 
-	-webkit-transition: background-color .4s linear, color .4s linear;
-	-moz-transition: background-color .4s linear, color .4s linear;
-	-o-transition: background-color .4s linear, color .4s linear;
-	-ms-transition: background-color .4s linear, color .4s linear;
-	transition: background-color .4s linear, color .4s linear;
+    color:$color_link;
+    padding: 0;
+    margin: 0;
+    text-decoration: none; 
+    -webkit-transition: background-color .4s linear, color .4s linear;
+    -moz-transition: background-color .4s linear, color .4s linear;
+    -o-transition: background-color .4s linear, color .4s linear;
+    -ms-transition: background-color .4s linear, color .4s linear;
+    transition: background-color .4s linear, color .4s linear;
 }
 
 a:hover,
 a:focus {
-  text-decoration: none;
-  color:$color_link_hover;
+    text-decoration: none;
+    color:$color_link_hover;
 }
 
 ::-moz-selection  {
-	color: #fff;
-	text-shadow:none;
-	background:$color_secondary;
+    color: #fff;
+    text-shadow:none;
+    background:$color_secondary;
 }
 ::selection {
-	color: #fff;
-	text-shadow:none;
-	background:$color_secondary;
+    color: #fff;
+    text-shadow:none;
+    background:$color_secondary;
 }
 
 .centered {
-	text-align: center
+    text-align: center
 }
 
 /*	################################################################
-	BOOTSTRAP MODIFICATIONS & TWEAKS
+BOOTSTRAP MODIFICATIONS & TWEAKS
 ################################################################# */
 .navbar {
-  padding-top: 15px;
-	margin-bottom: 0px;
+    padding-top: 15px;
+    margin-bottom: 0px;
 }
 
 .navbar-default {
-	background-color: white;
-	border-color: transparent;
-  
-  .navbar-nav > li.active > a {
-    color: $color_thu_purple; 
-    border-bottom: 2px solid $color_thu_purple;
-  }
-  .navbar-nav > li > a {
-    color: $color_secondary;
-    background: transparent !important;
-    font-weight: 700;
-    font-size: 12px;
+    background-color: white;
+    border-color: transparent;
 
-    &:hover, &:focus {
-      color: $color_primary !important;
-      background: transparent !important;
+    .navbar-nav > li.active > a {
+        color: $color_thu_purple; 
+        border-bottom: 2px solid $color_thu_purple;
+    }
+    .navbar-nav > li > a {
+        color: $color_secondary;
+        background: transparent !important;
+        font-weight: 700;
+        font-size: 12px;
+
+        &:hover, &:focus {
+            color: $color_primary !important;
+            background: transparent !important;
+        } 
     } 
-  } 
 }
 
 .navbar-brand {
-	font-family: 'Raleway', sans-serif;
-	font-weight: 900;
-  padding-top: 0px;
-  img {
-    margin-right: 5px; 
-  }
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    padding-top: 0px;
+    img {
+        margin-right: 5px; 
+    }
 }
 
 .navbar-header .navbar-brand {
-	color: $color_secondary;
+    color: $color_secondary;
 }
 
 .dropdown-menu {
-	background: $color_secondary ;
+    background: $color_secondary ;
 }
 
 .dropdown-menu > li > a {
-	color: white;
-	font-weight: 700;
-	font-size: 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
 }
 
 .btn-theme {
-  color: #fff;
-  background-color: $color_secondary ;
-  border-color: $color_secondary ;
-  margin: 4px;
+    color: #fff;
+    background-color: $color_secondary ;
+    border-color: $color_secondary ;
+    margin: 4px;
 }
 .btn-theme:hover,
 .btn-theme:focus,
 .btn-theme:active,
 .btn-theme.active,
 .open .dropdown-toggle.btn-theme {
-  color: #fff;
-  background-color: $color_primary ;
-  border-color: $color_primary ;
+    color: #fff;
+    background-color: $color_primary ;
+    border-color: $color_primary ;
 }
 
 .dmbutton:hover,
 .dmbutton:active,
 .dmbutton:focus{
-	color: #ffffff;
-	background-color: #222222;
-	border-color: #ffffff;
+    color: #ffffff;
+    background-color: #222222;
+    border-color: #ffffff;
 }
 .dmbutton {
-	background:rgba(0, 0, 0, 0);
-	border: 1px solid #ffffff;
-	color: #ffffff;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	padding-top: 1.025rem;
-	padding-right: 2.25rem;
-	letter-spacing:0.85px;
-	padding-bottom: 1.0875rem;
-	padding-left: 2.25rem;
-	font-size: 1.55rem;
-	cursor: pointer;
-	font-weight: normal;
-	line-height: normal;
-	margin: 0 0 1.25rem;
-	text-decoration: none;
-	text-align: center;
-	display: inline-block;
-	-webkit-transition: background-color 300ms ease-out;
-	-moz-transition: background-color 300ms ease-out;
-	transition: background-color 300ms ease-out;
-	-webkit-appearance: none;
-	font-weight: normal !important;
+    background:rgba(0, 0, 0, 0);
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-top: 1.025rem;
+    padding-right: 2.25rem;
+    letter-spacing:0.85px;
+    padding-bottom: 1.0875rem;
+    padding-left: 2.25rem;
+    font-size: 1.55rem;
+    cursor: pointer;
+    font-weight: normal;
+    line-height: normal;
+    margin: 0 0 1.25rem;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    -webkit-transition: background-color 300ms ease-out;
+    -moz-transition: background-color 300ms ease-out;
+    transition: background-color 300ms ease-out;
+    -webkit-appearance: none;
+    font-weight: normal !important;
 }
 
 .mtb {
-	margin-top: 40px;
-	margin-bottom: 80px;
+    margin-top: 40px;
+    margin-bottom: 80px;
 }
 
 .mb {
-	margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .mt {
-	margin-top: 60px;
+    margin-top: 60px;
 }
 
 .hline {
-	border-bottom: 1px solid $color_secondary ;
+    border-bottom: 1px solid $color_secondary ;
 }
 
 .hline-w {
-	border-bottom: 1px solid #ffffff;
-	margin-bottom: 25px;
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: 25px;
 }
 /*	################################################################
-	SITE WRAPS
+SITE WRAPS
 ################################################################# */
 
 #headerwrap {
-	padding-top: 40px;
-	padding-bottom: 0px;
-  
-  h1 {
-    color: $color_primary ;
-    margin-bottom: 15px;
-  }
-  h3, h5 {
-    color: $color_primary ;
-    font-weight: 400;
-    margin-top: 10px;
-  }
-  .img-responsive {
-	  margin: 0 auto;
-  }
+    padding-top: 40px;
+    padding-bottom: 0px;
+
+    h1 {
+        color: $color_primary ;
+        margin-bottom: 15px;
+    }
+    h3, h5 {
+        color: $color_primary ;
+        font-weight: 400;
+        margin-top: 10px;
+    }
+    .img-responsive {
+        margin: 0 auto;
+    }
 }
 
 /* Services Wrap */
 #mirrors {
-	margin-top: 40px;
-	margin-bottom: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     tbody {
         td {
             border-top: none; 
@@ -277,106 +273,9 @@ a:focus {
     i, i:hover, a, a:hover {
         color: $color_footer_content;
     }
-    
-}
-
-// #footerwrap i {
-// 	font-size: 30px;
-// 	color: $color_footer_content;
-// 	padding-right: 25px;
-// }
-// 
-// #footerwrap i:hover {
-// 	color: $color_primary 
-// }
-
-/*	################################################################
-	PAGE CONFIGURATIONS
-################################################################# */
-/* General Tweaks */
-
-#blue {
-	background: $color_primary ;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-
-#blue h3 {
-	color: white;
-	margin-left: 15px;
-}
-
-.ctitle {
-	color: $color_secondary ;
-	font-weight: 700;
-	margin-bottom: 15px;
-}
-
-csmall {
-	font-size: 12px;
-	color: #b3b3b3;
 }
 
 .spacing {
-	margin-top: 40px;
-	margin-bottom: 40px;
-}
-
-.badge-theme {
-	background: $color_primary ;
-}
-
-
-/* Blog Page */
-.popular-posts { 
-	margin: 0px;
-	padding-left: 0px;
-	}
-	
-.popular-posts li {
-	list-style: none; 
-	margin-bottom: 20px; 
-	min-height: 70px;
-}
-.popular-posts li a, 
-.popular-posts li a:hover {
-	color:#2f2f2f; 
-	text-decoration: none;
-	}
-	
-.popular-posts li img {
-	float: left; 
-	margin-right: 20px;
-	}
-	
-.popular-posts li em {
-	font-family: 'Lato', sans-serif;
-	font-size: 12px;
-	color: #b3b3b3
-	}
-
-.popular-posts p {
-	line-height: normal;
-	margin-bottom: auto;
-}	
-
-.share i {
-	padding-right: 15px;
-	font-size: 18px;
-}
-
-/* Event Page */
-#events-list {
-  .row {
-    margin-bottom: 1em; 
-  }
-  .event-title h3 {
-    margin-top: 0;
-  }
-  .event-meta {
-    font-size: 1.1em;
-    margin-bottom: 2em; 
-  }
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
