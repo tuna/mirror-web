@@ -128,23 +128,28 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  var mir_tmpl = $("#template").text(),
-      label_map = {
+  window.mir_tmpl = $("#template").text();
+  window.label_map = {
         'unknown': 'label-default',
         'syncing': 'label-info',
         'success': 'label-success',
         'fail': 'label-warning'
       };
-  $.getJSON("/static/tunasync.json", function(data) {
-    var mirrors = [];
-    for(var k in data) {
-        var d = data[k];
-        d['label'] = label_map[d['status']];
-        mirrors.push(d);
-    }
-    var result = Mark.up(mir_tmpl, {mirrors: mirrors});
-    $('#mirror-list').html(result);
-  });
+
+  window.refreshMirrorList = function() {
+    $.getJSON("/static/tunasync.json", function(data) {
+      var mirrors = [];
+      for(var k in data) {
+          var d = data[k];
+          d['label'] = label_map[d['status']];
+          mirrors.push(d);
+      }
+      var result = Mark.up(mir_tmpl, {mirrors: mirrors});
+      $('#mirror-list').html(result);
+    });
+  }
+  refreshMirrorList()
+  setInterval(window.refreshMirrorList, 10000);
 });
 </script>
 
