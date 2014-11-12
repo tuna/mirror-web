@@ -1,17 +1,15 @@
 /*	################################################################
 
-	Author: Carlos Alvarez
-	URL: http://alvarez.is
+Author: Carlos Alvarez
+URL: http://alvarez.is
 
-	Project Name: SOLID - Bootstrap 3 Theme
-	Version: 1.0
-	URL: http://alvarez.is
-	
+Project Name: SOLID - Bootstrap 3 Theme
+Version: 1.0
+URL: http://alvarez.is
+
 ################################################################# */
-@import url("prettyPhoto.css") screen;
-@import url("hoverex-all.css") screen;
 /*	################################################################
-	1. GENERAL STRUCTURES
+1. GENERAL STRUCTURES
 ################################################################# */
 * {
   margin: 0; }
@@ -75,7 +73,7 @@ a:focus {
   text-align: center; }
 
 /*	################################################################
-	BOOTSTRAP MODIFICATIONS & TWEAKS
+BOOTSTRAP MODIFICATIONS & TWEAKS
 ################################################################# */
 .navbar {
   padding-top: 15px;
@@ -97,7 +95,7 @@ a:focus {
       background: transparent !important; }
 
 .navbar-brand {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 900;
   padding-top: 0px; }
   .navbar-brand img {
@@ -179,7 +177,7 @@ a:focus {
   margin-bottom: 25px; }
 
 /*	################################################################
-	SITE WRAPS
+SITE WRAPS
 ################################################################# */
 #headerwrap {
   padding-top: 40px;
@@ -219,74 +217,6 @@ a:focus {
   #footerwrap i, #footerwrap i:hover, #footerwrap a, #footerwrap a:hover {
     color: #bfc9d3; }
 
-/*	################################################################
-	PAGE CONFIGURATIONS
-################################################################# */
-/* General Tweaks */
-#blue {
-  background: #82318e;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-top: 15px;
-  padding-bottom: 15px; }
-
-#blue h3 {
-  color: white;
-  margin-left: 15px; }
-
-.ctitle {
-  color: #384452;
-  font-weight: 700;
-  margin-bottom: 15px; }
-
-csmall {
-  font-size: 12px;
-  color: #b3b3b3; }
-
 .spacing {
   margin-top: 40px;
   margin-bottom: 40px; }
-
-.badge-theme {
-  background: #82318e; }
-
-/* Blog Page */
-.popular-posts {
-  margin: 0px;
-  padding-left: 0px; }
-
-.popular-posts li {
-  list-style: none;
-  margin-bottom: 20px;
-  min-height: 70px; }
-
-.popular-posts li a,
-.popular-posts li a:hover {
-  color: #2f2f2f;
-  text-decoration: none; }
-
-.popular-posts li img {
-  float: left;
-  margin-right: 20px; }
-
-.popular-posts li em {
-  font-family: 'Lato', sans-serif;
-  font-size: 12px;
-  color: #b3b3b3; }
-
-.popular-posts p {
-  line-height: normal;
-  margin-bottom: auto; }
-
-.share i {
-  padding-right: 15px;
-  font-size: 18px; }
-
-/* Event Page */
-#events-list .row {
-  margin-bottom: 1em; }
-#events-list .event-title h3 {
-  margin-top: 0; }
-#events-list .event-meta {
-  font-size: 1.1em;
-  margin-bottom: 2em; }
