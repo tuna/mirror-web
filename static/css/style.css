@@ -112,53 +112,6 @@ BOOTSTRAP MODIFICATIONS & TWEAKS
   font-weight: 700;
   font-size: 12px; }
 
-.btn-theme {
-  color: #fff;
-  background-color: #384452;
-  border-color: #384452;
-  margin: 4px; }
-
-.btn-theme:hover,
-.btn-theme:focus,
-.btn-theme:active,
-.btn-theme.active,
-.open .dropdown-toggle.btn-theme {
-  color: #fff;
-  background-color: #82318e;
-  border-color: #82318e; }
-
-.dmbutton:hover,
-.dmbutton:active,
-.dmbutton:focus {
-  color: #ffffff;
-  background-color: #222222;
-  border-color: #ffffff; }
-
-.dmbutton {
-  background: transparent;
-  border: 1px solid #ffffff;
-  color: #ffffff;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  padding-top: 1.025rem;
-  padding-right: 2.25rem;
-  letter-spacing: 0.85px;
-  padding-bottom: 1.0875rem;
-  padding-left: 2.25rem;
-  font-size: 1.55rem;
-  cursor: pointer;
-  font-weight: normal;
-  line-height: normal;
-  margin: 0 0 1.25rem;
-  text-decoration: none;
-  text-align: center;
-  display: inline-block;
-  -webkit-transition: background-color 300ms ease-out;
-  -moz-transition: background-color 300ms ease-out;
-  transition: background-color 300ms ease-out;
-  -webkit-appearance: none;
-  font-weight: normal !important; }
-
 .mtb {
   margin-top: 40px;
   margin-bottom: 80px; }
@@ -202,6 +155,8 @@ SITE WRAPS
       border-top: none; }
     #mirrors tbody .label {
       font-size: 10pt; }
+    #mirrors tbody .fa-question-circle {
+      color: #234961; }
 
 /* Footer */
 #footerwrap {

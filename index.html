@@ -48,9 +48,9 @@
     <div class="row">
       <div class="col-md-12">
         <div>
-          <p> 欢迎来到清华大学开源镜像网站，它由清华大学开源镜像站管理团队维护管理。</p>
-          <p>本站可以在校内外通过 IPv4/IPv6 使用。
-          <br />本站域名有：</p>
+          <p>欢迎来到清华大学开源镜像网站，它由清华大学开源镜像站管理团队维护管理。</p>
+          <p>本站可以在校内外通过 IPv4/IPv6 使用。 <br />
+             本站域名有：</p>
           <ul>
             <li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
             <li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
@@ -101,7 +101,13 @@
             IRC: <a href="https://webchat.freenode.net/?channels=%23tuna">#tuna at freenode</a>
             </li>
             <li>
+            <a href="https://github.com/tuna/"><i class="fa fa-github"></i> GitHub </a>
+            </li>
+            <li>
             <a href="https://secure.flickr.com/groups/tuna/"><i class="fa fa-flickr"></i> Flickr</a>
+            </li>
+            <li>
+            <a href="http://page.renren.com/601908241"><i class="fa fa-renren"></i> 人人公共主页</a>
             </li>
           </ul>
         </div>
@@ -120,7 +126,10 @@
 <script id="template" type="x-tmpl-markup">
 {{mirrors}}
 <tr>
-  <td><a href="/{{name}}">{{name}}</a></td>
+  <td>
+    <a href="/{{name}}">{{name}}</a> 
+    {{if help}} <a href="{{help}}"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Help"></i></a> {{/if}}
+  </td>
   <td>{{last_update}}</td>
   <td><span class="label {{label}}">{{status}}<span></td>
 </tr>
@@ -129,13 +138,17 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  window.mir_tmpl = $("#template").text();
-  window.label_map = {
+  var mir_tmpl = $("#template").text(),
+      label_map = {
         'unknown': 'label-default',
         'syncing': 'label-info',
         'success': 'label-success',
         'fail': 'label-warning'
       };
+  var help_page = {
+      'android': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/android',
+      'ubunut': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/ubuntu' 
+  }
 
   window.refreshMirrorList = function() {
     $.getJSON("/static/tunasync.json", function(data) {
@@ -143,14 +156,18 @@ $(document).ready(function(){
       for(var k in data) {
           var d = data[k];
           d['label'] = label_map[d['status']];
+          d['help'] = help_page[d['name']];
           mirrors.push(d);
       }
       var result = Mark.up(mir_tmpl, {mirrors: mirrors});
       $('#mirror-list').html(result);
+      $('#mirror-list i[data-toggle="tooltip"]').tooltip()
     });
+    setTimeout(refreshMirrorList, 10000);
   }
-  refreshMirrorList()
-  setInterval(window.refreshMirrorList, 10000);
+  refreshMirrorList();
+
+
 });
 </script>
 
