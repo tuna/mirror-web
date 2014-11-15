@@ -21,6 +21,7 @@ $color_link_hover: #62bbe7;
 $color_footer_heading: #ffffff;
 $color_footer_content: #bfc9d3;
 $color_navbar_bg: #d3d3d3;
+$font_default: 'Lato', 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'WenQuanYi Micro Hei' ,'Source Han Sans CN', '微软雅黑', sans-serif ;
 
 @import "Lato";
 
@@ -37,12 +38,11 @@ body {
     margin: 0; 
     height: 100%; 
     color: $color_secondary;
-    font-family: 'Lato', sans-serif;
+    font-family: $font_default;
     font-weight: 400;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lato', sans-serif;
     font-weight: 700;
 }
 
@@ -53,7 +53,6 @@ ul {
 p { 
     padding: 0; 
     margin-bottom: 12px; 
-    font-family: 'Lato', sans-serif;
     font-weight: 400;
     font-size: 14px; 
     line-height: 24px;
@@ -129,7 +128,6 @@ BOOTSTRAP MODIFICATIONS & TWEAKS
 }
 
 .navbar-brand {
-    font-family: 'Lato', sans-serif;
     font-weight: 900;
     padding-top: 0px;
     img {
