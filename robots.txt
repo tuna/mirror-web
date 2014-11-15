@@ -3,8 +3,10 @@
 User-agent: *
 
 Disallow: /apache
+Disallow: /android
 Disallow: /archlinux
 Disallow: /archlinuxarm
+Disallow: /archlinuxcn
 Disallow: /centos
 Disallow: /chakra
 Disallow: /CPAN
@@ -19,6 +21,7 @@ Disallow: /debian-security
 Disallow: /debian-weekly-builds
 Disallow: /deepin
 Disallow: /deepin-releases
+Disallow: /docker
 Disallow: /epel
 Disallow: /fedora
 Disallow: /freebsd
@@ -40,6 +43,7 @@ Disallow: /slackware
 Disallow: /tex-archive
 Disallow: /ubuntu
 Disallow: /ubuntu-releases
+Disallow: /videolan-ftp
 
 Disallow: /stg
 
