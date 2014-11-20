@@ -55,20 +55,19 @@
             <li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
             <li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
             <li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
+            <li><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 只解析清华 IP</li>
           </ul>
         </div>
         <div class="alert alert-info">
+          <strong>本站带宽资源有限，为了您和他人可以长久使用本站服务，请勿使用迅雷下载本站内容。</strong> <br />
           清华大学TUNA开源镜像源正在重建，如有任何问题，请发送邮件到 thu-opensource-mirror-admin<span style="hidden"></span>&#64;googlegroups<span style="hide"></span>&#46;com 反馈。<br />
           Tsinghua TUNA OpenSouce Mirror is being reconstructed，if you have any issues, please email thu-opensource-mirror-admin<span style="hide"></span>&#64;googlegroups<span style="hide"></span>&#46;com.
         </div>
-        <div class="alert alert-warning">
-          本站带宽资源有限，为了您和他人可以长久使用本站服务，请勿使用迅雷下载本站内容。
-        </div>
-        <h3># 镜像源列表 </h3>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12 table-responsive">
+        <h3># 镜像源列表 </h3>
         <table class="table">
           <thead>
             <tr>
@@ -82,8 +81,10 @@
         </table>
       </div>
     </div>
+
   </div><!--/container -->
 </div><!--/service -->
+  
 
 
 <div id="footerwrap">
@@ -91,6 +92,7 @@
     <div class="row">
       <div class="col-lg-4">
         <p>清华大学 TUNA 协会最初叫清华大学学生网管会，其前身为清华大学电脑协会，是由清华大学网络技术和开源软件爱好者、技术宅组成的团体。</p>
+        <p>本站相关源码可在 <a href="https://github.com/tuna/tunasync"><em>这里(镜像管理器)</em></a> 和 <a href="https://github.com/tuna/mirror-web"><em>这里(镜像站网页)</em></a> 获取。</p>
       </div>
 
       <div class="col-lg-4">
@@ -153,7 +155,8 @@ $(document).ready(function(){
       'ubuntu': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/ubuntu',
       'pypi': "https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/pypi",
       'archlinuxcn': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/archlinuxcn',
-      'linux.git': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/linux.git'
+      'linux.git': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/linux.git',
+      'homebrew.git': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/homebrew'
   }
 
   window.refreshMirrorList = function() {
