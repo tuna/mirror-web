@@ -175,7 +175,16 @@ BOOTSTRAP MODIFICATIONS & TWEAKS
 /*	################################################################
 SITE WRAPS
 ################################################################# */
-
+#thu-alert {
+    padding-left: 50px;
+    position: relative;
+    .glyphicon {
+        font-size: 30px;
+        left: 10px;
+        top: 20px;
+        position: absolute;
+    }
+}
 #headerwrap {
     padding-top: 40px;
     padding-bottom: 0px;

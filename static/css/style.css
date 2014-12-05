@@ -109,15 +109,15 @@ BOOTSTRAP MODIFICATIONS & TWEAKS
   background-color: white;
   border-color: transparent; }
   .navbar-default .navbar-nav > li.active > a {
-    color: #82318E;
-    border-bottom: 2px solid #82318E; }
+    color: #82318e;
+    border-bottom: 2px solid #82318e; }
   .navbar-default .navbar-nav > li > a {
     color: #384452;
     background: transparent !important;
     font-weight: 700;
     font-size: 12px; }
     .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-      color: #82318E !important;
+      color: #82318e !important;
       background: transparent !important; }
 
 .navbar-brand {
@@ -159,14 +159,23 @@ BOOTSTRAP MODIFICATIONS & TWEAKS
 /*	################################################################
 SITE WRAPS
 ################################################################# */
+#thu-alert {
+  padding-left: 50px;
+  position: relative; }
+  #thu-alert .glyphicon {
+    font-size: 30px;
+    left: 10px;
+    top: 20px;
+    position: absolute; }
+
 #headerwrap {
   padding-top: 40px;
   padding-bottom: 0px; }
   #headerwrap h1 {
-    color: #82318E;
+    color: #82318e;
     margin-bottom: 15px; }
   #headerwrap h3, #headerwrap h5 {
-    color: #82318E;
+    color: #82318e;
     font-weight: 400;
     margin-top: 10px; }
   #headerwrap .img-responsive {
@@ -195,12 +204,10 @@ SITE WRAPS
   #footerwrap p {
     color: #bfc9d3; }
   #footerwrap h4 {
-    color: #ffffff; }
+    color: white; }
   #footerwrap i, #footerwrap i:hover, #footerwrap a, #footerwrap a:hover {
     color: #bfc9d3; }
 
 .spacing {
   margin-top: 40px;
   margin-bottom: 40px; }
-
-/*# sourceMappingURL=style.css.map */
