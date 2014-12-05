@@ -58,13 +58,19 @@
             <li><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 只解析清华 IP</li>
           </ul>
         </div>
+        <div id="thu-alert" class="alert alert-danger hidden">
+          <strong>清华用户您好，我们发现您正在通过校外线路访问 mirrors，为避免产生不必要的校外流量，
+            建议您通过 <a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 
+            访问和使用 TUNA mirrors 资源。 
+          </strong>
+        </div>
         <div class="alert alert-info">
           <strong>本站带宽资源有限，为了您和他人可以长久使用本站服务，请勿使用迅雷下载本站内容。</strong> <br />
-          <strong>若您需要通过本站建立镜像，请提前联系管理员。</strong> <br />
+          <strong>若您需要通过本站建立镜像，请提前联系管理员。</strong> <br /><br />
           如果您有任何问题或建议，请发送邮件到 issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn，
           或前往 <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a> 反馈。<br />
           If you have any issues, please email issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn, 
-          or submit a ticket via <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a> .<br />
+          or submit a ticket via <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a>.<br />
           
         </div>
       </div>
@@ -180,6 +186,12 @@ $(document).ready(function(){
     setTimeout(refreshMirrorList, 10000);
   }
   refreshMirrorList();
+
+  $.getJSON("/static/tunet.json", function(alert) {
+    if (alert) {
+      $('#thu-alert').removeClass('hidden'); 
+    };
+  });
 
 
 });

@@ -1,3 +1,4 @@
 *.swp
 *~
 /static/tunasync.json
+/static/tunet.json
