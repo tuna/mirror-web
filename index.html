@@ -13,6 +13,7 @@
   <link href="/static/css/bootstrap.css" rel="stylesheet">
   <link href="/static/css/style.css" rel="stylesheet">
   <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/css/spinkit.css" rel="stylesheet">
   <script src="/static/js/jquery-2.1.1.min.js"></script>
   <script src="/static/js/bootstrap.min.js"></script>
   <script src="/static/js/markup.min.js"></script>
@@ -154,7 +155,6 @@
         <h4 class="modal-title" id="exampleModalLabel">Help Message</h4>
       </div><!--modal-header-->
       <div class="modal-body">
-        <p>One fine body&hellip;</p>
       </div>
     </div><!--modal-content-->
   </div><!--modal-dialog-->
@@ -162,6 +162,15 @@
 
 </body>
 
+<template id="spinner">
+  <div class="sk-spinner sk-spinner-wave">
+    <div class="sk-rect1"></div>
+    <div class="sk-rect2"></div>
+    <div class="sk-rect3"></div>
+    <div class="sk-rect4"></div>
+    <div class="sk-rect5"></div>
+  </div>
+</template>
 
 <script id="template" type="x-tmpl-markup">
 {{mirrors}}
@@ -201,12 +210,15 @@ $(document).ready(function(){
     var button = $(event.relatedTarget) // Button that triggered the modal
     var help_url = button.data('help')
     var modal = $(this)
+    var modal_body = modal.find('.modal-body')
+    var spinner = $('template#spinner')
+    modal_body.html(spinner.html())
     $.get(help_url, function(data) {
       if (help_url.match(/\.md$/)) {
         data = marked(data)
       }
 
-      modal.find('.modal-body').html(data)
+      modal_body.html(data)
     })
   })
 
