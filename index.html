@@ -8,7 +8,7 @@
   <meta name="author" content="">
   <link rel="shortcut icon" href="/static/img/favicon.png">
   <title>清华大学 TUNA 镜像源</title>
-  
+
 
   <link href="/static/css/bootstrap.css" rel="stylesheet">
   <link href="/static/css/style.css" rel="stylesheet">
@@ -16,6 +16,7 @@
   <script src="/static/js/jquery-2.1.1.min.js"></script>
   <script src="/static/js/bootstrap.min.js"></script>
   <script src="/static/js/markup.min.js"></script>
+  <script src="/static/js/marked.min.js"></script>
 </head>
 <body>
 
@@ -62,8 +63,8 @@
           <i class="glyphicon glyphicon-exclamation-sign"></i>
           <strong>清华用户您好，我们发现您正在通过校外线路访问 mirrors（可能是因为您设置了校外的DNS服务器），
             为避免产生不必要的校外流量，
-            建议您通过 <a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 
-            访问和使用 TUNA mirrors 资源。 
+            建议您通过 <a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a>
+            访问和使用 TUNA mirrors 资源。
           </strong>
         </div>
         <div class="alert alert-info">
@@ -72,13 +73,13 @@
             <li><strong>若您需要通过本站建立镜像，请提前联系管理员。</strong> </li>
             <li><strong>AOSP 镜像服务单 IP 并发数限制为 4, 因版权原因，我们无法提供 Android SDK 镜像，有任何疑问, 请联系管理员。</strong> </li>
           </ul>
-		  <br />
+          <br />
 
           如果您有任何问题或建议，请发送邮件到 issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn，
           或前往 <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a> 反馈。<br />
           If you have any issues, please email issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn, 
           or submit a ticket via <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a>.<br />
-          
+
         </div>
       </div>
     </div>
@@ -101,7 +102,7 @@
 
   </div><!--/container -->
 </div><!--/service -->
-  
+ 
 
 
 <div id="footerwrap">
@@ -145,6 +146,20 @@
   </div><!--/container -->
 </div><!--/footerwrap -->
 
+<div id="HelpModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Help Message</h4>
+      </div><!--modal-header-->
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+    </div><!--modal-content-->
+  </div><!--modal-dialog-->
+</div><!--/HelpModal-->
+
 </body>
 
 
@@ -152,8 +167,8 @@
 {{mirrors}}
 <tr>
   <td>
-    <a href="/{{name}}">{{name}}</a> 
-    {{if help}} <a href="{{help}}"><i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Help"></i></a> {{/if}}
+    <a href="/{{name}}">{{name}}</a>
+    {{if help}} <a href="#"><i class="fa fa-question-circle" data-toggle2="tooltip" data-toggle="modal" data-target="#HelpModal" data-help="{{help}}" data-placement="right" title="Help"></i></a> {{/if}}
   </td>
   <td>{{last_update}}</td>
   <td><span class="label {{label}}">{{status}}<span></td>
@@ -171,16 +186,29 @@ $(document).ready(function(){
         'fail': 'label-warning'
       };
   var help_page = {
-      'AOSP': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/android',
-      'ubuntu': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/ubuntu',
-      'raspbian': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/raspbian',
-      'nodesource': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/nodesource',
-      'pypi': "https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/pypi",
-      'archlinuxcn': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/archlinuxcn',
-      'linux.git': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/linux.git',
-      'homebrew': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/homebrew',
-      'repo-ck': 'https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/repo-ck'
+      'AOSP': '/wiki/aosp.md',
+      'archlinuxcn': '/wiki/archlinuxcn.md',
+      'homebrew': '/wiki/homebrew.md',
+      'linux.git': '/wiki/linux.md',
+      'nodesource': '/wiki/nodesource.md',
+      'pypi': "wiki/pypi.md",
+      'raspbian': 'wiki/raspbian.md',
+      'repo-ck': 'wiki/repo-ck.md',
+      'ubuntu': 'wiki/ubuntu.md'
   }
+
+  $('#HelpModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var help_url = button.data('help')
+    var modal = $(this)
+    $.get(help_url, function(data) {
+      if (help_url.match(/\.md$/)) {
+        data = marked(data)
+      }
+
+      modal.find('.modal-body').html(data)
+    })
+  })
 
   window.refreshMirrorList = function() {
     $.getJSON("/static/tunasync.json", function(data) {
@@ -193,7 +221,7 @@ $(document).ready(function(){
       }
       var result = Mark.up(mir_tmpl, {mirrors: mirrors});
       $('#mirror-list').html(result);
-      $('#mirror-list i[data-toggle="tooltip"]').tooltip()
+      $('#mirror-list i[data-toggle2="tooltip"]').tooltip()
     });
     setTimeout(refreshMirrorList, 10000);
   }
@@ -201,7 +229,7 @@ $(document).ready(function(){
 
   $.getJSON("/static/tunet.json", function(alert) {
     if (alert) {
-      $('#thu-alert').removeClass('hidden'); 
+      $('#thu-alert').removeClass('hidden');
     };
   });
 
