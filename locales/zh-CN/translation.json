@@ -1,0 +1,53 @@
+{
+  "about": {
+    "source": {
+      "and": "和",
+      "mirror-web": "这里(镜像站网页)",
+      "post": "获取。",
+      "pre": "本站相关源码可在",
+      "tuna-syncd": "这里(镜像管理器)"
+    },
+    "tuna": "清华大学 TUNA 协会最初叫清华大学学生网管会，其前身为清华大学电脑协会，是由清华大学网络技术和开源软件爱好者、技术宅组成的团体。"
+  },
+  "access": "本站可以在校内外通过 IPv4/IPv6 使用。<br />本站域名有：",
+  "alert": {
+    "1": "本站带宽资源有限，为了您和他人可以长久使用本站服务，请勿使用迅雷下载本站内容。",
+    "2": "若您需要通过本站建立镜像，请提前联系管理员。",
+    "3": "AOSP 镜像服务单 IP 并发数限制为 4，因版权原因，我们无法提供 Android SDK 镜像，有任何疑问，请联系管理员。"
+  },
+  "alert_thu": {
+    "post": "访问和使用 TUNA mirrors 资源。",
+    "pre": "清华用户您好，我们发现您正在通过校外线路访问 mirrors（可能是因为您设置了校外的DNS服务器），为避免产生不必要的校外流量，建议您通过"
+  },
+  "brand": "清华大学 TUNA 镜像源",
+  "contact": {
+    "mailing_list": "邮件列表",
+    "renren": " 人人公共主页",
+    "title": "Contact Us",
+    "weibo": " 新浪微博"
+  },
+  "issue": "如果您有任何问题或建议，请发送邮件到 issues+mirrors<span style='hidden'></span>&#64;tuna<span style='hide'></span>&#46;tsinghua<span style='hide'></span>&#46;edu<span style='hide'></span>&#46;cn，或前往 <a href='https://issues.tuna.tsinghua.edu.cn/?queue=mirrors'>https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a> 反馈。<br />",
+  "list": {
+    "header": {
+      "last_update": "上次更新",
+      "name": "名称",
+      "status": "状态"
+    },
+    "title": "# 镜像源列表 "
+  },
+  "nav": {
+    "blog": "BLOG",
+    "events": "EVENTS",
+    "home": "HOME",
+    "mirrors": "MIRRORS",
+    "rss": "RSS"
+  },
+  "title": "清华大学 TUNA 镜像源",
+  "url": {
+    "both4and6": "支持 IPv4/IPv6",
+    "only4": "只解析 IPv4",
+    "only6": "只解析 IPv6",
+    "only_thu": "只解析清华 IP"
+  },
+  "welcome": "欢迎来到清华大学开源镜像网站，它由清华大学开源镜像站管理团队维护管理。"
+}

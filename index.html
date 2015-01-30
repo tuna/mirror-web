@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="shortcut icon" href="/static/img/favicon.png">
-  <title>清华大学 TUNA 镜像源</title>
+  <title data-i18n="title">清华大学 TUNA 镜像源</title>
 
 
   <link href="/static/css/bootstrap.css" rel="stylesheet">
@@ -26,15 +26,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/"><img src="/static/img/logo-small.png" /> 清华大学 TUNA 镜像源</a>
+      <a class="navbar-brand" href="/"><img src="/static/img/logo-small.png" /><span data-i18n="brand">清华大学 TUNA 镜像源</span></a>
     </div>
     <div class="navbar-collapse collapse navbar-right">
       <ul class="nav navbar-nav">
-        <li><a href="http://www.tuna.tsinghua.edu.cn/">HOME</a></li>
-        <li><a href="http://www.tuna.tsinghua.edu.cn/events/">EVENTS</a></li>
-        <li><a href="http://www.tuna.tsinghua.edu.cn/blog/">BLOG</a></li>
-        <li><a href="http://www.tuna.tsinghua.edu.cn/feed.xml">RSS</a></li>
-        <li class="active"><a href="http://mirrors.tuna.tsinghua.edu.cn/">MIRRORS</a></li>
+        <li><a href="http://www.tuna.tsinghua.edu.cn/" data-i18n="nav.home">HOME</a></li>
+        <li><a href="http://www.tuna.tsinghua.edu.cn/events/" data-i18n="nav.events">EVENTS</a></li>
+        <li><a href="http://www.tuna.tsinghua.edu.cn/blog/" data-i18n="nav.blog">BLOG</a></li>
+        <li><a href="http://www.tuna.tsinghua.edu.cn/feed.xml" data-i18n="nav.rss">RSS</a></li>
+        <li class="active"><a href="http://mirrors.tuna.tsinghua.edu.cn/" data-i18n="nav.mirrors">MIRRORS</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -46,49 +46,47 @@
     <div class="row">
       <div class="col-md-12">
         <div>
-          <p>欢迎来到清华大学开源镜像网站，它由清华大学开源镜像站管理团队维护管理。</p>
-          <p>本站可以在校内外通过 IPv4/IPv6 使用。 <br />
+          <p data-i18n="welcome">欢迎来到清华大学开源镜像网站，它由清华大学开源镜像站管理团队维护管理。</p>
+          <p data-i18n="[html]access">本站可以在校内外通过 IPv4/IPv6 使用。 <br />
              本站域名有：</p>
           <ul>
-            <li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
-            <li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
-            <li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
-            <li><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 只解析清华 IP</li>
+            <li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> <span data-i18n="url.both4and6">支持 IPv4/IPv6</span></li>
+            <li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> <span data-i18n="url.only6">只解析 IPv6</span></li>
+            <li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> <span data-i18n="url.only4">只解析 IPv4</span></li>
+            <li><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> <span data-i18n="url.only_thu">只解析清华 IP</span></li>
           </ul>
         </div>
         <div id="thu-alert" class="alert alert-danger hidden">
           <i class="glyphicon glyphicon-exclamation-sign"></i>
-          <strong>清华用户您好，我们发现您正在通过校外线路访问 mirrors（可能是因为您设置了校外的DNS服务器），
+          <strong><span data-i18n="alert_thu.pre">清华用户您好，我们发现您正在通过校外线路访问 mirrors（可能是因为您设置了校外的DNS服务器），
             为避免产生不必要的校外流量，
-            建议您通过 <a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a>
-            访问和使用 TUNA mirrors 资源。
+            建议您通过 </span><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a>
+            <span data-i18n="alert_thu.post">访问和使用 TUNA mirrors 资源。</span>
           </strong>
         </div>
         <div class="alert alert-info">
           <ul>
-            <li><strong>本站带宽资源有限，为了您和他人可以长久使用本站服务，请勿使用迅雷下载本站内容。</strong></li>
-            <li><strong>若您需要通过本站建立镜像，请提前联系管理员。</strong> </li>
-            <li><strong>AOSP 镜像服务单 IP 并发数限制为 4, 因版权原因，我们无法提供 Android SDK 镜像，有任何疑问, 请联系管理员。</strong> </li>
+            <li><strong data-i18n="alert.1">本站带宽资源有限，为了您和他人可以长久使用本站服务，请勿使用迅雷下载本站内容。</strong></li>
+            <li><strong data-i18n="alert.2">若您需要通过本站建立镜像，请提前联系管理员。</strong> </li>
+            <li><strong data-i18n="alert.3">AOSP 镜像服务单 IP 并发数限制为 4, 因版权原因，我们无法提供 Android SDK 镜像，有任何疑问, 请联系管理员。</strong> </li>
           </ul>
           <br />
 
-          如果您有任何问题或建议，请发送邮件到 issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn，
-          或前往 <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a> 反馈。<br />
-          If you have any issues, please email issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn, 
-          or submit a ticket via <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a>.<br />
+          <span data-i18n="[html]issue">如果您有任何问题或建议，请发送邮件到 issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn，
+          或前往 <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a> 反馈。<br /></span>
 
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12 table-responsive">
-        <h3># 镜像源列表 </h3>
+        <h3 data-i18n="list.title"># 镜像源列表 </h3>
         <table class="table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Last Update</th>
-              <th>Status</th>
+              <th data-i18n="list.header.name">Name</th>
+              <th data-i18n="list.header.last_update">Last Update</th>
+              <th data-i18n="list.header.status">Status</th>
             </tr>
           </thead>
           <tbody id="mirror-list">
@@ -106,16 +104,16 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-4">
-        <p>清华大学 TUNA 协会最初叫清华大学学生网管会，其前身为清华大学电脑协会，是由清华大学网络技术和开源软件爱好者、技术宅组成的团体。</p>
-        <p>本站相关源码可在 <a href="https://github.com/tuna/tunasync"><em>这里(镜像管理器)</em></a> 和 <a href="https://github.com/tuna/mirror-web"><em>这里(镜像站网页)</em></a> 获取。</p>
+        <p data-i18n="about.tuna">清华大学 TUNA 协会最初叫清华大学学生网管会，其前身为清华大学电脑协会，是由清华大学网络技术和开源软件爱好者、技术宅组成的团体。</p>
+        <p><span data-i18n="about.source.pre">本站相关源码可在 <a href="https://github.com/tuna/tunasync"><em data-i18n="about.source.tuna-syncd">这里(镜像管理器)</em></a><span data-i18n="about.source.and"> 和 </span><a href="https://github.com/tuna/mirror-web"><em data-i18n="about.source.mirror-web">这里(镜像站网页)</em></a><span data-i18n="about.source.post"> 获取。</span></p>
       </div>
 
       <div class="col-lg-4">
-        <h4>Contact Us</h4>
+        <h4 data-i18n="contact.title">Contact Us</h4>
         <div>
           <ul class="social">
             <li>
-            <a href="https://groups.google.com/forum/#!forum/tuna-general"><i class="fa fa-envelope"></i> Mailing List</a>
+            <a href="https://groups.google.com/forum/#!forum/tuna-general"><i class="fa fa-envelope"></i><span data-i18n="contact.mailing_list"> Mailing List</span></a>
             </li>
             <li>
             IRC: <a href="https://webchat.freenode.net/?channels=%23tuna">#tuna at freenode</a>
@@ -127,10 +125,10 @@
             <a href="https://secure.flickr.com/groups/tuna/"><i class="fa fa-flickr"></i> Flickr</a>
             </li>
             <li>
-            <a href="http://weibo.com/u/5402274706"><i class="fa fa-weibo"></i> 新浪微博</a>
+            <a href="http://weibo.com/u/5402274706"><i class="fa fa-weibo"></i><span data-i18n="contact.weibo"> 新浪微博</span></a>
             </li>
             <li>
-            <a href="http://page.renren.com/601908241"><i class="fa fa-renren"></i> 人人公共主页</a>
+            <a href="http://page.renren.com/601908241"><i class="fa fa-renren"></i><span data-i18n="contact.renren"> 人人公共主页</span></a>
             </li>
           </ul>
         </div>
@@ -172,6 +170,7 @@
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/markup.min.js"></script>
 <script src="/static/js/marked.min.js"></script>
+<script src="/static/js/i18next-1.7.7.min.js"></script>
 
 <script id="template" type="x-tmpl-markup">
 {{mirrors}}
@@ -186,8 +185,18 @@
 {{/mirrors}}
 </script>
 
+<script type="text/javscript">
+</script>
+
+
 <script type="text/javascript">
 $(document).ready(function(){
+  $.i18n.init({
+    lng: 'zh-CN'
+  }, function() {
+    $("html").i18n();
+  });
+
   var mir_tmpl = $("#template").text(),
       label_map = {
         'unknown': 'label-default',
