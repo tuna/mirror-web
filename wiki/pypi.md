@@ -1,0 +1,23 @@
+pypi 镜像使用帮助
+=================
+
+pypi 镜像每 5 分钟同步一次。
+
+临时使用
+--------
+```
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
+```
+
+注意，`simple` 不能少, 是 `https` 而不是 `http`
+
+设为默认
+--------
+
+修改 `~/.pip/pip.conf` (没有就创建一个)， 修改
+`index-url`至tuna，例如
+
+```
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+```
