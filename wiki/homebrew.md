@@ -1,0 +1,35 @@
+Homebrew 镜像使用帮助
+=====================
+
+替换现有上游
+------------
+
+```
+cd /usr/local
+git remote set-url origin git://mirrors.tuna.tsinghua.edu.cn/homebrew.git
+brew update
+```
+
+ 如果速度还是很慢，可以尝试以下操作： 然后重试update。
+
+```
+cd ~/tmp
+git clone git://mirrors.tuna.tsinghua.edu.cn/homebrew.git
+rm -rf /usr/local/.git
+rm -rf /usr/local/Library
+cp -R homebrew/.git /usr/local/
+cp -R homebrew/Library /usr/local/
+```
+
+使用homebrew-science或者homebrew-python
+---------------------------------------
+
+```
+cd /usr/local/Library/Taps/homebrew/homebrew-science
+git remote set-url origin git://mirrors.tuna.tsinghua.edu.cn/homebrew-science.git
+
+cd /usr/local/Library/Taps/homebrew/homebrew-python
+git remote set-url origin git://mirrors.tuna.tsinghua.edu.cn/homebrew-python.git
+
+brew update
+```
