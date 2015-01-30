@@ -30,17 +30,17 @@ Android 镜像使用帮助
 FAQ
 ---
 
-1\. 镜像的是什么?
+1. 镜像的是什么?
 
-`. - 是按照 google 指南建立的镜像 git 仓库`
+   - 是按照 google 指南建立的镜像 git 仓库`
 
-2\. 为何不能通过浏览器访问?
+2. 为何不能通过浏览器访问?
 
-`. - 暂时没有 gitweb, 而且反正是 git bare 仓库，没有可以直接看到的内容`
+   - 暂时没有 gitweb, 而且反正是 git bare 仓库，没有可以直接看到的内容`
 
-3\. 出现\`curl: (22) The requested URL returned error: 404 Not Found
+3. 出现\`curl: (22) The requested URL returned error: 404 Not Found
 Server does not provide clone.bundle; ignoring.\`怎么办?
 
-`. - 无视即可`
+   - 无视即可`
 
 ------------------------------------------------------------------------
