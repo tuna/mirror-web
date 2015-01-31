@@ -1,0 +1,53 @@
+{
+  "about": {
+    "source": {
+      "and": "and",
+      "mirror-web": "here(website)",
+      "post": "",
+      "pre": "The source code of our site is available",
+      "tuna-syncd": "here(manager)"
+    },
+    "tuna": "Tsinghua University TUNA Association, originally Tsinghua Universty Network Association, formerly known as Tsinghua University Computer Association, is a team composed of hackers, OpenSource lovers and nerds from Tsinghua University."
+  },
+  "access": "We are accessible inside and outside school through IPv4/IPv6. <br />Our domain names are",
+  "alert": {
+    "1": "",
+    "2": "",
+    "3": ""
+  },
+  "alert_thu": {
+    "post": "",
+    "pre": ""
+  },
+  "brand": "",
+  "contact": {
+    "mailing_list": "",
+    "renren": "",
+    "title": "",
+    "weibo": ""
+  },
+  "issue": "",
+  "list": {
+    "header": {
+      "last_update": "",
+      "name": "",
+      "status": ""
+    },
+    "title": ""
+  },
+  "nav": {
+    "blog": "",
+    "events": "",
+    "home": "",
+    "mirrors": "",
+    "rss": ""
+  },
+  "title": "",
+  "url": {
+    "both4and6": "",
+    "only4": "",
+    "only6": "",
+    "only_thu": ""
+  },
+  "welcome": ""
+}
