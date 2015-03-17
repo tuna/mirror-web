@@ -18,6 +18,11 @@
   <script src="/static/js/bootstrap.min.js"></script>
   <script src="/static/js/markup.min.js"></script>
   <script src="/static/js/marked.min.js"></script>
+  <style>
+    .clickable {
+      cursor: pointer
+    }
+  </style>
 </head>
 <body>
 
@@ -177,7 +182,7 @@
 <tr>
   <td>
     <a href="/{{name}}">{{name}}</a>
-    {{if help}} <a href="#"><i class="fa fa-question-circle" data-toggle2="tooltip" data-toggle="modal" data-target="#HelpModal" data-help="{{help}}" data-placement="right" title="Help"></i></a> {{/if}}
+    {{if help}}<i class="fa fa-question-circle clickable" data-toggle2="tooltip" data-toggle="modal" data-target="#HelpModal" data-help="{{help}}" data-placement="right" title="Help"></i>{{/if}}
   </td>
   <td>{{last_update}}</td>
   <td><span class="label {{label}}">{{status}}<span></td>
