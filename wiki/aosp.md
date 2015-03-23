@@ -10,18 +10,20 @@ Android 镜像使用帮助
 替换已有的 AOSP 源代码的 remote
 ----------------------------
 
-如果你之前已经通过某种途径获得了 AOSP 的源码，但是你希望以后通过 TUNA 同步，只需要将
-`.repo/manifests.git/config` 中的
+如果你之前已经通过某种途径获得了 AOSP 的源码(或者你只是 init 这一步完成后)，
+你希望以后通过 TUNA 同步 AOSP 部分的代码，只需要将
+`.repo/manifest.xml` 把其中的 aosp 这个 remote 的 fetch 从
+https://android.googlesource.com 改为 git://aosp.tuna.tsinghua.edu.cn/android/
+```diff
+<manifest>
 
+   <remote  name="aosp"
+-           fetch="https://android.googlesource.com"
++           fetch="git://aosp.tuna.tsinghua.edu.cn/android/"
+            review="android-review.googlesource.com" />
 
-       url = https://android.googlesource.com/platform/manifest
-
-
-改为下面的 code 即可：
-
-
-       url = git://aosp.tuna.tsinghua.edu.cn/android/platform/manifest
-
+   <remote  name="github"
+```
 
 **这个方法也可以用来在同步 Cyanogenmod 代码的时候从 TUNA 同步部分代码**
 
