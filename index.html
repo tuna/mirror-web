@@ -235,6 +235,8 @@ $(document).ready(function(){
           var d = data[k];
           d['label'] = label_map[d['status']];
           d['help'] = help_page[d['name']];
+          // Strip the second component of last_update
+          d['last_update'] = d['last_update'].replace(/(\d\d:\d\d):\d\d/, '$1');
           mirrors.push(d);
       }
       var result = Mark.up(mir_tmpl, {mirrors: mirrors});
