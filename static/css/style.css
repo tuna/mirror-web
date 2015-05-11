@@ -189,7 +189,12 @@ SITE WRAPS
     font-size: 12pt; }
     #mirrors tbody td {
       border-top: none; }
-    #mirrors tbody .label {
+    #mirrors tbody .label.label-new {
+      padding: .1em .2em;
+      vertical-align: 40%;
+      text-shadow: 1px 1px #888;
+      background-color: #3aa0e6; }
+    #mirrors tbody .label.label-status {
       font-size: 10pt; }
     #mirrors tbody .fa-question-circle {
       color: #234961; }

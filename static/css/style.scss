@@ -212,7 +212,13 @@ SITE WRAPS
             border-top: none; 
         }
         font-size: 12pt; 
-        .label {
+		.label.label-new {
+			padding: .1em .2em;
+			vertical-align: 40%;
+			text-shadow: 1px 1px #888;
+			background-color: #3aa0e6;
+		}
+        .label.label-status {
             font-size: 10pt; 
         }
         .fa-question-circle {
