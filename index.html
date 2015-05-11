@@ -182,8 +182,8 @@
 <tr>
   <td>
     <a href="/{{name}}">{{name}}</a>
-    {{if help}}<i class="fa fa-question-circle clickable" data-toggle2="tooltip" data-toggle="modal" data-target="#HelpModal" data-help="{{help}}" data-placement="right" title="Help"></i>{{/if}}
 	{{ if is_new }}<span class="label label-new">new</span>{{/if}}
+    {{if help}}<i class="fa fa-question-circle clickable" data-toggle2="tooltip" data-toggle="modal" data-target="#HelpModal" data-help="{{help}}" data-placement="right" title="Help"></i>{{/if}}
   </td>
   <td>{{last_update}}</td>
   <td><span class="label label-status {{label}}">{{status}}<span></td>
@@ -210,7 +210,8 @@ $(document).ready(function(){
       'raspbian': 'wiki/raspbian.md',
       'repo-ck': 'wiki/repo-ck.md',
       'rpmfusion': 'wiki/rpmfusion.md',
-      'ubuntu': 'wiki/ubuntu.md'
+      'ubuntu': 'wiki/ubuntu.md',
+      'lxc-images': 'wiki/lxc-images.md'
   }
   var new_mirrors = {
 		'ius': true,
