@@ -187,7 +187,10 @@ SITE WRAPS
   margin-bottom: 40px; }
   #mirrors tbody {
     font-size: 12pt; }
+    #mirrors tbody tr:hover {
+      background-color: #e0f3fc; }
     #mirrors tbody td {
+      padding: 4px 8px;
       border-top: none; }
     #mirrors tbody .label.label-new {
       padding: .1em .2em;

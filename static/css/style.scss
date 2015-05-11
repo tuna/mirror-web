@@ -208,7 +208,11 @@ SITE WRAPS
     margin-top: 40px;
     margin-bottom: 40px;
     tbody {
+		tr:hover {
+			background-color: #e0f3fc;	
+		}
         td {
+			padding: 4px 8px;
             border-top: none; 
         }
         font-size: 12pt; 
