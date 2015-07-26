@@ -1,269 +1,281 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="shortcut icon" href="/static/img/favicon.png">
-  <title>清华大学 TUNA 镜像源</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="/static/img/favicon.png">
+	<title>清华大学 TUNA 镜像源</title>
 
-
-  <link href="/static/css/bootstrap.css" rel="stylesheet">
-  <link href="/static/css/style.css" rel="stylesheet">
-  <link href="/static/css/font-awesome.min.css" rel="stylesheet">
-  <link href="/static/css/spinkit.css" rel="stylesheet">
-  <script src="/static/js/jquery-2.1.1.min.js"></script>
-  <script src="/static/js/bootstrap.min.js"></script>
-  <script src="/static/js/markup.min.js"></script>
-  <script src="/static/js/marked.min.js"></script>
-  <style>
-    .clickable {
-      cursor: pointer
-    }
-  </style>
+	<link href="/static/css/bootstrap.css" rel="stylesheet">
+	<link href="/static/css/style.css" rel="stylesheet">
+	<link href="/static/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/static/css/spinkit.css" rel="stylesheet">
+	<script src="/static/js/jquery-2.1.1.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/markup.min.js"></script>
+	<script src="/static/js/marked.min.js"></script>
+	<style>
+	.clickable {
+		cursor: pointer
+	}
+	</style>
 </head>
 <body>
 
-<div class="navbar navbar-default" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/"><img src="/static/img/logo-small.png" /> 清华大学 TUNA 镜像源</a>
-    </div>
-    <div class="navbar-collapse collapse navbar-right">
-      <ul class="nav navbar-nav">
-        <li><a href="http://www.tuna.tsinghua.edu.cn/">HOME</a></li>
-        <li><a href="http://www.tuna.tsinghua.edu.cn/events/">EVENTS</a></li>
-        <li><a href="http://www.tuna.tsinghua.edu.cn/blog/">BLOG</a></li>
-        <li><a href="http://www.tuna.tsinghua.edu.cn/feed.xml">RSS</a></li>
-        <li class="active"><a href="http://mirrors.tuna.tsinghua.edu.cn/">MIRRORS</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</div>
+	<div class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"><img src="/static/img/logo-small.png" /> 清华大学 TUNA 镜像源</a>
+			</div>
+			<div class="navbar-collapse collapse navbar-right">
+				<ul class="nav navbar-nav">
+					<li><a href="http://www.tuna.tsinghua.edu.cn/">HOME</a></li>
+					<li><a href="http://www.tuna.tsinghua.edu.cn/events/">EVENTS</a></li>
+					<li><a href="http://www.tuna.tsinghua.edu.cn/blog/">BLOG</a></li>
+					<li><a href="http://www.tuna.tsinghua.edu.cn/feed.xml">RSS</a></li>
+					<li class="active"><a href="http://mirrors.tuna.tsinghua.edu.cn/">MIRRORS</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
 
 
-<div id="mirrors">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div>
-          <p>欢迎来到清华大学开源镜像网站，它由清华大学开源镜像站管理团队维护管理。</p>
-          <p>本站可以在校内外通过 IPv4/IPv6 使用。 <br />
-             本站域名有：</p>
-          <ul>
-            <li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
-            <li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
-            <li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
-            <li><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 只解析清华 IP</li>
-          </ul>
-        </div>
-        <div id="thu-alert" class="alert alert-danger hidden">
-          <i class="glyphicon glyphicon-exclamation-sign"></i>
-          <strong>清华用户您好，我们发现您正在通过校外线路访问 mirrors（可能是因为您设置了校外的DNS服务器），
-            为避免产生不必要的校外流量，
-            建议您通过 <a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a>
-            访问和使用 TUNA mirrors 资源。
-          </strong>
-        </div>
-        <div class="alert alert-info">
-          <ul>
-            <li><strong>本站带宽资源有限，为了您和他人可以长久使用本站服务，请勿使用迅雷下载本站内容。</strong></li>
-            <li><strong>若您需要通过本站建立镜像，请提前联系管理员。</strong> </li>
-            <li><strong>AOSP 镜像服务单 IP 并发数限制为 4。因版权原因，我们无法提供 Android SDK 镜像。</strong> </li>
-          </ul>
-          <br />
+	<div id="mirrors">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div>
+						<p>欢迎来到清华大学开源镜像网站，它由清华大学开源镜像站管理团队维护管理。</p>
+						<p>本站可以在校内外通过 IPv4/IPv6 使用。 <br />
+						本站域名有：</p>
+						<ul>
+							<li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
+							<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
+							<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
+							<li><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 只解析清华 IP</li>
+						</ul>
+					</div>
+					<div id="thu-alert" class="alert alert-danger hidden">
+						<i class="glyphicon glyphicon-exclamation-sign"></i>
+						<strong>清华用户您好，我们发现您正在通过校外线路访问 mirrors（可能是因为您设置了校外的DNS服务器），
+							为避免产生不必要的校外流量，
+							建议您通过 <a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a>
+							访问和使用 TUNA mirrors 资源。
+						</strong>
+					</div>
+					<div class="alert alert-info">
+						<ul>
+							<li><strong>本站带宽资源有限，为了您和他人可以长久使用本站服务，请勿使用迅雷下载本站内容。</strong></li>
+							<li><strong>若您需要通过本站建立镜像，请提前联系管理员。</strong> </li>
+							<li><strong>AOSP 镜像服务单 IP 并发数限制为 4。因版权原因，我们无法提供 Android SDK 镜像。</strong> </li>
+						</ul>
+						<br />
 
-          如果您有任何问题或建议，请发送邮件到 issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn，
-          或前往 <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a> 反馈。<br />
-          If you have any issues, please email issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn, 
-          or submit a ticket via <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a>.<br />
+						如果您有任何问题或建议，请发送邮件到 issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn，
+						或前往 <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a> 反馈。<br />
+						If you have any issues, please email issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn, 
+						or submit a ticket via <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a>.<br />
 
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 table-responsive">
-        <h3># 镜像源列表 </h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Last Update</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="mirror-list">
-          </tbody>
-        </table>
-      </div>
-    </div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 table-responsive">
+					<h3># 镜像源列表 </h3>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Last Update</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody id="mirror-list">
+						</tbody>
+					</table>
+				</div>
+			</div>
 
-  </div><!--/container -->
-</div><!--/service -->
- 
+		</div><!--/container -->
+	</div><!--/service -->
 
 
-<div id="footerwrap">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4">
-        <p>清华大学 TUNA 协会最初叫清华大学学生网管会，其前身为清华大学电脑协会，是由清华大学网络技术和开源软件爱好者、技术宅组成的团体。</p>
-        <p>本站相关源码可在 <a href="https://github.com/tuna/tunasync"><em>这里(镜像管理器)</em></a> 和 <a href="https://github.com/tuna/mirror-web"><em>这里(镜像站网页)</em></a> 获取。</p>
-      </div>
 
-      <div class="col-lg-4">
-        <h4>Contact Us</h4>
-        <div>
-          <ul class="social">
-            <li>
-            <a href="https://groups.google.com/forum/#!forum/tuna-general"><i class="fa fa-envelope"></i> Mailing List</a>
-            </li>
-            <li>
-            IRC: <a href="https://webchat.freenode.net/?channels=%23tuna">#tuna at freenode</a>
-            </li>
-            <li>
-            <a href="https://github.com/tuna/"><i class="fa fa-github"></i> GitHub </a>
-            </li>
-            <li>
-            <a href="https://secure.flickr.com/groups/tuna/"><i class="fa fa-flickr"></i> Flickr</a>
-            </li>
-            <li>
-            <a href="http://weibo.com/u/5402274706"><i class="fa fa-weibo"></i> 新浪微博</a>
-            </li>
-            <li>
-            <a href="http://page.renren.com/601908241"><i class="fa fa-renren"></i> 人人公共主页</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+	<div id="footerwrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<p>清华大学 TUNA 协会最初叫清华大学学生网管会，其前身为清华大学电脑协会，是由清华大学网络技术和开源软件爱好者、技术宅组成的团体。</p>
+					<p>本站相关源码可在 <a href="https://github.com/tuna/tunasync"><em>这里(镜像管理器)</em></a> 和 <a href="https://github.com/tuna/mirror-web"><em>这里(镜像站网页)</em></a> 获取。</p>
+				</div>
 
-      <div class="col-lg-4">
-        <img class="img-responsive" src="/static/img/logo-white.png" />
-      </div>
-    </div><!--/row -->
-  </div><!--/container -->
-</div><!--/footerwrap -->
+				<div class="col-lg-4">
+					<h4>Contact Us</h4>
+					<div>
+						<ul class="social">
+							<li>
+								<a href="https://groups.google.com/forum/#!forum/tuna-general"><i class="fa fa-envelope"></i> Mailing List</a>
+							</li>
+							<li>
+								IRC: <a href="https://webchat.freenode.net/?channels=%23tuna">#tuna at freenode</a>
+							</li>
+							<li>
+								<a href="https://github.com/tuna/"><i class="fa fa-github"></i> GitHub </a>
+							</li>
+							<li>
+								<a href="https://secure.flickr.com/groups/tuna/"><i class="fa fa-flickr"></i> Flickr</a>
+							</li>
+							<li>
+								<a href="http://weibo.com/u/5402274706"><i class="fa fa-weibo"></i> 新浪微博</a>
+							</li>
+							<li>
+								<a href="http://page.renren.com/601908241"><i class="fa fa-renren"></i> 人人公共主页</a>
+							</li>
+						</ul>
+					</div>
+				</div>
 
-<div id="HelpModal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">Help Message</h4>
-      </div><!--modal-header-->
-      <div class="modal-body">
-      </div>
-    </div><!--modal-content-->
-  </div><!--modal-dialog-->
-</div><!--/HelpModal-->
+				<div class="col-lg-4">
+					<img class="img-responsive" src="/static/img/logo-white.png" />
+				</div>
+			</div><!--/row -->
+		</div><!--/container -->
+	</div><!--/footerwrap -->
+
+	<div id="HelpModal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="exampleModalLabel">Help Message</h4>
+				</div><!--modal-header-->
+				<div class="modal-body">
+				</div>
+			</div><!--modal-content-->
+		</div><!--modal-dialog-->
+	</div><!--/HelpModal-->
 
 </body>
 
 <template id="spinner">
-  <div class="sk-spinner sk-spinner-wave">
-    <div class="sk-rect1"></div>
-    <div class="sk-rect2"></div>
-    <div class="sk-rect3"></div>
-    <div class="sk-rect4"></div>
-    <div class="sk-rect5"></div>
-  </div>
+<div class="sk-spinner sk-spinner-wave">
+	<div class="sk-rect1"></div>
+	<div class="sk-rect2"></div>
+	<div class="sk-rect3"></div>
+	<div class="sk-rect4"></div>
+	<div class="sk-rect5"></div>
+</div>
 </template>
 
 <script id="template" type="x-tmpl-markup">
 {{mirrors}}
 <tr>
-  <td>
-    <a href="/{{name}}">{{name}}</a>
-	{{ if is_new }}<span class="label label-new">new</span>{{/if}}
-    {{if help}}<i class="fa fa-question-circle clickable" data-toggle2="tooltip" data-toggle="modal" data-target="#HelpModal" data-help="{{help}}" data-placement="right" title="Help"></i>{{/if}}
-  </td>
-  <td>{{last_update}}</td>
-  <td><span class="label label-status {{label}}">{{status}}<span></td>
+<td>
+	<a href="/{{name}}">{{name}}</a>
+{{ if is_new }}<span class="label label-new">new</span>{{/if}}
+	{{if help}}<i class="fa fa-question-circle clickable" data-toggle2="tooltip" data-toggle="modal" data-target="#HelpModal" data-help="{{help}}" data-placement="right" title="Help"></i>{{/if}}
+</td>
+<td>{{last_update}}</td>
+<td><span class="label label-status {{label}}">{{status}}<span></td>
 </tr>
 {{/mirrors}}
 </script>
 
 <script type="text/javascript">
 $(document).ready(function(){
-  var mir_tmpl = $("#template").text(),
-      label_map = {
-        'unknown': 'label-default',
-        'syncing': 'label-info',
-        'success': 'label-success',
-        'fail': 'label-warning'
-      };
-  var help_page = {
-      'AOSP': '/wiki/aosp.md',
-      'archlinuxcn': '/wiki/archlinuxcn.md',
-      'homebrew': '/wiki/homebrew.md',
-      'linux.git': '/wiki/linux.md',
-      'nodesource': '/wiki/nodesource.md',
-      'pypi': "wiki/pypi.md",
-      'docker': "wiki/docker.md",
-      'raspbian': 'wiki/raspbian.md',
-      'repo-ck': 'wiki/repo-ck.md',
-      'rpmfusion': 'wiki/rpmfusion.md',
-      'ubuntu': 'wiki/ubuntu.md',
-      'lxc-images': 'wiki/lxc-images.md',
-      'hackage': 'wiki/hackage.md'
-  }
-  var new_mirrors = {
+	var mir_tmpl = $("#template").text(),
+	label_map = {
+		'unknown': 'label-default',
+		'syncing': 'label-info',
+		'success': 'label-success',
+		'fail': 'label-warning'
+	};
+	var help_page = {
+		'AOSP': '/wiki/aosp.md',
+		'archlinuxcn': '/wiki/archlinuxcn.md',
+		'homebrew': '/wiki/homebrew.md',
+			'linux.git': '/wiki/linux.md',
+		'nodesource': '/wiki/nodesource.md',
+		'pypi': "wiki/pypi.md",
+		'docker': "wiki/docker.md",
+		'raspbian': 'wiki/raspbian.md',
+			'repo-ck': 'wiki/repo-ck.md',
+		'rpmfusion': 'wiki/rpmfusion.md',
+		'ubuntu': 'wiki/ubuntu.md',
+			'lxc-images': 'wiki/lxc-images.md',
+		'hackage': 'wiki/hackage.md',
+		'npm': 'wiki/npm.md'
+	};
+	var new_mirrors = {
 		'OpenBSD': true,
-		'hackage': true
-  }
+		'hackage': true,
+		'voidlinux': true
+	};
+	var unlisted = [
+	{
+		'status': 'success',
+		'last_update': "-",
+		'name': 'npm',
+		'upstream': 'https://registry.npmjs.org/'
+	} 
+	];
 
-  $('#HelpModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var help_url = button.data('help')
-    var modal = $(this)
-    var modal_body = modal.find('.modal-body')
-    var spinner = $('template#spinner')
-    modal_body.html(spinner.html())
-    $.get(help_url, function(data) {
-      if (help_url.match(/\.md$/)) {
-        data = marked(data)
-      }
+	$('#HelpModal').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget), // Button that triggered the modal
+			help_url = button.data('help'),
+			modal = $(this),
+			modal_body = modal.find('.modal-body'),
+			spinner = $('template#spinner');
 
-      modal_body.html(data)
-    })
-  })
+		modal_body.html(spinner.html())
+		$.get(help_url, function(data) {
+			if (help_url.match(/\.md$/)) {
+				data = marked(data)
+			}
+			modal_body.html(data)
+		})
+	});
 
-  window.refreshMirrorList = function() {
-    $.getJSON("/static/tunasync.json", function(data) {
-      var mirrors = [];
-      for(var k in data) {
-          var d = data[k];
-          d['label'] = label_map[d['status']];
-          d['help'] = help_page[d['name']];
-          d['is_new'] = new_mirrors[d['name']];
-          // Strip the second component of last_update
-          d['last_update'] = d['last_update'].replace(/(\d\d:\d\d):\d\d/, '$1');
-          mirrors.push(d);
-      }
-      var result = Mark.up(mir_tmpl, {mirrors: mirrors});
-      $('#mirror-list').html(result);
-      $('#mirror-list i[data-toggle2="tooltip"]').tooltip()
-    });
-    setTimeout(refreshMirrorList, 10000);
-  }
-  refreshMirrorList();
+	window.refreshMirrorList = function() {
+		$.getJSON("/static/tunasync.json", function(status_data) {
+			var mirrors = [], mir_data = $.merge(status_data, unlisted);
+			mir_data.sort(function(a, b){return a.name < b.name ? -1: 1;});
 
-  $.getJSON("/static/tunet.json", function(alert) {
-    if (alert) {
-      $('#thu-alert').removeClass('hidden');
-    };
-  });
+			for(var k in mir_data) {
+				var d = mir_data[k];
+				d['label'] = label_map[d['status']];
+				d['help'] = help_page[d['name']];
+				d['is_new'] = new_mirrors[d['name']];
+				// Strip the second component of last_update
+				d['last_update'] = d['last_update'].replace(/(\d\d:\d\d):\d\d/, '$1');
+				mirrors.push(d);
+			}
+			var result = Mark.up(mir_tmpl, {mirrors: mirrors});
+			$('#mirror-list').html(result);
+			$('#mirror-list i[data-toggle2="tooltip"]').tooltip();
+		});
+		setTimeout(refreshMirrorList, 10000);
+	}
+	refreshMirrorList();
 
-
+	$.getJSON("/static/tunet.json", function(alert) {
+		if (alert) {
+			$('#thu-alert').removeClass('hidden');
+		};
+	});
 });
 </script>
 
 </html>
+<!--
+vim: ts=2 sts=2 sw=2 noexpandtab
+-->
