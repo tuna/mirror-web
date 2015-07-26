@@ -1,5 +1,4 @@
-Linux Kernel Git 镜像使用帮助
-=============================
+## Linux Kernel Git 镜像使用帮助
 
 如需克隆 linux 代码，使用
 ```

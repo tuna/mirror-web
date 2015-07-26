@@ -1,11 +1,9 @@
-Nodesource 镜像使用帮助
-=======================
+## Nodesource 镜像使用帮助
 
 Nodesource 为 debian, ubuntu, fedora, RHEL 等发行版提供预编译的 nodejs
 和 npm 等软件包。
 
-debian/ubuntu 使用方法
-----------------------
+### debian/ubuntu 使用方法
 
 运行
 ```

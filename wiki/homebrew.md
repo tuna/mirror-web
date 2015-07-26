@@ -1,8 +1,6 @@
-Homebrew 镜像使用帮助
-=====================
+## Homebrew 镜像使用帮助
 
-替换现有上游
-------------
+### 替换现有上游
 
 ```
 cd /usr/local
@@ -21,8 +19,7 @@ cp -R homebrew/.git /usr/local/
 cp -R homebrew/Library /usr/local/
 ```
 
-使用homebrew-science或者homebrew-python
----------------------------------------
+### 使用homebrew-science或者homebrew-python
 
 ```
 cd /usr/local/Library/Taps/homebrew/homebrew-science

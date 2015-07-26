@@ -1,8 +1,6 @@
-Raspbian 镜像使用帮助
-=====================
+## Raspbian 镜像使用帮助
 
-Raspbian 简介
--------------
+### Raspbian 简介
 
 Raspbian 是专门用于 ARM 卡片式计算机 Raspberry Pi® “树莓派”的操作系统。
 
@@ -25,8 +23,7 @@ Raspbian 是树莓派的开发与维护机构 The Raspbeery Pi Foundation
 *  树莓派有部分特有的软件包，例如 BCM2835 CPU 的 GPIO 底层操作库。
 *  树莓派用户倾向于探索、尝试最新的软件。这与 Debian 软件源的策略完全不同。
 
-系统架构与版本
---------------
+### 系统架构与版本
 
 架构：
 
@@ -41,8 +38,7 @@ Raspbian 是树莓派的开发与维护机构 The Raspbeery Pi Foundation
 testing 版本的 7.0/wheezy，所以 Raspbian 不倾向于使用 stable/testing
 表示版本。
 
-使用说明
---------
+### 使用说明
 
 基本与 Debian 一致。使用管理员权限（经由sudo），编辑
 `/etc/apt/sources.list` 文件。参考命令行为：
@@ -61,16 +57,14 @@ deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ wheezy main non-f
 
 编辑镜像站后，请使用`sudo apt-get update`命令，更新软件源列表，同时检查您的编辑是否正确。
 
-声明
-----
+### 声明
 
 Raspbian是由独立开发者维护的，与树莓派硬件的开发与维护者The Raspberry Pi
 Foundation“树莓派基金会”并无直接联系。
 
-相关链接
---------
+### 相关链接
 
-### Raspbian 链接
+#### Raspbian 链接
 
 *  Raspbian主页: [http://www.raspbian.org/](http://www.raspbian.org/)
 *  文档: [http://www.raspbian.org/RaspbianDocumentation](http://www.raspbian.org/RaspbianDocumentation)
@@ -78,13 +72,12 @@ Foundation“树莓派基金会”并无直接联系。
 *  镜像列表: [http://www.raspbian.org/RaspbianMirrors](http://www.raspbian.org/RaspbianMirrors)
 *  Debian首页: [http://www.debian.org/](http://www.debian.org/)
 
-### 树莓派链接
+#### 树莓派链接
 
 *  树莓派基金会主页: [http://www.raspberrypi.org/](http://www.raspberrypi.org/)
 *  树莓派基金会论坛Raspbian版块: [http://raspberrypi.org/phpBB3/viewforum.php?f=66](http://raspberrypi.org/phpBB3/viewforum.php?f=66)
 
-关于本文档
-----------
+### 关于本文档
 
 本文档内容由 Raspberry Pi
 中文社区“[树莓爱好者论坛](http://bbs.shumeipai.org)”提供。按照[知识共享署名-非商业性使用

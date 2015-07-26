@@ -1,5 +1,4 @@
-LXC Docker 镜像使用帮助
-=======================
+## LXC Docker 镜像使用帮助
 
 **注意: 本镜像只提供 Debian/Ubuntu 的 lxc-docker 软件包，非 dockerhub**
 

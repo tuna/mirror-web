@@ -1,5 +1,4 @@
-Android 镜像使用帮助
-====================
+## Android 镜像使用帮助
 
 参考 Google 教程 <https://source.android.com/source/downloading.html>，
 将 `https://android.googlesource.com/` 全部使用 `git://aosp.tuna.tsinghua.edu.cn/android/` 代替即可。
@@ -7,8 +6,7 @@ Android 镜像使用帮助
 **本站资源有限，每个 IP 限制并发数为 4，请勿使用 `repo sync -j8`
 这样的方式同步。**
 
-替换已有的 AOSP 源代码的 remote
-----------------------------
+### 替换已有的 AOSP 源代码的 remote
 
 如果你之前已经通过某种途径获得了 AOSP 的源码(或者你只是 init 这一步完成后)，
 你希望以后通过 TUNA 同步 AOSP 部分的代码，只需要将
@@ -27,8 +25,7 @@ https://android.googlesource.com 改为 git://aosp.tuna.tsinghua.edu.cn/android/
 
 **这个方法也可以用来在同步 Cyanogenmod 代码的时候从 TUNA 同步部分代码**
 
-FAQ
----
+### FAQ
 
 1. 镜像的是什么？
 
