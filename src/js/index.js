@@ -25,13 +25,24 @@ var mir_tmpl = $("#template").text(),
 	new_mirrors = {
 			'OpenBSD': true,
 			'hackage': true
-	}
+	},
+	unlisted = [
+	{
+		'status': 'success',
+		'last_update': "-",
+		'name': 'npm',
+		'upstream': 'https://registry.npmjs.org/'
+	} 
+	];
 
 window.refreshMirrorList = () => {
-	$.getJSON("/static/tunasync.json", (data) => {
-		var mirrors = [];
-		for(var k in data) {
-			var d = data[k];
+	$.getJSON("/static/tunasync.json", (status_data) => {
+		var mirrors = [], mir_data = $.merge(status_data, unlisted);
+		
+		mir_data.sort((a, b) => { return a.name < b.name ? -1: 1 });
+
+		for(var k in mir_data) {
+			var d = mir_data[k];
 			d['label'] = label_map[d['status']];
 			d['help'] = help_page[d['name']];
 			d['is_new'] = new_mirrors[d['name']];
