@@ -30,7 +30,9 @@ $(document).ready(() => {
 			'rpmfusion': M('/help/rpmfusion.md'),
 			'ubuntu': M('/help/ubuntu.md'),
 			'lxc-images': M('/help/lxc-images.md'),
-			'hackage': M('/help/hackage.md')
+			'hackage': M('/help/hackage.md'),
+			'npm': M('/help/npm.md'),
+			'AUR': M('/help/AUR.md')
 		},
 	  help_item = window.location.hash.replace('#', '');
 
@@ -39,6 +41,7 @@ $(document).ready(() => {
 		for (let k in help)	{
 			nav.push({name: k});
 		}
+		nav.sort((a, b) => { return a.name < b.name ? -1: 1 });
 		return {help_navs: nav};
 	}());
 
