@@ -41,9 +41,15 @@ var mir_tmpl = $("#template").text(),
 		'status': 'success',
 		'last_update': '-',
 		'name': "AUR",
+		'url': 'https://aur.tuna.tsinghua.edu.cn/',
 		'upstream': 'https://aur.archlinux.org/'
 	}
-	];
+	],
+	options = {
+		'AOSP': {
+			'url': "/help/#AOSP",
+		}
+	};
 
 window.refreshMirrorList = () => {
 	$.getJSON("/static/tunasync.json", (status_data) => {
@@ -53,6 +59,9 @@ window.refreshMirrorList = () => {
 
 		for(var k in mir_data) {
 			var d = mir_data[k];
+			if (options[d['name']] != undefined ) {
+				d = $.extend(d, options[d['name']]);
+			}
 			d['label'] = label_map[d['status']];
 			d['help'] = has_help[d['name']];
 			d['is_new'] = new_mirrors[d['name']];

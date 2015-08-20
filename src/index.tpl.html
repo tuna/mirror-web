@@ -69,7 +69,7 @@
 {{mirrors}}
 <tr>
 	<td>
-		<a href="/{{name}}">{{name}}</a> 
+		<a href="{{if url}}{{url}}{{else}}/{{name}}{{/if}}">{{name}}</a> 
 		{{if is_new}}<span class="label label-new">new</span>{{/if}}
 		{{if help}}<a href="/help/#{{name}}"><i class="fa fa-question-circle" title="Help"></i></a>{{/if}}
 	</td>
