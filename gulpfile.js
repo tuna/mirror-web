@@ -7,10 +7,12 @@ var gulp = require('gulp'),
 var path = {
   HTML_TPL: './src/**/*.tpl.html',
   HTML: './src/**/*.html',
+  HELP_MD: './src/help/*.md',
   JS_FILES: './src/js/*.js',
   SCSS_FILES: './src/scss/*.scss',
   IMG: './src/img/*',
   LIB: './lib/**/*',
+  ROBOTS: './src/robots.txt',
   DEST: 'dist',
   DEST_LIB: 'dist/static',
   DEST_JS: 'dist/static/js',
@@ -29,6 +31,11 @@ gulp.task('copy-img', function(){
 });
 
 gulp.task('copy-html', function(){
+  gulp.src(path.ROBOTS)
+    .pipe(gulp.dest(path.DEST));
+  gulp.src(path.HELP_MD)
+    .pipe(gulp.dest(path.DEST+"/help"));
+
   gulp.src(path.HTML_TPL)
     .pipe(fileinclude())
     .pipe(rename({
