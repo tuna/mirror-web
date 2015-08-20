@@ -1,6 +1,8 @@
 $(document).ready(() => {
 	var M = (url) => {
 		return () => {
+			$('#spinner').removeClass('hidden');
+			$('#help-content').text("");
 			$.get(url, function(data) {
 				var rendered = "";
 				if (url.match(/\.md$/)) {
@@ -8,6 +10,7 @@ $(document).ready(() => {
 					console.log(rendered);
 				}
 				$("#help-content").html(rendered);
+				$('#spinner').addClass('hidden');
 			});
 		};
 	};

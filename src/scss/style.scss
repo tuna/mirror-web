@@ -28,84 +28,95 @@ $font_default: 'Lato', 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sa
 @import "bootstrap-mod";
 
 #thu-alert {
-    padding-left: 50px;
-    position: relative;
-    .glyphicon {
-        font-size: 30px;
-        left: 10px;
-        top: 20px;
-        position: absolute;
-    }
+	padding-left: 50px;
+	position: relative;
+	.glyphicon {
+		font-size: 30px;
+		left: 10px;
+		top: 20px;
+		position: absolute;
+	}
 }
 
 #headerwrap {
-    padding-top: 40px;
-    padding-bottom: 0px;
+	padding-top: 40px;
+	padding-bottom: 0px;
 
-    h1 {
-        color: $color_primary ;
-        margin-bottom: 15px;
-    }
-    h3, h5 {
-        color: $color_primary ;
-        font-weight: 400;
-        margin-top: 10px;
-    }
-    .img-responsive {
-        margin: 0 auto;
-    }
+	h1 {
+		color: $color_primary ;
+		margin-bottom: 15px;
+	}
+	h3, h5 {
+		color: $color_primary ;
+		font-weight: 400;
+		margin-top: 10px;
+	}
+	.img-responsive {
+		margin: 0 auto;
+	}
 }
 
 /* Services Wrap */
 #mirrors {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    tbody {
+	tbody {
 		tr:hover {
 			background-color: #e0f3fc;	
 		}
-        td {
+		td {
 			padding: 4px 8px;
-            border-top: none; 
-        }
-        font-size: 12pt; 
+			border-top: none; 
+		}
+		font-size: 12pt; 
 		.label.label-new {
 			padding: .1em .2em;
 			vertical-align: 40%;
 			text-shadow: 1px 1px #888;
 			background-color: #3aa0e6;
 		}
-        .label.label-status {
-            font-size: 10pt; 
-        }
-        .fa-question-circle {
-            color: #234961;
-        }
-    }
+		.label.label-status {
+			font-size: 10pt; 
+		}
+		.fa-question-circle {
+			color: #234961;
+		}
+	}
+}
+
+#help-page {
+	margin-top: 40px;
+	margin-bottom: 40px;
+	#spinner {
+		padding-top: 60px;
+		text-align: center;
+		font-size: 36px;
+		i {
+			font-size: 72px;
+		}
+	}
 }
 
 
 /* Footer */
 #footerwrap {
-    color: $color_footer_content;
-    margin-top: 100px;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    background: $color_secondary;
-    p {
-        color: $color_footer_content;
-    }
-    h4 {
-        color: $color_footer_heading;
-    }
-    i, i:hover, a, a:hover {
-        color: $color_footer_content;
-    }
+	color: $color_footer_content;
+	margin-top: 100px;
+	padding-top: 60px;
+	padding-bottom: 60px;
+	background: $color_secondary;
+	p {
+		color: $color_footer_content;
+	}
+	h4 {
+		color: $color_footer_heading;
+	}
+	i, i:hover, a, a:hover {
+		color: $color_footer_content;
+	}
 }
 
 .spacing {
-    margin-top: 40px;
-    margin-bottom: 40px;
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 .clickable {
