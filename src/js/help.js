@@ -7,14 +7,12 @@ $(document).ready(() => {
 				var rendered = "";
 				if (url.match(/\.md$/)) {
 					rendered = marked(data);
-					console.log(rendered);
 				}
 				$("#help-content").html(rendered);
 				$('#spinner').addClass('hidden');
 			});
 		};
 	};
-
 
 	var nav_tmpl = $('#help-nav-template').text(), 
 		help = {
@@ -36,6 +34,12 @@ $(document).ready(() => {
 		},
 	  help_item = window.location.hash.replace('#', '');
 
+	var showHelp = (name) => {
+		var help_func = help[name];
+		if (help_func != undefined)
+			help_func();
+	};
+
 	var help_nav = Mark.up(nav_tmpl, () => {
 		let nav = [];
 		for (let k in help)	{
@@ -46,21 +50,19 @@ $(document).ready(() => {
 	}());
 
 	$('#help-nav').html(help_nav);
-	
-	var help_func = help[help_item];
-	help_func();
+	showHelp(help_item);
 	$(`#help-nav-item-${help_item}`).addClass('active');
 
 	$('#help-nav').on('click', 'li', function() {
-		// `this` cannot use with arrow function
+		// `this` cannot be used with arrow function
 		let help_item = $(this).attr('data-help-item');
-		var help_func = help[help_item];
-		help_func();
-		$(this).parent().children('li').removeClass('active');
+		showHelp(help_item);
+		$(this)
+			.parent().children('li')
+			.removeClass('active');
 		$(this).addClass('active');
 	});
 
-
-
 });
+
 // vim: ts=2 sts=2 sw=2 noexpandtab
