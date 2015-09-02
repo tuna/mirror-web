@@ -29,7 +29,8 @@ var mir_tmpl = $("#template").text(),
 			'hackage': true,
 			'kodi': true,
 			'qt': true,
-			'npm': true
+			'npm': true,
+			'sagemath': true
 	},
 	unlisted = [
 	{
