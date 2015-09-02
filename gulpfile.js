@@ -72,6 +72,6 @@ gulp.task('scss-build', function(){
 gulp.task('copy', ['copy-html', 'copy-lib', 'copy-img'])
 
 gulp.task('build', ['copy', 'js-build', 'scss-build']);
-gulp.task('default', ['copy', 'watch']);
+gulp.task('default', ['copy', 'js-build', 'scss-build', 'watch']);
 
 // vim: ts=2 sts=2 sw=2 expandtab

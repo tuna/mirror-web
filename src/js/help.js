@@ -8,7 +8,10 @@ $(document).ready(() => {
 				if (url.match(/\.md$/)) {
 					rendered = marked(data);
 				}
-				$("#help-content").html(rendered);
+				$("#help-content")
+					.html(rendered)
+					.find('table')
+					.addClass("table table-bordered table-striped");
 				$('#spinner').addClass('hidden');
 			});
 		};

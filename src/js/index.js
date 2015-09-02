@@ -27,6 +27,7 @@ var mir_tmpl = $("#template").text(),
 	new_mirrors = {
 			'OpenBSD': true,
 			'hackage': true,
+			'kodi': true,
 			'qt': true,
 			'npm': true
 	},

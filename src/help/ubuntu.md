@@ -30,17 +30,14 @@ deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-updates main multiver
 
 | 版本号 | 代号 | 完整代号 |
 | ------ | ---- | -------- |
-| 8.04 LTS | hardy | Hardy Heron |
 | 10.04 LTS |	lucid | Lucid Lynx |
-| 10.10 | maverick | Maverick Meerkat |
-| 11.04 | natty | Natty Narwhal    |
-| 11.10 | oneiric | Oneiric Ocelot   |
 | 12.04 LTS | precise | Precise Pangolin |
 | 12.10 | quantal | Quantal Quetzal |
 | 13.04 | raring |  Raring Ringtail  |
 | 13.10 | saucy |  Saucy Salamander  |
 | 14.04 LTS | trusty | Trusty Tahr  |
 | 14.10 | utopic | Utopic Unicorn   |
+| 15.04 | vivid |  Vivid Vervet  |
 
 ### 参考
 
