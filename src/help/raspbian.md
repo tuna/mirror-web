@@ -52,10 +52,28 @@ pi@raspberrypi ~ $ sudo nano /etc/apt/sources.list
 
 删除原文件所有内容，用以下内容取代：
 
-```
-deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ wheezy main non-free contrib
-deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ wheezy main non-free contrib
-```
+
+
+<form class="form-inline">
+<div class="form-group">
+	<label>选择你的Debian版本: </label>
+	<select class="form-control" id="release-select">
+	  <option data-release="wheezy">Debian 7 (wheezy)</option>
+	  <option data-release="jessie" selected>Debian 8 (jessie)</option>
+	</select>
+</div>
+</form>
+
+<script id="apt-template" type="x-tmpl-markup">
+deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ {{release_name}} main non-free contrib
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ {{release_name}} main non-free contrib
+</script>
+
+<p></p>
+<pre>
+<code id="apt-content">
+</code>
+</pre>
 
 注意：网址末尾的`raspbian`重复两次是必须的。因为Raspbian的仓库中除了APT软件源还包含其他代码。APT软件源不在仓库的根目录，而在`raspbian/`子目录下。
 
