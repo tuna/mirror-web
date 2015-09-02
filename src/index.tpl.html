@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	@@include('./include/_head.html')
+<body>
+	@@include('./include/_nav.html')
+
+	<div id="mirrors">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div>
+						<p>欢迎来到清华大学开源镜像网站，它由清华大学开源镜像站管理团队维护管理。你可以通过不同域名选定网络线路。</p>
+						<ul>
+							<li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
+							<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
+							<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
+							<li><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 只解析清华 IP</li>
+						</ul>
+					</div>
+					<div id="thu-alert" class="alert alert-danger hidden">
+						<i class="glyphicon glyphicon-exclamation-sign"></i>
+						<strong>清华用户您好，我们发现您正在通过校外线路访问 mirrors（可能是因为您设置了校外的DNS服务器），
+							为避免产生不必要的校外流量，
+							建议您通过 <a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a>
+							访问和使用 TUNA mirrors 资源。
+						</strong>
+					</div>
+					<div class="alert alert-info">
+						<ul>
+							<li><strong>本站带宽资源有限，为了您和他人可以长久使用本站服务，请勿使用迅雷下载本站内容。</strong></li>
+							<li><strong>若您需要通过本站建立镜像，请提前联系管理员。</strong> </li>
+							<li><strong>AOSP 镜像服务单 IP 并发数限制为 4。因版权原因，我们无法提供 Android SDK 镜像。</strong> </li>
+						</ul>
+						<br />
+						如果您有任何问题或建议，请发送邮件到 
+						issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn，
+						或前往 <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a> 反馈。<br />
+						If you have any issues, please email 
+						issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn, 
+						or submit a ticket via <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a>.<br />
+					</div>
+				</div>
+			</div><!--/mirror-list-row-->
+			<div class="row">
+				<div class="col-md-12 table-responsive">
+					<h3># 镜像源列表 </h3>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Last Update</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody id="mirror-list">
+						</tbody>
+					</table>
+				</div>
+			</div><!--/mirror-list-row-->
+		</div><!--/container -->
+	</div><!--/mirrors -->
+
+	@@include('./include/_footer.html')
+</body>
+
+<script id="template" type="x-tmpl-markup">
+{{mirrors}}
+<tr>
+	<td>
+		<a href="{{if url}}{{url}}{{else}}/{{name}}{{/if}}">{{name}}</a> 
+		{{if is_new}}<span class="label label-new">new</span>{{/if}}
+		{{if help}}<a href="/help/#{{name}}"><i class="fa fa-question-circle" title="Help"></i></a>{{/if}}
+	</td>
+	<td>{{last_update}}</td>
+	<td><span class="label label-status {{label}}">{{status}}<span></td>
+</tr>
+{{/mirrors}}
+</script>
+<script src="/static/js/index.js"></script>
+</body>
+</html>
+<!--
+vim: ts=2 sts=2 sw=2 noexpandtab
+-->

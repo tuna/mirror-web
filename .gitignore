@@ -1,4 +1,6 @@
 *.swp
 *~
-/static/tunasync.json
-/static/tunet.json
+/lib/tunasync.json
+/lib/tunet.json
+/node_modules
+/dist

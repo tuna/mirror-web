@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	@@include('../include/_head.html')
+<body>
+	@@include('../include/_nav.html')
+
+<div id="help-page">
+	<div class="container">
+	  <div class="row">
+		  <div class="col-md-2 hidden-xs">
+				<ul class="nav nav-pills nav-stacked" id="help-nav">
+						
+				</ul>
+			</div><!-- sidenave -->
+			<div class="col-md-10">
+				<div id="spinner">
+					<i class="fa fa-spinner fa-spin"></i>
+					<div>载入中</div>
+				</div>
+				<div id="help-content"></div>
+			</div><!-- help content -->
+	  </div>
+	</div><!--/container -->
+</div><!--/mirrors -->
+
+	@@include('../include/_footer.html')
+</body>
+
+<script id="help-nav-template" type="x-tmpl-markup">
+{{help_navs}}
+<li id="help-nav-item-{{name}}" data-help-item="{{name}}"><a href="#{{name}}">{{name}}</a></li>
+{{/help_navs}}
+</script>
+
+<script src="/static/js/help.js"></script>
+</body>
+</html>
+<!--
+vim: ts=2 sts=2 sw=2 noexpandtab
+-->

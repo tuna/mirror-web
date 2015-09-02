@@ -1,0 +1,75 @@
+/*	################################################################
+BOOTSTRAP MODIFICATIONS & TWEAKS
+################################################################# */
+.navbar {
+    padding-top: 15px;
+    margin-bottom: 0px;
+}
+
+.navbar-default {
+    background-color: white;
+    border-color: transparent;
+
+    .navbar-nav > li.active > a {
+        color: $color_thu_purple; 
+        border-bottom: 2px solid $color_thu_purple;
+    }
+    .navbar-nav > li > a {
+        color: $color_secondary;
+        background: transparent !important;
+        font-weight: 700;
+        font-size: 12px;
+
+        &:hover, &:focus {
+            color: $color_primary !important;
+            background: transparent !important;
+        } 
+    } 
+}
+
+.navbar-brand {
+    font-weight: 900;
+    padding: 0px;
+    line-height: 50px;
+    height: 50px;
+    img {
+        margin-right: 5px; 
+    }
+}
+
+.navbar-header .navbar-brand {
+    color: $color_secondary;
+}
+
+.dropdown-menu {
+    background: $color_secondary ;
+}
+
+.dropdown-menu > li > a {
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.mtb {
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+
+.mb {
+    margin-bottom: 60px;
+}
+
+.mt {
+    margin-top: 60px;
+}
+
+.hline {
+    border-bottom: 1px solid $color_secondary ;
+}
+
+.hline-w {
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: 25px;
+}
+
