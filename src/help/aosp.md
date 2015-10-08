@@ -4,7 +4,7 @@
 参考 Google 教程 <https://source.android.com/source/downloading.html>，
 将 `https://android.googlesource.com/` 全部使用 `https://aosp.tuna.tsinghua.edu.cn/` 代替即可。
 
-- **2015-10-08 : 镜像地址更新为 https://aosp.tuna.tsinghua.edu.cn/ **
+- **2015-10-08 : 镜像地址更新为 https://aosp.tuna.tsinghua.edu.cn/ (结尾没有/android) **
 
 ### 过程摘录
 (参考 https://lug.ustc.edu.cn/wiki/mirrors/help/aosp 编写)
@@ -64,7 +64,7 @@ repo sync
 
 1. 镜像的是什么？
 
-   - 是按照 google 指南建立的镜像 git 仓库。
+   - 对 https://android.googlesource.com/ 的反向代理
 
 2. 为何不能通过浏览器访问？
 
