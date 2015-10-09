@@ -2,8 +2,10 @@
 **注意: 本镜像是 AOSP 镜像，Android SDK因版权原因，我们不能提供镜像服务。**
 
 参考 Google 教程 <https://source.android.com/source/downloading.html>，
-将 `https://android.googlesource.com/` 全部使用 `https://aosp.tuna.tsinghua.edu.cn/` 代替即可。
+将 `https://android.googlesource.com/` 全部使用 `https://aosp.tuna.tsinghua.edu.cn/` 
+或 `git://aosp.tuna.tsinghua.edu.cn/android/` 代替即可。
 
+- **2015-10-09 : 恢复 git://aosp.tuna.tsinghua.edu.cn/android/ 访问 **
 - **2015-10-08 : 镜像地址更新为 https://aosp.tuna.tsinghua.edu.cn/ (结尾没有/android) **
 
 ### 过程摘录
@@ -25,7 +27,9 @@ cd WORKING_DIRECTORY
 
 初始化仓库:
 ```
-repo init -u https://aosp.tuna.tsinghua.edu.cn/aosp/platform/manifest
+repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest
+# 或 repo init -u git://aosp.tuna.tsinghua.edu.cn/android/platform/manifest
+
 ## 如果提示无法连接到 gerrit.googlesource.com，可以编辑 ~/bin/repo，把 REPO_URL 一行替换成下面的：
 ## REPO_URL = 'https://gerrit-google.tuna.tsinghua.edu.cn/git-repo'
 ```
@@ -46,13 +50,14 @@ repo sync
 如果你之前已经通过某种途径获得了 AOSP 的源码(或者你只是 init 这一步完成后)，
 你希望以后通过 TUNA 同步 AOSP 部分的代码，只需要将
 `.repo/manifest.xml` 把其中的 aosp 这个 remote 的 fetch 从
-`https://android.googlesource.com` 改为 `https://aosp.tuna.tsinghua.edu.cn/`。
+`https://android.googlesource.com` 改为 `https://aosp.tuna.tsinghua.edu.cn/`
+或 `git://aosp.tuna.tsinghua.edu.cn/android`。
 ```diff
 <manifest>
 
    <remote  name="aosp"
 -           fetch="https://android.googlesource.com"
-+           fetch="https://aosp.tuna.tsinghua.edu.cn"
++           fetch="https://aosp.tuna.tsinghua.edu.cn"  或 "git://aosp.tuna.tsinghua.edu.cn/android"
             review="android-review.googlesource.com" />
 
    <remote  name="github"
@@ -64,7 +69,7 @@ repo sync
 
 1. 镜像的是什么？
 
-   - 对 https://android.googlesource.com/ 的反向代理
+   - AOSP 的 git 仓库
 
 2. 为何不能通过浏览器访问？
 
