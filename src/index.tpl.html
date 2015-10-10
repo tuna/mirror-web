@@ -5,18 +5,11 @@
 	@@include('./include/_nav.html')
 
 	<div id="mirrors">
+		<div class="spacing hidden-xs"></div>
 		<div class="container">
 			<div class="row">
+				<div class="space"></div>
 				<div class="col-md-12">
-					<div>
-						<p>欢迎来到清华大学开源镜像网站，它由清华大学开源镜像站管理团队维护管理。你可以通过不同域名选定网络线路。</p>
-						<ul>
-							<li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
-							<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
-							<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
-							<li><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 只解析清华 IP</li>
-						</ul>
-					</div>
 					<div id="thu-alert" class="alert alert-danger hidden">
 						<i class="glyphicon glyphicon-exclamation-sign"></i>
 						<strong>清华用户您好，我们发现您正在通过校外线路访问 mirrors（可能是因为您设置了校外的DNS服务器），
@@ -25,42 +18,53 @@
 							访问和使用 TUNA mirrors 资源。
 						</strong>
 					</div>
-					<div class="alert alert-danger">
-						<ul>
-							<li><strong>AOSP 镜像使用方式调整，请根据<a href="/help/#AOSP">帮助</a>更新打开方式</strong></li>
-						</ul>
-					</div>
-					<div class="alert alert-info">
-						<ul>
-							<li><strong>若您需要通过本站建立镜像，请提前联系管理员。</strong> </li>
-							<li><strong>建议订阅邮件列表 thu-opensource-mirror-admin@googlegroups.com ，镜像站相关消息，我们会第一时间在此发布。 </strong> </li>
-						</ul>
-						<br />
-						如果您有任何问题或建议，请发送邮件到 
-						issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn，
-						或前往 <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a> 反馈。<br />
-						If you have any issues, please email 
-						issues+mirrors<span style="hidden"></span>&#64;tuna<span style="hide"></span>&#46;tsinghua<span style="hide"></span>&#46;edu<span style="hide"></span>&#46;cn, 
-						or submit a ticket via <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors</a>.<br />
-					</div>
 				</div>
-			</div><!--/mirror-list-row-->
+			</div>
 			<div class="row">
-				<div class="col-md-12 table-responsive">
-					<h3># 镜像源列表 </h3>
+				<div class="col-md-8 table-responsive">
+					<h3><span class="fa fa-cube"></span> 镜像列表 </h3>
 					<table class="table">
 						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Last Update</th>
-								<th>Status</th>
+							<tr class="row">
+								<th class="col-sm-8">Name</th>
+								<th class="col-sm-4">Last Update</th>
 							</tr>
 						</thead>
 						<tbody id="mirror-list">
 						</tbody>
 					</table>
 				</div>
-			</div><!--/mirror-list-row-->
+				<div class="col-md-4">
+					<div class="spacing hidden-xs"></div>
+					<div class="row">
+						<div class="col-md-12">
+							<h4><span class="fa fa-bell-o"></span> 新闻公告 </h4>
+							<ul>
+								<li><strong>2015-10-10</strong> 更新 docker APT/YUM 镜像 </li>
+								<li><strong>2015-10-09</strong> AOSP 镜像维护与调整 </li>
+							</ul>
+							<span class="pull-right"><a href="/news"> more <span class="fa fa-angle-double-right"></span> </a></span>
+						</div>
+						<div class="col-md-12">
+							<h4> <span class="fa fa-link"></span> 域名选择 </h4>
+							<ul>
+								<li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
+								<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
+								<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
+								<li><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 只解析清华 IP</li>
+							</ul>
+						</div>
+						<div class="col-md-12">
+							<h4> <span class="fa fa-envelope-o"></span> 联系我们 </h4>
+							<ul>
+								<li><strong>订阅邮件列表</strong> <br /> thu-opensource-mirror-admin@googlegroups.com <br /> 第一时间获得镜像站动态</li>
+								<li><strong>Issue 反馈</strong> <br /> <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors </a></li>
+								<li><strong>IRC 频道</strong> <br /> <a href="http://tuna.moe/irc/"> #tuna at freenode </a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><!--/container -->
 	</div><!--/mirrors -->
 
@@ -69,14 +73,15 @@
 
 <script id="template" type="x-tmpl-markup">
 {{mirrors}}
-<tr>
-	<td>
+<tr class="status-{{status}} row">
+	<td class="col-md-8">
 		<a href="{{if url}}{{url}}{{else}}/{{name}}{{/if}}">{{name}}</a> 
 		{{if is_new}}<span class="label label-new">new</span>{{/if}}
 		{{if help}}<a href="/help/#{{name}}"><i class="fa fa-question-circle" title="Help"></i></a>{{/if}}
 	</td>
-	<td>{{last_update}}</td>
-	<td><span class="label label-status {{label}}">{{status}}<span></td>
+	<td class="col-md-4">{{last_update}}
+		{{if show_status}}<span class="label label-status {{label}} hidden-xs">{{status}}</span>{{/if}}
+	</td>
 </tr>
 {{/mirrors}}
 </script>
