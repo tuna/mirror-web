@@ -44,6 +44,29 @@ repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest -b android-4.0.
 repo sync
 ```
 
+### 建立次级镜像
+
+由于 AOSP 镜像需求量巨大，且 Git 服务占资源较多，TUNA 服务器因 AOSP 产生的负载已经占主要部分。
+如果你是团队用户，我们强烈建议你通过 TUNA 建立次级镜像，再分享给团队内其他用户，减轻 TUNA 服务器压力。
+建立 AOSP 镜像需要占用约 62G 磁盘。
+
+具体步骤为:
+
+下载 `repo` 工具和建立工作目录（略）
+
+初始化，与正常使用相比，增加一个 `--mirror` 参数
+```
+repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest --mirror
+```
+
+同步源码树:
+```
+repo sync
+```
+
+同步完成后，运行 `git daemon --verbose --export-all  --base-path=WORKING_DIR WORKING_DIR` (WORKING_DIR为代码树所在目录) 。
+
+此后，其他用户使用 `git://ip.to.mirror/` 作为镜像即可。
 
 ### 替换已有的 AOSP 源代码的 remote
 
