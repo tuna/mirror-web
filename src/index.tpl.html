@@ -37,18 +37,18 @@
 				<div class="col-md-4">
 					<div class="spacing hidden-xs"></div>
 					<div class="row">
-						<div class="col-md-12">
-							<h4><span class="fa fa-bell-o"></span> 新闻公告 </h4>
+						<div class="col-md-12" id="news">
+							<h4><span class="fa fa-bullhorn"></span> 新闻公告 </h4>
 							<ul>
-								<li><strong>2015-10-10</strong> 更新 docker APT/YUM 镜像 </li>
-								<li><strong>2015-10-09</strong> AOSP 镜像维护与调整 </li>
+								<li><a href="/news/#docker-update"><strong>2015-10-10</strong> 更新 docker 镜像 </a></li>
+								<li><a href="/news/#aosp-maintenance"><strong>2015-10-09</strong> AOSP 镜像维护与调整 </a></li>
 							</ul>
-							<span class="pull-right"><a href="/news"> more <span class="fa fa-angle-double-right"></span> </a></span>
+							<span class="pull-right"><a href="/news/"> more <span class="fa fa-angle-double-right"></span> </a></span>
 						</div>
 						<div class="col-md-12">
 							<h4> <span class="fa fa-link"></span> 域名选择 </h4>
 							<ul>
-								<li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 支持 IPv4/IPv6</li>
+								<li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 自动选择 </li>
 								<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
 								<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
 								<li><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 只解析清华 IP</li>
@@ -79,8 +79,8 @@
 		{{if is_new}}<span class="label label-new">new</span>{{/if}}
 		{{if help}}<a href="/help/#{{name}}"><i class="fa fa-question-circle" title="Help"></i></a>{{/if}}
 	</td>
-	<td class="col-md-4">{{last_update}}
-		{{if show_status}}<span class="label label-status {{label}} hidden-xs">{{status}}</span>{{/if}}
+	<td class="col-md-4">
+	{{last_update}} {{if show_status}}<span class="label label-status {{label}} hidden-xs">{{status}}</span>{{/if}}
 	</td>
 </tr>
 {{/mirrors}}

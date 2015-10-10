@@ -86,6 +86,11 @@ $font_default: 'Lato', 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sa
 			color: #234961;
 		}
 	}
+	#news {
+		li > a {
+			color: #384452
+		}
+	}
 }
 
 #help-page {

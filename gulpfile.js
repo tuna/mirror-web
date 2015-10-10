@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 var path = {
   HTML_TPL: './src/**/*.tpl.html',
   HTML: './src/**/*.html',
-  HELP_MD: './src/help/*.md',
+  MD_FILES: './src/**/*.md',
   JS_FILES: './src/js/*.js',
   SCSS_FILES: './src/scss/*.scss',
   IMG: './src/img/*',
@@ -33,8 +33,8 @@ gulp.task('copy-img', function(){
 gulp.task('copy-html', function(){
   gulp.src(path.ROBOTS)
     .pipe(gulp.dest(path.DEST));
-  gulp.src(path.HELP_MD)
-    .pipe(gulp.dest(path.DEST+"/help"));
+  gulp.src(path.MD_FILES)
+    .pipe(gulp.dest(path.DEST));
 
   gulp.src(path.HTML_TPL)
     .pipe(fileinclude())
@@ -49,6 +49,7 @@ gulp.task('copy-html', function(){
 
 gulp.task('watch', function() {
   gulp.watch(path.HTML, ['copy-html']);
+  gulp.watch(path.MD_FILES, ['copy-html']);
   gulp.watch(path.IMG, ['copy-img']);
   gulp.watch(path.SCSS_FILES, ['scss-build']);
   gulp.watch(path.JS_FILES, ['js-build']);
