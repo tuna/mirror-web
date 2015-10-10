@@ -21,8 +21,7 @@ $(document).ready(() => {
 		return () => {
 			$('#spinner').removeClass('hidden');
 			$('#help-content').text("");
-			var update_apt_file = function(ev) {
-				// `this` cannot be used with arrow function
+			var update_apt_file = (ev) => {
 				var sel = $(ev.target);
 				var release_name=sel.find("option:selected").attr('data-release'),
 					tmpl_selector=sel.attr("data-template"), 
