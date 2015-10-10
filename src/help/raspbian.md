@@ -53,7 +53,7 @@ pi@raspberrypi ~ $ sudo nano /etc/apt/sources.list
 <form class="form-inline">
 <div class="form-group">
 	<label>选择你的Debian版本: </label>
-	<select class="form-control" id="release-select">
+	<select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
 	  <option data-release="wheezy">Debian 7 (wheezy)</option>
 	  <option data-release="jessie" selected>Debian 8 (jessie)</option>
 	</select>

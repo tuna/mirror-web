@@ -9,7 +9,7 @@ TUNA 的软件源镜像。
 <form class="form-inline">
 <div class="form-group">
 	<label>选择你的ubuntu版本: </label>
-	<select class="form-control" id="release-select">
+	<select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
 	  <option data-release="lucid">10.04 LTS</option>
 	  <option data-release="precise">12.04 LTS</option>
 	  <option data-release="trusty" selected>14.04 LTS</option>

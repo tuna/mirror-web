@@ -3,7 +3,7 @@ $(document).ready(() => {
 		return () => {
 			$('#spinner').removeClass('hidden');
 			$('#help-content').text("");
-			$.get(url, function(data) {
+			$.get(url, (data) => {
 				var rendered = "";
 				if (url.match(/\.md$/)) {
 					rendered = marked(data);
@@ -21,15 +21,19 @@ $(document).ready(() => {
 		return () => {
 			$('#spinner').removeClass('hidden');
 			$('#help-content').text("");
-			var apt_template;
-			var update_apt_file = () => {
-				var release_name = $("#release-select option:selected").attr('data-release');
-				var apt_content = Mark.up(
+			var update_apt_file = function(ev) {
+				// `this` cannot be used with arrow function
+				var sel = $(ev.target);
+				var release_name=sel.find("option:selected").attr('data-release'),
+					tmpl_selector=sel.attr("data-template"), 
+					target_selector=sel.attr("data-target"),
+				  apt_template = $.trim($(tmpl_selector).text()),
+				  apt_content = Mark.up(
 						apt_template, {release_name: release_name}
-				);
-				$("#apt-content").html(apt_content);
+					);
+				$(target_selector).html(apt_content);
 			};
-			$.get(url, function(data) {
+			$.get(url, (data) => {
 				var rendered = "";
 				if (url.match(/\.md$/)) {
 					rendered = marked(data);
@@ -39,9 +43,11 @@ $(document).ready(() => {
 					.find('table')
 					.addClass("table table-bordered table-striped");
 				$('#spinner').addClass('hidden');
-				apt_template = $.trim($("#apt-template").text());
-				update_apt_file();
-				$("#release-select").on('change', update_apt_file);
+				
+				$("select.release-select").on('change', update_apt_file);
+				$("select.release-select").each((i, e) => {
+					$(e).trigger("change");
+				});
 			});
 		};
 	};
@@ -54,7 +60,7 @@ $(document).ready(() => {
 			'linux.git': M('/help/linux.md'),
 			'nodesource': M('/help/nodesource.md'),
 			'pypi': M("/help/pypi.md"),
-			'docker': M("/help/docker.md"),
+			'docker': AptHelp("/help/docker.md"),
 			'raspbian': AptHelp('/help/raspbian.md'),
 			'repo-ck': M('/help/repo-ck.md'),
 			'rpmfusion': M('/help/rpmfusion.md'),

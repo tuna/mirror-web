@@ -17,9 +17,9 @@ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58
 <form class="form-inline">
 <div class="form-group">
 	<label>你的Debian/Ubuntu版本: </label>
-	<select class="form-control release-select" id="apt-select" data-template="#apt-template" data-target="#apt-content">
-	  <option data-release="debian-jessie" selected>Debian Jessie</option>
+	<select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
 	  <option data-release="debian-wheezy">Debian Wheezy</option>
+	  <option data-release="debian-jessie" selected>Debian Jessie</option>
 	  <option data-release="debian-stretch">Debian Strech</option>
 	  <option data-release="ubuntu-precise">Ubuntu 12.04 LTS</option>
 	  <option data-release="ubuntu-trusty">Ubuntu 14.04 LTS</option>
@@ -58,14 +58,14 @@ echo "deb https://mirrors.tuna.tsinghua.edu.cn/docker/apt/repo {{release_name}} 
 <form class="form-inline">
 <div class="form-group">
 	<label>你的Fedora/CentOS/RHEL版本: </label>
-	<select class="form-control release-select" id="yum-select" data-template="#yum-template" data-target="#yum-content">
-	  <option data-release="centos/7" selected>CentOS 7</option>
+	<select class="form-control release-select" data-template="#yum-template" data-target="#yum-content">
 	  <option data-release="centos/6">CentOS 6</option>
-	  <option data-release="centos/7">RHEL 7</option>
+	  <option data-release="centos/7" selected>CentOS 7</option>
 	  <option data-release="centos/6">RHEL 6</option>
-	  <option data-release="fedora/22">Fedora 22</option>
+	  <option data-release="centos/7">RHEL 7</option>
+	  <option data-release="fedora/20">Fedora 20</option>
 	  <option data-release="fedora/21">Fedora 21</option>
-	  <option data-release="fedora/20">Fedora 21</option>
+	  <option data-release="fedora/22">Fedora 22</option>
 	</select>
 </div>
 </form>
