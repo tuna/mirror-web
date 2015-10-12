@@ -52,6 +52,7 @@ $(document).ready(() => {
 	};
 
 	var nav_tmpl = $('#help-nav-template').text(), 
+		select_tmpl = $('#help-select-template').text(),
 		help = {
 			'AOSP': M('/help/aosp.md'),
 			'archlinuxcn': M('/help/archlinuxcn.md'),
@@ -73,20 +74,31 @@ $(document).ready(() => {
 
 	var showHelp = (name) => {
 		var help_func = help[name];
-		if (help_func != undefined)
+		if (help_func != undefined) {
 			help_func();
+			$('#help-nav li').removeClass('active');
+			$(`#help-nav-item-${name}`).addClass('active');
+			$('#help-select option').removeAttr('selected');
+			$(`#help-select option[data-help-item=${name}]`).attr('selected', 'selected');
+		}
 	};
-
-	var help_nav = Mark.up(nav_tmpl, () => {
+	
+	var [help_nav, help_select] = (() => {
 		let nav = [];
 		for (let k in help)	{
 			nav.push({name: k});
 		}
 		nav.sort((a, b) => { return a.name < b.name ? -1: 1 });
-		return {help_navs: nav};
-	}());
+		let d = {help_navs: nav};
+		return [
+			Mark.up(nav_tmpl, d), 
+			Mark.up(select_tmpl, d)
+		];
+	})();
 
 	$('#help-nav').html(help_nav);
+	$('#help-select').html(help_select);
+
 	showHelp(help_item);
 	$(`#help-nav-item-${help_item}`).addClass('active');
 
@@ -94,10 +106,15 @@ $(document).ready(() => {
 		// `this` cannot be used with arrow function
 		let help_item = $(this).attr('data-help-item');
 		showHelp(help_item);
-		$(this)
-			.parent().children('li')
-			.removeClass('active');
-		$(this).addClass('active');
+		// $(this)
+		// 	.parent().children('li')
+		// 	.removeClass('active');
+		// $(this).addClass('active');
+	});
+	
+	$('#help-select').on('change', (ev) => {
+		let help_item = $(ev.target).find("option:selected").attr('data-help-item');
+		showHelp(help_item);
 	});
 
 });

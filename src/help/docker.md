@@ -1,4 +1,4 @@
-## LXC Docker 镜像使用帮助
+## Docker 镜像使用帮助
 
 **注意: 本镜像只提供 Debian/Ubuntu/Fedora/CentOS/RHEL 的 docker 软件包，非 dockerhub**
 
