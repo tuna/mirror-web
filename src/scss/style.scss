@@ -21,7 +21,8 @@ $color_link_hover: #62bbe7;
 $color_footer_heading: #ffffff;
 $color_footer_content: #bfc9d3;
 $color_navbar_bg: #d3d3d3;
-$font_default: 'Lato', 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif ;
+$font_default: 'Lato', 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
+$font_local: 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
 
 @import "Lato";
 @import "structure";
@@ -88,7 +89,7 @@ $font_default: 'Lato', 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sa
 	}
 	#news {
 		li > a {
-			color: #384452
+			color: $color_secondary;
 		}
 	}
 }
