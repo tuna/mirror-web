@@ -3,10 +3,11 @@
 
 参考 Google 教程 <https://source.android.com/source/downloading.html>，
 将 `https://android.googlesource.com/` 全部使用 `https://aosp.tuna.tsinghua.edu.cn/` 
-或 `git://aosp.tuna.tsinghua.edu.cn/android/` 代替即可。
+或 `git://aosp.tuna.tsinghua.edu.cn/aosp/` 代替即可。
 
-- **2015-10-13 : 次级镜像文档错误修复 **
-- **2015-10-09 : 恢复 git://aosp.tuna.tsinghua.edu.cn/android/ 访问 **
+- **2015-10-13 : 修复上游替换文档错误 **
+- **2015-10-13 : 修复次级镜像文档错误 **
+- **2015-10-09 : 恢复 git://aosp.tuna.tsinghua.edu.cn/aosp/ 访问 **
 - **2015-10-08 : 镜像地址更新为 https://aosp.tuna.tsinghua.edu.cn/ (结尾没有/android) **
 
 ### 过程摘录
@@ -29,7 +30,7 @@ cd WORKING_DIRECTORY
 初始化仓库:
 ```
 repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest
-# 或 repo init -u git://aosp.tuna.tsinghua.edu.cn/android/platform/manifest
+# 或 repo init -u git://aosp.tuna.tsinghua.edu.cn/aosp/platform/manifest
 
 ## 如果提示无法连接到 gerrit.googlesource.com，可以编辑 ~/bin/repo，把 REPO_URL 一行替换成下面的：
 ## REPO_URL = 'https://gerrit-google.tuna.tsinghua.edu.cn/git-repo'
@@ -57,7 +58,7 @@ repo sync
 
 初始化:
 ```
-repo init -u https://aosp.tuna.tsinghua.edu.cn/mirror/manifest --mirror
+repo init -u git://aosp.tuna.tsinghua.edu.cn/aosp/mirror/manifest --mirror
 ```
 
 同步源码树:
@@ -75,16 +76,26 @@ repo sync
 你希望以后通过 TUNA 同步 AOSP 部分的代码，只需要将
 `.repo/manifest.xml` 把其中的 aosp 这个 remote 的 fetch 从
 `https://android.googlesource.com` 改为 `https://aosp.tuna.tsinghua.edu.cn/`
-或 `git://aosp.tuna.tsinghua.edu.cn/android`。
+或 `git://aosp.tuna.tsinghua.edu.cn/aosp`。
 ```diff
 <manifest>
 
    <remote  name="aosp"
 -           fetch="https://android.googlesource.com"
-+           fetch="https://aosp.tuna.tsinghua.edu.cn"  或 "git://aosp.tuna.tsinghua.edu.cn/android"
++           fetch="https://aosp.tuna.tsinghua.edu.cn"  或 "git://aosp.tuna.tsinghua.edu.cn/aosp"
             review="android-review.googlesource.com" />
 
    <remote  name="github"
+```
+
+同时，修改 `.repo/manifests.git/config`，将
+```
+url = https://android.googlesource.com/platform/manifest
+```
+更改为
+```
+url = git://aosp.tuna.tsinghua.edu.cn/aosp/platform/manifest
+# 或 url = https://aosp.tuna.tsinghua.edu.cn/platform/manifest
 ```
 
 **这个方法也可以用来在同步 Cyanogenmod 代码的时候从 TUNA 同步部分代码**
