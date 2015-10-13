@@ -1,5 +1,14 @@
+<span id="aosp-doc-update"></span>
+### # AOSP 文档更新
+<span class="fa fa-calendar"></span> 2015-10-13
+
+经用户反馈，原 AOSP 文档建立次级镜像部分有误，现已更正。详情见 [AOSP 镜像帮助](/help/#AOSP)。
+
+---
+
+<span id="docker-update"></span>
 ### # Docker APT/YUM 镜像更新
-<span id="docker-update" class="fa fa-calendar"></span> 2015-10-10
+<span class="fa fa-calendar"></span> 2015-10-10
 
 Docker 官方部署了[新的 docker 源](https://blog.docker.com/2015/07/new-apt-and-yum-repos/), 我们也对
 docker 镜像作出相应调整。
@@ -13,8 +22,9 @@ docker 镜像作出相应调整。
 
 ----
 
+<span id="aosp-maintenance"></span>
 ### # AOSP 镜像调整
-<span id="aosp-maintenance" class="fa fa-calendar"></span> 2015-10-09
+<span class="fa fa-calendar"></span> 2015-10-09
 
 国庆长假后，AOSP镜像业务量激增，造成 mirrors 服务器严重超载。
 
