@@ -5,6 +5,7 @@
 将 `https://android.googlesource.com/` 全部使用 `https://aosp.tuna.tsinghua.edu.cn/` 
 或 `git://aosp.tuna.tsinghua.edu.cn/android/` 代替即可。
 
+- **2015-10-13 : 次级镜像文档错误修复 **
 - **2015-10-09 : 恢复 git://aosp.tuna.tsinghua.edu.cn/android/ 访问 **
 - **2015-10-08 : 镜像地址更新为 https://aosp.tuna.tsinghua.edu.cn/ (结尾没有/android) **
 
@@ -54,9 +55,9 @@ repo sync
 
 下载 `repo` 工具和建立工作目录（略）
 
-初始化，与正常使用相比，增加一个 `--mirror` 参数
+初始化:
 ```
-repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest --mirror
+repo init -u https://aosp.tuna.tsinghua.edu.cn/mirror/manifest --mirror
 ```
 
 同步源码树:
