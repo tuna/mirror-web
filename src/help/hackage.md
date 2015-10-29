@@ -27,3 +27,13 @@ remote-repo: mirrors.tuna.tsinghua.edu.cn:http://mirrors.tuna.tsinghua.edu.cn/ha
 注意，此处的注释是两条短线`--`.
 
 再执行`cabal update`, 即可使用`cabal`安装包了。
+
+### 在 [`stack`](https://github.com/commercialhaskell/stack) 中使用
+
+修改`~/.stack/config.yaml`, 加上:
+```yaml
+package-indices:
+- name: Tsinghua
+  download-prefix: http://mirrors.tuna.tsinghua.edu.cn/hackage/package/
+  http: http://mirrors.tuna.tsinghua.edu.cn/hackage/00-index.tar.gz
+```
