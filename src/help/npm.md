@@ -17,5 +17,5 @@ npm set registry https://npm.tuna.tsinghua.edu.cn/
 
 或编辑 `~/.npmrc` 添加
 ```
-npm set registry http://npm.tuna.tsinghua.edu.cn
+registry=https://npm.tuna.tsinghua.edu.cn
 ```
