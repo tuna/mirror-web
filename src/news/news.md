@@ -1,3 +1,11 @@
+<span id="cygwin-mirror"></span>
+### # Cygwin 镜像 
+<span class="fa fa-calendar"></span> 2015-11-04
+
+TUNA mirrors 新增 cygwin 镜像。
+
+---
+
 <span id="aosp-doc-update"></span>
 ### # AOSP 文档更新
 <span class="fa fa-calendar"></span> 2015-10-13
