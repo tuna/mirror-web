@@ -23,12 +23,17 @@ $(document).ready(() => {
 			$('#help-content').text("");
 			var update_apt_file = (ev) => {
 				var sel = $(ev.target);
-				var release_name=sel.find("option:selected").attr('data-release'),
+				var os_name=sel.find("option:selected").attr('data-os'),
+					release_name=sel.find("option:selected").attr('data-release'),
 					tmpl_selector=sel.attr("data-template"), 
 					target_selector=sel.attr("data-target"),
 				  apt_template = $.trim($(tmpl_selector).text()),
 				  apt_content = Mark.up(
-						apt_template, {release_name: release_name}
+						apt_template, 
+						{
+							os_name: os_name,
+							release_name: release_name
+						}
 					);
 				$(target_selector).html(apt_content);
 			};
@@ -61,6 +66,7 @@ $(document).ready(() => {
 			'nodesource': M('/help/nodesource.md'),
 			'pypi': M("/help/pypi.md"),
 			'docker': AptHelp("/help/docker.md"),
+			'gitlab-ce': AptHelp("/help/gitlab-ce.md"),
 			'raspbian': AptHelp('/help/raspbian.md'),
 			'repo-ck': M('/help/repo-ck.md'),
 			'rpmfusion': M('/help/rpmfusion.md'),

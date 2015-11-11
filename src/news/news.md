@@ -1,3 +1,14 @@
+<span id="gitlab-ce-mirror"></span>
+### # Chakra, Mageia, gitlab-ce 镜像 
+<span class="fa fa-calendar"></span> 2015-11-11
+
+TUNA mirrors 新增 Chakra, Mageia 和 GitLab Community Edition 镜像。
+
+- Chakra 是衍生自 Arch Linux 的，以 KDE 和 Qt 为一等公民的轻量级 Linux 发行版
+- Mageia 被认为是对显卡驱动支持最好的发行版之一，distrowatch 上排名前十且汉化很好
+- gitlab-ce 是 GitLab 的社区版，详情见 [gitlab-ce 使用帮助](/help/#gitlab-ce)
+
+
 <span id="cygwin-mirror"></span>
 ### # Cygwin 镜像 
 <span class="fa fa-calendar"></span> 2015-11-04

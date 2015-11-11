@@ -15,6 +15,7 @@ var mir_tmpl = $("#template").text(),
 		'nodesource': true,
 		'pypi': true,
 		'docker': true,
+		'gitlab-ce': true,
 		'raspbian': true,
 		'repo-ck': true,
 		'rpmfusion': true,
@@ -25,12 +26,11 @@ var mir_tmpl = $("#template").text(),
 		'AUR': true
 	},
 	new_mirrors = {
-			'cygwin': true,
-			'hackage': true,
-			'kodi': true,
-			'qt': true,
-			'npm': true,
-			'sagemath': true
+		'cygwin': true,
+		'chakra': true,
+		'mageia': true,
+		'gitlab-ce': true,
+		'qt': true,
 	},
 	unlisted = [
 	{
