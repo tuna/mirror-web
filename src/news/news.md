@@ -8,6 +8,7 @@ TUNA mirrors 新增 Chakra, Mageia 和 GitLab Community Edition 镜像。
 - Mageia 被认为是对显卡驱动支持最好的发行版之一，distrowatch 上排名前十且汉化很好
 - gitlab-ce 是 GitLab 的社区版，详情见 [gitlab-ce 使用帮助](/help/#gitlab-ce)
 
+---
 
 <span id="cygwin-mirror"></span>
 ### # Cygwin 镜像 
