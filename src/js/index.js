@@ -23,7 +23,8 @@ var mir_tmpl = $("#template").text(),
 		'lxc-images': true,
 		'hackage': true,
 		'npm': true,
-		'AUR': true
+		'AUR': true,
+		'termux': true,
 	},
 	new_mirrors = {
 		'cygwin': true,
@@ -31,6 +32,8 @@ var mir_tmpl = $("#template").text(),
 		'mageia': true,
 		'gitlab-ce': true,
 		'qt': true,
+		'termux': true,
+		'openwrt': true,
 	},
 	unlisted = [
 	{
