@@ -74,7 +74,8 @@ $(document).ready(() => {
 			'lxc-images': M('/help/lxc-images.md'),
 			'hackage': M('/help/hackage.md'),
 			'npm': M('/help/npm.md'),
-			'AUR': M('/help/AUR.md')
+			'AUR': M('/help/AUR.md'),
+			'termux': M('/help/termux.md')
 		},
 	  help_item = window.location.hash.replace('#', '');
 
