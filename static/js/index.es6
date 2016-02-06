@@ -31,7 +31,7 @@ var mir_tmpl = $("#template").text(),
 	],
 	options = {
 		'AOSP': {
-			'url': "/help/#AOSP",
+			'url': "/help/AOSP/",
 		}
 	};
 
@@ -47,7 +47,7 @@ window.refreshMirrorList = () => {
 				d = $.extend(d, options[d['name']]);
 			}
 			d['label'] = label_map[d['status']];
-			d['help'] = has_help[d['name']];
+			d['help_url'] = help_url[d['name']];
 			d['is_new'] = new_mirrors[d['name']];
 			d['show_status'] = (d.status != "success");
 			// Strip the second component of last_update
