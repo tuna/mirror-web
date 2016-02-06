@@ -13,6 +13,7 @@ Nodesource 为 debian, ubuntu, fedora, RHEL 等发行版提供预编译的 nodej
 ### debian/ubuntu 使用方法
 
 运行
+
 ```
 curl -sL https://deb.nodesource.com/setup | sudo bash -
 ```

@@ -20,10 +20,8 @@ Arch Linux 中文社区仓库 是由 Arch Linux
 
 ```
 [archlinuxcn]
-SigLevel = Optional TrustAll
+SigLevel = Optional TrustedOnly
 Server = http://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 ```
 
 之后安装 `archlinuxcn-keyring` 包导入 GPG key。
-
-------------------------------------------------------------------------
