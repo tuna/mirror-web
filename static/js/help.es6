@@ -7,10 +7,10 @@ $(document).ready(() => {
 
 	var update_apt_file = (ev) => {
 		var sel = $(ev.target);
-		var os_name=sel.find("option:selected").attr('data-os'),
-			release_name=sel.find("option:selected").attr('data-release'),
-			tmpl_selector=sel.attr("data-template"), 
-			target_selector=sel.attr("data-target"),
+		var os_name=sel.find("option:selected").data('os'),
+			release_name=sel.find("option:selected").data('release'),
+			tmpl_selector=sel.data("template"), 
+			target_selector=sel.data("target"),
 			apt_template = $.trim($(tmpl_selector).text()),
 			apt_content = Mark.up(
 			apt_template, 
@@ -28,7 +28,7 @@ $(document).ready(() => {
 	});
 
 	$('#help-select').on('change', (ev) => {
-		let help_url = $(ev.target).find("option:selected").attr('data-help-url');
+		let help_url = $(ev.target).find("option:selected").data('help-url');
 		window.location = `${window.location.protocol}//${window.location.host}${help_url}`;
 	});
 
