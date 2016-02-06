@@ -1,10 +1,11 @@
-
+---
+permalink: /status/
+---
 <!DOCTYPE html>
 <html>
-	@@include('../include/_head.html')
+	{% include head.html %}
 <body>
-	@@include('../include/_nav.html')
-	
+	{% include nav.html %}
 	<div id="status-page">
 		<div class="spacing hidden-xs"></div>
 		<div class="container">
@@ -55,13 +56,9 @@
 					</div>
 				</div>
 			</div>
-	
-	
 		</div><!--/container -->
 	</div><!--/status -->
-	
-	@@include('../include/_footer.html')
-
+	{% include footer.html %}
 	<script>
 $(document).ready(function(){
 	$.get("/static/status/disk.json", function(d){
@@ -71,13 +68,9 @@ $(document).ready(function(){
 			.css("width", used_percent + "%")
 			.html("<strong>" + d.used_readable + " / " + d.total_readable + "</strong>");
 	});
-
 });
 	</script>
-
-
 </body>
-
 </html>
 <!--
 vim: ts=2 sts=2 sw=2 noexpandtab

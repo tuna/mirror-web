@@ -13,13 +13,22 @@ permalink: /news/
 	  <div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<div id="spinner">
-					<i class="fa fa-spinner fa-spin"></i>
-					<div>载入中</div>
-				</div>
 				<div>
 					<h2><span class="fa fa-newspaper-o"></span> 镜像站新闻</h2>
-					<div id="news-content"></div>
+					<div id="news-content">
+						{% for news in site.categories.news %}
+						<article>
+							<div class="head" id="{{news.slug}}">
+								<h3># {{news.title}}</h3>
+							</div>
+							<div class="meta">
+								<span class="fa fa-calendar"></span> {{news.date | date: "%Y-%m-%d"}} <span class="fa fa-user" style="margin-left: 1em"> {{ news.author }}</span>
+							</div>
+							<div class="content">{{news.content || markdownify }}</div>
+						</article>
+						<hr />
+						{% endfor %}
+					</div>
 				</div>
 			</div><!-- news content -->
 			<div class="col-md-2"></div>
@@ -31,7 +40,6 @@ permalink: /news/
 	{% include footer.html %}
 </body>
 
-<script src="/static/js/news.js"></script>
 </html>
 <!--
 vim: ts=2 sts=2 sw=2 noexpandtab

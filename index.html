@@ -42,9 +42,9 @@ permalink: /
 						<div id="news">
 							<h4><span class="fa fa-bullhorn"></span> 新闻公告 </h4>
 							<ul>
-								<li><a href="/news/#gitlab-ce-mirror"><strong>2015-11-11</strong> 新增 Chakra, Mageia, gitlab-ce 镜像 </a></li>
-								<li><a href="/news/#cygwin-mirror"><strong>2015-11-04</strong> 新增 cygwin 镜像 </a></li>
-								<li><a href="/news/#aosp-doc-update"><strong>2015-10-13</strong> 修正 AOSP 文档 </a></li>
+								{% for news in site.categories.news limit: 3%}
+								<li><a href="/news/#{{news.slug}}"><strong>{{news.date | date: "%Y-%m-%d"}}</strong> {{news.title}}</li>
+								{% endfor %}
 							</ul>
 							<div class="text-right"><a href="/news/"> more <span class="fa fa-angle-double-right"></span> </a></div>
 						</div>
@@ -61,14 +61,14 @@ permalink: /
 							<h4> <span class="fa fa-envelope-o"></span> 联系我们 </h4>
 							<ul>
 								<li><strong>订阅邮件列表</strong> <br /> thu-opensource-mirror-admin@googlegroups.com <br /> 第一时间获得镜像站动态</li>
-								<li><strong>Issue 反馈</strong> <br /> <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors </a></li>
-								<li><strong>IRC 频道</strong> <br /> <a href="http://tuna.moe/irc/"> #tuna at freenode </a></li>
+								<li><strong>意见反馈</strong> <br /> <a href="https://github.com/tuna/issues">https://github.com/tuna/issues</a></li>
+								<li><strong>在线交流</strong> <br /> <a href="https://fishroom.tuna.moe/log/tuna/today"> #tuna at freenode </a></li>
 							</ul>
 						</div>
 						<div>
 							<h4> <span class="fa fa-external-link"></span> 相关链接 </h4>
 							<ul>
-								<li><a href="/help/#AOSP">使用帮助</a></li>
+								<li><a href="/help/">使用帮助</a></li>
 								<li><a href="/status/">服务器状态</a></li>
 							</ul>
 						</div>
