@@ -41,7 +41,7 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/tunet.json -O static/tunet.json
 #### 表单选择
 例如 <http://mirrors.tuna.tsinghua.edu.cn/help/gitlab-ce/> 中，通过表单选择操作系统和版本号，生成对应配置文件的代码为:
 
-```
+```html
 <form class="form-inline">
 <div class="form-group">
 	<label>你的Debian/Ubuntu版本: </label>
