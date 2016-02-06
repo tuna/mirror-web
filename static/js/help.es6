@@ -28,8 +28,8 @@ $(document).ready(() => {
 	});
 
 	$('#help-select').on('change', (ev) => {
-		let help_item = $(ev.target).find("option:selected").attr('data-help-item');
-		showHelp(help_item);
+		let help_url = $(ev.target).find("option:selected").attr('data-help-url');
+		window.location = `${window.location.protocol}//${window.location.host}${help_url}`;
 	});
 
 });

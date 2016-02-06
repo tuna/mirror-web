@@ -4,12 +4,13 @@
 <body>
 	{% include nav.html %}
 
+{% assign help_pages = (site.categories["help"] | sort: 'mirrorid') %}
 <div id="help-page">
 	<div class="container">
 	  <div class="row">
 		  <div class="col-sm-2 hidden-xs">
 				<ul class="nav nav-pills nav-stacked" id="help-nav">
-					{% for h in site.categories["help"] reversed %}
+					{% for h in help_pages %}
 					<li{% if h.mirrorid == page.mirrorid%} class="active"{%endif%}><a href="{{h.url}}">{{h.mirrorid}}</a></li>
 					{% endfor %}
 				</ul>
@@ -20,8 +21,8 @@
 						<div class="form-group">
 							<label>选择帮助条目: </label>
 							<select class="form-control" id="help-select">
-								{% for h in site.categories["help"]%}
-								<option>{{h.mirrorid}}</option>
+								{% for h in help_pages %}
+								<option data-help-url="{{h.url}}">{{h.mirrorid}}</option>
 								{% endfor %}
 							</select>
 						</div>
