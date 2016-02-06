@@ -1,0 +1,77 @@
+---
+permalink: /status/
+---
+<!DOCTYPE html>
+<html>
+	{% include head.html %}
+<body>
+	{% include nav.html %}
+	<div id="status-page">
+		<div class="spacing hidden-xs"></div>
+		<div class="container">
+			<h3> # 服务器监控 </h3>
+			<h4> # 网络流量 </h4>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="thumbnail">
+					<img class="img-responsive" src="/static/status/service_traffic_IPv4-day.png">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="thumbnail">
+					<img class="img-responsive" src="/static/status/service_traffic_IPv6-day.png">
+					</div>
+				</div>
+			</div>
+			<h4># 磁盘状态 </h4>
+			<div class="row">
+				<div class="col-md-12"><strong>磁盘占用</strong>: </div>
+				<div class="col-md-12">
+				<div class="progress">
+					<div id="disk-usage-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					</div>
+				</div>
+				</div>
+				<div class="col-md-6">
+					<div class="thumbnail">
+					<img class="img-responsive" src="/static/status/diskstats_iops-day.png">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="thumbnail">
+					<img class="img-responsive" src="/static/status/diskstats_throughput-day.png">
+					</div>
+				</div>
+			</div>
+			<h4># CPU / 内存</h4>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="thumbnail">
+					<img class="img-responsive" src="/static/status/cpu-day.png">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="thumbnail">
+					<img class="img-responsive" src="/static/status/memory-day.png">
+					</div>
+				</div>
+			</div>
+		</div><!--/container -->
+	</div><!--/status -->
+	{% include footer.html %}
+	<script>
+$(document).ready(function(){
+	$.get("/static/status/disk.json", function(d){
+		var used_percent = Math.round(d.used_kb * 100 / d.total_kb);
+		$('#disk-usage-bar')
+			.attr("aria-valuenow", used_percent)
+			.css("width", used_percent + "%")
+			.html("<strong>" + d.used_readable + " / " + d.total_readable + "</strong>");
+	});
+});
+	</script>
+</body>
+</html>
+<!--
+vim: ts=2 sts=2 sw=2 noexpandtab
+-->
