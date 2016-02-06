@@ -1,0 +1,44 @@
+---
+permalink: /help/
+---
+<!DOCTYPE html>
+<html>
+	{% include head.html %}
+<body>
+	{% include nav.html %}
+
+<div id="help-page">
+	<div class="container">
+	  <div class="row">
+		  <div class="col-sm-2 hidden-xs">
+				<ul class="nav nav-pills nav-stacked" id="help-nav">
+					{% for h in site.categories["help"]%}
+					<li><a href="{{h.url}}">{{h.mirrorid}}</a></li>
+					{% endfor %}
+				</ul>
+			</div><!-- sidenave -->
+			<div class="col-sm-10">
+				<div class="visible-xs">
+					<form class="form-inline">
+						<div class="form-group">
+							<label>选择帮助条目: </label>
+							<select class="form-control" id="help-select"></select>
+						</div>
+					</form>
+				</div>
+				<div id="spinner">
+					<i class="fa fa-spinner fa-spin"></i>
+					<div>载入中</div>
+				</div>
+				<div id="help-content"></div>
+			</div><!-- help content -->
+	  </div>
+	</div><!--/container -->
+</div><!--/mirrors -->
+
+	{% include footer.html %}
+</body>
+</html>
+<!--
+vim: ts=2 sts=2 sw=2 noexpandtab
+-->

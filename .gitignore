@@ -1,6 +1,7 @@
 *.swp
 *~
-/lib/tunasync.json
-/lib/tunet.json
-/node_modules
-/dist
+/Gemfile.lock
+/.jekyll-metadata
+/static/tunasync.json
+/static/tunet.json
+/_site

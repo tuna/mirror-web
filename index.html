@@ -1,0 +1,102 @@
+---
+permalink: /
+---
+<!DOCTYPE html>
+<html>
+	{% include head.html %}
+	<body>
+		{% include nav.html %}
+
+		<div id="mirrors">
+			<div class="spacing hidden-xs"></div>
+			<div class="container">
+				<div class="row">
+					<div class="space"></div>
+					<div class="col-md-12">
+						<div id="thu-alert" class="alert alert-danger hidden">
+							<i class="glyphicon glyphicon-exclamation-sign"></i>
+							<strong>清华用户您好，我们发现您正在通过校外线路访问 mirrors（可能是因为您设置了校外的DNS服务器），
+								为避免产生不必要的校外流量，
+								建议您通过 <a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a>
+								访问和使用 TUNA mirrors 资源。
+							</strong>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 table-responsive">
+						<h3><span class="fa fa-cube"></span> 镜像列表 </h3>
+						<table class="table">
+							<thead>
+								<tr class="row">
+									<th class="col-sm-8">Name</th>
+									<th class="col-sm-4">Last Update</th>
+								</tr>
+							</thead>
+							<tbody id="mirror-list">
+							</tbody>
+						</table>
+					</div>
+					<div class="col-md-4">
+						<div class="spacing hidden-xs"></div>
+						<div id="news">
+							<h4><span class="fa fa-bullhorn"></span> 新闻公告 </h4>
+							<ul>
+								<li><a href="/news/#gitlab-ce-mirror"><strong>2015-11-11</strong> 新增 Chakra, Mageia, gitlab-ce 镜像 </a></li>
+								<li><a href="/news/#cygwin-mirror"><strong>2015-11-04</strong> 新增 cygwin 镜像 </a></li>
+								<li><a href="/news/#aosp-doc-update"><strong>2015-10-13</strong> 修正 AOSP 文档 </a></li>
+							</ul>
+							<div class="text-right"><a href="/news/"> more <span class="fa fa-angle-double-right"></span> </a></div>
+						</div>
+						<div>
+							<h4> <span class="fa fa-link"></span> 域名选择 </h4>
+							<ul>
+								<li><a href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> 自动选择 </li>
+								<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
+								<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
+								<li><a href="http://mirrors.i.tuna.tsinghua.edu.cn/">http://mirrors.i.tuna.tsinghua.edu.cn/</a> 只解析清华 IP</li>
+							</ul>
+						</div>
+						<div>
+							<h4> <span class="fa fa-envelope-o"></span> 联系我们 </h4>
+							<ul>
+								<li><strong>订阅邮件列表</strong> <br /> thu-opensource-mirror-admin@googlegroups.com <br /> 第一时间获得镜像站动态</li>
+								<li><strong>Issue 反馈</strong> <br /> <a href="https://issues.tuna.tsinghua.edu.cn/?queue=mirrors">https://issues.tuna.tsinghua.edu.cn/?queue=mirrors </a></li>
+								<li><strong>IRC 频道</strong> <br /> <a href="http://tuna.moe/irc/"> #tuna at freenode </a></li>
+							</ul>
+						</div>
+						<div>
+							<h4> <span class="fa fa-external-link"></span> 相关链接 </h4>
+							<ul>
+								<li><a href="/help/#AOSP">使用帮助</a></li>
+								<li><a href="/status/">服务器状态</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div><!--/container -->
+		</div><!--/mirrors -->
+
+		{% include footer.html %}
+	</body>
+	{% raw %}
+	<script id="template" type="x-tmpl-markup">
+{{mirrors}}
+<tr class="status-{{status}} row">
+	<td class="col-md-8">
+		<a href="{{if url}}{{url}}{{else}}/{{name}}{{/if}}">{{name}}</a> 
+		{{if is_new}}<span class="label label-new">new</span>{{/if}}
+		{{if help}}<a href="/help/#{{name}}"><i class="fa fa-question-circle" title="Help"></i></a>{{/if}}
+	</td>
+	<td class="col-md-4">
+	{{last_update}} {{if show_status}}<span class="label label-status {{label}} hidden-xs">{{status}}</span>{{/if}}
+	</td>
+</tr>
+{{/mirrors}}
+	</script>
+	{% endraw %}
+	<script src="/static/js/index.js"></script>
+</html>
+<!--
+	vim: ts=2 sts=2 sw=2 noexpandtab
+-->
