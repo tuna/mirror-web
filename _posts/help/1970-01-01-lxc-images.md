@@ -2,7 +2,6 @@
 category: help
 layout: help
 mirrorid: lxc-images
-permalink: /help/lxc-images/
 ---
 
 ## LXC Images 镜像帮助

@@ -2,7 +2,6 @@
 category: help
 layout: help
 mirrorid: nodesource
-permalink: /help/nodesource/
 ---
 
 ## Nodesource 镜像使用帮助

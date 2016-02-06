@@ -5,3 +5,4 @@
 /static/tunasync.json
 /static/tunet.json
 /_site
+/deploy.sh

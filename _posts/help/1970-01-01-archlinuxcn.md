@@ -2,7 +2,6 @@
 category: help
 layout: help
 mirrorid: archlinuxcn
-permalink: /help/archlinuxcn/
 ---
 
 ## ArchlinuxCN 镜像使用帮助

@@ -2,7 +2,6 @@
 category: help
 layout: help
 mirrorid: rpmfusion
-permalink: /help/rpmfusion/
 ---
 
 ## RPMFusion 镜像使用帮助
