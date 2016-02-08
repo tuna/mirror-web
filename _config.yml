@@ -13,10 +13,11 @@ permalink: "/:categories/:title/"
 
 # Build settings
 highlighter: rouge
-markdown: redcarpet
+markdown: kramdown
+kramdown:
+    input: GFM
+    hard_wrap: false
 
-redcarpet:
-    extensions: ["tables", "autolink", "strikethrough"]
 
 sass:
     sass_dir: static/css

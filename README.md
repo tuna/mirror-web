@@ -5,7 +5,7 @@
 本站使用 Jekyll 编写
 
 ```
-bundle
+bundle install
 jekyll build
 ```
 
@@ -33,8 +33,7 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/tunet.json -O static/tunet.json
 
 1. 对于相对不知名的镜像项目，首先用一两句话介绍该项目
 2. 写明使用方法, 使用 Github Flavored Markdown 格式
-3. 注意多行代码的`\`\`\``之前应有一个空行(否则 jekyll 无法正确渲染)
-4. 中英文字符间应留一个空格
+3. 中英文字符间应留一个空格
 
 ### 特殊用法
 

@@ -26,9 +26,11 @@ $color_navbar_bg: #d3d3d3;
 $font_default: 'Lato', 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
 $font_local: 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
 
-@import "Lato";
-@import "structure";
-@import "bootstrap-mod";
+@import 
+	"Lato",
+	"structure",
+	"bootstrap-mod",
+	"syntax-highlighting";
 
 #thu-alert {
 	padding-left: 50px;
