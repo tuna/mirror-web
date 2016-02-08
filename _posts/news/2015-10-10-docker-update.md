@@ -13,4 +13,4 @@ docker 镜像作出相应调整。
 - APT: http://mirrors.tuna.tsinghua.edu.cn/docker/apt/repo
 - YUM: http://mirrors.tuna.tsinghua.edu.cn/docker/yum/repo
 
-请根据 [docker镜像帮助](/help/#docker) 调整至正确的打开方式。
+请根据 [docker镜像帮助](/help/docker) 调整至正确的打开方式。

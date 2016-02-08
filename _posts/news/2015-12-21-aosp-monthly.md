@@ -22,5 +22,4 @@ repo sync # 正常同步
 
 初始化完之后，以后每次就只需要执行 `repo sync` 和 TUNA 保持同步就可以了。
 
-详情参考 [AOSP 镜像使用帮助](/help/#AOSP)。
-
+详情参考 [AOSP 镜像使用帮助](/help/AOSP)。

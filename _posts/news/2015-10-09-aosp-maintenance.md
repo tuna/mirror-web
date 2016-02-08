@@ -18,4 +18,4 @@ author: Justin Wong
 目前 AOSP 镜像业务已完全恢复。
 
 我们顺便完善了 AOSP 镜像的文档，如果你是团队用户，我们强烈建议你通过 TUNA 镜像建立次级镜像，减小 TUNA mirrors
-负载。详情请参考 [AOSP 镜像帮助](/help/#AOSP)。
+负载。详情请参考 [AOSP 镜像帮助](/help/AOSP)。
