@@ -28,4 +28,4 @@ gems:
 exclude: [Gemfile, Gemfile.lock, README.md]
 
 # Content Related
-new_mirrors: [cygwin, chakra, megia, openwrt]
+new_mirrors: [openwrt, mongodb, anaconda, packman, gnu, osmc]
