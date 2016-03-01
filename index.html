@@ -43,7 +43,7 @@ permalink: /
 							<h4><span class="fa fa-bullhorn"></span> 新闻公告 </h4>
 							<ul>
 								{% for news in site.categories.news limit: 3%}
-								<li><a href="/news/#{{news.slug}}"><strong>{{news.date | date: "%Y-%m-%d"}}</strong> {{news.title}}</li>
+								<li><a href="/news/#{{news.slug}}"><strong>{{news.date | date: "%Y-%m-%d"}}</strong> {{news.title}}</a></li>
 								{% endfor %}
 							</ul>
 							<div class="text-right"><a href="/news/"> more <span class="fa fa-angle-double-right"></span> </a></div>
