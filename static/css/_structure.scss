@@ -7,10 +7,10 @@
 } 
 
 body { 
-    background: #ffffff; 
+    background: $color_background; 
     margin: 0; 
     height: 100%; 
-    color: $color_secondary;
+    color: $color_text;
     font-weight: 400;
 }
 html.wf-inactive body {
@@ -34,7 +34,6 @@ p {
     font-weight: 400;
     font-size: 14px; 
     line-height: 24px;
-    color: $color_secondary ; 
     margin-top: 10px; 
 }
 

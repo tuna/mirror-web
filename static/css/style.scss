@@ -11,6 +11,8 @@ URL: http://alvarez.is
 
 ################################################################# */ 
 
+$color_background: #000;
+$color_text: #eee;
 $color_thu_purple: #82318E;
 $color_light_grey: #888;
 $color_grey: #555;
@@ -18,8 +20,8 @@ $color_primary: $color_thu_purple;
 $color_primary_light: #d8aff6;
 $color_primary_rgb: 92,48,125;
 $color_secondary: #384452;
-$color_link: #088acb;
-$color_link_hover: #62bbe7;
+$color_link: #5cb2dd;
+$color_link_hover: #98f1f8;
 $color_footer_heading: #ffffff;
 $color_footer_content: #bfc9d3;
 $color_navbar_bg: #d3d3d3;
@@ -61,6 +63,11 @@ $font_local: 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'W
 	}
 }
 
+#cover-alert {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
 #mirrors {
 	tbody {
 		tr:hover {
@@ -92,7 +99,7 @@ $font_local: 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'W
 	}
 	#news {
 		li > a {
-			color: $color_secondary;
+			color: $color_text;
 		}
 	}
 }
@@ -112,20 +119,8 @@ $font_local: 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'W
 
 /* Footer */
 #footerwrap {
-	color: $color_footer_content;
-	margin-top: 100px;
-	padding-top: 60px;
 	padding-bottom: 60px;
-	background: $color_secondary;
-	p {
-		color: $color_footer_content;
-	}
-	h4 {
-		color: $color_footer_heading;
-	}
-	i, i:hover, a, a:hover {
-		color: $color_footer_content;
-	}
+	color: darken($color_text, 20);
 }
 
 .spacing {
