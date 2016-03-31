@@ -30,5 +30,5 @@ exclude: [Gemfile, Gemfile.lock, README.md]
 # Content Related
 new_mirrors: [openwrt, mongodb, anaconda, packman, gnu, osmc]
 
-issue: 由于机房电力系统维护，我们暂时关闭镜像服务器。由此带来不便，我们十分抱歉。
-backtime: 2016-03-13 12:00
+issue: 我们正在给 mirrors 增加存储空间，resize2fs 的速度远比想象的慢，请耐心等待。
+backtime: 2016-04-01 09:00 (如果管理员起床晚了就再推迟一会儿)
