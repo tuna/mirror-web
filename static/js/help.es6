@@ -6,18 +6,20 @@ $(document).ready(() => {
 		.addClass("table table-bordered table-striped");
 
 	var update_apt_file = (ev) => {
-		var sel = $(ev.target);
-		var os_name=sel.find("option:selected").data('os'),
+		var sel = $(ev.target),
+			os_name=sel.find("option:selected").data('os'),
 			release_name=sel.find("option:selected").data('release'),
+			opt=sel.find('option:selected').data('opt'),
 			tmpl_selector=sel.data("template"), 
 			target_selector=sel.data("target"),
-			apt_template = $.trim($(tmpl_selector).text()),
-			apt_content = Mark.up(
-			apt_template, 
-				{
-					os_name: os_name,
-					release_name: release_name
-				}
+			apt_template=$.trim($(tmpl_selector).text()),
+			tmpl_data=$.extend({}, {
+				os_name: os_name,
+				release_name: release_name
+			}, opt),
+			apt_content=Mark.up(
+				apt_template, 
+				tmpl_data
 			);
 		$(target_selector).html(apt_content);
 	};
