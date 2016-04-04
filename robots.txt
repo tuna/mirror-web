@@ -10,6 +10,7 @@ Disallow: /apache
 Disallow: /archlinux
 Disallow: /archlinuxarm
 Disallow: /archlinuxcn
+Disallow: /bananian
 Disallow: /centos
 Disallow: /chakra
 Disallow: /cygwin
