@@ -10,6 +10,7 @@ title: 清华大学 TUNA 镜像源
 brand: TUNA mirrors
 baseurl: "" # the subpath of your site, e.g. /blog
 permalink: "/:categories/:title/"
+url: "https://mirrors.tuna.tsinghua.edu.cn"
 
 # Build settings
 highlighter: rouge
