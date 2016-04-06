@@ -5,6 +5,7 @@ Disallow: /AOSP
 Disallow: /CRAN
 Disallow: /CTAN
 Disallow: /OpenBSD
+Disallow: /alpine
 Disallow: /anaconda
 Disallow: /apache
 Disallow: /archlinux
