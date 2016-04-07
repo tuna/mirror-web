@@ -30,4 +30,4 @@ gems:
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh]
 
 # Content Related
-new_mirrors: [openwrt, mongodb, anaconda, packman, gnu, osmc, bananian]
+new_mirrors: [anaconda, packman, gnu, osmc, bananian, alpine]
