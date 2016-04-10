@@ -29,6 +29,7 @@ Disallow: /fedora
 Disallow: /gentoo
 Disallow: /gentoo-portage
 Disallow: /gitlab-ce
+Disallow: /gitlab-ci-multi-runner
 Disallow: /gnu
 Disallow: /hackage
 Disallow: /homebrew
