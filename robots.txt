@@ -14,6 +14,7 @@ Disallow: /archlinuxcn
 Disallow: /bananian
 Disallow: /centos
 Disallow: /chakra
+Disallow: /ctex
 Disallow: /cygwin
 Disallow: /debian
 Disallow: /debian-cd
