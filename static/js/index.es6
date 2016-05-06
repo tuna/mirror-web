@@ -51,6 +51,9 @@ window.refreshMirrorList = () => {
 			d['help_url'] = help_url[d['name']];
 			d['is_new'] = new_mirrors[d['name']];
 			d['show_status'] = (d.status != "success");
+			if (d['is_master'] === undefined) {
+				d['is_master'] = true;
+			}
 			// Strip the second component of last_update
 			if (d['last_update_ts']) {
 				let date = new Date(d['last_update_ts'] * 1000);

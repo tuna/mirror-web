@@ -83,6 +83,7 @@ permalink: /
 	{% raw %}
 	<script id="template" type="x-tmpl-markup">
 {{mirrors}}
+{{if is_master}}
 <tr class="status-{{status}} row">
 	<td class="col-md-8">
 		<a href="{{if url}}{{url}}{{else}}/{{name}}{{/if}}">{{name}}</a> 
@@ -93,6 +94,7 @@ permalink: /
 	{{last_update}} {{if show_status}}<span class="label label-status {{label}} hidden-xs">{{status}}</span>{{/if}}
 	</td>
 </tr>
+{{/if}}
 {{/mirrors}}
 	</script>
 	{% endraw %}
