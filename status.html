@@ -9,7 +9,7 @@ permalink: /status/
 	<div id="status-page">
 		<div class="spacing hidden-xs"></div>
 		<div class="container">
-			<h3> # 服务器监控 </h3>
+			<h3 id="server-status"> # 服务器监控 </h3>
 			<h4> # 网络流量 </h4>
 			<div class="row">
 				<div class="col-md-6">
@@ -56,20 +56,37 @@ permalink: /status/
 					</div>
 				</div>
 			</div>
+			<h3 id="syncing-status"># 同步状态</h3>
+			<div>
+				<div class="thead row">
+					<div>
+						<div class="col-md-2">Name</div>
+						<div class="col-md-2">Last Update</div>
+						<div class="col-md-5">Upstream</div>
+						<div class="col-md-1">Status</div>
+						<div class="col-md-2">Size</div>
+					</div>
+				</div>
+				<div id="mirror-list">
+				</div>
+			</div>
 		</div><!--/container -->
 	</div><!--/status -->
 	{% include footer.html %}
-	<script>
-$(document).ready(function(){
-	$.get("/static/status/disk.json", function(d){
-		var used_percent = Math.round(d.used_kb * 100 / d.total_kb);
-		$('#disk-usage-bar')
-			.attr("aria-valuenow", used_percent)
-			.css("width", used_percent + "%")
-			.html("<strong>" + d.used_readable + " / " + d.total_readable + "</strong>");
-	});
-});
+	{% raw %}
+	<script id="template" type="x-tmpl-markup">
+{{mirrors}}
+<div class="status-{{status}} row">
+	<div class="col-md-2">{{name}}{{if is_master|falsy}}[slave]{{/if}}</div>
+	<div class="col-md-2">{{last_update}}</div>
+	<div class="col-md-5">{{upstream}}</div>
+	<div class="col-md-1">{{status}}</div>
+	<div class="col-md-2">{{size}}</div>
+</div>
+{{/mirrors}}
 	</script>
+	{% endraw %}
+	<script src="/static/js/status.js"></script>
 </body>
 </html>
 <!--

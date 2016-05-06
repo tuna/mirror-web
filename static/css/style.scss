@@ -97,6 +97,23 @@ $font_local: 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'W
 	}
 }
 
+#status-page {
+	.thead {
+		font-weight: bold;	
+	}
+	#mirror-list {
+		.status-syncing {
+			background-color: #e3fffd;
+		}
+		:hover {
+			background-color: #e0f3fc;
+		}
+		.status-fail, .status-failed {
+			background-color: #fff4e3;
+		}
+	}
+}
+
 #help-page {
 	margin-top: 40px;
 	margin-bottom: 40px;
