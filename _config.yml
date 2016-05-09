@@ -30,4 +30,4 @@ gems:
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh]
 
 # Content Related
-new_mirrors: [anaconda, packman, gnu, osmc, bananian, alpine, gitlab-ci-multi-runner, ctex]
+new_mirrors: [anaconda, packman, gnu, bananian, alpine, gitlab-ci-multi-runner, ctex, remi, blackarch]
