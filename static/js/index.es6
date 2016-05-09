@@ -44,27 +44,27 @@ window.refreshMirrorList = () => {
 
 		for(var k in mir_data) {
 			var d = mir_data[k];
-			if (options[d['name']] != undefined ) {
-				d = $.extend(d, options[d['name']]);
+			if (options[d.name] != undefined ) {
+				d = $.extend(d, options[d.name]);
 			}
-			d['label'] = label_map[d['status']];
-			d['help_url'] = help_url[d['name']];
-			d['is_new'] = new_mirrors[d['name']];
-			d['show_status'] = (d.status != "success");
-			if (d['is_master'] === undefined) {
-				d['is_master'] = true;
+			d.label = label_map[d.status];
+			d.help_url = help_url[d.name];
+			d.is_new = new_mirrors[d.name];
+			d.show_status = (d.status != "success");
+			if (d.is_master === undefined) {
+				d.is_master = true;
 			}
 			// Strip the second component of last_update
-			if (d['last_update_ts']) {
-				let date = new Date(d['last_update_ts'] * 1000);
+			if (d.last_update_ts) {
+				let date = new Date(d.last_update_ts * 1000);
 				if (date.getFullYear() > 2000) {
-					d['last_update'] = `${('000'+date.getFullYear()).substr(-4)}-${('0'+(date.getMonth()+1)).substr(-2)}-${('0'+(date.getDay()+1)).substr(-2)}` +
+					d.last_update = `${('000'+date.getFullYear()).substr(-4)}-${('0'+(date.getMonth()+1)).substr(-2)}-${('0'+date.getDate()).substr(-2)}` +
 						` ${('0'+date.getHours()).substr(-2)}:${('0'+date.getMinutes()).substr(-2)}`;
 				} else {
-					d['last_update'] = "0000-00-00 00:00";
+					d.last_update = "0000-00-00 00:00";
 				}
 			} else {
-				d['last_update'] = d['last_update'].replace(/(\d\d:\d\d):\d\d(\s\+\d\d\d\d)?/, '$1');
+				d.last_update = d.last_update.replace(/(\d\d:\d\d):\d\d(\s\+\d\d\d\d)?/, '$1');
 			}
 			mirrors.push(d);
 		}

@@ -26,7 +26,7 @@ $(document).ready(() => {
 				if (d.last_update_ts) {
 					let date = new Date(d.last_update_ts * 1000);
 					if (date.getFullYear() > 2000) {
-						d.last_update = `${('000'+date.getFullYear()).substr(-4)}-${('0'+(date.getMonth()+1)).substr(-2)}-${('0'+(date.getDay()+1)).substr(-2)}` +
+						d.last_update = `${('000'+date.getFullYear()).substr(-4)}-${('0'+(date.getMonth()+1)).substr(-2)}-${('0'+date.getDate()).substr(-2)}` +
 							` ${('0'+date.getHours()).substr(-2)}:${('0'+date.getMinutes()).substr(-2)}`;
 					} else {
 						d.last_update = "0000-00-00 00:00";
