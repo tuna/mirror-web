@@ -4,6 +4,8 @@ User-agent: *
 Disallow: /AOSP
 Disallow: /CRAN
 Disallow: /CTAN
+Disallow: /CocoaPods
+Disallow: /ELK
 Disallow: /OpenBSD
 Disallow: /alpine
 Disallow: /anaconda
@@ -26,6 +28,7 @@ Disallow: /deepin-cd
 Disallow: /deepin
 Disallow: /docker
 Disallow: /dotdeb
+Disallow: /elpa
 Disallow: /elrepo
 Disallow: /epel
 Disallow: /fedora
