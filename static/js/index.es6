@@ -44,6 +44,9 @@ window.refreshMirrorList = () => {
 
 		for(var k in mir_data) {
 			var d = mir_data[k];
+			if (d.status == "disabled") {
+				continue;	
+			}
 			if (options[d.name] != undefined ) {
 				d = $.extend(d, options[d.name]);
 			}
