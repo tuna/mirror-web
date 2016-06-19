@@ -9,6 +9,7 @@ Disallow: /ELK
 Disallow: /OpenBSD
 Disallow: /alpine
 Disallow: /anaconda
+Disallow: /antergos
 Disallow: /anthon
 Disallow: /apache
 Disallow: /archlinux
@@ -17,6 +18,7 @@ Disallow: /archlinuxcn
 Disallow: /bananian
 Disallow: /blackarch
 Disallow: /centos
+Disallow: /ceph
 Disallow: /chakra
 Disallow: /ctex
 Disallow: /cygwin
@@ -62,11 +64,13 @@ Disallow: /openwrt
 Disallow: /osmc
 Disallow: /packman
 Disallow: /puppy
+Disallow: /pybombs
 Disallow: /pypi
 Disallow: /qt
 Disallow: /raspbian
 Disallow: /remi
 Disallow: /repo-ck
+Disallow: /repoforge
 Disallow: /rpmfusion
 Disallow: /sagemath
 Disallow: /slackware
@@ -76,3 +80,4 @@ Disallow: /ubuntu-ports
 Disallow: /ubuntu-releases
 Disallow: /ubuntu
 Disallow: /videolan-ftp
+Disallow: /virtualbox
