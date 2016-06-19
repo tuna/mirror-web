@@ -35,5 +35,5 @@ VirtualBox 镜像使用帮助
 
 ** 待更新
 
-**BUG报告**: https://github.com/tuna/issues
+**BUG报告**: <https://github.com/tuna/issues>
 
