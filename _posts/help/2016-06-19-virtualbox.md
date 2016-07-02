@@ -6,7 +6,7 @@ mirrorid: virtualbox
 
 # VirtualBox 镜像使用帮助
 
-[Oracle Virtualbox](https://www.virtualbox.org/) 是由德国 InnoTek 公司出品的开源虚拟机软件，现在则由甲骨文公司进行开发。是甲骨文公司xVM虚拟化平台技术的一部分，采用 GPL 许可证开源。
+[Oracle Virtualbox](https://www.virtualbox.org/) VirtualBox 是一款开源虚拟机软件。由德国 Innotek 公司开发，Sun Microsystems 公司出品。使用Qt编写，在 Sun 被 Oracle 收购后正式更名成 Oracle VM VirtualBox。采用 GPL 协议开源。
 
 ## Microsoft Windows
 
@@ -17,11 +17,11 @@ mirrorid: virtualbox
 
 [点击下载 OS X 最新版](https://mirrors.tuna.tsinghua.edu.cn/virtualbox/virtualbox-osx-latest.dmg)
 
-## Linux
+# Linux
 
-### 通过编译好的二进制包安装
+## 通过编译好的二进制包安装
 
-请访问该镜像下最新的目录（例如`5.0.22`），找到名为 <发行版名称>~<发行代号>~<架构> 的文件，如 <code>virtualbox-5.0_5.0.22-108108~Ubuntu~xenial_i386.deb</code> ，下载安装即可。
+访问该镜像下最新的目录（例如`5.0.24`），找到名为<发行版名称>~<发行代号>~<架构> 的文件，如 `virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_i386.deb` ，下载安装即可。
 
 目前支持的系统有：
 
@@ -32,11 +32,48 @@ mirrorid: virtualbox
 * SUSE Linux Enterprise Server
 * Oracle Linux / Red Hat Enterprise Linux / CentOS
 
-如果您所使用的发行版不在上述列表之内，请下载通用的`.run`文件（例如`VirtualBox-5.0.22-108108-Linux_x86.run`），然后使用 `chmod +x` 给予执行权限后，直接安装即可。
+如果您所使用的发行版不在上述列表之内，请下载通用的`run`文件（例如`VirtualBox-5.0.24-108355-Linux_x86.run`），然后使用 `chmod +x` 给予执行权限后，直接安装即可。
 
 ### 通过包管理器安装 
+## Debian / Ubuntu 用户
+首先信任 Virtualbox 的 GPG 公钥：
+* 对于 Debian 8 和 Ubuntu 16.04 及以上：
+```shell
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+```
+* 其他版本
+```shell
+wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+```
+再选择你的 Debian/Ubuntu 版本，将文本框中内容写进`/etc/apt/sources.list.d/virtualbox.list`
 
-_待更新_
+<form class="form-inline">
+<div class="form-group">
+    <label>你的Debian/Ubuntu版本: </label>
+    <select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
+      <option data-os="debian" data-release="jessie" selected>Debian 8 (Jessie)</option>
+	  <option data-os="debian" data-release="wheezy">Debian 7 (Wheezy)</option>
+	  <option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
+      <option data-os="ubuntu" data-release="trusty">Ubuntu 14.04 LTS</option>
+    </select>
+</div>
+</form>
 
+<p></p>
+<pre>
+<code id="apt-content">
+</code>
+</pre>
+
+{% raw %}
+<script id="apt-template" type="x-tmpl-markup">
+deb https://mirrors.tuna.tsinghua.edu.cn/virtualbox/apt//{{os_name}} {{release_name}} contrib
+</script>
+{% endraw %}
+
+安装 VirtualBox:
+```
+sudo apt-get update
+sudo apt-get install virtualbox-5.0
+```
 **BUG报告**: <https://github.com/tuna/issues>
-
