@@ -35,16 +35,23 @@ mirrorid: virtualbox
 如果您所使用的发行版不在上述列表之内，请下载通用的`run`文件（例如`VirtualBox-5.0.24-108355-Linux_x86.run`），然后使用 `chmod +x` 给予执行权限后，直接安装即可。
 
 ### 通过包管理器安装 
+
 ## Debian / Ubuntu 用户
+
 首先信任 Virtualbox 的 GPG 公钥：
-* 对于 Debian 8 和 Ubuntu 16.04 及以上：
+
+对于 Debian 8 和 Ubuntu 16.04 及以上：
+
 ```shell
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 ```
-* 其他版本
+
+其他版本
+
 ```shell
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 ```
+
 再选择你的 Debian/Ubuntu 版本，将文本框中内容写进`/etc/apt/sources.list.d/virtualbox.list`
 
 <form class="form-inline">
@@ -72,8 +79,10 @@ deb https://mirrors.tuna.tsinghua.edu.cn/virtualbox/apt//{{os_name}} {{release_n
 {% endraw %}
 
 安装 VirtualBox:
+
 ```
 sudo apt-get update
 sudo apt-get install virtualbox-5.0
 ```
+
 **BUG报告**: <https://github.com/tuna/issues>
