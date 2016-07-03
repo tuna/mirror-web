@@ -28,6 +28,7 @@ Disallow: /debian-security
 Disallow: /debian
 Disallow: /deepin-cd
 Disallow: /deepin
+Disallow: /dell
 Disallow: /docker
 Disallow: /dotdeb
 Disallow: /elpa
@@ -53,6 +54,7 @@ Disallow: /linuxmint-cd
 Disallow: /linuxmint
 Disallow: /lxc-images
 Disallow: /mageia
+Disallow: /manjaro-cd
 Disallow: /manjaro
 Disallow: /mariadb
 Disallow: /mongodb
