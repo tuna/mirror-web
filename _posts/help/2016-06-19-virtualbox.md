@@ -21,7 +21,8 @@ mirrorid: virtualbox
 
 ## 通过编译好的二进制包安装
 
-访问该镜像下最新的目录（例如`5.0.24`），找到名为<发行版名称>~<发行代号>~<架构> 的文件，如 `virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_i386.deb` ，下载安装即可。
+访问该镜像下最新的目录（例如`5.0.24`），找到名为<发行版名称>~<发行代号>~<架构> 的文件。
+如 `virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_i386.deb` 下载安装即可。
 
 目前支持的系统有：
 
@@ -35,7 +36,7 @@ mirrorid: virtualbox
 如果您所使用的发行版不在上述列表之内，请下载通用的`run`文件（例如`VirtualBox-5.0.24-108355-Linux_x86.run`），然后使用 `chmod +x` 给予执行权限后，直接安装即可。
 
 ### 通过包管理器安装 
-## Debian / Ubuntu 用户
+#### Debian / Ubuntu 用户
 首先信任 Virtualbox 的 GPG 公钥：
 * 对于 Debian 8 和 Ubuntu 16.04 及以上：
 ```shell
@@ -67,7 +68,7 @@ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key a
 
 {% raw %}
 <script id="apt-template" type="x-tmpl-markup">
-deb https://mirrors.tuna.tsinghua.edu.cn/virtualbox/apt//{{os_name}} {{release_name}} contrib
+deb https://mirrors.tuna.tsinghua.edu.cn/virtualbox/apt/ {{release_name}} contrib
 </script>
 {% endraw %}
 
