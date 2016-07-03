@@ -21,7 +21,8 @@ mirrorid: virtualbox
 
 ## 通过编译好的二进制包安装
 
-访问该镜像下最新的目录（例如`5.0.24`），找到名为<发行版名称>~<发行代号>~<架构> 的文件，如 `virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_i386.deb` ，下载安装即可。
+访问该镜像下最新的目录（例如`5.0.24`），找到名为<发行版名称>~<发行代号>~<架构> 的文件。
+如 `virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_i386.deb` 下载安装即可。
 
 目前支持的系统有：
 
@@ -36,7 +37,7 @@ mirrorid: virtualbox
 
 ### 通过包管理器安装 
 
-## Debian / Ubuntu 用户
+#### Debian / Ubuntu 用户
 
 首先信任 Virtualbox 的 GPG 公钥：
 
@@ -56,13 +57,13 @@ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key a
 
 <form class="form-inline">
 <div class="form-group">
-    <label>你的Debian/Ubuntu版本: </label>
-    <select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
-      <option data-os="debian" data-release="jessie" selected>Debian 8 (Jessie)</option>
-	  <option data-os="debian" data-release="wheezy">Debian 7 (Wheezy)</option>
-	  <option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
-      <option data-os="ubuntu" data-release="trusty">Ubuntu 14.04 LTS</option>
-    </select>
+  <label>你的Debian/Ubuntu版本: </label>
+  <select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
+    <option data-os="debian" data-release="jessie" selected>Debian 8 (Jessie)</option>
+    <option data-os="debian" data-release="wheezy">Debian 7 (Wheezy)</option>
+    <option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
+    <option data-os="ubuntu" data-release="trusty">Ubuntu 14.04 LTS</option>
+  </select>
 </div>
 </form>
 
@@ -74,7 +75,7 @@ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key a
 
 {% raw %}
 <script id="apt-template" type="x-tmpl-markup">
-deb https://mirrors.tuna.tsinghua.edu.cn/virtualbox/apt//{{os_name}} {{release_name}} contrib
+deb https://mirrors.tuna.tsinghua.edu.cn/virtualbox/apt/ {{release_name}} contrib
 </script>
 {% endraw %}
 
