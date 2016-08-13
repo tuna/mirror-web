@@ -30,4 +30,4 @@ gems:
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh]
 
 # Content Related
-new_mirrors: [remi, blackarch, ELK, CocoaPods, elpa, pybombs, ceph, antergos, virtualbox, dell, manjaro-cd]
+new_mirrors: [virtualbox, dell, manjaro-cd, grafana, jenkins, influxdata, mysql, parrot]
