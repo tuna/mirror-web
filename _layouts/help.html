@@ -22,7 +22,7 @@
 							<label>选择帮助条目: </label>
 							<select class="form-control" id="help-select">
 								{% for h in help_pages %}
-								<option data-help-url="{{h.url}}">{{h.mirrorid}}</option>
+								<option data-help-url="{{h.url}}"{% if h.mirrorid == page.mirrorid%} selected{%endif%}>{{h.mirrorid}}</option>
 								{% endfor %}
 							</select>
 						</div>
