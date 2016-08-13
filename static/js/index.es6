@@ -1,6 +1,12 @@
 ---
 ---
 $(document).ready(() => {
+var lei3Po8h = ["support", ["tuna", "tsinghua", "edu", "cn"].join(".")].join("@");
+$('a#eib1gieB')
+	.text(lei3Po8h)
+	.attr('href', atob('bWFpbHRvOgo=') + lei3Po8h);
+
+
 var mir_tmpl = $("#template").text(),
 	label_map = {
 		'unknown': 'label-default',
@@ -71,12 +77,6 @@ window.refreshMirrorList = () => {
 	setTimeout(refreshMirrorList, 10000);
 }
 refreshMirrorList();
-
-$.getJSON("/static/tunet.json", (to_alert) => {
-	if (to_alert) {
-		$('#thu-alert').removeClass('hidden');
-	};
-});
 
 });
 
