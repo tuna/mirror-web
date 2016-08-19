@@ -33,6 +33,9 @@ var mir_tmpl = $("#template").text(),
 	options = {
 		'AOSP': {
 			'url': "/help/AOSP/",
+		},
+		'homebrew': {
+			'url': "/help/homebrew/",
 		}
 	};
 
