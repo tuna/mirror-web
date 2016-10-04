@@ -27,7 +27,7 @@ gems:
     - jekyll-babel
     - jekyll-sitemap
 
-exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh]
+exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor]
 
 # Content Related
 new_mirrors: [virtualbox, dell, manjaro-cd, grafana, jenkins, influxdata, mysql, parrot, rubygems]
