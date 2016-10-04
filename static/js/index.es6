@@ -14,6 +14,7 @@ var mir_tmpl = $("#template").text(),
 		'success': 'label-success',
 		'fail': 'label-warning',
 		'failed': 'label-warning',
+		'paused': 'label-warning',
 	}, 
 	help_url = {
 		{% for h in site.categories['help'] %}"{{h.mirrorid}}": "{{h.url}}"{% if forloop.index < forloop.length %},{% endif %}{% endfor %}
