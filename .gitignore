@@ -7,3 +7,5 @@
 /_site
 /deploy.sh
 /.sass-cache/
+.bundle
+vendor
