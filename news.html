@@ -24,7 +24,7 @@ permalink: /news/
 							<div class="meta">
 								<span class="fa fa-calendar"></span> {{news.date | date: "%Y-%m-%d"}} <span class="fa fa-user" style="margin-left: 1em"> {{ news.author }}</span>
 							</div>
-							<div class="content">{{news.content || markdownify }}</div>
+							<div class="content">{{news.content | markdownify }}</div>
 						</article>
 						<hr />
 						{% endfor %}
