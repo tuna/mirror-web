@@ -30,4 +30,4 @@ gems:
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor]
 
 # Content Related
-new_mirrors: [virtualbox, dell, manjaro-cd, grafana, jenkins, influxdata, mysql, parrot, rubygems]
+new_mirrors: [arch4edu, ros, elvish, HHVM, steamos, bjlx, loongson, tensorflow, elastic]
