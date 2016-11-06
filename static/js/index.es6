@@ -7,6 +7,7 @@ $('a#eib1gieB')
 	.attr('href', atob('bWFpbHRvOgo=') + lei3Po8h);
 
 
+
 var mir_tmpl = $("#template").text(),
 	label_map = {
 		'unknown': 'label-default',
@@ -15,7 +16,7 @@ var mir_tmpl = $("#template").text(),
 		'fail': 'label-warning',
 		'failed': 'label-warning',
 		'paused': 'label-warning',
-	}, 
+	},
 	help_url = {
 		{% for h in site.categories['help'] %}"{{h.mirrorid}}": "{{h.url}}"{% if forloop.index < forloop.length %},{% endif %}{% endfor %}
 	},
@@ -43,13 +44,13 @@ var mir_tmpl = $("#template").text(),
 window.refreshMirrorList = () => {
 	$.getJSON("/static/tunasync.json", (status_data) => {
 		var mirrors = [], mir_data = $.merge(status_data, unlisted);
-		
+
 		mir_data.sort((a, b) => { return a.name < b.name ? -1: 1 });
 
 		for(var k in mir_data) {
 			var d = mir_data[k];
 			if (d.status == "disabled") {
-				continue;	
+				continue;
 			}
 			if (options[d.name] != undefined ) {
 				d = $.extend(d, options[d.name]);
@@ -80,6 +81,36 @@ window.refreshMirrorList = () => {
 	});
 	setTimeout(refreshMirrorList, 10000);
 }
+
+window.modal = () => {
+	var bx = document.getElementById("isomodal");
+	bx.style.visibility = (bx.style.visibility == "visible") ? "hidden" : "visible";
+}
+
+window.switchDistro = () => {
+	var distro = document.getElementById("isodistro");
+	var idx = distro.selectedIndex;
+	var s = document.getElementById('isoversion');
+	s.options.length = 0;
+	for (var i = 0; i < isoinfo[idx].urls.length; i++) {
+		s.options[s.options.length] = new Option(isoinfo[idx].urls[i].name, i)
+	}
+}
+
+var refreshISOList = () => {
+	$.getJSON("/static/isoinfo.json", (isoinfo) => {
+		window.isoinfo = isoinfo;
+		window.s = document.getElementById("isodistro");
+		s.options.length = 0;
+		for (var i = 0; i < isoinfo.length; i++) {
+			s.options[s.options.length] = new Option(isoinfo[i].distro, i);
+		}
+		switchDistro();
+	});
+}
+
+refreshISOList();
+
 refreshMirrorList();
 
 });

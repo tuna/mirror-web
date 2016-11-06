@@ -26,6 +26,12 @@ permalink: /
 					</div>
 					<div class="col-md-4">
 						<div class="spacing hidden-xs"></div>
+						<div id="wizard">
+							<!-- Button trigger iso modal -->
+							<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#isoModal">
+								获取安装镜像
+							</button>
+						</div>
 						<div id="news">
 							<h4><span class="fa fa-bullhorn"></span> 新闻公告 </h4>
 							<ul>
@@ -68,6 +74,32 @@ permalink: /
 		</div><!--/mirrors -->
 
 		{% include footer.html %}
+		<!-- iso download wizard modal -->
+		<!-- Modal -->
+		<div class="modal fade" id="isoModal" tabindex="-1" role="dialog" aria-labelledby="isoModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		        <h4 class="modal-title" id="isoModalLabel">获取安装镜像</h4>
+		      </div>
+		      <div class="modal-body">
+						<p>选择安装发行版： <select id="isodistro" onchange="switchDistro()"></select></p>
+						<p>选择发行版版本： <select id="isoversion">
+								<option value="none">-</option>
+						</select>
+						</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+		        <button type="button" class="btn btn-primary">下载</button>
+		      </div>
+		    </div>
+		  </div>
+		</div><!-- /iso download wizard modal -->
+
 	</body>
 	{% raw %}
 	<script id="template" type="x-tmpl-markup">
@@ -75,7 +107,7 @@ permalink: /
 {{if is_master}}
 <tr class="status-{{status}} row">
 	<td class="col-md-8">
-		<a href="{{if url}}{{url}}{{else}}/{{name}}{{/if}}">{{name}}</a> 
+		<a href="{{if url}}{{url}}{{else}}/{{name}}{{/if}}">{{name}}</a>
 		{{if is_new}}<span class="label label-new">new</span>{{/if}}
 		{{if help_url}}<a href="{{help_url}}"><i class="fa fa-question-circle" title="Help"></i></a>{{/if}}
 	</td>
