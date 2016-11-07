@@ -15,4 +15,4 @@ TUNA 镜像站新增一系列镜像。
 - steamos: 不解释，剁手专用
 - bjlx: [北京龙芯 & Debian 俱乐部](http://www.bjlx.org.cn/) 的公开源 
 - loongson: 用于龙芯电脑的软件包
-- elastic: 数据可视化与分析工具
+- elasticstack: ELK 系列数据分析工具，5.x 之后改名为 elastic stack
