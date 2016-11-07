@@ -15,7 +15,7 @@ var mir_tmpl = $("#template").text(),
 		'fail': 'label-warning',
 		'failed': 'label-warning',
 		'paused': 'label-warning',
-	}, 
+	},
 	help_url = {
 		{% for h in site.categories['help'] %}"{{h.mirrorid}}": "{{h.url}}"{% if forloop.index < forloop.length %},{% endif %}{% endfor %}
 	},
@@ -43,13 +43,13 @@ var mir_tmpl = $("#template").text(),
 window.refreshMirrorList = () => {
 	$.getJSON("/static/tunasync.json", (status_data) => {
 		var mirrors = [], mir_data = $.merge(status_data, unlisted);
-		
-		mir_data.sort((a, b) => { return a.name < b.name ? -1: 1 });
+
+		mir_data.sort((a, b) => { return a.name.toLowerCase() < b.name.toLowerCase() ? -1: 1 });
 
 		for(var k in mir_data) {
 			var d = mir_data[k];
 			if (d.status == "disabled") {
-				continue;	
+				continue;
 			}
 			if (options[d.name] != undefined ) {
 				d = $.extend(d, options[d.name]);
