@@ -95,6 +95,8 @@ window.switchDistro = () => {
 	for (var i = 0; i < isoinfo[idx].urls.length; i++) {
 		s.options[s.options.length] = new Option(isoinfo[idx].urls[i].name, i)
 	}
+	$('.selectpicker').selectpicker('refresh')
+
 }
 
 var refreshISOList = () => {
