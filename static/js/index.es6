@@ -112,8 +112,17 @@ var refreshISOList = () => {
 	});
 }
 
+$('#isodistro').change(switchDistro);
+$('#btn_download').click(() => {
+	var distro = document.getElementById("isodistro");
+	var version = document.getElementById("isoversion");
+	var i = distro.selectedIndex;
+	var j = version.selectedIndex;
+	var link = isoinfo[i].urls[j].url;
+	window.open(link);
+	$('#isoModal').modal('toggle');
+});
 refreshISOList();
-
 refreshMirrorList();
 
 });
