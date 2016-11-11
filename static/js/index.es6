@@ -6,7 +6,7 @@ $('a#eib1gieB')
 	.text(lei3Po8h)
 	.attr('href', atob('bWFpbHRvOgo=') + lei3Po8h);
 
-
+$('.selectpicker').selectpicker()
 
 var mir_tmpl = $("#template").text(),
 	label_map = {
@@ -105,6 +105,7 @@ var refreshISOList = () => {
 		for (var i = 0; i < isoinfo.length; i++) {
 			s.options[s.options.length] = new Option(isoinfo[i].distro, i);
 		}
+		$('.selectpicker').selectpicker('refresh')
 		switchDistro();
 	});
 }
