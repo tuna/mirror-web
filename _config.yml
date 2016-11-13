@@ -34,3 +34,11 @@ new_mirrors: [arch4edu, ros, elvish, HHVM, steamos, bjlx, loongson, tensorflow, 
 
 descriptions:
   AOSP: 'Android Open Source Project'
+  termux: ' 运行在 Android 上的终端模拟器 Termux 的官方软件包仓库'
+  ubuntu: '流行的 Linux 发行版 Ubuntu 的安装镜像和官方软件包仓库'
+  ubuntu-cdimages: 'Ubuntu 及 Ubuntu 衍生版各版本安装镜像'
+  ubuntu-cloud-images: '适用于公有云的 Ubuntu 安装镜像'
+  ubuntu-ports: 'armhf, arm64 以及 powerpc 等平台的 Ubuntu 软件仓库'
+  ubuntu-releases: '包含近几年发行的 Ubuntu 的镜像'
+  videolan-ftp: '简称VLC，是一款自由、开源的跨平台多媒体播放器及框架，可播放大多数多媒体文件'
+  virtualbox: 'Oracle 的开源的 x86 架构虚拟机'
