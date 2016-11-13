@@ -5,6 +5,7 @@
 /static/tunasync.json
 /static/isoinfo.json
 /static/tunet.json
+/static/js/vue.js
 /_site
 /deploy.sh
 /.sass-cache/

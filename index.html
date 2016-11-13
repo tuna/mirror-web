@@ -21,8 +21,25 @@ permalink: /
 									<th class="col-sm-4">Last Update</th>
 								</tr>
 							</thead>
+							{% raw %}
 							<tbody id="mirror-list">
+								<tr v-for="mir in mirrorList" :class="['row', 'status-'+mir.status]">
+									<template v-if="mir.is_master">
+									<td class="col-md-8">
+										<a class="mirror-item-label"  data-toggle="popover" data-trigger="hover" data-placement="right" 
+											:data-content="mir.description" :href="getURL(mir)">
+											{{mir.name}}
+											<span class="label label-new" v-if='mir.is_new'>new</span>
+											<a v-if='mir.help_url' :href="mir.help_url"><i class="fa fa-question-circle" title="Help"></i></a>
+										</a>
+									</td>
+									<td class="col-md-4">
+										{{mir.last_update}}<span v-if="mir.show_status" :class="['label', 'label-status', mir.label, 'hidden-xs']">{{mir.status}}</span>
+									</td>
+									</template>
+								</tr>
 							</tbody>
+							{% endraw %}
 						</table>
 					</div>
 					<div class="col-md-4">
@@ -123,22 +140,6 @@ permalink: /
 
 	</body>
 	{% raw %}
-	<script id="template" type="x-tmpl-markup">
-{{mirrors}}
-{{if is_master}}
-<tr class="status-{{status}} row">
-	<td class="col-md-8">
-		<a class="mirror-item-label" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="{{if description}}{{description}}{{/if}}" href="{{if url}}{{url}}{{else}}/{{name}}{{/if}}">{{name}}</a>
-		{{if is_new}}<span class="label label-new">new</span>{{/if}}
-		{{if help_url}}<a href="{{help_url}}"><i class="fa fa-question-circle" title="Help"></i></a>{{/if}}
-	</td>
-	<td class="col-md-4">
-	{{last_update}} {{if show_status}}<span class="label label-status {{label}} hidden-xs">{{status}}</span>{{/if}}
-	</td>
-</tr>
-{{/if}}
-{{/mirrors}}
-	</script>
 	{% endraw %}
 	<script src="/static/js/index.js"></script>
 </html>
