@@ -42,7 +42,7 @@ var mir_tmpl = $("#template").text(),
 		}
 	},
 	descriptions = {
-		{% for item in site.descriptions %}{{ item[0] }}: '{{ item[1] }}' {% endfor %}
+		{% for item in site.descriptions %}'{{ item[0] }}': '{{ item[1] }}'{% if forloop.index < forloop.length %},{% endif %}{% endfor %}
 	}
 
 window.refreshMirrorList = () => {
@@ -89,13 +89,18 @@ window.refreshMirrorList = () => {
 	setTimeout(refreshMirrorList, 10000);
 }
 
+
+if (window.location.hash === '#iso-download') {
+	setTimeout(() => {$('#isoModal').modal()}, 200);
+}
+
 refreshMirrorList();
 
 var vm = new Vue({
 	el: "#isoModal",
 	data: {
 		distroList: [],
-		selected: null,
+		selected: {},
 		curCategory: "os"
 	},
 	created: function () {
@@ -107,7 +112,8 @@ var vm = new Vue({
 	},
 	computed: {
 		curDistroList () {
-			return this.distroList.filter((x)=> x.category === this.curCategory);
+			return this.distroList
+				.filter((x)=> x.category === this.curCategory);
 		}
 	},
 	methods: {

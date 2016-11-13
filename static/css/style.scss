@@ -95,6 +95,14 @@ $font_local: 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'W
 			color: $color_secondary;
 		}
 	}
+	#download-link {
+		margin-bottom: 1em;
+	}
+}
+#isoModal {
+	.nav-tabs {
+		margin-bottom: .5em;
+	}
 }
 
 #status-page {
