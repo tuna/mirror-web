@@ -23,6 +23,7 @@ var mir_tmpl = $("#template").text(),
 	new_mirrors = {
 		{% for n in site.new_mirrors %}"{{n}}": true{% if forloop.index < forloop.length %},{% endif %}{% endfor %}
 	},
+
 	unlisted = [
 	{
 		'status': 'success',
@@ -39,7 +40,10 @@ var mir_tmpl = $("#template").text(),
 		'homebrew': {
 			'url': "/help/homebrew/",
 		}
-	};
+	},
+	descriptions = {
+		{% for item in site.descriptions %}{{ item[0] }}: '{{ item[1] }}' {% endfor %}
+	}
 
 window.refreshMirrorList = () => {
 	$.getJSON("/static/tunasync.json", (status_data) => {
@@ -58,6 +62,7 @@ window.refreshMirrorList = () => {
 			d.label = label_map[d.status];
 			d.help_url = help_url[d.name];
 			d.is_new = new_mirrors[d.name];
+			d.description = descriptions[d.name];
 			d.show_status = (d.status != "success");
 			if (d.is_master === undefined) {
 				d.is_master = true;
@@ -78,6 +83,8 @@ window.refreshMirrorList = () => {
 		}
 		var result = Mark.up(mir_tmpl, {mirrors: mirrors});
 		$('#mirror-list').html(result);
+
+		$('.mirror-item-label').popover();
 	});
 	setTimeout(refreshMirrorList, 10000);
 }

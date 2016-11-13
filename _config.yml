@@ -30,4 +30,7 @@ gems:
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor]
 
 # Content Related
-new_mirrors: [arch4edu, ros, elvish, HHVM, steamos, bjlx, loongson, tensorflow, elastic]
+new_mirrors: [arch4edu, ros, elvish, HHVM, steamos, bjlx, loongson, tensorflow, elasticstack]
+
+descriptions:
+  AOSP: 'Android Open Source Project'
