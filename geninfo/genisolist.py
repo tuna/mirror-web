@@ -60,7 +60,7 @@ def parseSection(items):
             for prop in ("version", "type", "platform", "category"):
                 s = items.get(prop, "")
                 for i in range(0, group_count):
-                    s = s.replace("$%d" % i, result.group(i))
+                    s = s.replace("$%d" % i, result.group(i) or "")
                 imageinfo[prop] = s
 
             logger.debug("[JSON] %r", imageinfo)
