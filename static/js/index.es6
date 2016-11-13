@@ -6,6 +6,7 @@ $('a#eib1gieB')
 	.text(lei3Po8h)
 	.attr('href', atob('bWFpbHRvOgo=') + lei3Po8h);
 
+$('.selectpicker').selectpicker()
 
 var mir_tmpl = $("#template").text(),
 	label_map = {
@@ -87,7 +88,44 @@ window.refreshMirrorList = () => {
 	});
 	setTimeout(refreshMirrorList, 10000);
 }
+
+
+if (window.location.hash === '#iso-download') {
+	setTimeout(() => {$('#isoModal').modal()}, 200);
+}
+
 refreshMirrorList();
+
+var vm = new Vue({
+	el: "#isoModal",
+	data: {
+		distroList: [],
+		selected: {},
+		curCategory: "os"
+	},
+	created: function () {
+		var self = this;
+		$.getJSON("/static/isoinfo.json", function (isoinfo) {
+			self.distroList = isoinfo;
+			self.selected = self.curDistroList[0];
+		});
+	},
+	computed: {
+		curDistroList () {
+			return this.distroList.filter((x)=> x.category === this.curCategory);
+		}
+	},
+	methods: {
+		switchDistro (distro) {
+			this.selected = distro;
+		},
+		switchCategory (category) {
+			this.curCategory = category;
+			this.selected = this.curDistroList[0];
+		}
+	}
+
+});
 
 });
 
