@@ -46,10 +46,10 @@ permalink: /
 								<li><a href="https://mirrors4.tuna.tsinghua.edu.cn/">https://mirrors4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
 							</ul>
 						</div>
-						<div>
+						<div id="download-link">
 							<h4><span class="fa fa-file-archive-o"></span> 下载链接 </h4>
 							<p>常用发行版 iso 和应用工具安装包直接下载</p>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#isoModal">
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#isoModal">
 								获取下载链接
 							</button>
 						</div>
@@ -82,7 +82,7 @@ permalink: /
 		<!-- Modal -->
 		{% raw %}
 		<div class="modal fade" id="isoModal" tabindex="-1" role="dialog" aria-labelledby="isoModalLabel" aria-hidden="true">
-		  <div class="modal-dialog" role="document">
+		  <div class="modal-dialog modal-lg" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -98,14 +98,14 @@ permalink: /
 								<li role="presentation" :class="[curCategory === 'app' ? 'active' : '']" @click="switchCategory('app')"><a href="#">应用软件</a></li>
 							</ul>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<ul class="nav nav-pills nav-stacked">
 								<li v-for="distro in curDistroList" :class="[selected.distro == distro.distro ? 'active' : '']">
 									<a href="#" @click="switchDistro(distro)">{{ distro.distro }}</a>
 								</li>
 							</ul>
 						</div>
-						<div class="col-md-8">
+						<div class="col-md-9">
 							<h3>{{selected.distro}}</h3>
 							<ul>
 								<template v-for="url in selected.urls">

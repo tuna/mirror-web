@@ -89,13 +89,18 @@ window.refreshMirrorList = () => {
 	setTimeout(refreshMirrorList, 10000);
 }
 
+
+if (window.location.hash === '#iso-download') {
+	setTimeout(() => {$('#isoModal').modal()}, 200);
+}
+
 refreshMirrorList();
 
 var vm = new Vue({
 	el: "#isoModal",
 	data: {
 		distroList: [],
-		selected: null,
+		selected: {},
 		curCategory: "os"
 	},
 	created: function () {
