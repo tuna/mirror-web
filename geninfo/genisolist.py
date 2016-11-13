@@ -57,7 +57,7 @@ def parseSection(items):
             group_count = len(result.groups()) + 1
             imageinfo = {"filepath": imagepath, "distro": items["distro"]}
 
-            for prop in ("version", "type", "platform"):
+            for prop in ("version", "type", "platform", "category"):
                 s = items.get(prop, "")
                 for i in range(0, group_count):
                     s = s.replace("$%d" % i, result.group(i))
@@ -90,7 +90,8 @@ def getDetail(image_info, urlbase):
             image_info['platform'],
             ", %s" % image_info['type'] if image_info['type'] else ''
     )
-    category = image_info.get('category', 'os')
+
+    category = image_info.get('category', 'os') or "os"
     return (desc, url, category)
 
 
@@ -146,4 +147,3 @@ if __name__ == "__main__":
     import sys
     logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
     print(getImageList())
-
