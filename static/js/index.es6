@@ -108,9 +108,6 @@ var vmMirList = new Vue({
 	}
 })
 
-if (window.location.hash === '#iso-download') {
-	setTimeout(() => {$('#isoModal').modal()}, 200);
-}
 
 var vmIso = new Vue({
 	el: "#isoModal",
@@ -124,6 +121,9 @@ var vmIso = new Vue({
 		$.getJSON("/static/isoinfo.json", function (isoinfo) {
 			self.distroList = isoinfo;
 			self.selected = self.curDistroList[0];
+			if (window.location.hash === '#iso-download') {
+				$('#isoModal').modal();
+			}
 		});
 	},
 	computed: {
