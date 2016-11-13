@@ -6,9 +6,10 @@ permalink: /
 	{% include head.html %}
 	<body>
 		{% include nav.html %}
-
+	
 		<div id="mirrors">
 			<div class="spacing hidden-xs"></div>
+
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 table-responsive">
@@ -27,10 +28,6 @@ permalink: /
 					<div class="col-md-4">
 						<div class="spacing hidden-xs"></div>
 						<div id="wizard">
-							<!-- Button trigger iso modal -->
-							<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#isoModal">
-								获取安装镜像
-							</button>
 						</div>
 						<div id="news">
 							<h4><span class="fa fa-bullhorn"></span> 新闻公告 </h4>
@@ -48,6 +45,13 @@ permalink: /
 								<li><a href="https://mirrors6.tuna.tsinghua.edu.cn/">https://mirrors6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
 								<li><a href="https://mirrors4.tuna.tsinghua.edu.cn/">https://mirrors4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
 							</ul>
+						</div>
+						<div>
+							<h4><span class="fa fa-file-archive-o"></span> 下载链接 </h4>
+							<p>常用发行版 iso 和应用工具安装包直接下载</p>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#isoModal">
+								获取下载链接
+							</button>
 						</div>
 						<div>
 							<h4> <span class="fa fa-envelope-o"></span> 联系我们 </h4>
@@ -76,6 +80,7 @@ permalink: /
 		{% include footer.html %}
 		<!-- iso download wizard modal -->
 		<!-- Modal -->
+		{% raw %}
 		<div class="modal fade" id="isoModal" tabindex="-1" role="dialog" aria-labelledby="isoModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -86,18 +91,35 @@ permalink: /
 		        <h4 class="modal-title" id="isoModalLabel">获取安装镜像</h4>
 		      </div>
 		      <div class="modal-body">
-						<p>选择安装发行版： <select class="selectpicker" id="isodistro" ></select></p>
-						<p>选择发行版版本： <select class="selectpicker" id="isoversion">
-								<option value="none">-</option>
-						</select>
-						</p>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-primary" id="btn_download">下载</button>
+					<div class="row">
+						<div class="col-md-12">
+							<ul class="nav nav-tabs">
+								<li role="presentation" :class="[curCategory === 'os' ? 'active' : '']" @click="switchCategory('os')"><a href="#">操作系统</a></li>
+								<li role="presentation" :class="[curCategory === 'app' ? 'active' : '']" @click="switchCategory('app')"><a href="#">应用软件</a></li>
+							</ul>
+						</div>
+						<div class="col-md-4">
+							<ul class="nav nav-pills nav-stacked">
+								<li v-for="distro in curDistroList" :class="[selected.distro == distro.distro ? 'active' : '']">
+									<a href="#" @click="switchDistro(distro)">{{ distro.distro }}</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-8">
+							<h3>{{selected.distro}}</h3>
+							<ul>
+								<template v-for="url in selected.urls">
+								<li><a :href="url.url">{{url.name}}</a></li>
+								</template>
+							</ul>
+						</div>
+					</div>
+
 		      </div>
 		    </div>
 		  </div>
 		</div><!-- /iso download wizard modal -->
+		{% endraw %}
 
 	</body>
 	{% raw %}

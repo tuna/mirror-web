@@ -89,48 +89,38 @@ window.refreshMirrorList = () => {
 	setTimeout(refreshMirrorList, 10000);
 }
 
-window.modal = () => {
-	var bx = document.getElementById("isomodal");
-	bx.style.visibility = (bx.style.visibility == "visible") ? "hidden" : "visible";
-}
-
-window.switchDistro = () => {
-	var distro = document.getElementById("isodistro");
-	var idx = distro.selectedIndex;
-	var s = document.getElementById('isoversion');
-	s.options.length = 0;
-	for (var i = 0; i < isoinfo[idx].urls.length; i++) {
-		s.options[s.options.length] = new Option(isoinfo[idx].urls[i].name, i)
-	}
-	$('.selectpicker').selectpicker('refresh')
-
-}
-
-var refreshISOList = () => {
-	$.getJSON("/static/isoinfo.json", (isoinfo) => {
-		window.isoinfo = isoinfo;
-		window.s = document.getElementById("isodistro");
-		s.options.length = 0;
-		for (var i = 0; i < isoinfo.length; i++) {
-			s.options[s.options.length] = new Option(isoinfo[i].distro, i);
-		}
-		$('.selectpicker').selectpicker('refresh')
-		switchDistro();
-	});
-}
-
-$('#isodistro').change(switchDistro);
-$('#btn_download').click(() => {
-	var distro = document.getElementById("isodistro");
-	var version = document.getElementById("isoversion");
-	var i = distro.selectedIndex;
-	var j = version.selectedIndex;
-	var link = isoinfo[i].urls[j].url;
-	window.open(link);
-	$('#isoModal').modal('toggle');
-});
-refreshISOList();
 refreshMirrorList();
+
+var vm = new Vue({
+	el: "#isoModal",
+	data: {
+		distroList: [],
+		selected: null,
+		curCategory: "os"
+	},
+	created: function () {
+		var self = this;
+		$.getJSON("/static/isoinfo.json", function (isoinfo) {
+			self.distroList = isoinfo;
+			self.selected = self.curDistroList[0];
+		});
+	},
+	computed: {
+		curDistroList () {
+			return this.distroList.filter((x)=> x.category === this.curCategory);
+		}
+	},
+	methods: {
+		switchDistro (distro) {
+			this.selected = distro;
+		},
+		switchCategory (category) {
+			this.curCategory = category;
+			this.selected = this.curDistroList[0];
+		}
+	}
+
+});
 
 });
 
