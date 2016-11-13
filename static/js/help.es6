@@ -33,7 +33,6 @@ $(document).ready(() => {
 		let help_url = $(ev.target).find("option:selected").data('help-url');
 		window.location = `${window.location.protocol}//${window.location.host}${help_url}`;
 	});
-
 });
 
 // vim: ts=2 sts=2 sw=2 noexpandtab
