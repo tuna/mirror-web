@@ -34,6 +34,15 @@ new_mirrors: [arch4edu, ros, elvish, HHVM, steamos, bjlx, loongson, tensorflow, 
 
 descriptions:
   AOSP: 'Android Open Source Project'
+  repo-ck: 'repo-ck 是 Arch 的非官方仓库，内有包含 ck 补丁、BFS 调度器等'
+  repoforge: 'Repoforge 是 RHEL 系统下的软件仓库，拥有 10000 多个软件包，被认为是最安全、最稳定的一个软件仓库'
+  ros: 'ROS (Robot Operating System) 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件'
+  rpmfusion: 'RPM Fusion 提供了一些 Fedora Project 和 Red Hat 不包含的软件'
+  rubygems: 'Ruby 的一个包管理器'
+  sagemath: '构建在 NumPy, SciPy 等工具之上的开源数学软件系统'
+  slackware: 'Linux 发行版 Slackware 的源代码和官方软件包仓库'
+  SteamOS: 'Valve 开发的基于 Debian 的操作系统，包含安装镜像和官方软件包仓库'
+  tensorflow: '采用数据流图、用于数值计算的开源软件库 TensorFlow'
   termux: ' 运行在 Android 上的终端模拟器 Termux 的官方软件包仓库'
   ubuntu: '流行的 Linux 发行版 Ubuntu 的安装镜像和官方软件包仓库'
   ubuntu-cdimages: 'Ubuntu 及 Ubuntu 衍生版各版本安装镜像'
