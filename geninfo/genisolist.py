@@ -83,14 +83,15 @@ def parseSection(items):
             break
 
 
-def getDescriptionAndURL(image_info, urlbase):
+def getDetail(image_info, urlbase):
     url = urljoin(urlbase, image_info['filepath'])
     desc = "%s (%s%s)" % (
             image_info['version'],
             image_info['platform'],
             ", %s" % image_info['type'] if image_info['type'] else ''
     )
-    return (desc, url)
+    category = image_info.get('category', 'os')
+    return (desc, url, category)
 
 
 def getJsonOutput(url_dict, prio={}):
@@ -98,7 +99,10 @@ def getJsonOutput(url_dict, prio={}):
     for distro in url_dict:
         raw.append({
             "distro": distro,
-            "urls": [{"name": l[0], "url": l[1]} for l in url_dict[distro]]
+            "category": list({c for _, _, c in url_dict[distro]})[0],
+            "urls": [
+                {"name": name, "url": url} for name, url, _ in url_dict[distro]
+            ]
         })
 
     raw.sort(key=lambda d: prio.get(d["distro"], 0xFFFF))
@@ -131,7 +135,7 @@ def getImageList():
                 url_dict[image['distro']] = []
 
             url_dict[image['distro']].append(
-                    getDescriptionAndURL(image, urlbase)
+                    getDetail(image, urlbase)
             )
 
     os.chdir(oldcwd)
