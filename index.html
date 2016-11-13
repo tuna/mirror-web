@@ -75,7 +75,7 @@ permalink: /
 {{if is_master}}
 <tr class="status-{{status}} row">
 	<td class="col-md-8">
-		<a href="{{if url}}{{url}}{{else}}/{{name}}{{/if}}">{{name}}</a> 
+		<a class="mirror-item-label" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="{{if description}}{{description}}{{/if}}" href="{{if url}}{{url}}{{else}}/{{name}}{{/if}}">{{name}}</a>
 		{{if is_new}}<span class="label label-new">new</span>{{/if}}
 		{{if help_url}}<a href="{{help_url}}"><i class="fa fa-question-circle" title="Help"></i></a>{{/if}}
 	</td>

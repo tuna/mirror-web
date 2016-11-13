@@ -15,13 +15,14 @@ var mir_tmpl = $("#template").text(),
 		'fail': 'label-warning',
 		'failed': 'label-warning',
 		'paused': 'label-warning',
-	}, 
+	},
 	help_url = {
 		{% for h in site.categories['help'] %}"{{h.mirrorid}}": "{{h.url}}"{% if forloop.index < forloop.length %},{% endif %}{% endfor %}
 	},
 	new_mirrors = {
 		{% for n in site.new_mirrors %}"{{n}}": true{% if forloop.index < forloop.length %},{% endif %}{% endfor %}
 	},
+
 	unlisted = [
 	{
 		'status': 'success',
@@ -38,18 +39,21 @@ var mir_tmpl = $("#template").text(),
 		'homebrew': {
 			'url': "/help/homebrew/",
 		}
-	};
+	},
+	descriptions = {
+		{% for item in site.descriptions %}{{ item[0] }}: '{{ item[1] }}' {% endfor %}
+	}
 
 window.refreshMirrorList = () => {
 	$.getJSON("/static/tunasync.json", (status_data) => {
 		var mirrors = [], mir_data = $.merge(status_data, unlisted);
-		
+
 		mir_data.sort((a, b) => { return a.name < b.name ? -1: 1 });
 
 		for(var k in mir_data) {
 			var d = mir_data[k];
 			if (d.status == "disabled") {
-				continue;	
+				continue;
 			}
 			if (options[d.name] != undefined ) {
 				d = $.extend(d, options[d.name]);
@@ -57,6 +61,7 @@ window.refreshMirrorList = () => {
 			d.label = label_map[d.status];
 			d.help_url = help_url[d.name];
 			d.is_new = new_mirrors[d.name];
+			d.description = descriptions[d.name];
 			d.show_status = (d.status != "success");
 			if (d.is_master === undefined) {
 				d.is_master = true;
@@ -77,6 +82,8 @@ window.refreshMirrorList = () => {
 		}
 		var result = Mark.up(mir_tmpl, {mirrors: mirrors});
 		$('#mirror-list').html(result);
+
+		$('.mirror-item-label').popover();
 	});
 	setTimeout(refreshMirrorList, 10000);
 }
