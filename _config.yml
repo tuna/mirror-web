@@ -110,7 +110,7 @@ descriptions:
   rubygems: 'Ruby 的一个包管理器'
   sagemath: '构建在 NumPy, SciPy 等工具之上的开源数学软件系统'
   slackware: 'Linux 发行版 Slackware 的源代码和官方软件包仓库'
-  SteamOS: 'Valve 开发的基于 Debian 的操作系统，包含安装镜像和官方软件包仓库'
+  steamos: 'Valve 开发的基于 Debian 的操作系统，包含安装镜像和官方软件包仓库'
   tensorflow: '采用数据流图、用于数值计算的开源深度学习框架 TensorFlow'
   termux: ' 运行在 Android 上的终端模拟器 Termux 的官方软件包仓库'
   ubuntu: '流行的 Linux 发行版 Ubuntu 的安装镜像和官方软件包仓库'
