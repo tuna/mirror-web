@@ -14,6 +14,7 @@ jekyll build
 ```
 wget https://mirrors.tuna.tsinghua.edu.cn/static/tunasync.json -O static/tunasync.json
 wget https://mirrors.tuna.tsinghua.edu.cn/static/tunet.json -O static/tunet.json
+wget https://mirrors.tuna.tsinghua.edu.cn/static/isoinfo.json -O static/isoinfo.json
 ```
 
 之后 `jekyll serve` 即可运行 demo.
