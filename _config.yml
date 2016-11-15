@@ -66,7 +66,7 @@ descriptions:
   deepin: 'Deepin Linux 的官方软件包仓库'
   deepin-cd: 'Deeping Linux 的安装镜像'
   dell: 'Dell 服务器管理工具'
-  docker: 'Docker 的官方软件包仓库'
+  docker: 'Debian/Ubuntu/Fedora/CentOS/RHEL 的 docker 软件包'
   dotdeb: '用于 Debian 服务器的额外镜像源'
   elasticstack: 'ELK 系列数据分析工具，5.x 之后改名为 Elastic Stack'
   elpa: 'Emacs 内建包管理器 package.el 的软件源'
