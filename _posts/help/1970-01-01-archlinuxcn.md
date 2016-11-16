@@ -19,7 +19,6 @@ Arch Linux 中文社区仓库 是由 Arch Linux
 
 ```
 [archlinuxcn]
-SigLevel = Optional TrustedOnly
 Server = http://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 ```
 
