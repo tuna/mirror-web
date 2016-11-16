@@ -39,39 +39,8 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/isoinfo.json -O static/isoinfo.
 ### 特殊用法
 
 #### 表单选择
-例如 <http://mirrors.tuna.tsinghua.edu.cn/help/gitlab-ce/> 中，通过表单选择操作系统和版本号，生成对应配置文件的代码为:
+例如 <http://mirrors.tuna.tsinghua.edu.cn/help/tensorflow/> 中，通过表单选择操作系统和版本号，建议直接使用 Vue.js
 
-```html
-<form class="form-inline">
-<div class="form-group">
-	<label>你的Debian/Ubuntu版本: </label>
-	<select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
-	  <option data-os="debian" data-release="wheezy">Debian 7 (Wheezy)</option>
-	  <option data-os="debian" data-release="jessie" selected>Debian 8 (Jessie)</option>
-	  <option data-os="ubuntu" data-release="trusty">Ubuntu 14.04 LTS</option>
-	</select>
-</div>
-</form>
-
-<p></p>
-<pre>
-<code id="apt-content">
-</code>
-</pre>
-
-{% raw %}
-<script id="apt-template" type="x-tmpl-markup">
-deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/{{os_name}} {{release_name}} main
-</script>
-{% endraw %}
-```
-
-`<form>`包含的内容即为表单, `select`标签的`data-template`和`data-target`属性分别指定配置文件模板和 placeholder 的 id，
-`option`标签为选项，`data-os` 和 `data-release` 分别指定操作系统名称和版本号。
-
-`code#apt-content`部分是占位符，`{% raw %}{% endraw %}`包含的部分是配置文件模板，通过 `{% raw %}` 标记防止被 jekyll 转义。
-模板使用 [Markup.js](https://github.com/adammark/Markup.js/) 语法，可使用 `{{os_name}}` 和 `{{release_name}}` 两个变量，
-对应于`option`中的操作系统和版本号设定。
 
 
 
