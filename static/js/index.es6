@@ -39,6 +39,9 @@ var mir_tmpl = $("#template").text(),
 		},
 		'homebrew': {
 			'url': "/help/homebrew/",
+		},
+		'linux.git': {
+			'url': "/help/linux/",
 		}
 	},
 	descriptions = {
