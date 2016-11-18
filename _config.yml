@@ -32,7 +32,7 @@ babel_js_extensions: 'es6'
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/]
 
 # Content Related
-new_mirrors: [arch4edu, ros, elvish, HHVM, steamos, bjlx, loongson, tensorflow, elasticstack]
+new_mirrors: [arch4edu, ros, elvish, HHVM, steamos, bjlx, loongson, tensorflow, elasticstack, postgresql]
 
 descriptions:
   AOSP: 'Android 操作系统源代码'
@@ -103,6 +103,7 @@ descriptions:
   mongodb: '开源的跨平台 NoSQL 文档型数据库'
   msys2: '用于编译原生 Windows 程序的类 Linux 开发环境'
   mysql: 'MySQL 安装包及各种工具下载'
+  postgresql: 'https://www.postgresql.org/ftp/ 的镜像'
   repo-ck: 'repo-ck 是 Arch 的非官方仓库，内有包含 ck 补丁、BFS 调度器等'
   repoforge: 'Repoforge 是 RHEL 系统下的软件仓库，拥有 10000 多个软件包，被认为是最安全、最稳定的一个软件仓库'
   ros: 'ROS (Robot Operating System) 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件'
