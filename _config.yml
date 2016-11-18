@@ -32,7 +32,7 @@ babel_js_extensions: 'es6'
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/]
 
 # Content Related
-new_mirrors: [arch4edu, ros, elvish, HHVM, steamos, bjlx, loongson, tensorflow, elasticstack, postgresql]
+new_mirrors: [arch4edu, ros, elvish, HHVM, steamos, bjlx, loongson, tensorflow, elasticstack, postgresql, macports]
 
 descriptions:
   AOSP: 'Android 操作系统源代码'
