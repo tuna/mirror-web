@@ -117,7 +117,7 @@ descriptions:
   pybombs: '为 GNU Radio 设计的编译管理系统'
   pypi: 'Python 软件包索引源'
   qt: '跨平台软件开发库 Qt 的源码、开发工具、文档等'
-  raspbian: '（不再更新）为 Raspberry Pi 编译的 Debian'
+  raspbian: '为 Raspberry Pi 编译的 Debian'
   redhat: 'Red Hat Enterprise Linux 官方软件源'
   remi: '包含最新版本 PHP 和 MySQL 的第三方 yum 源'
   repo-ck: 'repo-ck 是 Arch 的非官方仓库，内有包含 ck 补丁、BFS 调度器等'
