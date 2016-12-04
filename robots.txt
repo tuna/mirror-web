@@ -13,6 +13,7 @@ Disallow: /alpine
 Disallow: /anaconda
 Disallow: /antergos
 Disallow: /anthon
+Disallow: /aosp-monthly
 Disallow: /apache
 Disallow: /arch4edu
 Disallow: /archlinux
@@ -62,6 +63,7 @@ Disallow: /kali-security
 Disallow: /kali
 Disallow: /kernel
 Disallow: /kodi
+Disallow: /linux-stable.git
 Disallow: /linux.git
 Disallow: /linuxmint-cd
 Disallow: /linuxmint
@@ -98,7 +100,9 @@ Disallow: /ros
 Disallow: /rpmfusion
 Disallow: /rubygems
 Disallow: /sagemath
+Disallow: /saltstack
 Disallow: /slackware
+Disallow: /slackwarearm
 Disallow: /steamos
 Disallow: /tensorflow
 Disallow: /termux

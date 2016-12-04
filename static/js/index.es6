@@ -35,13 +35,16 @@ var mir_tmpl = $("#template").text(),
 	],
 	options = {
 		'AOSP': {
-			'url': "/help/AOSP/",
+			'url': "/help/AOSP/"
 		},
 		'homebrew': {
-			'url': "/help/homebrew/",
+			'url': "/help/homebrew/"
 		},
 		'linux.git': {
-			'url': "/help/linux/",
+			'url': "/help/linux.git/"
+		},
+		'linux-stable.git': {
+			'url': "/help/linux-stable.git/"
 		}
 	},
 	descriptions = {
