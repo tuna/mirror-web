@@ -36,6 +36,7 @@ new_mirrors: [arch4edu, ros, elvish, HHVM, steamos, bjlx, loongson, tensorflow, 
 
 descriptions:
   AOSP: 'Android 操作系统源代码'
+  aosp-monthly: 'AOSP 镜像每月打包' 
   AUR: 'Arch Linux 用户软件库'
   CRAN: 'R 语言的可执行文件、源代码和说明文件，也收录了各种用户撰写的软件包'
   CTAN: 'TeX 的各种发行版、软件包和文档'
@@ -93,6 +94,7 @@ descriptions:
   kernel: '各个版本的Linux 内核源代码'
   kodi: '开源的多媒体播放器，原名 XBMC'
   linux.git: 'Linux 内核源代码的 Git 仓库'
+  linux-stable.git: 'Linux 内核源代码的 Git 仓库, 稳定版分支'
   linuxmint: 'Linux Mint 的官方软件源'
   linuxmint-cd: 'Linux Mint 的安装镜像'
   loongson: '用于龙芯电脑的软件包'
@@ -126,7 +128,9 @@ descriptions:
   rpmfusion: 'RPM Fusion 提供了一些 Fedora Project 和 Red Hat 不包含的软件'
   rubygems: 'Ruby 的一个包管理器'
   sagemath: '构建在 NumPy, SciPy 等工具之上的开源数学软件系统'
+  saltstack: '基于 python 的配置管理与运维自动化工具'
   slackware: 'Linux 发行版 Slackware 的源代码和官方软件包仓库'
+  slackwarearm: '用于 ARM 设备的 Slackware 发行版源代码和官方软件包仓库'
   steamos: 'Valve 开发的基于 Debian 的操作系统，包含安装镜像和官方软件包仓库'
   tensorflow: '采用数据流图、用于数值计算的开源深度学习框架 TensorFlow'
   termux: ' 运行在 Android 上的终端模拟器 Termux 的官方软件包仓库'
@@ -137,3 +141,5 @@ descriptions:
   ubuntu-releases: '包含近几年发行的 Ubuntu 的镜像'
   videolan-ftp: '简称VLC，是一款自由、开源的跨平台多媒体播放器及框架，可播放大多数多媒体文件'
   virtualbox: 'Oracle 的开源的 x86 架构虚拟机'
+
+# vim: ts=2 sts=2 sw=2 expandtab
