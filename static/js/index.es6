@@ -74,6 +74,7 @@ var vmMirList = new Vue({
 			var self = this;
 			$.getJSON("/static/tunasync.json", (status_data) => {
 				var mirrors = [], mir_data = $.merge(status_data, unlisted);
+				var mir_uniq = {}; // for deduplication
 
 				mir_data.sort((a, b) => { return a.name < b.name ? -1: 1 });
 
@@ -105,9 +106,18 @@ var vmMirList = new Vue({
 					} else {
 						d.last_update = d.last_update.replace(/(\d\d:\d\d):\d\d(\s\+\d\d\d\d)?/, '$1');
 					}
-					mirrors.push(d);
-					self.mirrorList = mirrors;
+					if (d.name in mir_uniq) {
+						let other = mir_uniq[d.name];
+						if (other.last_update > d.last_update) {
+							continue;
+						}
+					}
+					mir_uniq[d.name] = d;
 				}
+				for (k in mir_uniq) {
+					mirrors.push(mir_uniq[k]);
+				}
+				self.mirrorList = mirrors;
 				setTimeout(() => {self.refreshMirrorList()}, 10000);
 			});
 		}
