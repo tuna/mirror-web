@@ -51,7 +51,7 @@ var mir_tmpl = $("#template").text(),
 		},
 	},
 	descriptions = {
-		{% for item in site.descriptions %}'{{ item[0] }}': '{{ item[1] }}'{% if forloop.index < forloop.length %},{% endif %}{% endfor %}
+		{% for mir in site.data.mirror_desc %} '{{mir.name}}': '{{mir.desc}}' {% if forloop.index < forloop.length %},{% endif %}{% endfor %}
 	}
 
 var vmMirList = new Vue({

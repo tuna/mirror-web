@@ -52,7 +52,6 @@ Disallow: /gnu
 Disallow: /grafana
 Disallow: /hackage
 Disallow: /homebrew-bottles
-Disallow: /
 Disallow: /homebrew
 Disallow: /infinality-bundle
 Disallow: /influxdata
@@ -86,7 +85,6 @@ Disallow: /packman
 Disallow: /parrot
 Disallow: /percona
 Disallow: /postgresql
-Disallow: /
 Disallow: /puppy
 Disallow: /pybombs
 Disallow: /pypi

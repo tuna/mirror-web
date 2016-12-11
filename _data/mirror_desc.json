@@ -1,0 +1,454 @@
+[
+  {
+    "name": "AOSP",
+    "desc": "Android 操作系统源代码"
+  },
+  {
+    "name": "AUR",
+    "desc": "Arch Linux 用户软件库"
+  },
+  {
+    "name": "Bananian",
+    "desc": "为 Banana Pi 制作的，基于官方 Debian 仓库的发行版镜像和软件包仓库"
+  },
+  {
+    "name": "CRAN",
+    "desc": "R 语言的可执行文件、源代码和说明文件，也收录了各种用户撰写的软件包"
+  },
+  {
+    "name": "CTAN",
+    "desc": "TeX 的各种发行版、软件包和文档"
+  },
+  {
+    "name": "CocoaPods",
+    "desc": "Objective-C 和 Swift 的依赖管理器"
+  },
+  {
+    "name": "ELK",
+    "desc": "现已更名为 Elastic Stack，仅保留用作向后兼容"
+  },
+  {
+    "name": "HHVM",
+    "desc": "Facebook 开发的高性能 PHP 语言虚拟机"
+  },
+  {
+    "name": "Homebrew",
+    "desc": " Homebrew 的 formula 索引的镜像，二进制预编译包的镜像请见 homebrew-bottles"
+  },
+  {
+    "name": "NetBSD",
+    "desc": "NetBSD 的安装镜像和部分系统源码"
+  },
+  {
+    "name": "OpenBSD",
+    "desc": "OpenBSD 的安装镜像和官方软件包仓库"
+  },
+  {
+    "name": "alpine",
+    "desc": "Alpine Linux 的安装镜像和官方软件包仓库"
+  },
+  {
+    "name": "anaconda",
+    "desc": "用于科学计算的 Python 发行版"
+  },
+  {
+    "name": "antergos",
+    "desc": "基于 Arch Linux 的使用 GNOME 3 的发行版，曾用名 Cinnarch"
+  },
+  {
+    "name": "anthon",
+    "desc": "Anthon Linux (安同 Linux)的安装镜像和官方软件包仓库"
+  },
+  {
+    "name": "aosp-monthly",
+    "desc": "AOSP 镜像每月打包"
+  },
+  {
+    "name": "apache",
+    "desc": "Apache 基金会赞助的各个项目"
+  },
+  {
+    "name": "arch4edu",
+    "desc": "用于 Arch Linux 的一系列科研、教学所需工具"
+  },
+  {
+    "name": "archlinux",
+    "desc": "Arch Linux 的安装镜像和官方软件包仓库"
+  },
+  {
+    "name": "archlinuxarm",
+    "desc": "用于 arm 平台的 Arch Linux 镜像和软件包仓库"
+  },
+  {
+    "name": "archlinuxcn",
+    "desc": "由 Arch Linux 中文社区驱动的非官方用户仓库,包含中文用户常用软件、工具、字体/美化包等"
+  },
+  {
+    "name": "bananian",
+    "desc": "用于 Banana Pi 的 Debian 操作系统"
+  },
+  {
+    "name": "bjlx",
+    "desc": "北京龙芯 & Debian 俱乐部 的公开软件源"
+  },
+  {
+    "name": "blackarch",
+    "desc": "用于安全评估的基于 Arch Linux 的轻量级发行版"
+  },
+  {
+    "name": "centos",
+    "desc": "CentOS 的安装镜像和官方软件包仓库"
+  },
+  {
+    "name": "ceph",
+    "desc": "高性能对象存储和文件系统"
+  },
+  {
+    "name": "chakra",
+    "desc": "专注于 Qt 与 KDE 软件的 Linux 发行版"
+  },
+  {
+    "name": "ctex",
+    "desc": "旧版 CTEX 安装镜像存档"
+  },
+  {
+    "name": "cygwin",
+    "desc": "Cygwin 官方软件包仓库"
+  },
+  {
+    "name": "debian",
+    "desc": "Debian Linux 的官方软件包仓库"
+  },
+  {
+    "name": "debian-cd",
+    "desc": "Debian Linux 的安装镜像"
+  },
+  {
+    "name": "debian-multimedia",
+    "desc": ""
+  },
+  {
+    "name": "debian-nonfree",
+    "desc": ""
+  },
+  {
+    "name": "debian-security",
+    "desc": "Debian Linux 的安全更新"
+  },
+  {
+    "name": "deepin",
+    "desc": "Deepin Linux 的官方软件包仓库"
+  },
+  {
+    "name": "deepin-cd",
+    "desc": "Deeping Linux 的安装镜像"
+  },
+  {
+    "name": "dell",
+    "desc": "Dell 服务器管理工具"
+  },
+  {
+    "name": "docker",
+    "desc": "Debian/Ubuntu/Fedora/CentOS/RHEL 的 docker 软件包"
+  },
+  {
+    "name": "dotdeb",
+    "desc": "用于 Debian 服务器的额外镜像源"
+  },
+  {
+    "name": "elasticstack",
+    "desc": "ELK 系列数据分析工具，5.x 之后改名为 Elastic Stack"
+  },
+  {
+    "name": "elpa",
+    "desc": "Emacs 内建包管理器 package.el 的软件源"
+  },
+  {
+    "name": "elrepo",
+    "desc": "RHEL 及其变体的 RPM 软件包仓库"
+  },
+  {
+    "name": "elvish",
+    "desc": "TUNA 前会长 xiaq 开发的革命性 Shell"
+  },
+  {
+    "name": "epel",
+    "desc": "企业版 Linux 附加软件包"
+  },
+  {
+    "name": "fedora",
+    "desc": "Fedora Linux 的安装镜像和官方软件包仓库"
+  },
+  {
+    "name": "gentoo",
+    "desc": "Gentoo Linux 的 Stage 3 镜像"
+  },
+  {
+    "name": "gentoo-portage",
+    "desc": "Gentoo Linux 的 Portage 包管理器镜像源"
+  },
+  {
+    "name": "git-repo",
+    "desc": "Google 开发的项目依赖下载工具 repo 的镜像"
+  },
+  {
+    "name": "gitlab-ce",
+    "desc": "Gitlab 社区版"
+  },
+  {
+    "name": "gitlab-ci-multi-runner",
+    "desc": "GitLab 持续集成框架"
+  },
+  {
+    "name": "gnu",
+    "desc": "GNU项目的软件包（源代码、文档和部分平台的二进制文件）"
+  },
+  {
+    "name": "grafana",
+    "desc": "开源的数据可视化工具"
+  },
+  {
+    "name": "hackage",
+    "desc": "Haskell 社区的中心软件包仓库"
+  },
+  {
+    "name": "homebrew",
+    "desc": "Homebrew 的软件包描述文件"
+  },
+  {
+    "name": "homebrew-bottles",
+    "desc": "预编译的 Homebrew 软件包"
+  },
+  {
+    "name": "infinality-bundle",
+    "desc": "Arch Linux 的字体渲染软件包"
+  },
+  {
+    "name": "influxdata",
+    "desc": "时间序列数据平台"
+  },
+  {
+    "name": "ius",
+    "desc": "为企业版 LInux 提供最新软件包的镜像源"
+  },
+  {
+    "name": "jenkins",
+    "desc": "用 Java 编写的持续集成框架"
+  },
+  {
+    "name": "kali",
+    "desc": "Kali Linux 的官方软件包仓库"
+  },
+  {
+    "name": "kali-images",
+    "desc": "Kali Linux 的安装镜像"
+  },
+  {
+    "name": "kali-security",
+    "desc": "Kali Linux 的安全更新"
+  },
+  {
+    "name": "kernel",
+    "desc": "各个版本的Linux 内核源代码"
+  },
+  {
+    "name": "kodi",
+    "desc": "开源的多媒体播放器，原名 XBMC"
+  },
+  {
+    "name": "linux-stable.git",
+    "desc": "Linux 内核源代码的 Git 仓库, 稳定版分支"
+  },
+  {
+    "name": "linux.git",
+    "desc": "Linux 内核源代码的 Git 仓库"
+  },
+  {
+    "name": "linuxmint",
+    "desc": "Linux Mint 的官方软件源"
+  },
+  {
+    "name": "linuxmint-cd",
+    "desc": "Linux Mint 的安装镜像"
+  },
+  {
+    "name": "loongson",
+    "desc": "用于龙芯电脑的软件包"
+  },
+  {
+    "name": "lxc-images",
+    "desc": "Linux 容器的镜像"
+  },
+  {
+    "name": "macports",
+    "desc": "macOS 的一个开源软件包管理系统"
+  },
+  {
+    "name": "mageia",
+    "desc": "Mageia Linux （衍生于Mandriva Linux）的安装镜像和官方软件包仓库"
+  },
+  {
+    "name": "manjaro",
+    "desc": "Manjaro Linux 的官方软件源"
+  },
+  {
+    "name": "manjaro-cd",
+    "desc": "Manjanro Linux 的安装镜像"
+  },
+  {
+    "name": "mariadb",
+    "desc": "衍生于 MySQL 的开源关系数据库"
+  },
+  {
+    "name": "mongodb",
+    "desc": "开源的跨平台 NoSQL 文档型数据库"
+  },
+  {
+    "name": "msys2",
+    "desc": "用于编译原生 Windows 程序的类 Linux 开发环境"
+  },
+  {
+    "name": "mysql",
+    "desc": "MySQL 安装包及各种工具下载"
+  },
+  {
+    "name": "neurodebian",
+    "desc": "用于神经科学研究的 Debian 软件包源"
+  },
+  {
+    "name": "nodesource",
+    "desc": "为 Debian, Ubuntu, Fedora, RHEL 等发行版提供预编译的 nodejs 和 npm 等软件包"
+  },
+  {
+    "name": "opensuse",
+    "desc": "openSUSE 的安装镜像和官方软件包仓库"
+  },
+  {
+    "name": "openwrt",
+    "desc": "OpenWrt 软件包镜像源（仅喊Chaos Calmer版本）"
+  },
+  {
+    "name": "osmc",
+    "desc": "免费、开源的媒体中心解决方案"
+  },
+  {
+    "name": "packman",
+    "desc": "为 Debian、Fedora、openSUSE、Ubuntu 提供额外和过期软件包的仓库"
+  },
+  {
+    "name": "parrot",
+    "desc": "Parrot Linux（专注于安全审计的 Linux 发行版）的安装奖项和官方软件源"
+  },
+  {
+    "name": "percona",
+    "desc": "开源的数据库解决方案，详见 http://www.percona.com"
+  },
+  {
+    "name": "postgresql",
+    "desc": "著名的开源关系型数据库 PostgreSQL 的镜像"
+  },
+  {
+    "name": "puppy",
+    "desc": "为家用电脑设计的轻量级 Linux 发行版"
+  },
+  {
+    "name": "pybombs",
+    "desc": "为 GNU Radio 设计的编译管理系统"
+  },
+  {
+    "name": "pypi",
+    "desc": "Python 软件包索引源"
+  },
+  {
+    "name": "qt",
+    "desc": "跨平台软件开发库 Qt 的源码、开发工具、文档等"
+  },
+  {
+    "name": "raspbian",
+    "desc": "为 Raspberry Pi 编译的 Debian"
+  },
+  {
+    "name": "redhat",
+    "desc": "Red Hat Enterprise Linux 官方软件源"
+  },
+  {
+    "name": "remi",
+    "desc": "包含最新版本 PHP 和 MySQL 的第三方 yum 源"
+  },
+  {
+    "name": "repo-ck",
+    "desc": "repo-ck 是 Arch 的非官方仓库，内有包含 ck 补丁、BFS 调度器等"
+  },
+  {
+    "name": "repoforge",
+    "desc": "Repoforge 是 RHEL 系统下的软件仓库，拥有 10000 多个软件包，被认为是最安全、最稳定的一个软件仓库"
+  },
+  {
+    "name": "ros",
+    "desc": "ROS (Robot Operating System) 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件"
+  },
+  {
+    "name": "rpmfusion",
+    "desc": "RPM Fusion 提供了一些 Fedora Project 和 Red Hat 不包含的软件"
+  },
+  {
+    "name": "rubygems",
+    "desc": "Ruby 的一个包管理器"
+  },
+  {
+    "name": "sagemath",
+    "desc": "构建在 NumPy, SciPy 等工具之上的开源数学软件系统"
+  },
+  {
+    "name": "saltstack",
+    "desc": "基于 python 的配置管理与运维自动化工具"
+  },
+  {
+    "name": "slackware",
+    "desc": "Linux 发行版 Slackware 的源代码和官方软件包仓库"
+  },
+  {
+    "name": "slackwarearm",
+    "desc": "用于 ARM 设备的 Slackware 发行版源代码和官方软件包仓库"
+  },
+  {
+    "name": "steamos",
+    "desc": "Valve 开发的基于 Debian 的操作系统，包含安装镜像和官方软件包仓库"
+  },
+  {
+    "name": "tensorflow",
+    "desc": "采用数据流图、用于数值计算的开源深度学习框架 TensorFlow"
+  },
+  {
+    "name": "termux",
+    "desc": " 运行在 Android 上的终端模拟器 Termux 的官方软件包仓库"
+  },
+  {
+    "name": "ubuntu",
+    "desc": "流行的 Linux 发行版 Ubuntu 的安装镜像和官方软件包仓库"
+  },
+  {
+    "name": "ubuntu-cdimage",
+    "desc": "Ubuntu 及 Ubuntu 衍生版各版本安装镜像"
+  },
+  {
+    "name": "ubuntu-cloud-images",
+    "desc": "适用于公有云的 Ubuntu 安装镜像"
+  },
+  {
+    "name": "ubuntu-ports",
+    "desc": "armhf, arm64 以及 powerpc 等平台的 Ubuntu 软件仓库"
+  },
+  {
+    "name": "ubuntu-releases",
+    "desc": "包含近几年发行的 Ubuntu 的镜像"
+  },
+  {
+    "name": "videolan-ftp",
+    "desc": "简称VLC，是一款自由、开源的跨平台多媒体播放器及框架，可播放大多数多媒体文件"
+  },
+  {
+    "name": "virtualbox",
+    "desc": "Oracle 的开源的 x86 架构虚拟机"
+  }
+]
