@@ -45,7 +45,10 @@ var mir_tmpl = $("#template").text(),
 		},
 		'linux-stable.git': {
 			'url': "/help/linux-stable.git/"
-		}
+		},
+		'git-repo': {
+			'url': "/help/git-repo/"
+		},
 	},
 	descriptions = {
 		{% for item in site.descriptions %}'{{ item[0] }}': '{{ item[1] }}'{% if forloop.index < forloop.length %},{% endif %}{% endfor %}
