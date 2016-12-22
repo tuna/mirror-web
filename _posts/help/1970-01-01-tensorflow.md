@@ -44,6 +44,7 @@ TensorFlow 安装方法请参考 <https://www.tensorflow.org/get_started>，把 
 
 <label>TensorFlow 版本: </label>
 <select v-model="form.tfver" class="form-control">
+<option value="0.12.0">0.12.0</option>
 <option value="0.11.0">0.11.0</option>
 <option value="0.10.0">0.10.0</option>
 </select>
@@ -66,7 +67,7 @@ var vue = new Vue({
 			xpu: "gpu",
 			os: "linux",
 			python: "35",
-			tfver: "0.11.0"
+			tfver: "0.12.0"
 		}
 	},
 	computed: {
