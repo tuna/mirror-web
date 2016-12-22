@@ -55,7 +55,7 @@ TensorFlow 安装方法请参考 <https://www.tensorflow.org/get_started>，把 
 <pre>
 pip install \
   -i https://pypi.tuna.tsinghua.edu.cn/simple/ \
-  https://mirrors.tuna.tsinghua.edu.cn/tensorflow/{{form.os}}/{{form.xpu}}/tensorflow-{{form.tfver}}-{{pytag}}.whl
+  https://mirrors.tuna.tsinghua.edu.cn/tensorflow/{{form.os}}/{{form.xpu}}/{{tensorflow}}-{{form.tfver}}-{{pytag}}.whl
 </pre>
 </div>
 
@@ -68,9 +68,15 @@ var vue = new Vue({
 			os: "linux",
 			python: "35",
 			tfver: "0.12.0"
-		}
+		},
 	},
 	computed: {
+		tensorflow: function() {
+			if (this.form.tfver === "0.12.0" && this.form.xpu == "gpu") {
+				return "tensorflow_gpu";
+			}
+			return "tensorflow";
+		},
 		pytag: function() {
 			if (this.form.os === "linux") {
 				if (this.form.python === "27") {
