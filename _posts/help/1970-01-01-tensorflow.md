@@ -32,21 +32,16 @@ TensorFlow 安装方法请参考 <https://www.tensorflow.org/get_started>，把 
 <label>Python 版本: </label>
 <select v-model="form.python" class="form-control">
 <template v-if="form.os === 'linux'">
-<option value="35">3.5</option>
-<option value="34">3.4</option>
-<option value="27">2.7</option>
+<option :value="py" v-for="py in fileindex.pythons.linux">{{py}}</option>
 </template>
 <template v-if="form.os == 'mac'">
-<option value="3">3</option>
-<option value="2">2</option>
+<option :value="py" v-for="py in fileindex.pythons.mac">{{py}}</option>
 </template>
 </select>
 
 <label>TensorFlow 版本: </label>
 <select v-model="form.tfver" class="form-control">
-<option value="0.12.0">0.12.0</option>
-<option value="0.11.0">0.11.0</option>
-<option value="0.10.0">0.10.0</option>
+<option :value="tfver" v-for="tfver in fileindex.versions">{{tfver}}</option>
 </select>
 
 </div>
@@ -55,7 +50,7 @@ TensorFlow 安装方法请参考 <https://www.tensorflow.org/get_started>，把 
 <pre>
 pip install \
   -i https://pypi.tuna.tsinghua.edu.cn/simple/ \
-  https://mirrors.tuna.tsinghua.edu.cn/tensorflow/{{form.os}}/{{form.xpu}}/{{tensorflow}}-{{form.tfver}}-{{pytag}}.whl
+  https://mirrors.tuna.tsinghua.edu.cn/tensorflow/{{form.os}}/{{form.xpu}}/{{tensorflow}}
 </pre>
 </div>
 
@@ -66,36 +61,47 @@ var vue = new Vue({
 		form: {
 			xpu: "gpu",
 			os: "linux",
-			python: "35",
-			tfver: "0.12.0"
+			python: "",
+			tfver: ""
+		},
+		fileindex: {
+			pkglist: [],
+			versions: [],
+			pythons: {
+				linux: [],
+				mac: [],
+			},
 		},
 	},
 	computed: {
-		tensorflow: function() {
-			if (this.form.tfver === "0.12.0" && this.form.xpu == "gpu") {
-				return "tensorflow_gpu";
-			}
-			return "tensorflow";
-		},
-		pytag: function() {
-			if (this.form.os === "linux") {
-				if (this.form.python === "27") {
-					return "cp" + this.form.python + "-none-linux_x86_64";
-				} 
-				return "cp" + this.form.python + "-cp"+this.form.python+"m-linux_x86_64";
-			} else if (this.form.os === "mac") {
-				return "py" + this.form.python + "-none-any";
+		tensorflow () {
+			var os=this.form.os, xpu=this.form.xpu,
+				py=this.form.python, tfver=this.form.tfver;
+
+			for (var i in this.fileindex.pkglist) {
+				var pkg = this.fileindex.pkglist[i];
+				if (pkg.os == os && pkg.xpu == xpu && pkg.python == py && pkg.version == tfver) {
+					return pkg.filename;
+				}
 			}
 		}
 	},
 	watch: {
 		"form.os": function (newOS) {
-			if (newOS === "linux") {
-				this.form.python = "35";
-			} else if (newOS === "mac") {
-				this.form.python = "3";
-			}
+			var pythons = this.fileindex.pythons[this.form.os];
+			this.form.python = pythons[0];
+		},
+		"fileindex": function (newIdx) {
+			var pythons = this.fileindex.pythons[this.form.os];
+			this.form.python = pythons[0];
+			this.form.tfver = this.fileindex.versions[0];
 		}
+	},
+	created: function() {
+		var self = this;
+		$.getJSON('/tensorflow/releases.json', function(data) {
+			self.fileindex = data;
+		});
 	}
 });
 </script>
