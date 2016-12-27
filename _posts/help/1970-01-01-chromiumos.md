@@ -46,7 +46,7 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/chromiumos/mani
 替换为
 
 ```
-"https://mirrors.tuna.tsinghua.edu.cn/chromiumos/"
+"https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/"
 ```
 
 将
@@ -70,7 +70,7 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/chromiumos/mani
 替换为
 
 ```
-"https://mirrors.tuna.tsinghua.edu.cn/weave/"
+"https://mirrors.tuna.tsinghua.edu.cn/git/weave/"
 ```
 
 即可。
