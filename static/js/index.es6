@@ -52,6 +52,9 @@ var mir_tmpl = $("#template").text(),
 		'chromiumos': {
 			'url': "/help/chromiumos/"
 		},
+		'weave': {
+			'url': "/help/chromiumos/"
+		},
 	},
 	descriptions = {
 		{% for mir in site.data.mirror_desc %} '{{mir.name}}': '{{mir.desc}}' {% if forloop.index < forloop.length %},{% endif %}{% endfor %}
