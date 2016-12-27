@@ -32,7 +32,19 @@ babel_js_extensions: 'es6'
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_robot.sh, gen_desc.py]
 
 # Content Related
-new_mirrors: [arch4edu, ros, elvish, HHVM, steamos, bjlx, loongson, tensorflow, elasticstack, postgresql, macports]
+new_mirrors:
+    - arch4edu
+    - ros
+    - elvish
+    - HHVM
+    - steamos
+    - bjlx
+    - loongson
+    - tensorflow
+    - elasticstack
+    - postgresql
+    - macports
+    - chromiumos
 
 
 # vim: ts=2 sts=2 sw=2 expandtab
