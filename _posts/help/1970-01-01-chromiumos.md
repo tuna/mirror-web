@@ -44,7 +44,7 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/chromiumos/mani
 接着使用编辑器打开`.repo/manifests/_remotes.xml`这个文件，将
 
 ```
-"https://chromium.googlesource.come"
+"https://chromium.googlesource.com"
 ```
 
 替换为
@@ -56,7 +56,7 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/chromiumos/mani
 将
 
 ```
-"https://android.googlesource.come"
+"https://android.googlesource.com"
 ```
 
 替换为
@@ -68,7 +68,7 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/chromiumos/mani
 将
 
 ```
-"https://weave.googlesource.come"
+"https://weave.googlesource.com"
 ```
 
 替换为
