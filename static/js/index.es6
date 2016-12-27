@@ -53,7 +53,7 @@ var mir_tmpl = $("#template").text(),
 			'url': "/help/chromiumos/"
 		},
 		'weave': {
-			'url': "/help/chromiumos/"
+			'url': "/help/weave/"
 		},
 	},
 	descriptions = {
