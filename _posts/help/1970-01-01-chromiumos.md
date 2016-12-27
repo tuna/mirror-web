@@ -79,7 +79,7 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/chromiumos/mani
 
 即可。
 
-同步源码树（以后只需执行这条命令来同步）：
+最后同步源码树（以后只需执行这条命令来同步）：
 
 ```
 repo sync
