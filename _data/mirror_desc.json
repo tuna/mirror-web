@@ -108,6 +108,10 @@
     "desc": "专注于 Qt 与 KDE 软件的 Linux 发行版"
   },
   {
+    "name": "chromiumos",
+    "desc": "Google Chrome OS的开放源代码开发版本"
+  },
+  {
     "name": "ctex",
     "desc": "旧版 CTEX 安装镜像存档"
   },
@@ -450,5 +454,9 @@
   {
     "name": "virtualbox",
     "desc": "Oracle 的开源的 x86 架构虚拟机"
+  },
+  {
+    "name": "weave",
+    "desc": ""
   }
 ]
