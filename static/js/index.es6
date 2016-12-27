@@ -49,6 +49,9 @@ var mir_tmpl = $("#template").text(),
 		'git-repo': {
 			'url': "/help/git-repo/"
 		},
+		'chromiumos': {
+			'url': "/help/chromiumos/"
+		},
 	},
 	descriptions = {
 		{% for mir in site.data.mirror_desc %} '{{mir.name}}': '{{mir.desc}}' {% if forloop.index < forloop.length %},{% endif %}{% endfor %}
