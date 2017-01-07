@@ -29,7 +29,7 @@ gems:
 
 babel_js_extensions: 'es6'
 
-exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_robot.sh, gen_desc.py]
+exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_robot.sh, gen_desc.py, Dockerfile*]
 
 # Content Related
 new_mirrors:
