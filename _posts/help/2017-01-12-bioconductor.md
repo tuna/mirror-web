@@ -7,11 +7,13 @@ mirrorid: bioconductor
 [Bioconductor](https://www.bioconductor.org) 镜像使用帮助
 ===================
 
-Bioconductor镜像源配置文件是`.Rprofile`(linux下位于```~/.Rprofile```)。
+Bioconductor 镜像源配置文件之一是 `.Rprofile` (linux 下位于 `~/.Rprofile` )。
 
 
-在文末添加如下语句
+在文末添加如下语句:
+
 ```
 options(BioC_mirror="https://mirrors.tuna.tsinghua.edu.cn/bioconductor")
 ```
-打开R即可使用该Bioconductor镜像源安装Bioconductor软件包。
+
+打开R即可使用该 Bioconductor 镜像源安装 Bioconductor 软件包。
