@@ -55,6 +55,9 @@ var mir_tmpl = $("#template").text(),
 		'weave': {
 			'url': "/help/weave/"
 		},
+		'CocoaPods': {
+			'url': "/help/CocoaPods/"
+		},
 	},
 	descriptions = {
 		{% for mir in site.data.mirror_desc %} '{{mir.name}}': '{{mir.desc}}' {% if forloop.index < forloop.length %},{% endif %}{% endfor %}
