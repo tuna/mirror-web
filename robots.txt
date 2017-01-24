@@ -20,11 +20,13 @@ Disallow: /archlinux
 Disallow: /archlinuxarm
 Disallow: /archlinuxcn
 Disallow: /bananian
+Disallow: /bioconductor
 Disallow: /bjlx
 Disallow: /blackarch
 Disallow: /centos
 Disallow: /ceph
 Disallow: /chakra
+Disallow: /chromiumos
 Disallow: /ctex
 Disallow: /cygwin
 Disallow: /debian-cd
@@ -42,6 +44,7 @@ Disallow: /elpa
 Disallow: /elrepo
 Disallow: /elvish
 Disallow: /epel
+Disallow: /erlang-solutions
 Disallow: /fedora
 Disallow: /gentoo-portage
 Disallow: /gentoo
@@ -112,3 +115,4 @@ Disallow: /ubuntu-releases
 Disallow: /ubuntu
 Disallow: /videolan-ftp
 Disallow: /virtualbox
+Disallow: /weave
