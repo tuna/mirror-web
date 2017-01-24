@@ -416,6 +416,10 @@
     "desc": "用于 ARM 设备的 Slackware 发行版源代码和官方软件包仓库"
   },
   {
+    "name": "stackage",
+    "desc": "Haskell 项目管理器 stack 所需的元数据与 ghc 安装包的镜像"
+  },
+  {
     "name": "steamos",
     "desc": "Valve 开发的基于 Debian 的操作系统，包含安装镜像和官方软件包仓库"
   },
