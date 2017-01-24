@@ -101,6 +101,7 @@ Disallow: /sagemath
 Disallow: /saltstack
 Disallow: /slackware
 Disallow: /slackwarearm
+Disallow: /stackage
 Disallow: /steamos
 Disallow: /tensorflow
 Disallow: /termux
