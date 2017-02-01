@@ -13,7 +13,7 @@ mirrorid: repoforge
 1. 运行 `cat /etc/redhat-release` 获取 EL 版本号（如 EL6, EL7 等）
 2. 向系统中添加 Repoforge 的 GPG 公钥：
 ```
-rpm —import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+rpm --import https://mirrors.tuna.tsinghua.edu.cn/repoforge/RPM-GPG-KEY.dag.txt
 ```
 3. 运行下列命令：
 
