@@ -46,7 +46,7 @@ sudo apt-get install gitlab-ci-multi-runner
 
 {% raw %}
 <script id="apt-template" type="x-tmpl-markup">
-deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ci-multi-runner/{{os_name}} {{release_name}} main
+deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://mirrors.tuna.tsinghua.edu.cn/gitlab-ci-multi-runner/{{os_name}} {{release_name}} main
 </script>
 {%endraw%}
 
@@ -84,7 +84,7 @@ sudo yum install gitlab-ci-multi-runner
 <script id="yum-template" type="x-tmpl-markup">
 [gitlab-ci-multi-runner]
 name=gitlab-ci-multi-runner
-baseurl=http://mirrors.tuna.tsinghua.edu.cn/gitlab-ci-multi-runner/yum/{{release_name}}
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/gitlab-ci-multi-runner/yum/{{release_name}}
 repo_gpgcheck=0
 gpgcheck=0
 enabled=1
