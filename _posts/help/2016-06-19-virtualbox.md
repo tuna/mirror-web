@@ -86,4 +86,22 @@ sudo apt-get update
 sudo apt-get install virtualbox-5.0
 ```
 
-**BUG报告**: <https://github.com/tuna/issues>
+### RHEL/CentOS 用户
+
+
+新建 `/etc/yum.repos.d/virtualbox.repo`，内容为
+
+```
+[virtualbox]
+name=Virtualbox Repository
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/virtualbox/rpm/el$releasever/
+gpgcheck=0
+enabled=1
+```
+
+刷新缓存并安装 `virtualbox` 即可。
+
+```
+sudo yum makecache
+sudo yum install VirtualBox-5.1
+```
