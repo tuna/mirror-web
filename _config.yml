@@ -33,18 +33,8 @@ exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_
 
 # Content Related
 new_mirrors:
-    - arch4edu
-    - ros
-    - elvish
-    - HHVM
-    - steamos
-    - bjlx
-    - loongson
-    - tensorflow
-    - elasticstack
-    - postgresql
-    - macports
-    - chromiumos
+    - adobe-fonts
+    - tinycorelinux
     - zabbix
 
 
