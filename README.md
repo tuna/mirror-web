@@ -1,12 +1,19 @@
 # TUNA mirrors 主页
 
-## 运行 Demo 
+### 直接编译
 
 本站使用 Jekyll 编写，并使用 babel 编译 ECMAScript6，因此必须安装 ruby >= 2.0 和 nodejs.
 
 ```
 bundle install
 jekyll build
+```
+
+### Build In Docker
+```
+cd mirror-web
+docker build -t builden -f Dockerfile.build .
+docker run -it -v /path/to/mirror-web/:/data builden
 ```
 
 为正常运行，一些动态数据文件需要下载
