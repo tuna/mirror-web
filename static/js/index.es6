@@ -37,6 +37,9 @@ var mir_tmpl = $("#template").text(),
 		'AOSP': {
 			'url': "/help/AOSP/"
 		},
+		'lineageOS': {
+			'url': "/help/lineageOS/"
+		},
 		'homebrew': {
 			'url': "/help/homebrew/"
 		},
