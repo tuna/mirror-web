@@ -273,11 +273,11 @@
   },
   {
     "name": "lineage-rom",
-    "desc": ""
+    "desc": "最大的社区Android发行版之一Lineage的ROM"
   },
   {
     "name": "lineageOS",
-    "desc": ""
+    "desc": "最大的社区Android发行版之一Lineage的源代码"
   },
   {
     "name": "linux-stable.git",
