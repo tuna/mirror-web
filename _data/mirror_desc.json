@@ -44,6 +44,10 @@
     "desc": "OpenBSD 的安装镜像和官方软件包仓库"
   },
   {
+    "name": "adobe-fonts",
+    "desc": ""
+  },
+  {
     "name": "alpine",
     "desc": "Alpine Linux 的安装镜像和官方软件包仓库"
   },
@@ -86,6 +90,10 @@
   {
     "name": "bananian",
     "desc": "用于 Banana Pi 的 Debian 操作系统"
+  },
+  {
+    "name": "bioconductor",
+    "desc": ""
   },
   {
     "name": "bjlx",
@@ -180,6 +188,10 @@
     "desc": "企业版 Linux 附加软件包"
   },
   {
+    "name": "erlang-solutions",
+    "desc": ""
+  },
+  {
     "name": "fedora",
     "desc": "Fedora Linux 的安装镜像和官方软件包仓库"
   },
@@ -258,6 +270,14 @@
   {
     "name": "kodi",
     "desc": "开源的多媒体播放器，原名 XBMC"
+  },
+  {
+    "name": "lineage-rom",
+    "desc": ""
+  },
+  {
+    "name": "lineageOS",
+    "desc": ""
   },
   {
     "name": "linux-stable.git",
@@ -432,6 +452,10 @@
     "desc": " 运行在 Android 上的终端模拟器 Termux 的官方软件包仓库"
   },
   {
+    "name": "tinycorelinux",
+    "desc": ""
+  },
+  {
     "name": "ubuntu",
     "desc": "流行的 Linux 发行版 Ubuntu 的安装镜像和官方软件包仓库"
   },
@@ -462,5 +486,9 @@
   {
     "name": "weave",
     "desc": "Google 开发的物联网（IoT）设备通信平台"
+  },
+  {
+    "name": "zabbix",
+    "desc": ""
   }
 ]
