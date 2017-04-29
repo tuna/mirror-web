@@ -32,7 +32,7 @@ cd WORKING_DIRECTORY
 初始化仓库:
 
 ```
-repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/lineageOS/LineageOS/android.git -b 14.1
+repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/lineageOS/LineageOS/android.git -b cm-14.1
 ```
 
 (如果已经有从github同步的lineageOS源代码，可以从这里直接开始）
