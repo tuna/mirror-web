@@ -24,6 +24,13 @@ def getPlatformPriority(platform):
         return 0
 
 
+def renderTemplate(template, result):
+    group_count = len(result.groups()) + 1
+    for i in range(group_count):
+        template = template.replace("$%d" % i, result.group(i) or "")
+    return template
+
+
 def parseSection(items):
     items = dict(items)
 
@@ -54,14 +61,10 @@ def parseSection(items):
             else:
                 logger.debug("[MATCH] %r", result.groups())
 
-            group_count = len(result.groups()) + 1
             imageinfo = {"filepath": imagepath, "distro": items["distro"]}
 
             for prop in ("version", "type", "platform", "category"):
-                s = items.get(prop, "")
-                for i in range(0, group_count):
-                    s = s.replace("$%d" % i, result.group(i) or "")
-                imageinfo[prop] = s
+                imageinfo[prop] = renderTemplate(items.get(prop, ""), result)
 
             logger.debug("[JSON] %r", imageinfo)
             images.append(imageinfo)
