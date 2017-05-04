@@ -69,7 +69,7 @@ def parseSection(items):
             logger.debug("[JSON] %r", imageinfo)
             images.append(imageinfo)
 
-    #images.sort(key=lambda k: ( LooseVersion(k['version']),
+    # images.sort(key=lambda k: ( LooseVersion(k['version']),
     images.sort(key=lambda k: (LooseVersion(k['version']),
                                getPlatformPriority(k['platform']),
                                k['type']),
@@ -145,6 +145,7 @@ def getImageList():
     os.chdir(oldcwd)
 
     return getJsonOutput(url_dict, prior)
+
 
 if __name__ == "__main__":
     import sys
