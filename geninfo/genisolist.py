@@ -47,6 +47,7 @@ def parseSection(items):
     prog = re.compile(pattern)
 
     images = []
+    images = {}
     for location in locations:
         logger.debug("[GLOB] %s", location)
 
@@ -67,23 +68,26 @@ def parseSection(items):
                 imageinfo[prop] = renderTemplate(items.get(prop, ""), result)
 
             logger.debug("[JSON] %r", imageinfo)
-            images.append(imageinfo)
+            key = renderTemplate(items.get("key_by", ""), result)
+            if key not in images:
+                images[key] = []
+            images[key].append(imageinfo)
 
-    # images.sort(key=lambda k: ( LooseVersion(k['version']),
-    images.sort(key=lambda k: (LooseVersion(k['version']),
-                               getPlatformPriority(k['platform']),
-                               k['type']),
-                reverse=True)
+    for image_group in images.values():
+        image_group.sort(key=lambda k: (LooseVersion(k['version']),
+                                        getPlatformPriority(k['platform']),
+                                        k['type']),
+                         reverse=True)
 
-    i = 0
-    versions = set()
-    listvers = int(items.get('listvers', 0xFF))
-    for image in images:
-        versions.add(image['version'])
-        if len(versions) <= listvers:
-            yield image
-        else:
-            break
+        i = 0
+        versions = set()
+        listvers = int(items.get('listvers', 0xFF))
+        for image in image_group:
+            versions.add(image['version'])
+            if len(versions) <= listvers:
+                yield image
+            else:
+                break
 
 
 def getDetail(image_info, urlbase):
