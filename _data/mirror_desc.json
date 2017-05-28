@@ -349,7 +349,7 @@
   },
   {
     "name": "openwrt",
-    "desc": "OpenWrt 软件包镜像源（仅喊Chaos Calmer版本）"
+    "desc": "OpenWrt 软件包镜像源（仅包含Chaos Calmer版本）"
   },
   {
     "name": "osmc",
@@ -490,5 +490,9 @@
   {
     "name": "zabbix",
     "desc": ""
+  },
+  {
+    "name": "llvm",
+    "desc": "LLVM 编译器套件的多个 git repo 的镜像"
   }
 ]
