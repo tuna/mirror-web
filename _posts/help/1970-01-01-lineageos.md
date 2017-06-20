@@ -71,3 +71,12 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/lineageOS/LineageOS/androi
 ```
 repo sync
 ```
+
+###异常处理
+1. 对于有些Lineage的prebuild仓库，因为使用了`clone-depth="1"`导致了HTTP协议下同步出现错误`fatal: dumb http transport does not support --depth`，解决的办法如下：
+
+	```
+	sed -i 's/clone-depth="1"//' .repo/manifest.xml
+	sed -i 's/clone-depth="1"//' .repo/manifests/snippets/cm.xml
+	```
+2. 部分仓库例如`Lineage_framework_base`同步的时候会出现bundle错误，这时候可以使用命令`repo sync --no-clone-bundle`进行同步就没有问题了
