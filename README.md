@@ -23,7 +23,6 @@ Step 2: Compile ruby 2.2.4 source code
 ```
 weget -c https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.gz
 ```
-configure/make/make install
 Step 3: Install rubygems
 ```
 wget -c https://rubygems.org/rubygems/rubygems-2.4.8.tgz
