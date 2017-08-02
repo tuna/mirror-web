@@ -33,8 +33,8 @@ exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_
 
 # Content Related
 
-issue: 由于同步脚本出错，执行了类似 rm -rf / 的操作……
-backtime: 2016-04-03 20:00
+issue: 由于意料之外的原因，镜像服务器已经全部停止服务
+backtime: 2017-08-03 22:00
 new_mirrors:
     - adobe-fonts
     - tinycorelinux
