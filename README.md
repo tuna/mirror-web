@@ -1,12 +1,50 @@
 # TUNA mirrors 主页
 
-## 运行 Demo 
+## 运行 Demo
+
+### 直接编译
 
 本站使用 Jekyll 编写，并使用 babel 编译 ECMAScript6，因此必须安装 ruby >= 2.0 和 nodejs.
+
+### For Centos
+1.安装 nodejs
+```
+yum install nodejs
+```
+2.安装 ruby 2.2.4 and rubygems
+
+Step 1: Install Required Packages
+```
+yum install gcc-c++ patch readline readline-devel zlib zlib-devel
+yum install libyaml-devel libffi-devel openssl-devel make
+yum install bzip2 autoconf automake libtool bison iconv-devel sqlite-devel 
+```
+Step 2: Compile ruby 2.2.4 source code 
+```
+weget -c https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.gz
+```
+Step 3: Install rubygems
+```
+wget -c https://rubygems.org/rubygems/rubygems-2.4.8.tgz
+ruby setup.rb
+```
+3. 安装 bundle 和 build
+```
+gem install bundle
+gem install build
+```
+4. Fork mirrors source code 
 
 ```
 bundle install
 jekyll build
+```
+
+### Build In Docker
+```
+cd mirror-web
+docker build -t builden -f Dockerfile.build .
+docker run -it -v /path/to/mirror-web/:/data builden
 ```
 
 为正常运行，一些动态数据文件需要下载
@@ -14,6 +52,7 @@ jekyll build
 ```
 wget https://mirrors.tuna.tsinghua.edu.cn/static/tunasync.json -O static/tunasync.json
 wget https://mirrors.tuna.tsinghua.edu.cn/static/tunet.json -O static/tunet.json
+wget https://mirrors.tuna.tsinghua.edu.cn/static/isoinfo.json -O static/isoinfo.json
 ```
 
 之后 `jekyll serve` 即可运行 demo.
@@ -38,39 +77,8 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/tunet.json -O static/tunet.json
 ### 特殊用法
 
 #### 表单选择
-例如 <http://mirrors.tuna.tsinghua.edu.cn/help/gitlab-ce/> 中，通过表单选择操作系统和版本号，生成对应配置文件的代码为:
+例如 <http://mirrors.tuna.tsinghua.edu.cn/help/tensorflow/> 中，通过表单选择操作系统和版本号，建议直接使用 Vue.js
 
-```html
-<form class="form-inline">
-<div class="form-group">
-	<label>你的Debian/Ubuntu版本: </label>
-	<select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
-	  <option data-os="debian" data-release="wheezy">Debian 7 (Wheezy)</option>
-	  <option data-os="debian" data-release="jessie" selected>Debian 8 (Jessie)</option>
-	  <option data-os="ubuntu" data-release="trusty">Ubuntu 14.04 LTS</option>
-	</select>
-</div>
-</form>
-
-<p></p>
-<pre>
-<code id="apt-content">
-</code>
-</pre>
-
-{% raw %}
-<script id="apt-template" type="x-tmpl-markup">
-deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/{{os_name}} {{release_name}} main
-</script>
-{% endraw %}
-```
-
-`<form>`包含的内容即为表单, `select`标签的`data-template`和`data-target`属性分别指定配置文件模板和 placeholder 的 id，
-`option`标签为选项，`data-os` 和 `data-release` 分别指定操作系统名称和版本号。
-
-`code#apt-content`部分是占位符，`{% raw %}{% endraw %}`包含的部分是配置文件模板，通过 `{% raw %}` 标记防止被 jekyll 转义。
-模板使用 [Markup.js](https://github.com/adammark/Markup.js/) 语法，可使用 `{{os_name}}` 和 `{{release_name}}` 两个变量，
-对应于`option`中的操作系统和版本号设定。
 
 
 

@@ -73,7 +73,7 @@ $font_local: 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'W
 		tr:hover {
 			background-color: #e0f3fc;
 		}
-		tr.status-fail {
+		tr.status-fail, tr.status-failed, tr.status-paused {
 			background-color: #fff4e3;
 		}
 		tr.status-syncing {
@@ -92,6 +92,7 @@ $font_local: 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'W
 		}
 		.label.label-status {
 			vertical-align: 20%;
+			margin-left: .5em;
 		}
 		.fa-question-circle {
 			color: #234961;
@@ -100,6 +101,31 @@ $font_local: 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'W
 	#news {
 		li > a {
 			color: $color_text;
+		}
+	}
+	#download-link {
+		margin-bottom: 1em;
+	}
+}
+#isoModal {
+	.nav-tabs {
+		margin-bottom: .5em;
+	}
+}
+
+#status-page {
+	.thead {
+		font-weight: bold;	
+	}
+	#mirror-list {
+		.status-syncing {
+			background-color: #e3fffd;
+		}
+		:hover {
+			background-color: #e0f3fc;
+		}
+		.status-fail, .status-failed {
+			background-color: #fff4e3;
 		}
 	}
 }
@@ -114,6 +140,9 @@ $font_local: 'Heiti SC', 'Hiragino Sans GB', 'STHeiti', 'Source Han Sans CN', 'W
 		.meta {
 			color: $color_grey;
 		}
+	}
+	.fa-user {
+		font-family: #{$font_default}, 'FontAwesome';
 	}
 }
 

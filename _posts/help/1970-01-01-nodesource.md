@@ -19,4 +19,4 @@ curl -sL https://deb.nodesource.com/setup | sudo bash -
 
 编辑 `/etc/apt/sources.list.d/nodesource.list`，把
 `https://deb.nodesource.com/node/` 替换为
-`http://mirrors.tuna.tsinghua.edu.cn/nodesource/deb/` 即可。
+`https://mirrors.tuna.tsinghua.edu.cn/nodesource/deb/` 即可。

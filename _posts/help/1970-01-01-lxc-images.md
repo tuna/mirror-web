@@ -14,3 +14,12 @@ LXC 1.0 以上版本增加了 `download` 模版，支持下载定义好的系统
 ```
 # lxc-create -t download -n my-container -- --server mirrors.tuna.tsinghua.edu.cn/lxc-images
 ```
+
+**LXD/LXC 2.0使用镜像加速的方法**:
+
+创建一个remote链接，指向镜像站即可，或替换掉默认的images链接。
+
+```
+# lxc remote add tuna-images https://mirrors.tuna.tsinghua.edu.cn/lxc-images/ --protocol=simplestreams --public
+# lxc image list tuna-images:
+```

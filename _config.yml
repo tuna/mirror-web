@@ -6,10 +6,11 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: 清华大学 TUNA 镜像源
-brand: TUNA mirrors
+title: 清华大学开源软件镜像站
+brand: Tsinghua Open Source Mirrors
 baseurl: "" # the subpath of your site, e.g. /blog
 permalink: "/:categories/:title/"
+url: "https://mirrors.tuna.tsinghua.edu.cn"
 
 # Build settings
 highlighter: rouge
@@ -24,11 +25,24 @@ sass:
 
 gems:
     - jekyll-babel
+    - jekyll-sitemap
 
-exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh]
+babel_js_extensions: 'es6'
+
+exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_robot.sh, gen_desc.py, Dockerfile*]
 
 # Content Related
-new_mirrors: [openwrt, mongodb, anaconda, packman, gnu, osmc]
 
 issue: 由于同步脚本出错，执行了类似 rm -rf / 的操作……
 backtime: 2016-04-03 20:00
+new_mirrors:
+    - adobe-fonts
+    - tinycorelinux
+    - zabbix
+    - lineage-rom
+    - lineageOS
+    - llvm
+    - clojars
+
+
+# vim: ts=2 sts=2 sw=2 expandtab
