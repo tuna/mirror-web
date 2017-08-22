@@ -35,6 +35,6 @@ exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_
 new_mirrors:
     - clojars
     - iina
-
+    - docker-ce
 
 # vim: ts=2 sts=2 sw=2 expandtab
