@@ -160,8 +160,8 @@
     "desc": "Dell 服务器管理工具"
   },
   {
-    "name": "docker",
-    "desc": "Debian/Ubuntu/Fedora/CentOS/RHEL 的 docker 软件包"
+    "name": "docker-ce",
+    "desc": "Docker Community Edition 的安装包"
   },
   {
     "name": "dotdeb",
