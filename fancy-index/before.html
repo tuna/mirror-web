@@ -1,0 +1,23 @@
+---
+permalink: /fancy-index/before.html
+---
+<!DOCTYPE html>
+<html>
+	{% include head.html %}
+	<body>
+		{% include nav.html %}
+
+		<div id="mirrors">
+			<div class="spacing hidden-xs"></div>
+
+			<div class="container">
+				<div class="row">
+					{% raw %}
+					<div class="col-md-12 table-responsive" id="mirror-list">
+						<h3><span class="fa fa-cube"></span>  Index of <span id="path"><script>
+							document.write(location.pathname);
+						</script></span></h3>
+					{% endraw %}
+<!--
+	vim: ts=2 sts=2 sw=2 noexpandtab
+-->

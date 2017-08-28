@@ -1,0 +1,27 @@
+---
+permalink: /fancy-index/after.html
+---
+					{% raw %}
+					</div>
+					{% endraw %}
+				</div>
+			</div><!--/container -->
+		</div><!--/mirrors -->
+
+		{% include footer.html %}
+
+	</body>
+	{% raw %}
+	{% endraw %}
+	<script src="/static/js/index.js"></script>
+	<script src="/static/js/browser-update.js"></script>
+	{% raw %}
+	<script>
+		document.getElementById("list").setAttribute("class", "table");
+		document.title = "Index of " + location.pathname + " | " + document.title;
+	</script>
+	{% endraw %}
+</html>
+<!--
+	vim: ts=2 sts=2 sw=2 noexpandtab
+-->
