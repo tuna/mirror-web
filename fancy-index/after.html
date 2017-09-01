@@ -19,6 +19,19 @@ permalink: /fancy-index/after.html
 	<script>
 		document.getElementById("list").setAttribute("class", "table");
 		document.title = "Index of " + location.pathname + " | " + document.title;
+		$(function(){
+			$("#list tbody tr td:nth-child(3)").each(function(k,date){
+				var d = new Date($(date).text());
+				if(!isNaN(d.getTime())){
+					var date_str = ('000' + d.getFullYear()).substr(-4) + "-"
+					             + ('0' + (d.getMonth() + 1)).substr(-2) + "-"
+					             + ('0' + d.getDate()).substr(-2)
+					             + (" " + ('0' + d.getHours()).substr(-2) + ":"
+					             + ('0' + d.getMinutes()).substr(-2));
+					$(date).text(date_str);
+				}
+			})
+		});
 	</script>
 	<style>
 		#list tbody td, #path{
