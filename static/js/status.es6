@@ -2,13 +2,21 @@
 ---
 $(document).ready(() => {
 	var mir_tmpl = $("#template").text();
-	
+	function readableFileSize(size) {
+		var units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+		var i = 0;
+		while(size >= 1024) {
+		    size /= 1024;
+		    ++i;
+		}
+		return size.toFixed(1) + ' ' + units[i];
+	}
 	$.get("/static/status/disk.json", (d) => {
 		var used_percent = Math.round(d.used_kb * 100 / d.total_kb);
 		$('#disk-usage-bar')
 			.attr("aria-valuenow", used_percent)
 			.css("width", used_percent + "%")
-			.html("<strong>" + d.used_readable + " / " + d.total_readable + "</strong>");
+			.html("<strong>" + readableFileSize(d.used_kb * 1024) + " / " + readableFileSize(d.total_kb * 1024) + "</strong>");
 	});
 
 	window.refreshMirrorList = () => {
