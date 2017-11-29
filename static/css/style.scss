@@ -9,7 +9,7 @@ Project Name: SOLID - Bootstrap 3 Theme
 Version: 1.0
 URL: http://alvarez.is
 
-################################################################# */ 
+################################################################# */
 
 $color_thu_purple: #82318E;
 $color_light_grey: #888;
@@ -26,7 +26,7 @@ $color_navbar_bg: #d3d3d3;
 $font_default: 'Lato', 'Hiragino Sans GB', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
 $font_local: 'Hiragino Sans GB', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
 
-@import 
+@import
 	"Lato",
 	"structure",
 	"bootstrap-mod",
@@ -41,6 +41,16 @@ $font_local: 'Hiragino Sans GB', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'Wen
 		top: 20px;
 		position: absolute;
 	}
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+	position: relative;
+	min-height: 100%;
 }
 
 #headerwrap {
@@ -74,9 +84,9 @@ $font_local: 'Hiragino Sans GB', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'Wen
 		}
 		td {
 			padding: 4px 8px;
-			border-top: none; 
+			border-top: none;
 		}
-		font-size: 12pt; 
+		font-size: 12pt;
 		.label.label-new {
 			padding: .1em .2em;
 			vertical-align: 40%;
@@ -108,7 +118,7 @@ $font_local: 'Hiragino Sans GB', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'Wen
 
 #status-page {
 	.thead {
-		font-weight: bold;	
+		font-weight: bold;
 	}
 	#mirror-list {
 		.status-syncing {
@@ -155,6 +165,17 @@ $font_local: 'Hiragino Sans GB', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'Wen
 	i, i:hover, a, a:hover {
 		color: $color_footer_content;
 	}
+}
+
+#footerwrap.tuna-foot-1 {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+#footerwrap.tuna-foot-2 {
+	visibility: hidden;
 }
 
 .spacing {

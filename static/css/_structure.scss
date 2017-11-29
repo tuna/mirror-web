@@ -1,15 +1,15 @@
 /*	################################################################
 1. GENERAL STRUCTURES
 ################################################################# */
-* { 
+* {
     margin: 0;
     // padding: 0px;
-} 
+}
 
-body { 
-    background: #ffffff; 
-    margin: 0; 
-    height: 100%; 
+body {
+    background: #ffffff;
+    margin: 0;
+    /* height: 100%; */ 
     color: $color_secondary;
     font-weight: 400;
 }
@@ -28,14 +28,14 @@ ul {
     padding-left: 1em;
 }
 
-p { 
-    padding: 0; 
-    margin-bottom: 12px; 
+p {
+    padding: 0;
+    margin-bottom: 12px;
     font-weight: 400;
-    font-size: 14px; 
+    font-size: 14px;
     line-height: 24px;
-    color: $color_secondary ; 
-    margin-top: 10px; 
+    color: $color_secondary ;
+    margin-top: 10px;
 }
 
 img {
@@ -43,11 +43,11 @@ img {
     max-width: 100%;
 }
 
-a { 
+a {
     color:$color_link;
     padding: 0;
     margin: 0;
-    text-decoration: none; 
+    text-decoration: none;
     -webkit-transition: background-color .4s linear, color .4s linear;
     -moz-transition: background-color .4s linear, color .4s linear;
     -o-transition: background-color .4s linear, color .4s linear;
@@ -74,4 +74,3 @@ a:hover, a:focus {
 .centered {
     text-align: center
 }
-
