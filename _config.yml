@@ -37,6 +37,6 @@ new_mirrors:
     - iina
     - docker-ce
     - openthos
-    - openthos-img
+    - openthos-src
 
 # vim: ts=2 sts=2 sw=2 expandtab

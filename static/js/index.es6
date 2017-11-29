@@ -64,8 +64,8 @@ var mir_tmpl = $("#template").text(),
 		'llvm': {
 			'url': "/help/llvm/"
 		},
-		'openthos': {
-			'url': "/help/openthos/"
+		'openthos-src': {
+			'url': "/help/openthos-src/"
 		}
 	},
 	descriptions = {
