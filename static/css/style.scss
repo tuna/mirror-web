@@ -203,11 +203,42 @@ body {
     .text-right-md {
         text-align: right;
     }
+		.no-float-md {
+			float: none;
+		}
+		.no-before-md:before {
+			content: none;
+		}
+		.no-after-md:after {
+			content: none;
+		}
 }
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
     .text-right-lg {
         text-align: right;
+    }
+}
+
+@media (max-width: 992px) {
+    .table.flat-md {
+        display: block;
+				* {
+					display: block;
+				}
+				td,th {
+					border-style: none;
+				}
+				tr {
+					border-bottom: 1px solid #ddd;
+				}
+				tr:first-of-type {
+					border-top: 1px solid #ddd;
+				}
+				td,th[class*="col-"] {
+					float: left;
+					position: relative;
+				}
     }
 }

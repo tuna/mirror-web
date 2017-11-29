@@ -57,32 +57,37 @@ permalink: /status/
 				</div>
 			</div>
 			<h3 id="syncing-status"># 同步状态</h3>
-			<div>
-				<div class="thead row">
-					<div>
-						<div class="col-md-2">Name</div>
-						<div class="col-md-2">Last Update</div>
-						<div class="col-md-5">Upstream</div>
-						<div class="col-md-1">Status</div>
-						<div class="col-md-2">Size</div>
-					</div>
-				</div>
-				<div id="mirror-list">
-				</div>
-			</div>
+			<table class="table table-condensed flat-md">
+				<thead class="hidden-xs hidden-sm">
+					<tr>
+						<th class="col-xs-12 col-md-2">Name</th>
+						<th class="col-xs-12 col-md-2">Last Update</th>
+						<th class="col-xs-12 col-md-5">Upstream</th>
+						<th class="col-xs-12 col-md-1">Status</th>
+						<th class="col-xs-12 col-md-2">Size</th>
+					</tr>
+				</thead>
+				<tbody id="mirror-list">
+				</tbody>
+			</table>
 		</div><!--/container -->
 	</div><!--/status -->
 	{% include footer.html %}
 	{% raw %}
 	<script id="template" type="x-tmpl-markup">
 {{mirrors}}
-<div class="status-{{status}} row">
-	<div class="col-md-2">{{name}}{{if is_master|falsy}}[slave]{{/if}}</div>
-	<div class="col-md-2">{{last_update}}</div>
-	<div class="col-md-5">{{upstream}}</div>
-	<div class="col-md-1">{{status}}</div>
-	<div class="col-md-2">{{size}}</div>
-</div>
+<tr class="status-{{status}} row no-before-md no-after-md">
+	<td class="col-xs-4 text-right hidden-md hidden-lg"><strong>Name</strong></td>
+	<td class="col-md-2 col-xs-8">{{name}}{{if is_master|falsy}}[slave]{{/if}}</td>
+	<td class="col-xs-4 text-right hidden-md hidden-lg"><strong>Last Update</strong></td>
+	<td class="col-md-2 col-xs-8">{{last_update}}</td>
+	<td class="col-xs-4 text-right hidden-md hidden-lg"><strong>Upstream</strong></td>
+	<td class="col-md-5 col-xs-8">{{upstream}}</td>
+	<td class="col-xs-4 text-right hidden-md hidden-lg"><strong>Status</strong></td>
+	<td class="col-md-1 col-xs-8">{{status}}</td>
+	<td class="col-xs-4 text-right hidden-md hidden-lg"><strong>Size</strong></td>
+	<td class="col-md-2 col-xs-8">{{size}}</td>
+</tr>
 {{/mirrors}}
 	</script>
 	{% endraw %}
