@@ -76,16 +76,16 @@ permalink: /status/
 	{% raw %}
 	<script id="template" type="x-tmpl-markup">
 {{mirrors}}
-<tr class="status-{{status}} row no-before-md no-after-md">
-	<td class="col-xs-4 text-right hidden-md hidden-lg"><strong>Name</strong></td>
+<tr class="status-{{status}} row">
+	<td class="col-xs-4">Name</td>
 	<td class="col-md-2 col-xs-8">{{name}}{{if is_master|falsy}}[slave]{{/if}}</td>
-	<td class="col-xs-4 text-right hidden-md hidden-lg"><strong>Last Update</strong></td>
+	<td class="col-xs-4">Last Update</td>
 	<td class="col-md-2 col-xs-8">{{last_update}}</td>
-	<td class="col-xs-4 text-right hidden-md hidden-lg"><strong>Upstream</strong></td>
+	<td class="col-xs-4">Upstream</td>
 	<td class="col-md-5 col-xs-8">{{upstream}}</td>
-	<td class="col-xs-4 text-right hidden-md hidden-lg"><strong>Status</strong></td>
+	<td class="col-xs-4">Status</td>
 	<td class="col-md-1 col-xs-8">{{status}}</td>
-	<td class="col-xs-4 text-right hidden-md hidden-lg"><strong>Size</strong></td>
+	<td class="col-xs-4">Size</td>
 	<td class="col-md-2 col-xs-8">{{size}}</td>
 </tr>
 {{/mirrors}}
