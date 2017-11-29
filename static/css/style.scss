@@ -71,16 +71,17 @@ body {
 	}
 }
 
+.status-fail, .status-failed, .status-paused {
+	background-color: #fff4e3;
+}
+.status-syncing {
+	background-color: #e3fffd;
+}
+
 #mirrors {
 	tbody {
 		tr:hover {
 			background-color: #e0f3fc;
-		}
-		tr.status-fail, tr.status-failed, tr.status-paused {
-			background-color: #fff4e3;
-		}
-		tr.status-syncing {
-			background-color: #e3fffd;
 		}
 		td {
 			padding: 4px 8px;
@@ -121,14 +122,8 @@ body {
 		font-weight: bold;
 	}
 	#mirror-list {
-		.status-syncing {
-			background-color: #e3fffd;
-		}
 		:hover {
 			background-color: #e0f3fc;
-		}
-		.status-fail, .status-failed {
-			background-color: #fff4e3;
 		}
 	}
 }
@@ -185,4 +180,34 @@ body {
 
 .clickable {
 	cursor: pointer;
+}
+
+.vbottom {
+    display: inline-block;
+    vertical-align: bottom;
+    float: none;
+}
+.text-right-xs {
+    text-align: right;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .text-right-sm {
+        text-align: right;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .text-right-md {
+        text-align: right;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .text-right-lg {
+        text-align: right;
+    }
 }

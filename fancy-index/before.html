@@ -14,9 +14,15 @@ permalink: /fancy-index/before.html
 				<div class="row">
 					{% raw %}
 					<div class="col-md-12 table-responsive" id="mirror-list">
-						<h3><span class="fa fa-cube"></span>  Index of <span id="path"><script>
-							document.write(location.pathname);
-						</script></span></h3>
+						<div>
+							<div class="col-md-8 col-xs-12 vbottom"><h3><span class="fa fa-cube"></span>  Index of <span id="path"><script>
+								document.write(location.pathname);
+							</script></span></h3></div><!--
+							--><div class="col-md-4 col-xs-12 text-right-md text-left-xs vbottom" v-if="nowBrowsingMirror">
+								<strong>Last Update:</strong> {{nowBrowsingMirror.last_update}}
+								<span v-if="nowBrowsingMirror.show_status" :class="['label', 'label-status', nowBrowsingMirror.label, 'hidden-xs']">{{nowBrowsingMirror.status}}</span>
+							</div>
+						</div>
 					{% endraw %}
 <!--
 	vim: ts=2 sts=2 sw=2 noexpandtab

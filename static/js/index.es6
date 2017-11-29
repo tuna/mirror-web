@@ -84,6 +84,22 @@ var vmMirList = new Vue({
 	updated () {
 		$('.mirror-item-label').popover();
 	},
+	computed: {
+		nowBrowsingMirror: function(){
+			var mirrorName = location.pathname.split('/')[1];
+			if(!mirrorName){
+				return false;
+			}
+			mirrorName = mirrorName.toLowerCase();
+			var result = this.mirrorList.filter(function(m){
+				return m.name.toLowerCase() === mirrorName;
+			})[0];
+			if(!result){
+				return false;
+			}
+			return result;
+		}
+	},
 	methods: {
 		getURL (mir) {
 			if (mir.url !== undefined) {
