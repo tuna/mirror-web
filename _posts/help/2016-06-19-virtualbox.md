@@ -26,7 +26,7 @@ mirrorid: virtualbox
 
 目前支持的系统有：
 
-* Ubuntu 
+* Ubuntu
 * Debian
 * Fedora
 * openSUSE
@@ -35,7 +35,7 @@ mirrorid: virtualbox
 
 如果您所使用的发行版不在上述列表之内，请下载通用的`run`文件（例如`VirtualBox-5.0.24-108355-Linux_x86.run`），然后使用 `chmod +x` 给予执行权限后，直接安装即可。
 
-### 通过包管理器安装 
+### 通过包管理器安装
 
 #### Debian / Ubuntu 用户
 
@@ -59,7 +59,8 @@ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key a
 <div class="form-group">
   <label>你的Debian/Ubuntu版本: </label>
   <select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
-    <option data-os="debian" data-release="jessie" selected>Debian 8 (Jessie)</option>
+    <option data-os="debian" data-release="stretch" selected>Debian 9 (Stretch)</option>
+    <option data-os="debian" data-release="jessie">Debian 8 (Jessie)</option>
     <option data-os="debian" data-release="wheezy">Debian 7 (Wheezy)</option>
     <option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
     <option data-os="ubuntu" data-release="trusty">Ubuntu 14.04 LTS</option>
