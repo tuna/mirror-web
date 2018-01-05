@@ -9,6 +9,7 @@ Disallow: /ELK
 Disallow: /HHVM
 Disallow: /NetBSD
 Disallow: /OpenBSD
+Disallow: /adobe-fonts
 Disallow: /alpine
 Disallow: /anaconda
 Disallow: /antergos
@@ -23,10 +24,13 @@ Disallow: /bananian
 Disallow: /bioconductor
 Disallow: /bjlx
 Disallow: /blackarch
+Disallow: /centos-altarch
 Disallow: /centos
 Disallow: /ceph
+Disallow: /chakra-releases
 Disallow: /chakra
 Disallow: /chromiumos
+Disallow: /clojars
 Disallow: /ctex
 Disallow: /cygwin
 Disallow: /debian-cd
@@ -37,7 +41,7 @@ Disallow: /debian
 Disallow: /deepin-cd
 Disallow: /deepin
 Disallow: /dell
-Disallow: /docker
+Disallow: /docker-ce
 Disallow: /dotdeb
 Disallow: /elasticstack
 Disallow: /elpa
@@ -46,6 +50,8 @@ Disallow: /elvish
 Disallow: /epel
 Disallow: /erlang-solutions
 Disallow: /fedora
+Disallow: /fzug
+Disallow: /gentoo-portage-prefix
 Disallow: /gentoo-portage
 Disallow: /gentoo
 Disallow: /git-repo
@@ -56,7 +62,7 @@ Disallow: /grafana
 Disallow: /hackage
 Disallow: /homebrew-bottles
 Disallow: /homebrew
-Disallow: /infinality-bundle
+Disallow: /iina
 Disallow: /influxdata
 Disallow: /ius
 Disallow: /jenkins
@@ -65,10 +71,14 @@ Disallow: /kali-security
 Disallow: /kali
 Disallow: /kernel
 Disallow: /kodi
+Disallow: /lede
+Disallow: /lineage-rom
+Disallow: /lineageOS
 Disallow: /linux-stable.git
 Disallow: /linux.git
 Disallow: /linuxmint-cd
 Disallow: /linuxmint
+Disallow: /llvm
 Disallow: /loongson
 Disallow: /lxc-images
 Disallow: /macports
@@ -82,6 +92,8 @@ Disallow: /mysql
 Disallow: /neurodebian
 Disallow: /nodesource
 Disallow: /opensuse
+Disallow: /openthos-src
+Disallow: /openthos
 Disallow: /openwrt
 Disallow: /osmc
 Disallow: /packman
@@ -92,6 +104,7 @@ Disallow: /puppy
 Disallow: /pybombs
 Disallow: /pypi
 Disallow: /qt
+Disallow: /raspberrypi
 Disallow: /raspbian
 Disallow: /redhat
 Disallow: /remi
@@ -104,10 +117,12 @@ Disallow: /sagemath
 Disallow: /saltstack
 Disallow: /slackware
 Disallow: /slackwarearm
+Disallow: /solus
 Disallow: /stackage
 Disallow: /steamos
 Disallow: /tensorflow
 Disallow: /termux
+Disallow: /tinycorelinux
 Disallow: /ubuntu-cdimage
 Disallow: /ubuntu-cloud-images
 Disallow: /ubuntu-ports
@@ -115,4 +130,5 @@ Disallow: /ubuntu-releases
 Disallow: /ubuntu
 Disallow: /videolan-ftp
 Disallow: /virtualbox
-Disallow: /weave
+Disallow: /winehq
+Disallow: /zabbix

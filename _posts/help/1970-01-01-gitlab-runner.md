@@ -1,13 +1,12 @@
 ---
 category: help
 layout: help
-mirrorid: gitlab-ci-multi-runner
+mirrorid: gitlab-runner
 ---
 
-## Gitlab CI Multi Runner 镜像使用帮助
+## Gitlab Runner 镜像使用帮助
 
-**注意: gitlab-ci-multi-runner 镜像仅支持 x86-64 架构**，如果你需要安装版本 10 及以上的
-Runner，由于官方名称发生变化，请前往 [{% post_url help/1970-01-01-gitlab-runner %}]()。
+**注意: gitlab-runner 镜像仅支持 x86-64 架构**
 
 ### Debian/Ubuntu 用户
 
@@ -17,7 +16,7 @@ Runner，由于官方名称发生变化，请前往 [{% post_url help/1970-01-01
 curl https://packages.gitlab.com/gpg.key 2> /dev/null | sudo apt-key add - &>/dev/null
 ```
 
-再选择你的 Debian/Ubuntu 版本，文本框中内容写进 `/etc/apt/sources.list.d/gitlab-ci-multi-runner.list`
+再选择你的 Debian/Ubuntu 版本，文本框中内容写进 `/etc/apt/sources.list.d/gitlab-runner.list`
 
 <form class="form-inline">
 <div class="form-group">
@@ -39,22 +38,22 @@ curl https://packages.gitlab.com/gpg.key 2> /dev/null | sudo apt-key add - &>/de
 </pre>
 
 
-安装 gitlab-ci-multi-runner:
+安装 gitlab-runner:
 
 ```
 sudo apt-get update
-sudo apt-get install gitlab-ci-multi-runner
+sudo apt-get install gitlab-runner
 ```
 
 {% raw %}
 <script id="apt-template" type="x-tmpl-markup">
-deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://mirrors.tuna.tsinghua.edu.cn/gitlab-ci-multi-runner/{{os_name}} {{release_name}} main
+deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://mirrors.tuna.tsinghua.edu.cn/gitlab-runner/{{os_name}} {{release_name}} main
 </script>
 {%endraw%}
 
 ### CentOS/RHEL
 
-新建 `/etc/yum.repos.d/gitlab-ci-multi-runner.repo`，内容为
+新建 `/etc/yum.repos.d/gitlab-runner.repo`，内容为
 
 <form class="form-inline">
 <div class="form-group">
@@ -79,14 +78,14 @@ deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://mirrors.tuna.tsinghua
 
 ```
 sudo yum makecache
-sudo yum install gitlab-ci-multi-runner
+sudo yum install gitlab-runner
 ```
 
 {% raw %}
 <script id="yum-template" type="x-tmpl-markup">
-[gitlab-ci-multi-runner]
-name=gitlab-ci-multi-runner
-baseurl=https://mirrors.tuna.tsinghua.edu.cn/gitlab-ci-multi-runner/yum/{{release_name}}
+[gitlab-runner]
+name=gitlab-runner
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/gitlab-runner/yum/{{release_name}}
 repo_gpgcheck=0
 gpgcheck=0
 enabled=1

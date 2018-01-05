@@ -108,6 +108,10 @@
     "desc": "CentOS 的安装镜像和官方软件包仓库"
   },
   {
+    "name": "centos-altarch",
+    "desc": "CentOS 额外平台的安装镜像和官方软件包仓库"
+  },
+  {
     "name": "ceph",
     "desc": "高性能对象存储和文件系统"
   },
@@ -116,8 +120,16 @@
     "desc": "专注于 Qt 与 KDE 软件的 Linux 发行版"
   },
   {
+    "name": "chakra-releases",
+    "desc": "Chakra 发行版的安装镜像"
+  },
+  {
     "name": "chromiumos",
     "desc": "Google Chrome OS的开放源代码开发版本"
+  },
+  {
+    "name": "clojars",
+    "desc": ""
   },
   {
     "name": "ctex",
@@ -196,6 +208,14 @@
     "desc": "Fedora Linux 的安装镜像和官方软件包仓库"
   },
   {
+    "name": "fedora-altarch",
+    "desc": "Fedora Linux 额外平台的安装镜像和官方软件包仓库"
+  },
+  {
+    "name": "fzug",
+    "desc": "Fedora 中文用户组的软件包仓库"
+  },
+  {
     "name": "gentoo",
     "desc": "Gentoo Linux 的 Stage 3 镜像"
   },
@@ -220,6 +240,10 @@
     "desc": "GitLab 持续集成框架"
   },
   {
+    "name": "gitlab-runner",
+    "desc": "GitLab 持续集成框架版本 10 及以上"
+  },
+  {
     "name": "gnu",
     "desc": "GNU项目的软件包（源代码、文档和部分平台的二进制文件）"
   },
@@ -238,6 +262,10 @@
   {
     "name": "homebrew-bottles",
     "desc": "预编译的 Homebrew 软件包"
+  },
+  {
+    "name": "iina",
+    "desc": "macOS 上的现代化开源视频播放器"
   },
   {
     "name": "infinality-bundle",
@@ -276,6 +304,10 @@
     "desc": "开源的多媒体播放器，原名 XBMC"
   },
   {
+    "name": "lede",
+    "desc": ""
+  },
+  {
     "name": "lineage-rom",
     "desc": "最大的社区Android发行版之一Lineage的ROM"
   },
@@ -298,6 +330,10 @@
   {
     "name": "linuxmint-cd",
     "desc": "Linux Mint 的安装镜像"
+  },
+  {
+    "name": "llvm",
+    "desc": "LLVM 编译器套件的多个 git repo 的镜像"
   },
   {
     "name": "loongson",
@@ -352,6 +388,14 @@
     "desc": "openSUSE 的安装镜像和官方软件包仓库"
   },
   {
+    "name": "openthos",
+    "desc": "OpenTHOS 的二进制发行包"
+  },
+  {
+    "name": "openthos-src",
+    "desc": "OpenTHOS 源代码仓库"
+  },
+  {
     "name": "openwrt",
     "desc": "OpenWrt 软件包镜像源（仅包含Chaos Calmer版本）"
   },
@@ -390,6 +434,10 @@
   {
     "name": "qt",
     "desc": "跨平台软件开发库 Qt 的源码、开发工具、文档等"
+  },
+  {
+    "name": "raspberrypi",
+    "desc": ""
   },
   {
     "name": "raspbian",
@@ -438,6 +486,10 @@
   {
     "name": "slackwarearm",
     "desc": "用于 ARM 设备的 Slackware 发行版源代码和官方软件包仓库"
+  },
+  {
+    "name": "solus",
+    "desc": ""
   },
   {
     "name": "stackage",
@@ -492,11 +544,11 @@
     "desc": "Google 开发的物联网（IoT）设备通信平台"
   },
   {
-    "name": "zabbix",
+    "name": "winehq",
     "desc": ""
   },
   {
-    "name": "llvm",
-    "desc": "LLVM 编译器套件的多个 git repo 的镜像"
+    "name": "zabbix",
+    "desc": ""
   }
 ]
