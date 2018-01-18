@@ -40,5 +40,6 @@ new_mirrors:
     - fedora-altarch
     - gentoo-portage-prefix
     - gitlab-runner
+    - pkgsrc
 
 # vim: ts=2 sts=2 sw=2 expandtab
