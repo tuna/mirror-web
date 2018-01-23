@@ -21,7 +21,7 @@ yum install bzip2 autoconf automake libtool bison iconv-devel sqlite-devel
 ```
 Step 2: Compile ruby 2.2.4 source code 
 ```
-weget -c https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.gz
+wget -c https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.gz
 ```
 Step 3: Install rubygems
 ```
