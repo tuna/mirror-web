@@ -6,7 +6,7 @@
 <meta name="keywords" content="镜像站,镜像源,Linux,软件源,开源">
 <meta name="author" content="TUNA">
 <link rel="shortcut icon" href="/static/img/favicon.png">
-<title>清华大学开源软件镜像站 | Tsinghua Open Source Mirror</title>
+<title>{% if page.title %} {{ page.title }} |{% endif %}{% if include.cattitle %} {{ include.cattitle }} |{% endif %}{% if (page.title || include.cattitle) %}{{" "}}{% endif %}清华大学开源软件镜像站 | Tsinghua Open Source Mirror</title>
 <link rel="stylesheet" href="/static/css/bootstrap.css">
 <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="/static/css/font-awesome.min.css" >
