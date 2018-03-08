@@ -171,7 +171,7 @@ var vmIso = new Vue({
 	},
 	created: function () {
 		var self = this;
-		$.getJSON("/static/isoinfo.json", function (isoinfo) {
+		$.getJSON("/static/status/isoinfo.json", function (isoinfo) {
 			self.distroList = isoinfo;
 			self.selected = self.curDistroList[0];
 			if (window.location.hash.match(/#iso-download(\?.*)?/)) {

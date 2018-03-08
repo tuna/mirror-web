@@ -17,9 +17,9 @@ Step 1: Install Required Packages
 ```
 yum install gcc-c++ patch readline readline-devel zlib zlib-devel
 yum install libyaml-devel libffi-devel openssl-devel make
-yum install bzip2 autoconf automake libtool bison iconv-devel sqlite-devel 
+yum install bzip2 autoconf automake libtool bison iconv-devel sqlite-devel
 ```
-Step 2: Compile ruby 2.2.4 source code 
+Step 2: Compile ruby 2.2.4 source code
 ```
 wget -c https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.gz
 ```
@@ -33,7 +33,7 @@ ruby setup.rb
 gem install bundle
 gem install build
 ```
-4. Fork mirrors source code 
+4. Fork mirrors source code
 
 ```
 bundle install
@@ -52,7 +52,8 @@ docker run -it -v /path/to/mirror-web/:/data builden
 ```
 wget https://mirrors.tuna.tsinghua.edu.cn/static/tunasync.json -O static/tunasync.json
 wget https://mirrors.tuna.tsinghua.edu.cn/static/tunet.json -O static/tunet.json
-wget https://mirrors.tuna.tsinghua.edu.cn/static/isoinfo.json -O static/isoinfo.json
+mkdir -p static/status
+wget https://mirrors.tuna.tsinghua.edu.cn/static/isoinfo.json -O static/status/isoinfo.json
 ```
 
 之后 `jekyll serve` 即可运行 demo.
@@ -78,7 +79,3 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/isoinfo.json -O static/isoinfo.
 
 #### 表单选择
 例如 <http://mirrors.tuna.tsinghua.edu.cn/help/tensorflow/> 中，通过表单选择操作系统和版本号，建议直接使用 Vue.js
-
-
-
-
