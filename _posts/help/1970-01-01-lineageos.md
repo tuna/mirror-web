@@ -42,13 +42,19 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/lineageOS/LineageOS/androi
 ```xml
   <remote  name="github"
            fetch=".."
+           review="review.lineageos.org" />
+
 ```
 
 改成
 
 ```xml
   <remote  name="github"
+           fetch="https://github.com/" />
+
+  <remote  name="lineage"
            fetch="https://mirrors.tuna.tsinghua.edu.cn/git/lineageOS/"
+           review="review.lineageos.org" />
 ```
 
 将
@@ -65,6 +71,19 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/lineageOS/LineageOS/androi
            fetch="https://aosp.tuna.tsinghua.edu.cn"
 ```
 
+将
+
+```xml
+  <default revision="..."
+           remote="github"
+```
+
+改成
+
+```xml
+  <default revision="..."
+           remote="lineage"
+```
 
 同步源码树（以后只需执行这条命令来同步）：
 
