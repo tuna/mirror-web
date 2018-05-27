@@ -180,6 +180,10 @@
     "desc": "用于 Debian 服务器的额外镜像源"
   },
   {
+    "name": "eclipse",
+    "desc": ""
+  },
+  {
     "name": "elasticstack",
     "desc": "ELK 系列数据分析工具，5.x 之后改名为 Elastic Stack"
   },
@@ -212,6 +216,10 @@
     "desc": "Fedora Linux 额外平台的安装镜像和官方软件包仓库"
   },
   {
+    "name": "flightgear",
+    "desc": ""
+  },
+  {
     "name": "fzug",
     "desc": "Fedora 中文用户组的软件包仓库"
   },
@@ -238,6 +246,10 @@
   {
     "name": "gitlab-ci-multi-runner",
     "desc": "GitLab 持续集成框架"
+  },
+  {
+    "name": "gitlab-ee",
+    "desc": "Gitlab 企业版"
   },
   {
     "name": "gitlab-runner",
@@ -316,6 +328,10 @@
     "desc": "最大的社区Android发行版之一Lineage的源代码"
   },
   {
+    "name": "linux-next.git",
+    "desc": ""
+  },
+  {
     "name": "linux-stable.git",
     "desc": "Linux 内核源代码的 Git 仓库, 稳定版分支"
   },
@@ -380,8 +396,16 @@
     "desc": "用于神经科学研究的 Debian 软件包源"
   },
   {
+    "name": "nodejs-release",
+    "desc": "预编译的 nodejs 二进制程序"
+  },
+  {
     "name": "nodesource",
     "desc": "为 Debian, Ubuntu, Fedora, RHEL 等发行版提供预编译的 nodejs 和 npm 等软件包"
+  },
+  {
+    "name": "openresty",
+    "desc": ""
   },
   {
     "name": "opensuse",
@@ -414,6 +438,10 @@
   {
     "name": "percona",
     "desc": "开源的数据库解决方案，详见 http://www.percona.com"
+  },
+  {
+    "name": "pkgsrc",
+    "desc": ""
   },
   {
     "name": "postgresql",

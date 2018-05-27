@@ -53,7 +53,7 @@ docker run -it -v /path/to/mirror-web/:/data builden
 wget https://mirrors.tuna.tsinghua.edu.cn/static/tunasync.json -O static/tunasync.json
 wget https://mirrors.tuna.tsinghua.edu.cn/static/tunet.json -O static/tunet.json
 mkdir -p static/status
-wget https://mirrors.tuna.tsinghua.edu.cn/static/isoinfo.json -O static/status/isoinfo.json
+wget https://mirrors.tuna.tsinghua.edu.cn/static/status/isoinfo.json -O static/status/isoinfo.json
 ```
 
 之后 `jekyll serve` 即可运行 demo.
