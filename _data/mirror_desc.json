@@ -33,7 +33,7 @@
   },
   {
     "name": "Homebrew",
-    "desc": " Homebrew 的 formula 索引的镜像，二进制预编译包的镜像请见 homebrew-bottles"
+    "desc": "Homebrew 的 formula 索引的镜像，二进制预编译包的镜像请见 homebrew-bottles"
   },
   {
     "name": "NetBSD",
@@ -93,7 +93,7 @@
   },
   {
     "name": "bioconductor",
-    "desc": ""
+    "desc": "开源的基因数据分析处理工具"
   },
   {
     "name": "bjlx",
@@ -129,7 +129,7 @@
   },
   {
     "name": "clojars",
-    "desc": ""
+    "desc": "Clojure 语言的第三方软件包仓库"
   },
   {
     "name": "ctex",
@@ -149,11 +149,11 @@
   },
   {
     "name": "debian-multimedia",
-    "desc": ""
+    "desc": "Debian Linux 第三方多媒体软件源"
   },
   {
     "name": "debian-nonfree",
-    "desc": ""
+    "desc": "Debian Linux 的非自由软件包仓库"
   },
   {
     "name": "debian-security",
@@ -181,7 +181,7 @@
   },
   {
     "name": "eclipse",
-    "desc": ""
+    "desc": "著名的IDE Eclipse"
   },
   {
     "name": "elasticstack",
@@ -217,7 +217,7 @@
   },
   {
     "name": "flightgear",
-    "desc": ""
+    "desc": "多平台的飞行模拟器"
   },
   {
     "name": "fzug",
@@ -317,7 +317,7 @@
   },
   {
     "name": "lede",
-    "desc": ""
+    "desc": "OpenWRT 与 LEDE 再次合并后的源码仓库"
   },
   {
     "name": "lineage-rom",
@@ -329,7 +329,7 @@
   },
   {
     "name": "linux-next.git",
-    "desc": ""
+    "desc": "Linux 内核源代码的 Git 仓库，开发分支（包含为下一个 merge windows 开发的 patch）"
   },
   {
     "name": "linux-stable.git",
@@ -405,7 +405,7 @@
   },
   {
     "name": "openresty",
-    "desc": ""
+    "desc": "基于 Nginx 与 Lua 的高性能 Web 平台"
   },
   {
     "name": "opensuse",
@@ -421,7 +421,7 @@
   },
   {
     "name": "openwrt",
-    "desc": "OpenWrt 软件包镜像源（仅包含Chaos Calmer版本）"
+    "desc": "OpenWrt 软件包镜像源（仅包含Chaos Calmer版本，请前往 lede 目录获取最新源码）"
   },
   {
     "name": "osmc",
@@ -441,7 +441,7 @@
   },
   {
     "name": "pkgsrc",
-    "desc": ""
+    "desc": "NetBSD 的第三方软件源"
   },
   {
     "name": "postgresql",
@@ -517,7 +517,7 @@
   },
   {
     "name": "solus",
-    "desc": ""
+    "desc": "SolusOS 的软件仓库，致力于制作对新手友好的发行版"
   },
   {
     "name": "stackage",
@@ -537,7 +537,7 @@
   },
   {
     "name": "tinycorelinux",
-    "desc": ""
+    "desc": "为嵌入式开发的微型 Linux 发行版"
   },
   {
     "name": "ubuntu",
@@ -573,10 +573,10 @@
   },
   {
     "name": "winehq",
-    "desc": ""
+    "desc": "Wine （允许类 Unix 操作系统运行 Windows 程序）"
   },
   {
     "name": "zabbix",
-    "desc": ""
+    "desc": "著名的网络监视、管理系统"
   }
 ]
