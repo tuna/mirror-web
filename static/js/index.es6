@@ -76,7 +76,8 @@ var vmMirList = new Vue({
 	el: "#mirror-list",
 	data: {
 		test: "hello",
-		mirrorList: []
+		mirrorList: [],
+		filter: "",
 	},
 	created () {
 		this.refreshMirrorList();
@@ -98,7 +99,13 @@ var vmMirList = new Vue({
 				return false;
 			}
 			return result;
-		}
+		},
+		filteredMirrorList: function() {
+			var filter = this.filter.toLowerCase();
+			return this.mirrorList.filter(function(m){
+				return m.name.toLowerCase().indexOf(filter) !== -1;
+			});
+		},
 	},
 	methods: {
 		getURL (mir) {
