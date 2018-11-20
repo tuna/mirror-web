@@ -36,5 +36,7 @@ new_mirrors:
     - gnu-alpha
     - mxlinux
     - mxlinux-isos
+    - armbian
+    - armbian-releases
 
 # vim: ts=2 sts=2 sw=2 expandtab
