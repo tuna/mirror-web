@@ -27,6 +27,7 @@ TensorFlow 安装方法请参考 <https://www.tensorflow.org/get_started>，把 
 <select v-model="form.os" class="form-control">
 <option value="linux">Linux</option>
 <option value="mac">Mac OS X</option>
+<option value="windows">Windows</option>	
 </select>
 
 <label>Python 版本: </label>
@@ -36,6 +37,9 @@ TensorFlow 安装方法请参考 <https://www.tensorflow.org/get_started>，把 
 </template>
 <template v-if="form.os == 'mac'">
 <option :value="py" v-for="py in fileindex.pythons.mac">{{py}}</option>
+</template>
+<template v-if="form.os == 'windows'">
+<option :value="py" v-for="py in fileindex.pythons.windows">{{py}}</option>
 </template>
 </select>
 
@@ -70,6 +74,7 @@ var vue = new Vue({
 			pythons: {
 				linux: [],
 				mac: [],
+				windows: [],
 			},
 		},
 	},
