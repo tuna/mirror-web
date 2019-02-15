@@ -38,5 +38,6 @@ new_mirrors:
     - mxlinux-isos
     - armbian
     - armbian-releases
+    - rustup
 
 # vim: ts=2 sts=2 sw=2 expandtab
