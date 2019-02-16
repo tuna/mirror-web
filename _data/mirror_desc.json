@@ -500,6 +500,10 @@
     "desc": "Ruby 的一个包管理器"
   },
   {
+    "name": "rustup",
+    "desc": "Rust 的官方安装工具"
+  },
+  {
     "name": "sagemath",
     "desc": "构建在 NumPy, SciPy 等工具之上的开源数学软件系统"
   },

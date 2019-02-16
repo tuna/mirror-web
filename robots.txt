@@ -132,6 +132,7 @@ Disallow: /repoforge
 Disallow: /ros
 Disallow: /rpmfusion
 Disallow: /rubygems
+Disallow: /rustup
 Disallow: /sagemath
 Disallow: /saltstack
 Disallow: /slackware
