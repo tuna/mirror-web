@@ -38,6 +38,7 @@ Disallow: /chromiumos
 Disallow: /clojars
 Disallow: /ctex
 Disallow: /cygwin
+Disallow: /dart-pub
 Disallow: /debian-cd
 Disallow: /debian-multimedia
 Disallow: /debian-nonfree
