@@ -41,5 +41,6 @@ new_mirrors:
     - rustup
     - nix
     - dart-pub
+    - flutter
 
 # vim: ts=2 sts=2 sw=2 expandtab
