@@ -59,6 +59,7 @@ Disallow: /erlang-solutions
 Disallow: /fedora-altarch
 Disallow: /fedora
 Disallow: /flightgear
+Disallow: /flutter
 Disallow: /fzug
 Disallow: /gentoo-portage-prefix
 Disallow: /gentoo-portage
