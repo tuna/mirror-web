@@ -38,6 +38,7 @@ Disallow: /chromiumos
 Disallow: /clojars
 Disallow: /ctex
 Disallow: /cygwin
+Disallow: /dart-pub
 Disallow: /debian-cd
 Disallow: /debian-multimedia
 Disallow: /debian-nonfree
@@ -58,6 +59,7 @@ Disallow: /erlang-solutions
 Disallow: /fedora-altarch
 Disallow: /fedora
 Disallow: /flightgear
+Disallow: /flutter
 Disallow: /fzug
 Disallow: /gentoo-portage-prefix
 Disallow: /gentoo-portage
