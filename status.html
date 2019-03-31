@@ -9,8 +9,8 @@ permalink: /status/
 	<div id="status-page">
 		<div class="spacing hidden-xs"></div>
 		<div class="container">
-			<h3 id="server-status"> # 服务器监控 </h3>
-			<h4> # 网络流量 </h4>
+			<h3 id="server-status"> # 🥔🌡️ </h3>
+			<h4> # 🖧 </h4>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="thumbnail">
@@ -23,9 +23,9 @@ permalink: /status/
 					</div>
 				</div>
 			</div>
-			<h4># 磁盘状态 </h4>
+			<h4># 💽 </h4>
 			<div class="row">
-				<div class="col-md-12"><strong>磁盘占用</strong>: </div>
+				<div class="col-md-12"><strong>🥧📈</strong>: </div>
 				<div class="col-md-12">
 				<div class="progress">
 					<div id="disk-usage-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
@@ -43,7 +43,7 @@ permalink: /status/
 					</div>
 				</div>
 			</div>
-			<h4># CPU / 内存</h4>
+			<h4># 👷👷👷👷</h4>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="thumbnail">
@@ -56,15 +56,15 @@ permalink: /status/
 					</div>
 				</div>
 			</div>
-			<h3 id="syncing-status"># 同步状态</h3>
+			<h3 id="syncing-status"># 💾🌡️</h3>
 			<table class="table table-condensed flat-md">
 				<thead class="hidden-xs hidden-sm">
 					<tr>
-						<th class="col-xs-12 col-md-2">Name</th>
-						<th class="col-xs-12 col-md-2">Last Update</th>
-						<th class="col-xs-12 col-md-5">Upstream</th>
-						<th class="col-xs-12 col-md-1">Status</th>
-						<th class="col-xs-12 col-md-2">Size</th>
+						<th class="col-xs-12 col-md-2">🔖</th>
+						<th class="col-xs-12 col-md-2">🕰️</th>
+						<th class="col-xs-12 col-md-5">🚿</th>
+						<th class="col-xs-12 col-md-1">📝</th>
+						<th class="col-xs-12 col-md-2">💾</th>
 					</tr>
 				</thead>
 				<tbody id="mirror-list">
@@ -77,15 +77,15 @@ permalink: /status/
 	<script id="template" type="x-tmpl-markup">
 {{mirrors}}
 <tr class="status-{{status}} row">
-	<td class="col-xs-4">Name</td>
+	<td class="col-xs-4">🔖</td>
 	<td class="col-md-2 col-xs-8">{{name}}{{if is_master|falsy}}[slave]{{/if}}</td>
-	<td class="col-xs-4">Last Update</td>
+	<td class="col-xs-4">🕰️</td>
 	<td class="col-md-2 col-xs-8">{{last_update}}</td>
-	<td class="col-xs-4">Upstream</td>
+	<td class="col-xs-4">🚿</td>
 	<td class="col-md-5 col-xs-8">{{upstream}}</td>
-	<td class="col-xs-4">Status</td>
+	<td class="col-xs-4">📝</td>
 	<td class="col-md-1 col-xs-8">{{status}}</td>
-	<td class="col-xs-4">Size</td>
+	<td class="col-xs-4">💾</td>
 	<td class="col-md-2 col-xs-8">{{size}}</td>
 </tr>
 {{/mirrors}}

@@ -15,14 +15,14 @@ permalink: /
 					{% raw %}
 					<div class="col-md-8 table-responsive" id="mirror-list">
 						<div class="row">
-						  <h3 id="mirror-title"><span class="fa fa-cube"></span> 镜像列表 </h3>
-						  <input type="search" v-model="filter" id="search" placeholder="搜索" autocomplete="off">
+						  <h3 id="mirror-title"><span class="fa fa-cube"></span> 📚📚📚📚 </h3>
+						  <input type="search" v-model="filter" id="search" placeholder="🔍" autocomplete="off">
 						</div>
 						<table class="table" v-if="mirrorList.length">
 							<thead>
 								<tr class="row">
-									<th class="col-sm-8">Name</th>
-									<th class="col-sm-4">Last Update</th>
+									<th class="col-sm-8">🔖</th>
+									<th class="col-sm-4">🕰️</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -32,7 +32,7 @@ permalink: /
 										<a class="mirror-item-label"  data-toggle="popover" data-trigger="hover" data-placement="right" 
 											:data-content="mir.description" :href="getURL(mir)">
 											{{mir.name}}
-											<span class="label label-new" v-if='mir.is_new'>new</span>
+											<span class="label label-new" v-if='mir.is_new'>🆕</span>
 											<a v-if='mir.help_url' :href="mir.help_url"><i class="fa fa-question-circle" title="Help"></i></a>
 										</a>
 									</td>
@@ -57,7 +57,7 @@ permalink: /
 						<div id="wizard">
 						</div>
 						<div id="news">
-							<h4><span class="fa fa-bullhorn"></span> 新闻公告 </h4>
+							<h4><span class="fa fa-bullhorn"></span> 🗞️📻📰 </h4>
 							<ul>
 								{% for news in site.categories.news limit: 3%}
 								<li><a href="/news/#{{news.slug}}"><strong>{{news.date | date: "%Y-%m-%d"}}</strong> {{news.title}}</a></li>
@@ -66,37 +66,37 @@ permalink: /
 							<div class="text-right"><a href="/news/"> more <span class="fa fa-angle-double-right"></span> </a></div>
 						</div>
 						<div>
-							<h4> <span class="fa fa-link"></span> 域名选择 </h4>
+							<h4> <span class="fa fa-link"></span> 🌐 </h4>
 							<ul>
-								<li><a href="https://mirrors.tuna.tsinghua.edu.cn/">https://mirrors.tuna.tsinghua.edu.cn/</a> 自动选择 </li>
-								<li><a href="https://mirrors6.tuna.tsinghua.edu.cn/">https://mirrors6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
-								<li><a href="https://mirrors4.tuna.tsinghua.edu.cn/">https://mirrors4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
+								<li><a href="https://mirrors.tuna.tsinghua.edu.cn/">https://mirrors.tuna.tsinghua.edu.cn/</a> 4 / 6 </li>
+								<li><a href="https://mirrors6.tuna.tsinghua.edu.cn/">https://mirrors6.tuna.tsinghua.edu.cn/</a> 6 </li>
+								<li><a href="https://mirrors4.tuna.tsinghua.edu.cn/">https://mirrors4.tuna.tsinghua.edu.cn/</a> 4 </li>
 							</ul>
 						</div>
 						<div id="download-link">
-							<h4><span class="fa fa-file-archive-o"></span> 下载链接 </h4>
-							<p>常用发行版 iso 和应用工具安装包直接下载</p>
+							<h4><span class="fa fa-file-archive-o"></span> 💿 </h4>
+							<p>💿📚💾</p>
 							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#isoModal">
-								获取下载链接
+								🔗
 							</button>
 						</div>
 						<div>
-							<h4> <span class="fa fa-envelope-o"></span> 联系我们 </h4>
+							<h4> <span class="fa fa-envelope-o"></span> ☎️💁 </h4>
 							<ul>
-								<li><strong>意见反馈</strong> <br /> <a href="https://github.com/tuna/issues">https://github.com/tuna/issues</a></li>
-								<li><strong>发送邮件</strong> <br /> <a id="eib1gieB"></a></li>
-								<li><strong>在线交流</strong> <br /> <a href="https://fishroom.tuna.moe/log/tuna/today"> #tuna at freenode </a></li>
+								<li><strong>😠💬</strong> <br /> <a href="https://github.com/tuna/issues">https://github.com/tuna/issues</a></li>
+								<li><strong>📧</strong> <br /> <a id="eib1gieB"></a></li>
+								<li><strong>👋💬</strong> <br /> <a href="https://fishroom.tuna.moe/log/tuna/today"> #tuna at freenode </a></li>
 							</ul>
 						</div>
 						<div>
-							<h4> <span class="fa fa-external-link"></span> 相关链接 </h4>
+							<h4> <span class="fa fa-external-link"></span> 🔗 </h4>
 							<ul>
-								<li><a href="/help/">使用帮助</a></li>
-								<li><a href="/status/#server-status">服务器状态</a></li>
-								<li><a href="/status/#syncing-status">同步状态</a></li>
-								<li><a href="https://tuna.moe/">清华大学 TUNA 协会</a></li>
-								<li><a href="https://github.com/tuna/tunasync">镜像管理器源码</a></li>
-								<li><a href="https://github.com/tuna/tunasync-scripts">自定义镜像脚本</a></li>
+								<li><a href="/help/">🆘</a></li>
+								<li><a href="/status/#server-status">🥔🌡️</a></li>
+								<li><a href="/status/#syncing-status">💾🌡️</a></li>
+								<li><a href="https://tuna.moe/">🐟🐟🐟</a></li>
+								<li><a href="https://github.com/tuna/tunasync">👨‍💻</a></li>
+								<li><a href="https://github.com/tuna/tunasync-scripts">📇</a></li>
 							</ul>
 						</div>
 					</div>
@@ -115,14 +115,14 @@ permalink: /
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
-		        <h4 class="modal-title" id="isoModalLabel">获取安装镜像</h4>
+		        <h4 class="modal-title" id="isoModalLabel">💿+📚</h4>
 		      </div>
 		      <div class="modal-body">
 					<div class="row">
 						<div class="col-md-12">
 							<ul class="nav nav-tabs">
-								<li role="presentation" :class="[curCategory === 'os' ? 'active' : '']" @click="switchCategory('os')"><a href="#">操作系统</a></li>
-								<li role="presentation" :class="[curCategory === 'app' ? 'active' : '']" @click="switchCategory('app')"><a href="#">应用软件</a></li>
+								<li role="presentation" :class="[curCategory === 'os' ? 'active' : '']" @click="switchCategory('os')"><a href="#">💿</a></li>
+								<li role="presentation" :class="[curCategory === 'app' ? 'active' : '']" @click="switchCategory('app')"><a href="#">📚</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3">
