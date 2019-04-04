@@ -28,6 +28,8 @@ Disallow: /bananian
 Disallow: /bioconductor
 Disallow: /bjlx
 Disallow: /blackarch
+Disallow: /cc
+Disallow: /cc7
 Disallow: /centos-altarch
 Disallow: /centos-vault
 Disallow: /centos
@@ -83,6 +85,7 @@ Disallow: /kali-images
 Disallow: /kali-security
 Disallow: /kali
 Disallow: /kernel
+Disallow: /kicad
 Disallow: /kodi
 Disallow: /lede
 Disallow: /libreoffice
@@ -96,6 +99,7 @@ Disallow: /linuxmint
 Disallow: /llvm
 Disallow: /loongson
 Disallow: /lxc-images
+Disallow: /lyx
 Disallow: /macports
 Disallow: /mageia
 Disallow: /manjaro-cd
@@ -107,6 +111,7 @@ Disallow: /mxlinux-isos
 Disallow: /mxlinux
 Disallow: /mysql
 Disallow: /neurodebian
+Disallow: /nix
 Disallow: /nodejs-release
 Disallow: /nodesource
 Disallow: /openresty
