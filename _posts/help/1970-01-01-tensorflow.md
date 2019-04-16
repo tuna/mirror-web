@@ -6,7 +6,7 @@ mirrorid: tensorflow
 
 # TensorFlow 镜像使用帮助
 
-请先安装 python 环境，科学计算用途建议安装 [anaconda](/help/anaconda/)。
+请先安装 python 环境。
 TensorFlow 安装方法请参考 <https://www.tensorflow.org/get_started>，把 `https://storage.googleapis.com/` 替换为 `https://mirrors.tuna.tsinghua.edu.cn/`
 即可。
 
