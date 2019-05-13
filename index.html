@@ -26,7 +26,7 @@ permalink: /
 								</tr>
 							</thead>
 							<tbody>
-								<tr v-for="mir in filteredMirrorList" :class="['row', 'status-'+mir.status]">
+								<tr v-for="mir in filteredMirrorList" :class="['row', 'status-'+mir.status]" :key="mir.name">
 									<template v-if="mir.is_master">
 									<td class="col-md-8">
 										<a class="mirror-item-label"  data-toggle="popover" data-trigger="hover" data-placement="right" 
