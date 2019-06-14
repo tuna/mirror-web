@@ -56,6 +56,10 @@
     "desc": "Alpine Linux 的安装镜像和官方软件包仓库"
   },
   {
+    "name": "anaconda",
+    "desc": "用于科学计算的 Python 发行版"
+  },
+  {
     "name": "antergos",
     "desc": "基于 Arch Linux 的使用 GNOME 3 的发行版，曾用名 Cinnarch"
   },
