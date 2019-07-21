@@ -120,6 +120,10 @@
     "desc": "用于安全评估的基于 Arch Linux 的轻量级发行版"
   },
   {
+    "name": "cc",
+    "desc": "CERN CentOS"
+  },
+  {
     "name": "centos",
     "desc": "CentOS 的安装镜像和官方软件包仓库"
   },
