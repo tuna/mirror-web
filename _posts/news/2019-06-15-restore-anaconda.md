@@ -1,7 +1,7 @@
 ---
 layout: news
 title: "Anaconda 镜像即将恢复"
-date: 2019-04-16
+date: 2019-06-15
 author: Xavier Yao
 category: news
 ---
