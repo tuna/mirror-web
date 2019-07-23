@@ -16,7 +16,7 @@ $(document).ready(() => {
 			apt_template=$.trim($(tmpl_selector).text()),
 			tmpl_data=$.extend({}, {
 				os_name: os_name,
-				release_name: release_name
+				release_name: release_name,
 				release_security: release_security,
 			}, opt),
 			apt_content=Mark.up(
