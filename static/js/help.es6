@@ -9,6 +9,7 @@ $(document).ready(() => {
 		var sel = $(ev.target),
 			os_name=sel.find("option:selected").data('os'),
 			release_name=sel.find("option:selected").data('release'),
+			release_security=sel.find("option:selected").data('security'),
 			opt=sel.find('option:selected').data('opt'),
 			tmpl_selector=sel.data("template"), 
 			target_selector=sel.data("target"),
@@ -16,6 +17,7 @@ $(document).ready(() => {
 			tmpl_data=$.extend({}, {
 				os_name: os_name,
 				release_name: release_name
+				release_security: release_security,
 			}, opt),
 			apt_content=Mark.up(
 				apt_template, 
