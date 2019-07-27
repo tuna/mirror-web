@@ -4,7 +4,7 @@
 <body>
 	{% include nav.html %}
 
-{% assign help_pages = (site.categories["help"] | sort: 'mirrorid') %}
+{% assign help_pages = site.categories["help"] | sort: 'mirrorid' %}
 <div id="help-page">
 	<div class="container">
 	  <div class="row">

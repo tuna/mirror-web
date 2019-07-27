@@ -4,7 +4,7 @@ permalink: /help/
 <!DOCTYPE html>
 <html>
 <script>
-{% assign first_help = (site.categories["help"] | sort: 'mirrorid' | first ) %}
+{% assign first_help = site.categories["help"] | sort: 'mirrorid' | first %}
 var redirect_to = window.location.protocol + "//" + window.location.host + "{{first_help.url}}";
 window.location = redirect_to;
 </script>
