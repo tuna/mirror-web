@@ -1,6 +1,7 @@
 # robots.txt for https://mirrors.tuna.tsinghua.edu.cn
 User-agent: *
 
+Disallow: /logs
 Disallow: /AOSP
 Disallow: /CPAN
 Disallow: /CRAN
@@ -29,7 +30,6 @@ Disallow: /bioconductor
 Disallow: /bjlx
 Disallow: /blackarch
 Disallow: /cc
-Disallow: /cc7
 Disallow: /centos-altarch
 Disallow: /centos-vault
 Disallow: /centos
@@ -130,6 +130,7 @@ Disallow: /puppy
 Disallow: /pybombs
 Disallow: /pypi
 Disallow: /qt
+Disallow: /qubesos
 Disallow: /raspberrypi
 Disallow: /raspbian
 Disallow: /redhat
@@ -144,6 +145,7 @@ Disallow: /sagemath
 Disallow: /saltstack
 Disallow: /slackware
 Disallow: /slackwarearm
+Disallow: /slc
 Disallow: /solus
 Disallow: /stackage
 Disallow: /steamos
