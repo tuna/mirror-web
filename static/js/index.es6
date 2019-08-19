@@ -103,7 +103,7 @@ var vmMirList = new Vue({
 		filteredMirrorList: function() {
 			var filter = this.filter.toLowerCase();
 			return this.mirrorList.filter(function(m){
-				return m.name.toLowerCase().indexOf(filter) !== -1;
+				return m.is_master && m.name.toLowerCase().indexOf(filter) !== -1;
 			});
 		},
 	},

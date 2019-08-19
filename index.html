@@ -27,7 +27,6 @@ permalink: /
 							</thead>
 							<tbody>
 								<tr v-for="mir in filteredMirrorList" :class="['row', 'status-'+mir.status]" :key="mir.name">
-									<template v-if="mir.is_master">
 									<td class="col-md-8">
 										<a class="mirror-item-label"  data-toggle="popover" data-trigger="hover" data-placement="right" 
 											:data-content="mir.description" :href="getURL(mir)">
@@ -39,7 +38,6 @@ permalink: /
 									<td class="col-md-4">
 										{{mir.last_update}}<span v-if="mir.show_status" :class="['label', 'label-status', mir.label, 'hidden-xs']">{{mir.status}}</span>
 									</td>
-									</template>
 								</tr>
 							</tbody>
 						</table>
