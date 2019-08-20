@@ -72,6 +72,10 @@ var mir_tmpl = $("#template").text(),
 		{% for mir in site.data.mirror_desc %} '{{mir.name}}': '{{mir.desc}}' {% if forloop.index < forloop.length %},{% endif %}{% endfor %}
 	}
 
+new Vue({
+	el: "#upgrade-mask",
+});
+
 var vmMirList = new Vue({
 	el: "#mirror-list",
 	data: {
