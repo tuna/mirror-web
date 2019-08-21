@@ -31,16 +31,4 @@ babel_js_extensions: 'es6'
 
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_robot.sh, gen_desc.py, Dockerfile*]
 
-# Content Related
-new_mirrors:
-    - gnu-alpha
-    - mxlinux
-    - mxlinux-isos
-    - armbian
-    - armbian-releases
-    - rustup
-    - nix
-    - dart-pub
-    - flutter
-
 # vim: ts=2 sts=2 sw=2 expandtab
