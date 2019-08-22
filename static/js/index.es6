@@ -8,69 +8,21 @@ $('a#eib1gieB')
 
 $('.selectpicker').selectpicker()
 
-var mir_tmpl = $("#template").text(),
-	label_map = {
-		'unknown': 'label-default',
-		'syncing': 'label-info',
-		'success': 'label-success',
-		'fail': 'label-warning',
-		'failed': 'label-warning',
-		'paused': 'label-warning',
-	},
-	help_url = {
-		{% for h in site.categories['help'] %}"{{h.mirrorid}}": "{{h.url}}"{% if forloop.index < forloop.length %},{% endif %}{% endfor %}
-	},
-	new_mirrors = {
-		{% for n in site.new_mirrors %}"{{n}}": true{% if forloop.index < forloop.length %},{% endif %}{% endfor %}
-	},
+var global_options = {% include options.json %};
+var label_map = global_options.options.label_map;
+var help_url = {};
+global_options.helps.forEach((h) => help_url[h.mirrorid] = h.url);
+var new_mirrors = {};
+global_options.options.new_mirrors.forEach((m) => new_mirrors[m] = true);
+var unlisted = global_options.options.unlisted_mirrors;
+var options = {};
+global_options.options.force_help_mirrors.forEach((m) => options[m] = {'url': "/help/" + m + "/"})
+var descriptions = {};
+global_options.options.mirror_desc.forEach((m) => descriptions[m.name] = m.desc);
 
-	unlisted = [
-	{
-		'status': 'success',
-		'last_update': '-',
-		'name': "AUR",
-		'url': 'https://aur.tuna.tsinghua.edu.cn/',
-		'upstream': 'https://aur.archlinux.org/'
-	}
-	],
-	options = {
-		'AOSP': {
-			'url': "/help/AOSP/"
-		},
-		'lineageOS': {
-			'url': "/help/lineageOS/"
-		},
-		'homebrew': {
-			'url': "/help/homebrew/"
-		},
-		'linux.git': {
-			'url': "/help/linux.git/"
-		},
-		'linux-stable.git': {
-			'url': "/help/linux-stable.git/"
-		},
-		'git-repo': {
-			'url': "/help/git-repo/"
-		},
-		'chromiumos': {
-			'url': "/help/chromiumos/"
-		},
-		'weave': {
-			'url': "/help/weave/"
-		},
-		'CocoaPods': {
-			'url': "/help/CocoaPods/"
-		},
-		'llvm': {
-			'url': "/help/llvm/"
-		},
-		'openthos-src': {
-			'url': "/help/openthos-src/"
-		}
-	},
-	descriptions = {
-		{% for mir in site.data.mirror_desc %} '{{mir.name}}': '{{mir.desc}}' {% if forloop.index < forloop.length %},{% endif %}{% endfor %}
-	}
+new Vue({
+	el: "#upgrade-mask",
+});
 
 var vmMirList = new Vue({
 	el: "#mirror-list",

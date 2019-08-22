@@ -16,8 +16,53 @@
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/bootstrap-select.min.js"></script>
+{% unless page.legacy %}
 <script src="/static/js/vue.min.js"></script>
+{% endunless %}
 <script src="/static/js/markup.min.js"></script>
 <script src="/static/js/webfont.js"></script>
 <script src="/static/js/thuhidden.js"></script>
+{% if page.legacy %}
+<style>
+.container {
+	width: 85%;
+}
+.container > .navbar-header {
+	margin-right: 0;
+	margin-left: 0;
+}
+.navbar-nav {
+	float: left;
+	margin: 0;
+}
+.navbar-nav > li {
+	float: left;
+}
+.navbar-nav > li > a {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.navbar-nav.navbar-right:last-child {
+	margin-right: -15px;
+}
+.navbar-left {
+	float: left !important;
+}
+.navbar-right {
+	float: right !important;
+}
+.navbar-header:after {
+	clear: none;
+}
+a.navbar-brand {
+	width: 20em;
+}
+<!--[if lte IE 7]>
+.col-xs-1,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,
+.col-xs-10,.col-xs-11,.col-xs-12 {
+	padding: 0px;
+}
+<![endif]-->
+</style>
+{% endif %}
 </head>
