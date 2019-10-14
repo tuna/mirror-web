@@ -7,7 +7,7 @@
 
 # Site settings
 title: 清华大学开源软件镜像站
-brand: Tsinghua Open Source Mirrors
+brand: Tsinghua Open Source Mirror
 baseurl: "" # the subpath of your site, e.g. /blog
 permalink: "/:categories/:title/"
 url: "https://mirrors.tuna.tsinghua.edu.cn"
