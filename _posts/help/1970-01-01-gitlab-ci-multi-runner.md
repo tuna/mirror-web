@@ -7,7 +7,7 @@ mirrorid: gitlab-ci-multi-runner
 ## Gitlab CI Multi Runner 镜像使用帮助
 
 **注意: gitlab-ci-multi-runner 镜像仅支持 x86-64 架构**，如果你需要安装版本 10 及以上的
-Runner，由于官方名称发生变化，请前往 [{% post_url help/1970-01-01-gitlab-runner %}]()。
+Runner，由于官方名称发生变化，请前往 [gitlab-runner帮助页面](https://mirrors.tuna.tsinghua.edu.cn/help/gitlab-runner/)。
 
 ### Debian/Ubuntu 用户
 
