@@ -347,6 +347,7 @@ force_help_mirrors:
   - lineageOS
   - homebrew
   - linux.git
+  - linux-next.git
   - linux-stable.git
   - git-repo
   - chromiumos
