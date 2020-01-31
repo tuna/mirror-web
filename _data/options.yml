@@ -324,15 +324,13 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - gnu-alpha
-  - mxlinux
-  - mxlinux-isos
-  - armbian
-  - armbian-releases
   - rustup
   - nix
   - dart-pub
   - flutter
+  - raspbian-images
+  - linux-firmware.git
+  - gcc.git
     
 unlisted_mirrors:
   - status: 'success'
