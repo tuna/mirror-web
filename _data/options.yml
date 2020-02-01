@@ -7,7 +7,7 @@ mirror_desc:
   - name: Bananian
     desc: 为 Banana Pi 制作的，基于官方 Debian 仓库的发行版镜像和软件包仓库
   - name: CPAN
-    desc: ''
+    desc: Perl 语言软件库
   - name: CRAN
     desc: R 语言的可执行文件、源代码和说明文件，也收录了各种用户撰写的软件包
   - name: CTAN
@@ -18,8 +18,6 @@ mirror_desc:
     desc: 现已更名为 Elastic Stack，仅保留用作向后兼容
   - name: HHVM
     desc: Facebook 开发的高性能 PHP 语言虚拟机
-  - name: Homebrew
-    desc: Homebrew 的 formula 索引的镜像，二进制预编译包的镜像请见 homebrew-bottles
   - name: NetBSD
     desc: NetBSD 的安装镜像和部分系统源码
   - name: OpenBSD
@@ -30,12 +28,10 @@ mirror_desc:
     desc: Alpine Linux 的安装镜像和官方软件包仓库
   - name: anaconda
     desc: 用于科学计算的 Python 发行版
-  - name: antergos
-    desc: 基于 Arch Linux 的使用 GNOME 3 的发行版，曾用名 Cinnarch
   - name: anthon
-    desc: Anthon Linux (安同 Linux)的安装镜像和官方软件包仓库
+    desc: Anthon Linux（安同 Linux）的安装镜像和官方软件包仓库
   - name: aosp-monthly
-    desc: AOSP 镜像每月打包
+    desc: AOSP （Android 系统源码）镜像每月打包
   - name: apache
     desc: Apache 基金会赞助的各个项目
   - name: arch4edu
@@ -43,15 +39,15 @@ mirror_desc:
   - name: archlinux
     desc: Arch Linux 的安装镜像和官方软件包仓库
   - name: archlinuxarm
-    desc: 用于 arm 平台的 Arch Linux 镜像和软件包仓库
+    desc: 用于 ARM 平台的 Arch Linux 镜像和软件包仓库
   - name: archlinuxcn
     desc: 由 Arch Linux 中文社区驱动的非官方用户仓库，包含中文用户常用软件、工具、字体/美化包等
   - name: armbian
-    desc: ''
+    desc: Armbian（面向 ARM 单板机的发行版）的软件源
   - name: armbian-releases
-    desc: ''
+    desc: Armbian 的安装镜像
   - name: artixlinux
-    desc: ''
+    desc: Artix Linux 是一款基于 Arch Linux 的滚动发行版
   - name: bananian
     desc: 用于 Banana Pi 的 Debian 操作系统
   - name: bioconductor
@@ -67,7 +63,7 @@ mirror_desc:
   - name: centos-altarch
     desc: CentOS 额外平台的安装镜像和官方软件包仓库
   - name: centos-vault
-    desc: ''
+    desc: 为旧版本 CentOS 提供服务的软件包仓库
   - name: ceph
     desc: 高性能对象存储和文件系统
   - name: chakra
@@ -75,7 +71,7 @@ mirror_desc:
   - name: chakra-releases
     desc: Chakra 发行版的安装镜像
   - name: chromiumos
-    desc: Google Chrome OS的开放源代码开发版本
+    desc: Google Chrome OS 的开放源代码开发版本
   - name: clojars
     desc: Clojure 语言的第三方软件包仓库
   - name: ctex
@@ -105,7 +101,7 @@ mirror_desc:
   - name: dotdeb
     desc: 用于 Debian 服务器的额外镜像源
   - name: eclipse
-    desc: 著名的IDE Eclipse
+    desc: 著名的集成开发环境 Eclipse
   - name: elasticstack
     desc: ELK 系列数据分析工具，5.x 之后改名为 Elastic Stack
   - name: elpa
@@ -117,7 +113,7 @@ mirror_desc:
   - name: epel
     desc: 企业版 Linux 附加软件包
   - name: erlang-solutions
-    desc: ''
+    desc: 为各大 Linux 发行版提供的 Erlang 软件包
   - name: fedora
     desc: Fedora Linux 的安装镜像和官方软件包仓库
   - name: fedora-altarch
@@ -128,6 +124,8 @@ mirror_desc:
     desc: Flutter 框架 SDK 镜像
   - name: fzug
     desc: Fedora 中文用户组的软件包仓库
+  - name: gcc.git
+    desc: GCC 的源码仓库
   - name: gentoo
     desc: Gentoo Linux 的 Stage 3 镜像
   - name: gentoo-portage
@@ -139,21 +137,21 @@ mirror_desc:
   - name: gitlab-ce
     desc: Gitlab 社区版
   - name: gitlab-ci-multi-runner
-    desc: GitLab 持续集成框架
+    desc: GitLab 持续集成框架，已更名为 gitlab-runner
   - name: gitlab-ee
     desc: Gitlab 企业版
   - name: gitlab-runner
     desc: GitLab 持续集成框架版本 10 及以上
   - name: gnu
-    desc: GNU项目的软件包（源代码、文档和部分平台的二进制文件）
+    desc: GNU 项目的软件包（源代码、文档和部分平台的二进制文件）
   - name: gnu-alpha
-    desc: ''
+    desc: 一些尚未达到生产质量的 GNU 项目的软件包
   - name: grafana
     desc: 开源的数据可视化工具
   - name: hackage
     desc: Haskell 社区的中心软件包仓库
   - name: homebrew
-    desc: Homebrew 的软件包描述文件
+    desc: Homebrew 的软件包描述文件（Git 仓库）
   - name: homebrew-bottles
     desc: 预编译的 Homebrew 软件包
   - name: iina
@@ -173,17 +171,17 @@ mirror_desc:
   - name: kali-security
     desc: Kali Linux 的安全更新
   - name: kernel
-    desc: 各个版本的Linux 内核源代码
+    desc: 各个版本的 Linux 内核源代码压缩包
   - name: kodi
     desc: 开源的多媒体播放器，原名 XBMC
-  - name: lede
-    desc: OpenWRT 与 LEDE 再次合并后的源码仓库
   - name: libreoffice
-    desc: ''
+    desc: 自由的办公软件套件
   - name: lineage-rom
     desc: 最大的社区Android发行版之一Lineage的ROM
   - name: lineageOS
     desc: 最大的社区Android发行版之一Lineage的源代码
+  - name: linux-firmware.git
+    desc: Linux 内核附带的固件 Git 仓库
   - name: linux-next.git
     desc: Linux 内核源代码的 Git 仓库，开发分支（包含为下一个 merge windows 开发的 patch）
   - name: linux-stable.git
@@ -201,11 +199,11 @@ mirror_desc:
   - name: lxc-images
     desc: Linux 容器的镜像
   - name: lyx
-    desc: ''
+    desc: 所见即所指的 LaTeX 编辑器
   - name: macports
     desc: macOS 的一个开源软件包管理系统
   - name: mageia
-    desc: Mageia Linux （衍生于Mandriva Linux）的安装镜像和官方软件包仓库
+    desc: Mageia Linux（衍生于 Mandriva Linux）的安装镜像和官方软件包仓库
   - name: manjaro
     desc: Manjaro Linux 的官方软件源
   - name: manjaro-cd
@@ -217,19 +215,19 @@ mirror_desc:
   - name: msys2
     desc: 用于编译原生 Windows 程序的类 Linux 开发环境
   - name: mxlinux
-    desc: ''
+    desc: 基于 Debian 的中量级的 Linux 发行版
   - name: mxlinux-isos
-    desc: ''
+    desc: MX Linux 的安装镜像
   - name: mysql
-    desc: MySQL 安装包及各种工具下载
+    desc: MySQL 数据库的安装包及各种工具下载
   - name: neurodebian
     desc: 用于神经科学研究的 Debian 软件包源
   - name: nix
-    desc: ''
+    desc: NixOS 软件源
   - name: nodejs-release
-    desc: 预编译的 nodejs 二进制程序
+    desc: 预编译的 Node.js 二进制程序
   - name: nodesource
-    desc: 为 Debian, Ubuntu, Fedora, RHEL 等发行版提供预编译的 nodejs 和 npm 等软件包
+    desc: 为 Debian, Ubuntu, Fedora, RHEL 等发行版提供预编译的 Node.js 和 npm 等软件包
   - name: openresty
     desc: 基于 Nginx 与 Lua 的高性能 Web 平台
   - name: opensuse
@@ -239,9 +237,9 @@ mirror_desc:
   - name: openthos-src
     desc: OpenTHOS 源代码仓库
   - name: openwrt
-    desc: OpenWrt 软件包镜像源（仅包含Chaos Calmer版本，请前往 lede 目录获取最新源码）
+    desc: OpenWrt/LEDE 软件包镜像源
   - name: osdn
-    desc: ''
+    desc: OSDN 网站提供的开源软件下载
   - name: osmc
     desc: 免费、开源的媒体中心解决方案
   - name: packman
@@ -260,12 +258,16 @@ mirror_desc:
     desc: 为 GNU Radio 设计的编译管理系统
   - name: pypi
     desc: Python 软件包索引源
+  - name: qubesos
+    desc: 一个面向安全的桌面操作系统，利用虚拟化技术隔离应用来提供安全保障
   - name: qt
     desc: 跨平台软件开发库 Qt 的源码、开发工具、文档等
   - name: raspberrypi
-    desc: ''
+    desc: 一些专为树莓派提供的 Debian 软件包
   - name: raspbian
-    desc: 为 Raspberry Pi 编译的 Debian
+    desc: 为树莓派编译的 Debian 系统软件源
+  - name: raspbian-images
+    desc: Raspbian 的安装镜像
   - name: redhat
     desc: Red Hat Enterprise Linux 官方软件源
   - name: remi
@@ -299,7 +301,7 @@ mirror_desc:
   - name: tensorflow
     desc: 采用数据流图、用于数值计算的开源深度学习框架 TensorFlow
   - name: termux
-    desc: " 运行在 Android 上的终端模拟器 Termux 的官方软件包仓库"
+    desc: 运行在 Android 上的终端模拟器 Termux 的官方软件包仓库
   - name: tinycorelinux
     desc: 为嵌入式开发的微型 Linux 发行版
   - name: ubuntu
