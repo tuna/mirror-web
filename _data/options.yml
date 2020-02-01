@@ -171,7 +171,9 @@ mirror_desc:
   - name: kali-security
     desc: Kali Linux 的安全更新
   - name: kernel
-    desc: 各个版本的 Linux 内核源代码压缩包
+    desc: 各个版本的 Linux 内核源代码压缩包和补丁
+  - name: kicad
+    desc: 开源的电路原理图与 PCB 设计工具
   - name: kodi
     desc: 开源的多媒体播放器，原名 XBMC
   - name: libreoffice
