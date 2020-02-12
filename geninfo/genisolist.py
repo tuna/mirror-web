@@ -66,6 +66,8 @@ def parseSection(items):
 
             for prop in ("version", "type", "platform", "category"):
                 imageinfo[prop] = renderTemplate(items.get(prop, ""), result)
+            if 'version' not in imageinfo:
+                imageinfo['version'] = '0.0'
 
             logger.debug("[JSON] %r", imageinfo)
             key = renderTemplate(items.get("key_by", ""), result)
