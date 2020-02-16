@@ -260,6 +260,8 @@ mirror_desc:
     desc: 为 GNU Radio 设计的编译管理系统
   - name: pypi
     desc: Python 软件包索引源
+  - name: qemu.git
+    desc: 处理器模拟器 QEMU 的源码 Git 仓库
   - name: qubesos
     desc: 一个面向安全的桌面操作系统，利用虚拟化技术隔离应用来提供安全保障
   - name: qt
@@ -335,6 +337,7 @@ new_mirrors:
   - raspbian-images
   - linux-firmware.git
   - gcc.git
+  - qemu.git
     
 unlisted_mirrors:
   - status: 'success'
@@ -363,6 +366,9 @@ force_help_mirrors:
   - CocoaPods
   - llvm
   - openthos-src
+  - qemu.git
+  - linux-firmware.git
+  - gcc.git
 
 label_map:
   unknown: label-default
