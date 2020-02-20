@@ -23,8 +23,8 @@ $color_link_hover: #62bbe7;
 $color_footer_heading: #ffffff;
 $color_footer_content: #bfc9d3;
 $color_navbar_bg: #d3d3d3;
-$font_default: 'Lato', 'Hiragino Sans GB', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
-$font_local: 'Hiragino Sans GB', 'Source Han Sans CN', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
+$font_local: 'Hiragino Sans GB', 'Source Han Sans SC', 'Noto Sans CJK SC', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
+$font_default: 'Lato', #{$font_local};
 
 @import
 	"Lato",
