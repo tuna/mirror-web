@@ -6,7 +6,17 @@ mirrorid: gentoo-portage-prefix
 
 ## [Gentoo Prefix](https://wiki.gentoo.org/wiki/Project:Prefix) 的镜像配置方法如下：
 
-### Gentoo Prefix 镜像配置：
+### Bootstrap 镜像配置：
+
+在运行 Bootstrap 脚本之前，可通过设置以下环境变量选择 Bootstrap 过程中使用的镜像。
+
+```
+export GENTOO_MIRRORS="http://mirrors.tuna.tsinghua.edu.cn/gentoo"
+export GNU_URL="http://mirrors.tuna.tsinghua.edu.cn/gnu"
+export SNAPSHOT_URL="http://mirrors.tuna.tsinghua.edu.cn/gentoo/snapshots"
+```
+
+### Gentoo Portage Prefix 镜像配置：
 
 在 `$EPREFIX/etc/portage` 目录下创建名为 `repos.conf` 的目录，在 `$EPREFIX/etc/portage/repos.conf/gentoo.conf` 中加入如下内容：
 
