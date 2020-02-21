@@ -151,7 +151,7 @@ mirror_desc:
   - name: hackage
     desc: Haskell 社区的中心软件包仓库
   - name: homebrew
-    desc: Homebrew 的软件包描述文件（Git 仓库）
+    desc: Homebrew/Linuxbrew 的 taps（软件包描述文件 Git 仓库）
   - name: homebrew-bottles
     desc: 预编译的 Homebrew 软件包
   - name: iina
@@ -190,6 +190,8 @@ mirror_desc:
     desc: Linux 内核源代码的 Git 仓库, 稳定版分支
   - name: linux.git
     desc: Linux 内核源代码的 Git 仓库
+  - name: linuxbrew-bottles
+    desc: 预编译的 Linuxbrew 软件包
   - name: linuxmint
     desc: Linux Mint 的官方软件源
   - name: linuxmint-cd
@@ -330,14 +332,12 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - rustup
-  - nix
-  - dart-pub
-  - flutter
   - raspbian-images
   - linux-firmware.git
   - gcc.git
   - qemu.git
+  - homebrew
+  - linuxbrew-bottles
     
 unlisted_mirrors:
   - status: 'success'
