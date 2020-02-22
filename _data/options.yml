@@ -74,6 +74,8 @@ mirror_desc:
     desc: Google Chrome OS 的开放源代码开发版本
   - name: clojars
     desc: Clojure 语言的第三方软件包仓库
+  - name: crates.io-index.git
+    desc: 面向 Rust 语言的软件包索引 crates.io
   - name: ctex
     desc: 旧版 CTEX 安装镜像存档
   - name: cygwin
@@ -338,6 +340,7 @@ new_mirrors:
   - qemu.git
   - homebrew
   - linuxbrew-bottles
+  - crates.io-index.git
     
 unlisted_mirrors:
   - status: 'success'
@@ -369,6 +372,7 @@ force_help_mirrors:
   - qemu.git
   - linux-firmware.git
   - gcc.git
+  - crates.io-index.git
 
 label_map:
   unknown: label-default
