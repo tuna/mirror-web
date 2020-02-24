@@ -72,6 +72,8 @@ mirror_desc:
     desc: Chakra 发行版的安装镜像
   - name: chromiumos
     desc: Google Chrome OS 的开放源代码开发版本
+  - name: clickhouse
+    desc: 用于联机分析（OLAP）的列式数据库管理系统
   - name: clojars
     desc: Clojure 语言的第三方软件包仓库
   - name: crates.io-index.git
@@ -248,6 +250,8 @@ mirror_desc:
     desc: OSDN 网站提供的开源软件下载
   - name: osmc
     desc: 免费、开源的媒体中心解决方案
+  - name: packagist
+    desc: PHP 语言社区软件包索引
   - name: packman
     desc: 为 Debian、Fedora、openSUSE、Ubuntu 提供额外和过期软件包的仓库
   - name: parrot
@@ -341,6 +345,8 @@ new_mirrors:
   - homebrew
   - linuxbrew-bottles
   - crates.io-index.git
+  - packagist
+  - clickhouse
     
 unlisted_mirrors:
   - status: 'success'
