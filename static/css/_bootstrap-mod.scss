@@ -73,6 +73,9 @@ code{
     color: $color_secondary;
     @include dark{
         color: $color_secondary_dark;
+        &:hover {
+          color: #fff;
+        }
     }
 }
 
@@ -145,5 +148,28 @@ code{
   }
   .popover.left > .arrow:after {
     border-left-color: #282828;
+  }
+  .modal-content {
+    background-color: $color_bg_dark;
+    border: 1px solid rgba(255, 255, 255, .2);
+  }
+  .close {
+    color: $color_secondary_dark;
+    text-shadow: 0 1px 0 $color_bg_dark;
+    &:hover, &:focus{
+      color: #fff;
+    }
+  }
+  .nav-tabs > li > a:hover {
+    background-color: $color_bg_dark;
+  }
+  .nav-tabs > li.active > a,
+  .nav-tabs > li.active > a:hover,
+  .nav-tabs > li.active > a:focus {
+    color: $color_secondary_dark;
+    background-color: $color_bg_dark;
+  }
+  .thumbnail {
+    background-color: $color_bg_dark;
   }
 }

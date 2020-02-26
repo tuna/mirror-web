@@ -57,11 +57,11 @@ a {
     padding: 0;
     margin: 0;
     text-decoration: none;
-    -webkit-transition: background-color .4s linear, color .4s linear;
-    -moz-transition: background-color .4s linear, color .4s linear;
-    -o-transition: background-color .4s linear, color .4s linear;
-    -ms-transition: background-color .4s linear, color .4s linear;
-    transition: background-color .4s linear, color .4s linear;
+    -webkit-transition: background-color .4s linear, color .4s linear, border-color .4s linear;
+    -moz-transition: background-color .4s linear, color .4s linea, border-color .4s linearr;
+    -o-transition: background-color .4s linear, color .4s linear, border-color .4s linear;
+    -ms-transition: background-color .4s linear, color .4s linear, border-color .4s linear;
+    transition: background-color .4s linear, color .4s linear, border-color .4s linear;
 }
 
 a:hover, a:focus {

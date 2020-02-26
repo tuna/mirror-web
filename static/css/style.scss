@@ -22,7 +22,7 @@ $color_primary_dark: $color_thu_purple_dark;
 $color_primary_light: #d8aff6;
 $color_primary_rgb: 92,48,125;
 $color_secondary: #384452;
-$color_secondary_dark: #ffffff;
+$color_secondary_dark: #ddd;
 $color_link: #088acb;
 $color_link_dark: #65A9CB;
 $color_link_hover: #62bbe7;
@@ -103,6 +103,11 @@ body {
 	@include dark{
 	  background-color: #0F3A4C;
 	}
+}
+.sk-wave .sk-rect {
+  @include dark{
+    background-color: $color_secondary_dark;
+  }
 }
 
 #mirrors {
