@@ -319,3 +319,49 @@ body {
     color: inherit;
   }
 }
+
+.not-found {
+  height: 600px;
+  background-image: url(/static/img/missing-white.png);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include dark {
+    background-image: url(/static/img/missing-black.png);
+  }
+}
+
+.not-found-hint {
+  font-weight: bold;
+  font-size: 48px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.not-found-link {
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 20px;
+}
+
+.not-found-text {
+  max-width: 450px;
+  box-sizing: border-box;
+  padding: 0 40px;
+  margin-bottom: 80px;
+  font-size: 16px;
+  opacity: .7;
+  line-height: 24px;
+}
+
+.not-found-code {
+  font-size: 12px;
+  opacity: .54;
+  font-weight: normal;
+  font-style: italic;
+}
