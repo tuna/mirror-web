@@ -281,7 +281,7 @@ mirror_desc:
   - name: raspbian-images
     desc: Raspbian 的安装镜像
   - name: redhat
-    desc: Red Hat Enterprise Linux 官方软件源
+    desc: Red Hat Enterprise Linux 源码包（SRPM）仓库
   - name: remi
     desc: 包含最新版本 PHP 和 MySQL 的第三方 yum 源
   - name: repo-ck
