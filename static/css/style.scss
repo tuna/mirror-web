@@ -322,7 +322,15 @@ body {
 
 .not-found {
   height: 600px;
-  background-image: url(/static/img/missing-white.png);
+  background-image: url(/static/img/missing.png);
+  background-image: -webkit-image-set(url("/static/img/missing.png") 1x,
+                              url("/static/img/missing@2x.png") 2x,
+                              url("/static/img/missing@3x.png") 3x,
+                              url("/static/img/missing@4x.png") 4x);
+  background-image: image-set(url("/static/img/missing.png") 1x,
+                              url("/static/img/missing@2x.png") 2x,
+                              url("/static/img/missing@3x.png") 3x,
+                              url("/static/img/missing@4x.png") 4x);
   background-repeat: no-repeat;
   background-position: center;
 
@@ -332,7 +340,15 @@ body {
   align-items: center;
 
   @include dark {
-    background-image: url(/static/img/missing-black.png);
+    background-image: url(/static/img/missing-dark.png);
+    background-image: -webkit-image-set(url("/static/img/missing-dark.png") 1x,
+                                url("/static/img/missing-dark@2x.png") 2x,
+                                url("/static/img/missing-dark@3x.png") 3x,
+                                url("/static/img/missing-dark@4x.png") 4x);
+    background-image: image-set(url("/static/img/missing-dark.png") 1x,
+                                url("/static/img/missing-dark@2x.png") 2x,
+                                url("/static/img/missing-dark@3x.png") 3x,
+                                url("/static/img/missing-dark@4x.png") 4x);
   }
 }
 
