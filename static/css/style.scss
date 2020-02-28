@@ -11,26 +11,44 @@ URL: http://alvarez.is
 
 ################################################################# */
 
+$color_bg_dark: #222;
 $color_thu_purple: #82318E;
+$color_thu_purple_dark: #C353D3;
 $color_light_grey: #888;
 $color_grey: #555;
+$color_grey_dark: #aaa;
 $color_primary: $color_thu_purple;
+$color_primary_dark: $color_thu_purple_dark;
 $color_primary_light: #d8aff6;
 $color_primary_rgb: 92,48,125;
 $color_secondary: #384452;
+$color_secondary_dark: #ddd;
 $color_link: #088acb;
+$color_link_dark: #65A9CB;
 $color_link_hover: #62bbe7;
 $color_footer_heading: #ffffff;
 $color_footer_content: #bfc9d3;
 $color_navbar_bg: #d3d3d3;
 $font_local: 'Hiragino Sans GB', 'Source Han Sans SC', 'Noto Sans CJK SC', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
 $font_default: 'Lato', #{$font_local};
+$color_row_hover: #e0f3fc;
+$color_row_hover_dark: #116D99;
+
+@mixin dark {
+  @media (prefers-color-scheme: dark) { 
+    @content
+  }
+} 
 
 @import
 	"Lato",
 	"structure",
 	"bootstrap-mod",
 	"syntax-highlighting";
+
+:root {
+color-scheme: light dark;
+}
 
 #thu-alert {
 	padding-left: 50px;
@@ -51,6 +69,9 @@ html {
 body {
 	position: relative;
 	min-height: 100%;
+	@include dark{
+    background: $color_bg_dark;
+  }
 }
 
 #headerwrap {
@@ -73,15 +94,29 @@ body {
 
 .status-fail, .status-failed, .status-paused {
 	background-color: #fff4e3;
+	@include dark{
+	  background-color: #7F581A;
+	}
 }
 .status-syncing {
 	background-color: #e3fffd;
+	@include dark{
+	  background-color: #0F3A4C;
+	}
+}
+.sk-wave .sk-rect {
+  @include dark{
+    background-color: $color_secondary_dark;
+  }
 }
 
 #mirrors {
 	tbody {
 		tr:hover {
-			background-color: #e0f3fc;
+			background-color: $color_row_hover;
+			@include dark{
+			  background-color: $color_row_hover_dark;
+			}
 		}
 		td {
 			padding: 4px 8px;
@@ -100,11 +135,17 @@ body {
 		}
 		.fa-question-circle {
 			color: #234961;
+			@include dark{
+			  color: #5CC0FF;
+			}
 		}
 	}
 	#news {
 		li > a {
 			color: $color_secondary;
+			@include dark{
+			  color: $color_secondary_dark;
+			}
 		}
 	}
 	#download-link {
@@ -123,8 +164,11 @@ body {
 	}
 	#mirror-list {
 		:hover {
-			background-color: #e0f3fc;
-		}
+			background-color: $color_row_hover;
+      @include dark{
+        background-color: $color_row_hover_dark;
+      }
+    }
 	}
 }
 
@@ -137,6 +181,9 @@ body {
 	article {
 		.meta {
 			color: $color_grey;
+			@include dark{
+			  color: $color_grey_dark;
+			}
 		}
 	}
 	.fa-user {
@@ -259,8 +306,86 @@ body {
     max-width: 240px;
     height: 30px;
     font-size: 16px;
+    background: transparent;
 }
 
 #mirror-title {
     float: left;
+}
+
+#upgrade-mask{
+  color: black;
+  p {
+    color: inherit;
+  }
+}
+
+.not-found {
+  height: 600px;
+  background-image: url(/static/img/missing.png);
+  background-image: -webkit-image-set(url("/static/img/missing.png") 1x,
+                              url("/static/img/missing@2x.png") 2x,
+                              url("/static/img/missing@3x.png") 3x,
+                              url("/static/img/missing@4x.png") 4x);
+  background-image: image-set(url("/static/img/missing.png") 1x,
+                              url("/static/img/missing@2x.png") 2x,
+                              url("/static/img/missing@3x.png") 3x,
+                              url("/static/img/missing@4x.png") 4x);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include dark {
+    background-image: url(/static/img/missing-dark.png);
+    background-image: -webkit-image-set(url("/static/img/missing-dark.png") 1x,
+                                url("/static/img/missing-dark@2x.png") 2x,
+                                url("/static/img/missing-dark@3x.png") 3x,
+                                url("/static/img/missing-dark@4x.png") 4x);
+    background-image: image-set(url("/static/img/missing-dark.png") 1x,
+                                url("/static/img/missing-dark@2x.png") 2x,
+                                url("/static/img/missing-dark@3x.png") 3x,
+                                url("/static/img/missing-dark@4x.png") 4x);
+  }
+}
+
+.nonthu .not-found {
+  background-image: none;
+}
+
+.not-found-hint {
+  font-weight: bold;
+  font-size: 48px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.not-found-link {
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 20px;
+}
+
+.not-found-text {
+  max-width: 450px;
+  box-sizing: border-box;
+  padding: 0 40px;
+  margin-bottom: 80px;
+  font-size: 16px;
+  opacity: .7;
+  line-height: 24px;
+}
+
+.not-found-code {
+  font-size: 12px;
+  opacity: .54;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.nonthu .thuhidden{
+  display: none;
 }

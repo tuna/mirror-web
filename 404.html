@@ -1,0 +1,62 @@
+---
+permalink: /404.html
+---
+<!DOCTYPE html>
+<html>
+  {% include head.html cattitle="404" %}
+  <body>
+    {% include nav.html %}
+    <div id="mirrors">
+      <div class="spacing hidden-xs"></div>
+      <div class="container">
+        <div class="row">
+          <div class="not-found">
+          <div class="not-found-hint">
+            <div class="not-found-code">
+            404 NOT FOUND
+            </div>
+            <span class="thuhidden">呜喵，金枪鱼</span>被吃掉了
+          </div>
+          <div class="not-found-text thuhidden">
+            如果您认为这一定是出了什么问题，或者正在寻找暂未包含的镜像，欢迎您前往 
+            <a href="https://github.com/tuna/issues/issues/new/choose">
+              <i class="fa fa-github"></i> tuna/issues
+            </a>
+            提交<a href="https://github.com/tuna/issues/issues/new?labels=Service+Issue&template=2-bug_report.md" id="new_issue_bug"><!--
+         -->错误报告</a><!--
+         -->或者<a href="https://github.com/tuna/issues/issues/new?labels=MirrorRequest&template=1-mirror_request.md" id="new_issue_mr"><!--
+         -->镜像申请</a>
+          </div>
+          <div class="not-found-links">
+            <a class="not-found-link" href="javascript:history.back()">
+            <i class="fa fa-arrow-left"></i> 返回上一页
+            </a>
+            <a class="not-found-link" href="/">
+            镜像列表 <i class="fa fa-arrow-right"></i>
+            </a>
+          </div>
+          </div>
+        </div>
+      </div><!--/container -->
+    </div><!--/mirrors -->
+    {% include footer.html %}
+    <script type="application/javascript">
+      (function(){
+        var bugLink = document.getElementById("new_issue_bug");
+        var bugURL = new URL(bugLink.href);
+        bugURL.searchParams.append("title", "Bug: 404 happened at " + location.href);
+        bugLink.href = bugURL.href;
+        
+        var mrLink = document.getElementById("new_issue_mr");
+        var mrURL = new URL(mrLink.href);
+        mrURL.searchParams.append("title", "Mirror Request for new mirror " + 
+          location.pathname.split('/')[1]);
+        mrLink.href = mrURL.href;
+      })();
+    </script>
+  </body>
+</html>
+<!--
+  vim: ts=2 sts=2 sw=2 noexpandtab
+-->
+
