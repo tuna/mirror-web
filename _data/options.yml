@@ -361,6 +361,12 @@ unlisted_mirrors:
     url: '/osdn/storage/g/m/ma/manjaro/'
     upstrame: '-'
     is_master: true
+  - status: 'success'
+    last_update: '-'
+    name: "mxlinux-isos"
+    url: '/osdn/storage/g/m/mx/mx-linux/ISOs/'
+    upstrame: '-'
+    is_master: true
 
 force_help_mirrors:
   - AOSP
