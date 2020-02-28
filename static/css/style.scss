@@ -336,6 +336,10 @@ body {
   }
 }
 
+.nonthu .not-found {
+  background-image: none;
+}
+
 .not-found-hint {
   font-weight: bold;
   font-size: 48px;
@@ -364,4 +368,8 @@ body {
   opacity: .54;
   font-weight: normal;
   font-style: italic;
+}
+
+.nonthu .thuhidden{
+  display: none;
 }
