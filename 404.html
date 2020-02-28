@@ -22,7 +22,7 @@ permalink: /404.html
             <a href="https://github.com/tuna/issues/issues/new/choose">
               <i class="fa fa-github"></i> tuna/issues
             </a>
-            提交<a href="https://github.com/tuna/issues/issues/new?labels=Service+Issue&template=2-bug_report.md" id="new_issue_bug"><!--
+            提交<a href="https://github.com/tuna/issues/issues/new?labels=Service+Issue,404&template=2-bug_report.md" id="new_issue_bug"><!--
          -->错误报告</a><!--
          -->或者<a href="https://github.com/tuna/issues/issues/new?labels=MirrorRequest&template=1-mirror_request.md" id="new_issue_mr"><!--
          -->镜像申请</a>
@@ -44,7 +44,7 @@ permalink: /404.html
       (function(){
         var bugLink = document.getElementById("new_issue_bug");
         var bugURL = new URL(bugLink.href);
-        bugURL.searchParams.append("title", "Bug: 404 happened at " + location.href);
+        bugURL.searchParams.append("title", "404 at " + location.pathname);
         bugLink.href = bugURL.href;
         
         var mrLink = document.getElementById("new_issue_mr");
