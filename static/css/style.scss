@@ -322,6 +322,29 @@ body {
 
 .not-found {
   height: 600px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+}
+
+.not-found-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  z-index: -1;
+  opacity: .5;
+  filter: grayscale(0.2);
+
+  background-repeat: no-repeat;
+  background-position: center;
+
   background-image: url(/static/img/missing.png);
   background-image: -webkit-image-set(url("/static/img/missing.png") 1x,
                               url("/static/img/missing@2x.png") 2x,
@@ -331,15 +354,9 @@ body {
                               url("/static/img/missing@2x.png") 2x,
                               url("/static/img/missing@3x.png") 3x,
                               url("/static/img/missing@4x.png") 4x);
-  background-repeat: no-repeat;
-  background-position: center;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
   @include dark {
+    opacity: 1;
+    filter: none;
     background-image: url(/static/img/missing-dark.png);
     background-image: -webkit-image-set(url("/static/img/missing-dark.png") 1x,
                                 url("/static/img/missing-dark@2x.png") 2x,
@@ -352,7 +369,7 @@ body {
   }
 }
 
-.nonthu .not-found {
+.nonthu .not-found-bg {
   background-image: none;
 }
 
