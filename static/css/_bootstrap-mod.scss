@@ -7,22 +7,22 @@ BOOTSTRAP MODIFICATIONS & TWEAKS
 }
 
 .nav > li > a:hover, .nav > li > a:focus{
-  @include dark{
-    background-color: #111;
-  }
+    @include dark{
+        background-color: #111;
+    }
 }
 
 pre{
-  @include dark{
-    color: #ccc;
-    background-color: #272822;
-  }
+    @include dark{
+        color: #ccc;
+        background-color: #272822;
+    }
 }
 
 code{
-   @include dark{
-    background-color: #060d0b;
-  }
+    @include dark{
+        background-color: #060d0b;
+    }
 }
 
 .navbar-default {
@@ -36,13 +36,13 @@ code{
         color: $color_thu_purple; 
         border-bottom: 2px solid $color_thu_purple;
         @include dark{
-          color: $color_thu_purple_dark; 
-          border-bottom-color: $color_thu_purple_dark; 
+            color: $color_thu_purple_dark; 
+            border-bottom-color: $color_thu_purple_dark; 
         }
     }
     .navbar-nav > li > a {
         @include dark{
-          color: $color_secondary_dark;
+            color: $color_secondary_dark;
         }
         color: $color_secondary;
         background: transparent !important;
@@ -53,7 +53,7 @@ code{
             color: $color_primary !important;
             background: transparent !important;
             @include dark{
-              color: $color_primary_dark !important; 
+                color: $color_primary_dark !important; 
             }
         } 
     } 
@@ -74,14 +74,14 @@ code{
     @include dark{
         color: $color_secondary_dark;
         &:hover {
-          color: #fff;
+            color: #fff;
         }
     }
 }
 
 .dropdown-menu {
     @include dark{
-      background: $color_secondary_dark;
+        background: $color_secondary_dark;
     }
     background: $color_secondary ;
 }
@@ -117,59 +117,76 @@ code{
     margin-bottom: 25px;
 }
 @include dark{
-  .popover{
-    background-color: #282828;
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-  .popover.title{
-    background-color: #f7f7f7;
-    border-bottom-color: #ebebeb;
-  }
-  .popover.top > .arrow {
-    border-top-color: rgba(255, 255, 255, .25);
-  }
-  .popover.top > .arrow:after {
-    border-top-color: #282828;
-  }
-  .popover.right > .arrow {
-    border-right-color: rgba(255, 255, 255, .25);
-  }
-  .popover.right > .arrow:after {
-    border-right-color: #282828;
-  }
-  .popover.bottom > .arrow {
-    border-bottom-color: rgba(255, 255, 255, .25);
-  }
-  .popover.bottom > .arrow:after {
-    border-bottom-color: #282828;
-  }
-  .popover.left > .arrow {
-    border-left-color: rgba(255, 255, 255, .25);
-  }
-  .popover.left > .arrow:after {
-    border-left-color: #282828;
-  }
-  .modal-content {
-    background-color: $color_bg_dark;
-    border: 1px solid rgba(255, 255, 255, .2);
-  }
-  .close {
-    color: $color_secondary_dark;
-    text-shadow: 0 1px 0 $color_bg_dark;
-    &:hover, &:focus{
-      color: #fff;
+    .popover{
+        background-color: #282828;
+        border-color: rgba(255, 255, 255, 0.2);
     }
-  }
-  .nav-tabs > li > a:hover {
-    background-color: $color_bg_dark;
-  }
-  .nav-tabs > li.active > a,
-  .nav-tabs > li.active > a:hover,
-  .nav-tabs > li.active > a:focus {
-    color: $color_secondary_dark;
-    background-color: $color_bg_dark;
-  }
-  .thumbnail {
-    background-color: $color_bg_dark;
-  }
+    .popover.title{
+        background-color: #f7f7f7;
+        border-bottom-color: #ebebeb;
+    }
+    .popover.top > .arrow {
+        border-top-color: rgba(255, 255, 255, .25);
+    }
+    .popover.top > .arrow:after {
+        border-top-color: #282828;
+    }
+    .popover.right > .arrow {
+        border-right-color: rgba(255, 255, 255, .25);
+    }
+    .popover.right > .arrow:after {
+        border-right-color: #282828;
+    }
+    .popover.bottom > .arrow {
+        border-bottom-color: rgba(255, 255, 255, .25);
+    }
+    .popover.bottom > .arrow:after {
+        border-bottom-color: #282828;
+    }
+    .popover.left > .arrow {
+        border-left-color: rgba(255, 255, 255, .25);
+    }
+    .popover.left > .arrow:after {
+        border-left-color: #282828;
+    }
+    .modal-content {
+        background-color: $color_bg_dark;
+        border: 1px solid rgba(255, 255, 255, .2);
+    }
+    .close {
+        color: $color_secondary_dark;
+        text-shadow: 0 1px 0 $color_bg_dark;
+        &:hover, &:focus{
+            color: #fff;
+        }
+    }
+    .nav-tabs > li > a:hover {
+        background-color: $color_bg_dark;
+    }
+    .nav-tabs > li.active > a,
+    .nav-tabs > li.active > a:hover,
+    .nav-tabs > li.active > a:focus {
+        color: $color_secondary_dark;
+        background-color: $color_bg_dark;
+    }
+    .thumbnail {
+        background-color: $color_bg_dark;
+    }
+    .btn-info {
+        background-color: #4c85b7;
+        border-color: #739fc6;
+        &:hover, &:focus, &:active, &.active {
+            background-color: #40729e;
+            border-color: #739fc6;
+        }
+    }
+    .label-info {
+        background-color: #61aadd;
+    }
+    .label-warning {
+        background-color: #dd9640;
+    }
+    .progress-bar {
+        background-color: #42729c;
+    }
 }
