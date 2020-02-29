@@ -24,7 +24,7 @@ $color_primary_rgb: 92,48,125;
 $color_secondary: #384452;
 $color_secondary_dark: #ddd;
 $color_link: #088acb;
-$color_link_dark: #65A9CB;
+$color_link_dark: #6793cf;
 $color_link_hover: #62bbe7;
 $color_footer_heading: #ffffff;
 $color_footer_content: #bfc9d3;
@@ -32,7 +32,7 @@ $color_navbar_bg: #d3d3d3;
 $font_local: 'Hiragino Sans GB', 'Source Han Sans SC', 'Noto Sans CJK SC', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
 $font_default: 'Lato', #{$font_local};
 $color_row_hover: #e0f3fc;
-$color_row_hover_dark: #116D99;
+$color_row_hover_dark: #325475;
 
 @mixin dark {
   @media (prefers-color-scheme: dark) { 
@@ -47,7 +47,7 @@ $color_row_hover_dark: #116D99;
 	"syntax-highlighting";
 
 :root {
-color-scheme: light dark;
+	color-scheme: light dark;
 }
 
 #thu-alert {
@@ -70,8 +70,8 @@ body {
 	position: relative;
 	min-height: 100%;
 	@include dark{
-    background: $color_bg_dark;
-  }
+		background: $color_bg_dark;
+	}
 }
 
 #headerwrap {
@@ -95,13 +95,13 @@ body {
 .status-fail, .status-failed, .status-paused {
 	background-color: #fff4e3;
 	@include dark{
-	  background-color: #7F581A;
+	  background-color: #524841;
 	}
 }
 .status-syncing {
 	background-color: #e3fffd;
 	@include dark{
-	  background-color: #0F3A4C;
+	  background-color: #254059;
 	}
 }
 .sk-wave .sk-rect {
@@ -133,10 +133,20 @@ body {
 			vertical-align: 20%;
 			margin-left: .5em;
 		}
+		.label.label-status.label-info {
+			@include dark{
+				background-color: #61aadd;
+			}
+		}
+		.label.label-status.label-warning {
+			@include dark{
+				background-color: #dd9640;
+			}
+		}
 		.fa-question-circle {
 			color: #234961;
 			@include dark{
-			  color: #5CC0FF;
+			  color: #6e9cdb;
 			}
 		}
 	}
@@ -150,6 +160,17 @@ body {
 	}
 	#download-link {
 		margin-bottom: 1em;
+		.btn.btn-info {
+			@include dark{
+				background-color: #4c85b7;
+				border-color: #608fb9;
+			}
+			:hover {
+				@include dark{
+					background-color: #42729c;
+				}
+			}
+		}
 	}
 }
 #isoModal {
@@ -165,10 +186,10 @@ body {
 	#mirror-list {
 		:hover {
 			background-color: $color_row_hover;
-      @include dark{
-        background-color: $color_row_hover_dark;
-      }
-    }
+			@include dark{
+				background-color: $color_row_hover_dark;
+			}
+		}
 	}
 }
 
