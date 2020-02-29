@@ -50,6 +50,8 @@ mirror_desc:
     desc: Artix Linux 是一款基于 Arch Linux 的滚动发行版
   - name: bananian
     desc: 用于 Banana Pi 的 Debian 操作系统
+  - name: binutils-gdb.git
+    desc: Binutils 和 GDB 等开发工具的源码 Git 仓库
   - name: bioconductor
     desc: 开源的基因数据分析处理工具
   - name: bjlx
@@ -146,6 +148,8 @@ mirror_desc:
     desc: Gitlab 企业版
   - name: gitlab-runner
     desc: GitLab 持续集成框架版本 10 及以上
+  - name: glibc.git
+    desc: GNU C Library 的源码 Git 仓库
   - name: gnu
     desc: GNU 项目的软件包（源代码、文档和部分平台的二进制文件）
   - name: gnu-alpha
@@ -338,8 +342,6 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - raspbian-images
-  - linux-firmware.git
   - gcc.git
   - qemu.git
   - homebrew
@@ -347,6 +349,8 @@ new_mirrors:
   - crates.io-index.git
   - packagist
   - clickhouse
+  - binutils-gdb.git
+  - glibc.git
     
 unlisted_mirrors:
   - status: 'success'
@@ -385,6 +389,8 @@ force_help_mirrors:
   - linux-firmware.git
   - gcc.git
   - crates.io-index.git
+  - binutils-gdb.git
+  - glibc.git
 
 label_map:
   unknown: label-default
