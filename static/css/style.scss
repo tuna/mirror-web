@@ -133,17 +133,7 @@ body {
             vertical-align: 20%;
             margin-left: .5em;
         }
-        .label.label-status.label-info {
-            @include dark{
-                background-color: #61aadd;
-            }
-        }
-        .label.label-status.label-warning {
-            @include dark{
-                background-color: #dd9640;
-            }
-        }
-        .fa-question-circle {
+       .fa-question-circle {
             color: #234961;
             @include dark{
                 color: #6e9cdb;
@@ -160,17 +150,6 @@ body {
     }
     #download-link {
         margin-bottom: 1em;
-        .btn.btn-info {
-            @include dark{
-                background-color: #4c85b7;
-                border-color: #608fb9;
-            }
-            :hover {
-                @include dark{
-                    background-color: #42729c;
-                }
-            }
-        }
     }
 }
 #isoModal {
@@ -184,7 +163,7 @@ body {
         font-weight: bold;
     }
     #mirror-list {
-        :hover {
+        &:hover {
             background-color: $color_row_hover;
             @include dark{
                 background-color: $color_row_hover_dark;
