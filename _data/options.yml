@@ -220,6 +220,8 @@ mirror_desc:
     desc: Manjaro Linux 的官方软件源
   - name: manjaro-cd
     desc: Manjanro Linux 的安装镜像
+  - name: manjaro-arm-cd
+    desc: Manjanro ARM Linux 的安装镜像
   - name: mariadb
     desc: 衍生于 MySQL 的开源关系数据库
   - name: mongodb
@@ -363,6 +365,12 @@ unlisted_mirrors:
     last_update: '-'
     name: "manjaro-cd"
     url: '/osdn/storage/g/m/ma/manjaro/'
+    upstrame: '-'
+    is_master: true
+  - status: 'success'
+    last_update: '-'
+    name: "manjaro-arm-cd"
+    url: '/osdn/storage/g/m/ma/manjaro-arm/'
     upstrame: '-'
     is_master: true
   - status: 'success'
