@@ -170,6 +170,34 @@ body {
             }
         }
     }
+    .table-condensed {
+      & > thead, & > tbody, & > tfoot{
+        & > tr > th, & > tr > td{
+          overflow-y: hidden;
+          clip-path: padding-box;
+          &[class*="rolling-"]{
+            & > div {
+              position: absolute;
+              left: 0;
+              top: 0;
+              height: 100%;
+              transition-property: transform;
+              transition-duration: 1s;
+              transition-timing-function: ease;
+              div {
+                padding: 5px;
+                white-space: nowrap;
+                height: 100%;
+              }
+              &.notrans{
+                transition-duration: 0s;
+              }
+            }
+            position: relative;
+          }
+        }
+      }
+    }
 }
 
 #help-page {
@@ -269,9 +297,9 @@ body {
         text-align: right;
     }
 }
-
-@media (max-width: 992px) {
-    .table.flat-md {
+.table.flat-md {
+    word-break: break-all;
+    @media (max-width: 992px) {
         display: block;
         td,th,tr,tbody,thead {
             display: block;

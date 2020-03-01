@@ -37,37 +37,53 @@ permalink: /status/
 				<thead class="hidden-xs hidden-sm">
 					<tr>
 						<th class="col-xs-12 col-md-2">Name</th>
-						<th class="col-xs-12 col-md-2">Last Update</th>
+						<th class="col-xs-12 col-md-2" colspan=2>Last Update</th>
 						<th class="col-xs-12 col-md-5">Upstream</th>
 						<th class="col-xs-12 col-md-1">Status</th>
 						<th class="col-xs-12 col-md-2">Size</th>
 					</tr>
 				</thead>
 				<tbody id="mirror-list">
+					{% raw %}
+					<tr v-for="mir in rawMirrorList" :class="['row', 'status-'+mir.status, mir.last_ended_ts == mir.last_update_ts ? 'last-succ' : 'last-fail']" :key="mir.name">
+						<td class="col-xs-4">Name</td>
+						<td class="col-md-2 col-xs-8">{{mir.name}}{{mir.is_master ? '' : ' [slave]'}}</td>
+						<td class="col-xs-4">Last Update</td>
+						<td class="col-md-1 col-xs-3 rolling-3">​
+							<div>
+								<div>Last Sync</div>
+								<div v-if="mir.last_ended_ts != mir.last_update_ts">Last Active</div>
+								<div>Next Sync</div>
+								<div>Last Sync</div>
+							</div>
+						</td>
+						<td class="hidden-xs hidden-sm hidden-md hidden-lg"></td>
+						<td class="col-md-2 col-xs-5 rolling-6">​
+							<div>
+								<div>{{mir.last_update}}</div>
+								<div>{{mir.last_update_ago}}</div>
+								<div>{{mir.last_ended}}</div>
+								<div>{{mir.last_ended_ago}}</div>
+								<div>{{mir.status != 'syncing' ? mir.next_schedule : 'Syncing'}}</div>
+								<div v-if="mir.status != 'syncing'">{{mir.next_schedule_ago}}</div>
+								<div>{{mir.last_update}}</div>
+							</div>
+						</td>
+						<td class="col-xs-4">Upstream</td>
+						<td class="col-md-3 col-xs-8">{{mir.upstream}}</td>
+						<td class="col-xs-4">Status</td>
+						<td class="col-md-1 col-xs-8">{{mir.status}}</td>
+						<td class="col-xs-4">Size</td>
+						<td class="col-md-2 col-xs-8">{{mir.size}}</td>
+					</tr>
+					{% endraw %}
 				</tbody>
 			</table>
 		</div><!--/container -->
 	</div><!--/status -->
 	{% include footer.html %}
-	{% raw %}
-	<script id="template" type="x-tmpl-markup">
-{{mirrors}}
-<tr class="status-{{status}} row">
-	<td class="col-xs-4">Name</td>
-	<td class="col-md-2 col-xs-8">{{name}}{{if is_master|falsy}}[slave]{{/if}}</td>
-	<td class="col-xs-4">Last Update</td>
-	<td class="col-md-2 col-xs-8">{{last_update}}</td>
-	<td class="col-xs-4">Upstream</td>
-	<td class="col-md-5 col-xs-8">{{upstream}}</td>
-	<td class="col-xs-4">Status</td>
-	<td class="col-md-1 col-xs-8">{{status}}</td>
-	<td class="col-xs-4">Size</td>
-	<td class="col-md-2 col-xs-8">{{size}}</td>
-</tr>
-{{/mirrors}}
-	</script>
-	{% endraw %}
 	<script src="/static/js/status.js"></script>
+	<script src="/static/js/index.js"></script>
 </body>
 </html>
 <!--

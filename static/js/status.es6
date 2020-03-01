@@ -1,13 +1,12 @@
 ---
 ---
 $(document).ready(() => {
-	var mir_tmpl = $("#template").text();
 	function readableFileSize(size) {
 		var units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 		var i = 0;
 		while(size >= 1024) {
-		    size /= 1024;
-		    ++i;
+				size /= 1024;
+				++i;
 		}
 		return size.toFixed(1) + ' ' + units[i];
 	}
@@ -18,36 +17,41 @@ $(document).ready(() => {
 			.css("width", used_percent + "%")
 			.html("<strong>" + readableFileSize(d.used_kb * 1024) + " / " + readableFileSize(d.total_kb * 1024) + "</strong>");
 	});
-
-	window.refreshMirrorList = () => {
-		$.getJSON("/static/tunasync.json", (status_data) => {
-			var mirrors=[], mir_data=status_data;
-
-			mir_data.sort((a, b) => { return a.name < b.name ? -1: 1 });
-
-			for(var k in mir_data) {
-				var d = mir_data[k];
-				if (d.is_master === undefined) {
-					d.is_master = true;
-				}
-				// Strip the second component of last_update
-				if (d.last_update_ts) {
-					let date = new Date(d.last_update_ts * 1000);
-					if (date.getFullYear() > 2000) {
-						d.last_update = `${('000'+date.getFullYear()).substr(-4)}-${('0'+(date.getMonth()+1)).substr(-2)}-${('0'+date.getDate()).substr(-2)}` +
-							` ${('0'+date.getHours()).substr(-2)}:${('0'+date.getMinutes()).substr(-2)}`;
-					} else {
-						d.last_update = "0000-00-00 00:00";
-					}
-				} else {
-					d.last_update = d.last_update.replace(/(\d\d:\d\d):\d\d(\s\+\d\d\d\d)?/, '$1');
-				}
-				mirrors.push(d);
-			}
-			var result = Mark.up(mir_tmpl, {mirrors: mirrors});
-			$('#mirror-list').html(result);
-		});
-		setTimeout(refreshMirrorList, 10000);
-	};
-	refreshMirrorList();
+	var step = 0;
+	var resetToZeroHandler = function(e){
+		var $this = $(this);
+		$this.addClass('notrans').css("transform", "translateY(0)");
+		setTimeout(function(){
+			$this.removeClass('notrans');
+		}, 0);
+	}
+	setInterval(function(){
+		step += 1;
+		var $objs = $('');
+		
+		var $objs3 = $("tr:not(:hover):not(:active):not(.last-succ) > .rolling-3 > div");
+		$objs3.css("transform", `translateY(-${Math.floor(step / 2) * 100}%)`);
+		$objs = $objs.add($objs3);
+		
+		var $objs3_1 = $("tr.last-succ:not(:hover):not(:active) > .rolling-3 > div");
+		var pos = Math.floor(step / 2);
+		if(pos >= 1) pos--;
+		$objs3_1.css("transform", `translateY(-${pos * 100}%)`);
+		$objs = $objs.add($objs3_1);
+		
+		var $objs6 = $("tr:not(:hover):not(:active):not(.status-syncing) > .rolling-6 > div");
+		$objs6.css("transform", `translateY(-${step * 100}%)`);
+		$objs = $objs.add($objs6);
+		
+		var $objs6_1 = $("tr.status-syncing:not(:hover):not(:active) > .rolling-6 > div");
+		pos = step;
+		if(pos >= 5) pos--;
+		$objs6_1.css("transform", `translateY(-${pos * 100}%)`);
+		$objs = $objs.add($objs6_1);
+		
+		step %= 6;
+		if(step == 0){
+			$objs.one('transitionend', resetToZeroHandler);
+		}
+	}, 2500);
 });
