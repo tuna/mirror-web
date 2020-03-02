@@ -23,7 +23,7 @@ kramdown:
 sass:
     sass_dir: static/css
 
-plugins:
+gems:
     - jekyll-babel
     - jekyll-sitemap
 
