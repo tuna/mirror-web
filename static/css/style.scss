@@ -462,12 +462,24 @@ body {
       > * {
         animation-name: tuna-roll-leave;
         transform: translateY(100%);
-        
       }
       > [data-tuna-roll-seq~="#{$i}"] {
         animation-name: tuna-roll-enter;
         transform: none;
       }
+    }
+  }
+
+  &[data-tuna-roll-cur="-1"] {
+    > div {
+      animation-name: tuna-roll-leave;
+      transform: translateY(100%);
+      animation-duration: 0s;
+    }
+    > div[data-tuna-roll-seq~="0"] {
+      animation-name: tuna-roll-enter;
+      transform: none;
+      animation-duration: 0s;
     }
   }
 }
