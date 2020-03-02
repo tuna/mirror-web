@@ -37,10 +37,10 @@ permalink: /status/
 				<thead class="hidden-xs hidden-sm">
 					<tr>
 						<th class="col-xs-12 col-md-2">Name</th>
-						<th class="col-xs-12 col-md-2" colspan=2>Last Update</th>
-						<th class="col-xs-12 col-md-5">Upstream</th>
+						<th class="col-xs-12 col-md-4" colspan=2>Last Update</th>
+						<th class="col-xs-12 col-md-4">Upstream</th>
 						<th class="col-xs-12 col-md-1">Status</th>
-						<th class="col-xs-12 col-md-2">Size</th>
+						<th class="col-xs-12 col-md-1">Size</th>
 					</tr>
 				</thead>
 				<tbody id="mirror-list">
@@ -48,33 +48,46 @@ permalink: /status/
 					<tr v-for="mir in rawMirrorList" :class="['row', 'status-'+mir.status, mir.last_ended_ts == mir.last_update_ts ? 'last-succ' : 'last-fail']" :key="mir.name">
 						<td class="col-xs-4">Name</td>
 						<td class="col-md-2 col-xs-8">{{mir.name}}{{mir.is_master ? '' : ' [slave]'}}</td>
-						<td class="col-xs-4">Last Update</td>
-						<td class="col-md-1 col-xs-3 rolling-3">​
+						<td class="col-xs-4">Last Success</td>
+						<td class="col-xs-8 hidden-md hidden-lg">{{mir.last_update}}, {{mir.last_update_ago}}</td>
+						<template v-if="mir.last_ended_ts != mir.last_update_ts">
+						<td class="col-xs-4">Last Attempt</td>
+						<td class="col-xs-8 hidden-md hidden-lg">{{mir.last_ended}}, {{mir.last_ended_ago}}</td>
+						</template>
+						<td class="col-xs-4">Next Sync</td>
+						<td class="col-xs-8 hidden-md hidden-lg" v-if="mir.status != 'syncing'">{{mir.next_schedule}}, {{mir.next_schedule_ago}}</td>
+						<td class="col-xs-8 hidden-md hidden-lg" v-else>Syncing Now</td>
+						<td class="hidden-xs hidden-sm hidden-md hidden-lg"></td>
+						<td class="col-md-2 col-xs-3 rolling-3 text-left-md text-right-xs hidden-xs hidden-sm">​
 							<div>
-								<div>Last Sync</div>
-								<div v-if="mir.last_ended_ts != mir.last_update_ts">Last Active</div>
-								<div>Next Sync</div>
-								<div>Last Sync</div>
+								<div data-tuna-roll-seq=0>Last Successful Sync</div>
+								<template v-if="mir.last_ended_ts != mir.last_update_ts">
+								<div data-tuna-roll-seq=1>Last Attempted Sync</div>
+								<div data-tuna-roll-seq=2>Last Successful Sync</div>
+								<div data-tuna-roll-seq=3>Last Attempted Sync</div>
+								</template>
+								<div data-tuna-roll-seq=4>Next Scheduled Sync</div>
+								<div data-tuna-roll-seq=6>Last Successful Sync</div>
 							</div>
 						</td>
 						<td class="hidden-xs hidden-sm hidden-md hidden-lg"></td>
-						<td class="col-md-2 col-xs-5 rolling-6">​
+						<td class="col-md-2 col-xs-5 rolling-6 hidden-xs hidden-sm">​
 							<div>
-								<div>{{mir.last_update}}</div>
-								<div>{{mir.last_update_ago}}</div>
-								<div>{{mir.last_ended}}</div>
-								<div>{{mir.last_ended_ago}}</div>
-								<div>{{mir.status != 'syncing' ? mir.next_schedule : 'Syncing'}}</div>
-								<div v-if="mir.status != 'syncing'">{{mir.next_schedule_ago}}</div>
-								<div>{{mir.last_update}}</div>
+								<div data-tuna-roll-seq=0>{{mir.last_update}}</div>
+								<div data-tuna-roll-seq=1 v-if="mir.last_ended_ts != mir.last_update_ts">{{mir.last_ended}}</div>
+								<div data-tuna-roll-seq=2>{{mir.last_update_ago}}</div>
+								<div data-tuna-roll-seq=3 v-if="mir.last_ended_ts != mir.last_update_ts">{{mir.last_ended_ago}}</div>
+								<div data-tuna-roll-seq=4>{{mir.status != 'syncing' ? mir.next_schedule : 'Syncing Now'}}</div>
+								<div data-tuna-roll-seq=5 v-if="mir.status != 'syncing'">{{mir.next_schedule_ago}}</div>
+								<div data-tuna-roll-seq=6>{{mir.last_update}}</div>
 							</div>
 						</td>
 						<td class="col-xs-4">Upstream</td>
-						<td class="col-md-3 col-xs-8">{{mir.upstream}}</td>
+						<td class="col-md-4 col-xs-8">{{mir.upstream}}</td>
 						<td class="col-xs-4">Status</td>
 						<td class="col-md-1 col-xs-8">{{mir.status}}</td>
 						<td class="col-xs-4">Size</td>
-						<td class="col-md-2 col-xs-8">{{mir.size}}</td>
+						<td class="col-md-1 col-xs-8">{{mir.size}}</td>
 					</tr>
 					{% endraw %}
 				</tbody>

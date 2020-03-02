@@ -21,37 +21,33 @@ $(document).ready(() => {
 	var resetToZeroHandler = function(e){
 		var $this = $(this);
 		$this.addClass('notrans').css("transform", "translateY(0)");
+		$this.off('transitioncancel.reset');
 		setTimeout(function(){
 			$this.removeClass('notrans');
 		}, 0);
 	}
+	var clearResetHandler = function(e){
+		var $this = $(this);
+		$this.off('transitionend.reset')
+	}
 	setInterval(function(){
+		if($('#mirror-list .hidden-md:not(.hidden-xs):not(.hidden-sm)').css('display') != 'none'){
+			return;
+		}
 		step += 1;
-		var $objs = $('');
-		
-		var $objs3 = $("tr:not(:hover):not(:active):not(.last-succ) > .rolling-3 > div");
-		$objs3.css("transform", `translateY(-${Math.floor(step / 2) * 100}%)`);
-		$objs = $objs.add($objs3);
-		
-		var $objs3_1 = $("tr.last-succ:not(:hover):not(:active) > .rolling-3 > div");
-		var pos = Math.floor(step / 2);
-		if(pos >= 1) pos--;
-		$objs3_1.css("transform", `translateY(-${pos * 100}%)`);
-		$objs = $objs.add($objs3_1);
-		
-		var $objs6 = $("tr:not(:hover):not(:active):not(.status-syncing) > .rolling-6 > div");
-		$objs6.css("transform", `translateY(-${step * 100}%)`);
-		$objs = $objs.add($objs6);
-		
-		var $objs6_1 = $("tr.status-syncing:not(:hover):not(:active) > .rolling-6 > div");
-		pos = step;
-		if(pos >= 5) pos--;
-		$objs6_1.css("transform", `translateY(-${pos * 100}%)`);
-		$objs = $objs.add($objs6_1);
-		
+		var $objs = $('tr:not(:hover):not(:active) > td[class*="rolling-"] > div');
+		$objs.each(function(){
+			var $this = $(this);
+			var index = $this.children('div[data-tuna-roll-seq="'+step+'"]').index();
+			if(index == -1){
+				return;
+			}
+			$this.css("transform", `translateY(-${index * 100}%)`);
+		});
 		step %= 6;
 		if(step == 0){
-			$objs.one('transitionend', resetToZeroHandler);
+			$objs.one('transitionend.reset', resetToZeroHandler);
+			$objs.one('transitioncancel.reset', clearResetHandler);
 		}
 	}, 2500);
 });

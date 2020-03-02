@@ -172,29 +172,28 @@ body {
     }
     .table-condensed {
       & > thead, & > tbody, & > tfoot{
-        & > tr > th, & > tr > td{
+        & > tr > th, & > tr > td[class*="rolling-"]{
           overflow-y: hidden;
           clip-path: padding-box;
-          &[class*="rolling-"]{
-            & > div {
-              position: absolute;
-              left: 0;
-              top: 0;
+          & > div {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            transition-property: transform;
+            transition-duration: 1s;
+            transition-timing-function: ease;
+            div {
+              padding: 5px;
+              white-space: nowrap;
               height: 100%;
-              transition-property: transform;
-              transition-duration: 1s;
-              transition-timing-function: ease;
-              div {
-                padding: 5px;
-                white-space: nowrap;
-                height: 100%;
-              }
-              &.notrans{
-                transition-duration: 0s;
-              }
             }
-            position: relative;
+            &.notrans{
+              transition-duration: 0s;
+            }
           }
+          position: relative;
         }
       }
     }
@@ -265,11 +264,17 @@ body {
 .text-right-xs {
     text-align: right;
 }
+.text-left-xs {
+    text-align: left;
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .text-right-sm {
         text-align: right;
+    }
+    .text-left-sm {
+        text-align: left;
     }
 }
 
@@ -277,6 +282,9 @@ body {
 @media (min-width: 992px) {
     .text-right-md {
         text-align: right;
+    }
+    .text-left-md {
+        text-align: left;
     }
     .table.flat-md {
         td,tr,th {
@@ -295,6 +303,9 @@ body {
 @media (min-width: 1200px) {
     .text-right-lg {
         text-align: right;
+    }
+    .text-left-lg {
+        text-align: left;
     }
 }
 .table.flat-md {

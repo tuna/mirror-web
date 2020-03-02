@@ -93,7 +93,7 @@ var stringifyTime = function(ts){
 		ago = timeago.format(date);
 	} else {
 		str = "0000-00-00 00:00";
-		ago = "-";
+		ago = "Never";
 	}
 	return [str, ago];
 }
