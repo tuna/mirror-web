@@ -29,15 +29,14 @@ function kickstartScroll() {
   setInterval(doScroll, SCROLL_INTERVAL);
 }
 
+var step = 0;
 function doScroll() {
+  step += 1;
   const targets = $('#mirror-list .row:not(:hover) .tuna-roll');
   targets.each(function() {
     const target = $(this);
-    const cur = parseInt(target.attr('data-tuna-roll-cur'), 10);
     const max = parseInt(target.attr('data-tuna-roll-max'), 10);
-    let next = cur + 1;
-    if(next > max) next = 0;
 
-    target.attr('data-tuna-roll-cur', next);
+    target.attr('data-tuna-roll-cur', step % max);
   });
 }
