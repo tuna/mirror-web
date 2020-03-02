@@ -38,7 +38,7 @@ $(document).ready(() => {
 		var $objs = $('tr:not(:hover):not(:active) > td[class*="rolling-"] > div');
 		$objs.each(function(){
 			var $this = $(this);
-			var index = $this.children('div[data-tuna-roll-seq="'+step+'"]').index();
+			var index = $this.children('div[data-tuna-roll-seq~="'+step+'"]').index();
 			if(index == -1){
 				return;
 			}
