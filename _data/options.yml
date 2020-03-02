@@ -353,6 +353,7 @@ new_mirrors:
   - clickhouse
   - binutils-gdb.git
   - glibc.git
+  - artixlinux-iso
     
 unlisted_mirrors:
   - status: 'success'
