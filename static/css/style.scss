@@ -163,7 +163,7 @@ body {
         font-weight: bold;
     }
     #mirror-list {
-        :hover {
+        tr:hover {
             background-color: $color_row_hover;
             @include dark{
                 background-color: $color_row_hover_dark;
