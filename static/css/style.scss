@@ -433,7 +433,7 @@ body {
     top: 0;
 
     animation-timing-function: ease;
-    animation-duration: .5s;
+    animation-duration: 1s;
     animation-iteration-count: 1;
   }
 
@@ -462,6 +462,7 @@ body {
       > * {
         animation-name: tuna-roll-leave;
         transform: translateY(100%);
+        
       }
       > [data-tuna-roll-seq~="#{$i}"] {
         animation-name: tuna-roll-enter;
