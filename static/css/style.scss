@@ -446,3 +446,54 @@ body {
     display: none;
 }
 
+
+// Scrolling columns in status page
+.tuna-roll {
+  position: relative;
+  overflow: hidden;
+
+  > div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+
+    animation-timing-function: ease;
+    animation-duration: .2s;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes tuna-roll-enter {
+    0% {
+      transform: translateY(100%);
+    }
+
+    100% {
+      transform: none;
+    }
+  }
+
+  @keyframes tuna-roll-leave {
+    0% {
+      transform: none;
+    }
+
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+
+  @for $i from 0 to 7 {
+    &[data-tuna-roll-cur="#{$i}"] {
+      > * {
+        animation-name: tuna-roll-leave;
+        transform: translateY(100%);
+      }
+      > [data-tuna-roll-seq~="#{$i}"] {
+        animation-name: tuna-roll-enter;
+        transform: none;
+      }
+    }
+  }
+}
