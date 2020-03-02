@@ -23,7 +23,7 @@ $(document).ready(() => {
 
 // Scrolling
 
-const SCROLL_INTERVAL = 1000;
+const SCROLL_INTERVAL = 2000;
 function kickstartScroll() {
   console.log('Scroll start...');
   setInterval(doScroll, SCROLL_INTERVAL);
