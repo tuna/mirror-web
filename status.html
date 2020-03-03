@@ -43,7 +43,7 @@ permalink: /status/
 						<th class="col-xs-12 col-md-1">Size</th>
 					</tr>
 				</thead>
-				<tbody id="mirror-list">
+				<tbody id="mirror-list" data-tuna-roll-cur="-1" data-tuna-roll-max="6">
 					{% raw %}
 					<tr v-for="mir in rawMirrorList" :class="['row', 'status-'+mir.status, mir.last_ended_ts == mir.last_update_ts ? 'last-succ' : 'last-fail']" :key="mir.name">
 						<td class="col-xs-4">Name</td>
@@ -59,7 +59,7 @@ permalink: /status/
 						<td class="col-xs-8 hidden-md hidden-lg" v-else>Syncing Now</td>
 						<td class="hidden-xs hidden-sm hidden-md hidden-lg"></td>
 						<td class="col-md-2 col-xs-3 rolling-3 text-left-md text-right-xs hidden-xs hidden-sm">
-							<div class="tuna-roll" data-tuna-roll-cur="-1" data-tuna-roll-max="6">​
+							<div class="tuna-roll">​
 								<template v-if="mir.last_ended_ts == mir.last_update_ts">
 									<div data-tuna-roll-seq="0 1 2 3">Last Successful Sync</div>
 								</template>
@@ -74,7 +74,7 @@ permalink: /status/
 						</td>
 						<td class="hidden-xs hidden-sm hidden-md hidden-lg"></td>
 						<td class="col-md-2 col-xs-5 rolling-6 hidden-xs hidden-sm">
-							<div class="tuna-roll" data-tuna-roll-cur="-1" data-tuna-roll-max="6">​
+							<div class="tuna-roll">​
 								<template v-if="mir.last_ended_ts == mir.last_update_ts">
 									<div data-tuna-roll-seq="0 1">{{mir.last_update}}</div>
 									<div data-tuna-roll-seq="2 3">{{mir.last_update_ago}}</div>

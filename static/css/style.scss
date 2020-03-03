@@ -456,30 +456,32 @@ body {
       transform: translateY(-100%);
     }
   }
+}
 
-  @for $i from 0 to 7 {
-    &[data-tuna-roll-cur="#{$i}"] {
-      > * {
-        animation-name: tuna-roll-leave;
-        transform: translateY(100%);
-      }
-      > [data-tuna-roll-seq~="#{$i}"] {
-        animation-name: tuna-roll-enter;
-        transform: none;
-      }
-    }
-  }
-
-  &[data-tuna-roll-cur="-1"] {
-    > div {
+{% for attrb in (1..2) %}
+@for $i from 0 to 7 {
+  {% cycle "g1": "[data-tuna-roll-cur", ".row[data-tuna-roll-freeze" %}="#{$i}"] {
+    .tuna-roll > div {
       animation-name: tuna-roll-leave;
       transform: translateY(100%);
-      animation-duration: 0s;
     }
-    > div[data-tuna-roll-seq~="0"] {
+    .tuna-roll > div[data-tuna-roll-seq~="#{$i}"] {
       animation-name: tuna-roll-enter;
       transform: none;
-      animation-duration: 0s;
     }
   }
 }
+
+{% cycle "g2": "[data-tuna-roll-cur", ".row[data-tuna-roll-freeze" %}="-1"] {
+  .tuna-roll > div {
+    transform: translateY(100%);
+    animation-name: tuna-roll-leave;
+    animation-duration: 0s;
+  }
+  .tuna-roll > div[data-tuna-roll-seq~="0"] {
+    transform: none;
+    animation-name: tuna-roll-enter;
+    animation-duration: 0s;
+  }
+}
+{% endfor %}

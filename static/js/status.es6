@@ -17,26 +17,18 @@ $(document).ready(() => {
       .css("width", used_percent + "%")
       .html("<strong>" + readableFileSize(d.used_kb * 1024) + " / " + readableFileSize(d.total_kb * 1024) + "</strong>");
   });
+  
+  const SCROLL_INTERVAL = 2000;
 
-  kickstartScroll();
-});
-
-// Scrolling
-
-const SCROLL_INTERVAL = 2000;
-function kickstartScroll() {
-  console.log('Scroll start...');
+  var step = 0;
+  const doScroll = function() {
+    const $target = $('#mirror-list');
+    const max = parseInt($target.attr('data-tuna-roll-max'), 10);
+    $('#mirror-list .row:hover:not([data-tuna-roll-freeze])').attr('data-tuna-roll-freeze', step % max);
+    $('#mirror-list .row:not(:hover)[data-tuna-roll-freeze]').removeAttr('data-tuna-roll-freeze');
+    step += 1;
+    if(step < 0) step = 0;
+    $target.attr('data-tuna-roll-cur', step % max);
+  }
   setInterval(doScroll, SCROLL_INTERVAL);
-}
-
-var step = 0;
-function doScroll() {
-  step += 1;
-  const targets = $('#mirror-list .row:not(:hover) .tuna-roll');
-  targets.each(function() {
-    const target = $(this);
-    const max = parseInt(target.attr('data-tuna-roll-max'), 10);
-
-    target.attr('data-tuna-roll-cur', step % max);
-  });
-}
+});
