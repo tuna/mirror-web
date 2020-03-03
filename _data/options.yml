@@ -186,6 +186,8 @@ mirror_desc:
     desc: 开源的电路原理图与 PCB 设计工具
   - name: kodi
     desc: 开源的多媒体播放器，原名 XBMC
+  - name: kubernetes
+    desc: Kubernetes 是用于集群自动部署和管理的开源系统
   - name: libreoffice
     desc: 自由的办公软件套件
   - name: lineage-rom
@@ -360,6 +362,7 @@ new_mirrors:
   - artixlinux-iso
   - manjaro-arm
   - fdroid
+  - kubernetes
     
 unlisted_mirrors:
   - status: 'success'
