@@ -30,6 +30,7 @@ var vmMirList = new Vue({
 		test: "hello",
 		mirrorList: [],
 		filter: "",
+		rawMirrorList: [],
 	},
 	created () {
 		this.refreshMirrorList();
@@ -69,57 +70,70 @@ var vmMirList = new Vue({
 		refreshMirrorList () {
 			var self = this;
 			$.getJSON("/static/tunasync.json", (status_data) => {
-				var mirrors = [], mir_data = $.merge(status_data, unlisted);
-				var mir_uniq = {}; // for deduplication
-
-				mir_data.sort((a, b) => { return a.name < b.name ? -1: 1 });
-
-				for(var k in mir_data) {
-					var d = mir_data[k];
-					if (d.status == "disabled") {
-						continue;
-					}
-					if (options[d.name] != undefined ) {
-						d = $.extend(d, options[d.name]);
-					}
-					d.label = label_map[d.status];
-					d.help_url = help_url[d.name];
-					d.is_new = new_mirrors[d.name];
-					d.description = descriptions[d.name];
-					d.show_status = (d.status != "success");
-					if (d.is_master === undefined) {
-						d.is_master = true;
-					}
-					// Strip the second component of last_update
-					if (d.last_update_ts) {
-						let date = new Date(d.last_update_ts * 1000);
-						if (date.getFullYear() > 2000) {
-							d.last_update = `${('000'+date.getFullYear()).substr(-4)}-${('0'+(date.getMonth()+1)).substr(-2)}-${('0'+date.getDate()).substr(-2)}` +
-								` ${('0'+date.getHours()).substr(-2)}:${('0'+date.getMinutes()).substr(-2)}`;
-						} else {
-							d.last_update = "0000-00-00 00:00";
-						}
-					} else {
-						d.last_update = d.last_update.replace(/(\d\d:\d\d):\d\d(\s\+\d\d\d\d)?/, '$1');
-					}
-					if (d.name in mir_uniq) {
-						let other = mir_uniq[d.name];
-						if (other.last_update > d.last_update) {
-							continue;
-						}
-					}
-					mir_uniq[d.name] = d;
-				}
-				for (k in mir_uniq) {
-					mirrors.push(mir_uniq[k]);
-				}
-				self.mirrorList = mirrors;
+				var unlisted_mir = unlisted.map(d => processMirrorItem(d))
+				status_data = status_data.map(d => processMirrorItem(d));
+				var mir_data = $.merge(unlisted_mir, status_data);
+				status_data = sortAndUniqMirrors(status_data);
+				mir_data = sortAndUniqMirrors(mir_data).filter(d => !(d.status == "disabled"));
+				self.mirrorList = mir_data;
+				self.rawMirrorList = status_data;
 				setTimeout(() => {self.refreshMirrorList()}, 10000);
 			});
 		}
 	}
 })
 
+var stringifyTime = function(ts){
+	var date = new Date(ts * 1000);
+	var str = "";
+	var ago = "";
+	if (date.getFullYear() > 2000) {
+		str = `${('000'+date.getFullYear()).substr(-4)}-${('0'+(date.getMonth()+1)).substr(-2)}-${('0'+date.getDate()).substr(-2)}` +
+			` ${('0'+date.getHours()).substr(-2)}:${('0'+date.getMinutes()).substr(-2)}`;
+		ago = timeago.format(date);
+	} else {
+		str = "0000-00-00 00:00";
+		ago = "Never";
+	}
+	return [str, ago];
+}
+
+var sortAndUniqMirrors = function(mirs){
+	mirs.sort((a, b) => { return a.name < b.name ? -1: 1 });
+	return mirs.reduce((acc, cur)=>{
+		if(acc.length > 1 && acc[acc.length - 1].name == cur.name){
+			if(acc[acc.length - 1].last_update_ts && cur.last_update_ts){
+				if(acc[acc.length - 1].last_update_ts < cur.last_update_ts){
+					acc[acc.length - 1] = cur;
+				}
+			} else if(cur.last_update_ts){
+				acc[acc.length - 1] = cur;
+			}
+		}else{
+			acc.push(cur);
+		}
+		return acc;
+	}, []);
+}
+
+var processMirrorItem = function(d){
+	if (options[d.name] != undefined ) {
+		d = $.extend(d, options[d.name]);
+	}
+	d.label = label_map[d.status];
+	d.help_url = help_url[d.name];
+	d.is_new = new_mirrors[d.name];
+	d.description = descriptions[d.name];
+	d.show_status = (d.status != "success");
+	if (d.is_master === undefined) {
+		d.is_master = true;
+	}
+	// Strip the second component of last_update
+	[d.last_update, d.last_update_ago] = stringifyTime(d.last_update_ts);
+	[d.last_ended, d.last_ended_ago] = stringifyTime(d.last_ended_ts);
+	[d.next_schedule, d.next_schedule_ago] = stringifyTime(d.next_schedule_ts);
+	return d;
+}
 
 var vmIso = new Vue({
 	el: "#isoModal",
