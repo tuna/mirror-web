@@ -47,7 +47,7 @@ mirror_desc:
   - name: armbian-releases
     desc: Armbian 的安装镜像
   - name: artixlinux
-    desc: Artix Linux 是一款基于 Arch Linux 的滚动发行版
+    desc: Artix Linux 的官方软件包仓库（基于 Arch Linux 的不使用 systemd 的发行版）
   - name: artixlinux-iso
     desc: Artix Linux 的安装镜像
   - name: bananian
