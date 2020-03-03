@@ -11,3 +11,5 @@
 /.sass-cache/
 .bundle
 vendor
+.vscode/
+
