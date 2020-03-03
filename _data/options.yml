@@ -120,6 +120,8 @@ mirror_desc:
     desc: 企业版 Linux 附加软件包
   - name: erlang-solutions
     desc: 为各大 Linux 发行版提供的 Erlang 软件包
+  - name: fdroid
+    desc: F-Droid 是 Android 上的自由与开源软件应用商店
   - name: fedora
     desc: Fedora Linux 的安装镜像和官方软件包仓库
   - name: fedora-altarch
@@ -220,6 +222,8 @@ mirror_desc:
     desc: Manjaro Linux 的官方软件源
   - name: manjaro-cd
     desc: Manjanro Linux 的安装镜像
+  - name: manjaro-arm
+    desc: Manjaro ARM Linux 的官方软件源
   - name: manjaro-arm-cd
     desc: Manjanro ARM Linux 的安装镜像
   - name: mariadb
@@ -354,6 +358,8 @@ new_mirrors:
   - binutils-gdb.git
   - glibc.git
   - artixlinux-iso
+  - manjaro-arm
+  - fdroid
     
 unlisted_mirrors:
   - status: 'success'
