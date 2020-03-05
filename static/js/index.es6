@@ -155,7 +155,10 @@ var vmIso = new Vue({
 	computed: {
 		curDistroList () {
 			return this.distroList
-				.filter((x)=> x.category === this.curCategory);
+				.filter((x)=> x.category === this.curCategory)
+				.sort(function (a, b) {
+					return a.distro.localeCompare(b.distro);
+				});
 		}
 	},
 	methods: {
