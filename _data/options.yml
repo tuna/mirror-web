@@ -2,6 +2,8 @@
 mirror_desc:
   - name: AOSP
     desc: Android 操作系统源代码
+  - name: AdoptOpenJDK
+    desc: 社区维护的 OpenJDK 二进制包
   - name: AUR
     desc: Arch Linux 用户软件库
   - name: Bananian
