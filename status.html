@@ -86,17 +86,25 @@ permalink: /status/
 						<td class="col-md-2 col-xs-5 rolling-6 hidden-xs hidden-sm">
 							<div v-if="dateTooltip" class="tuna-roll">​
 								<template v-if="mir.last_ended_ts == mir.last_update_ts">
-									<div data-tuna-roll-seq="0 1 2 3">{{mir.last_update_ago}}</div>
+									<div data-tuna-roll-seq="0 1 2 3">{{mir.last_update_ago}}
+                                        <div class="tooltiptext">{{mir.last_update}}</div>
+                                    </div>
 								</template>
 								<template v-else>
-                                    <div data-tuna-roll-seq="0 1">{{mir.last_update_ago}}</div>
-                                    <div data-tuna-roll-seq="2 3" v-if="mir.last_ended_ts != mir.last_update_ts">{{mir.last_ended_ago}}</div>
+                                    <div data-tuna-roll-seq="0 1">{{mir.last_update_ago}}
+                                        <div class="tooltiptext">{{mir.last_update}}</div>
+                                    </div>
+                                    <div data-tuna-roll-seq="2 3" v-if="mir.last_ended_ts != mir.last_update_ts">{{mir.last_ended_ago}}
+                                        <div class="tooltiptext">{{mir.last_ended}}</div>
+                                    </div>
 								</template>
 								<template v-if="mir.status == 'syncing'">
 									<div data-tuna-roll-seq="4 5">Syncing Now</div>
 								</template>
 								<template v-else>
-									<div data-tuna-roll-seq="4 5">{{mir.next_schedule_ago}}</div>
+									<div data-tuna-roll-seq="4 5">{{mir.next_schedule_ago}}
+                                        <div class="tooltiptext">{{mir.next_schedule}}</div>
+                                    </div>
 								</template>
                             </div>
                             <div v-else class="tuna-roll">​

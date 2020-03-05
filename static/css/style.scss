@@ -436,6 +436,27 @@ body {
     animation-timing-function: ease;
     animation-duration: 1s;
     animation-iteration-count: 1;
+
+    /* Tooltip text */
+    > .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      padding: 5px 0;
+      border-radius: 6px;
+      
+      /* Position the tooltip text - see examples below! */
+      position: absolute;
+      z-index: 1;
+    }
+  }
+
+  > div:hover{
+    > .tooltiptext {
+      visibility: visible;
+    }
   }
 
   @keyframes tuna-roll-enter {
