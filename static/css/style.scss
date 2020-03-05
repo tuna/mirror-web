@@ -440,12 +440,11 @@ body {
     /* Tooltip text */
     > .tooltiptext {
       visibility: hidden;
-      width: 120px;
-      background-color: black;
+      width: 130px;
+      background-color: #555;
       color: #fff;
       text-align: center;
-      padding: 5px 0;
-      border-radius: 6px;
+      border-radius: 5px;
       
       /* Position the tooltip text - see examples below! */
       position: absolute;
