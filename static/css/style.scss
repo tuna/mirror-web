@@ -452,10 +452,8 @@ body {
       left: 0;
       z-index: 1;
     }
-  }
-
-  > div:hover{
-    > .tooltiptext {
+    
+    &:hover > .tooltiptext {
       visibility: visible;
     }
   }
