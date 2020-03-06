@@ -332,6 +332,8 @@ mirror_desc:
     desc: 运行在 Android 上的终端模拟器 Termux 的官方软件包仓库
   - name: tinycorelinux
     desc: 为嵌入式开发的微型 Linux 发行版
+  - name: tlpretest
+    desc: TeX Live 测试版本的软件包仓库与安装镜像
   - name: ubuntu
     desc: 流行的 Linux 发行版 Ubuntu 的安装镜像和官方软件包仓库
   - name: ubuntu-cdimage
@@ -367,6 +369,7 @@ new_mirrors:
   - manjaro-arm
   - fdroid
   - kubernetes
+  - tlpretest
     
 unlisted_mirrors:
   - status: 'success'
