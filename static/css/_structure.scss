@@ -14,13 +14,8 @@ body {
     @include dark{
         color: $color_secondary_dark;
     }
-    font-weight: 400;
-}
-html.wf-inactive body {
-    font-family: $font_local;
-}
-html.wf-active body {
     font-family: $font_default;
+    font-weight: 400;
 }
 
 h1, h2, h3, h4, h5, h6 {
