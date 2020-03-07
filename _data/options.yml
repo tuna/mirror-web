@@ -294,6 +294,8 @@ mirror_desc:
     desc: 一个面向安全的桌面操作系统，利用虚拟化技术隔离应用来提供安全保障
   - name: qt
     desc: 跨平台软件开发库 Qt 的源码、开发工具、文档等
+  - name: racket-installers
+    desc: Racket 语言环境安装包
   - name: raspberrypi
     desc: 一些专为树莓派提供的 Debian 软件包
   - name: raspbian
@@ -360,9 +362,6 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - gcc.git
-  - qemu.git
-  - homebrew
   - linuxbrew-bottles
   - crates.io-index.git
   - packagist
@@ -374,6 +373,10 @@ new_mirrors:
   - fdroid
   - kubernetes
   - tlpretest
+  - racket-installers
+  - AdoptOpenJDK
+  - nix-channels
+  - nixos-images
     
 unlisted_mirrors:
   - status: 'success'
