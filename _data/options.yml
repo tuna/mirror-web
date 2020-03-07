@@ -247,7 +247,11 @@ mirror_desc:
   - name: neurodebian
     desc: 用于神经科学研究的 Debian 软件包源
   - name: nix
-    desc: NixOS 软件源
+    desc: Nix 软件包管理器
+  - name: nix-channels
+    desc: Nixpkgs 软件包发行版
+  - name: nixos-images
+    desc: NixOS 的安装镜像和虚拟机镜像
   - name: nodejs-release
     desc: 预编译的 Node.js 二进制程序
   - name: nodesource
