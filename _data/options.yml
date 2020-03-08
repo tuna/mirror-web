@@ -282,6 +282,8 @@ mirror_desc:
     desc: NetBSD 的第三方软件源
   - name: postgresql
     desc: 著名的开源关系型数据库 PostgreSQL 的镜像
+  - name: proxmox
+    desc: 服务器虚拟化环境 Linux 发行版 Proxmox VE
   - name: puppy
     desc: 为家用电脑设计的轻量级 Linux 发行版
   - name: pybombs
@@ -377,7 +379,8 @@ new_mirrors:
   - AdoptOpenJDK
   - nix-channels
   - nixos-images
-    
+  - proxmox
+
 unlisted_mirrors:
   - status: 'success'
     last_update: '-'
