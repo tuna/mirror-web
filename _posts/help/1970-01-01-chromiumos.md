@@ -53,7 +53,7 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/chromiumos/mani
 "https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/"
 ```
 
-将
+接着将
 
 ```
 "https://android.googlesource.com"
@@ -65,17 +65,6 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/chromiumos/mani
 "https://aosp.tuna.tsinghua.edu.cn/"
 ```
 
-将
-
-```
-"https://weave.googlesource.com"
-```
-
-替换为
-
-```
-"https://mirrors.tuna.tsinghua.edu.cn/git/weave/"
-```
 
 即可。
 
