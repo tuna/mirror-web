@@ -31,7 +31,7 @@ var vmMirList = new Vue({
 		mirrorList: [],
 		filter: "",
 		rawMirrorList: [],
-		dateTooltip: localStorage.getItem('DateTooltip') === 'true',
+		dateTooltip: localStorage.getItem('DateTooltip') !== 'false',
 	},
 	created () {
 		this.refreshMirrorList();
