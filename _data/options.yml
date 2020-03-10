@@ -24,6 +24,8 @@ mirror_desc:
     desc: NetBSD 的安装镜像和部分系统源码
   - name: OpenBSD
     desc: OpenBSD 的安装镜像和官方软件包仓库
+  - name: VSCodium
+    desc: VS Code 的社区编译版本
   - name: adobe-fonts
     desc: Adobe 公司的开源字体
   - name: alpine
@@ -146,6 +148,8 @@ mirror_desc:
     desc: Gentoo/Prefix 的 Portage 包管理器镜像源
   - name: git-repo
     desc: Google 开发的项目依赖下载工具 repo 的镜像
+  - name: github-release
+    desc: 一些项目的 Github Release 镜像
   - name: gitlab-ce
     desc: Gitlab 社区版
   - name: gitlab-ci-multi-runner
@@ -282,6 +286,8 @@ mirror_desc:
     desc: NetBSD 的第三方软件源
   - name: postgresql
     desc: 著名的开源关系型数据库 PostgreSQL 的镜像
+  - name: prometheus
+    desc: 一个系统与服务监控系统
   - name: proxmox
     desc: 服务器虚拟化环境 Linux 发行版 Proxmox VE
   - name: puppy
@@ -396,6 +402,15 @@ unlisted_mirrors:
   - link_to: 'osdn'
     name: "mxlinux-isos"
     url: '/osdn/storage/g/m/mx/mx-linux/ISOs/'
+  - link_to: 'github-release'
+    name: "prometheus"
+    url: '/github-release/prometheus/prometheus/'
+  - link_to: 'github-release'
+    name: "iina"
+    url: '/github-release/iina/iina/'
+  - link_to: 'github-release'
+    name: "VSCodium"
+    url: '/github-release/VSCodium/vscodium/'
 
 force_help_mirrors:
   - AOSP
