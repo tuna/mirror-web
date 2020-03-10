@@ -358,16 +358,14 @@ mirror_desc:
     desc: Oracle 的开源的 x86 架构虚拟机
   - name: weave
     desc: Google 开发的物联网（IoT）设备通信平台
+  - name: voidlinux
+    desc: 基于 xbps 包管理器的独立 Linux 发行版
   - name: winehq
     desc: Wine （允许类 Unix 操作系统运行 Windows 程序）
   - name: zabbix
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - linuxbrew-bottles
-  - crates.io-index.git
-  - packagist
-  - clickhouse
   - binutils-gdb.git
   - glibc.git
   - artixlinux-iso
@@ -380,6 +378,7 @@ new_mirrors:
   - nix-channels
   - nixos-images
   - proxmox
+  - voidlinux
 
 unlisted_mirrors:
   - status: 'success'
