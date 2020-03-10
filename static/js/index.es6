@@ -74,6 +74,7 @@ var vmMirList = new Vue({
 				var unlisted_mir = unlisted.map(d => processMirrorItem(d))
 				status_data = status_data.map(d => processMirrorItem(d));
 				var mir_data = $.merge(unlisted_mir, status_data);
+				processLinkItem(mir_data);
 				status_data = sortAndUniqMirrors(status_data);
 				mir_data = sortAndUniqMirrors(mir_data).filter(d => !(d.status == "disabled"));
 				self.mirrorList = mir_data;
@@ -117,18 +118,43 @@ var sortAndUniqMirrors = function(mirs){
 	}, []);
 }
 
+var processLinkItem = function(mirrors) {
+	for (let d of mirrors) {
+		if (d.link_to === undefined)
+			continue;
+		for (const target of mirrors) {
+			if (d.link_to === target.name) {
+				d.status = target.status;
+				d.label = target.label;
+				d.upstream = target.upstream;
+				d.show_status = target.show_status;
+				d.last_update = target.last_update;
+				d.last_update_ago = target.last_update_ago;
+				d.last_ended = target.last_ended;
+				d.last_ended_ago = target.last_ended_ago;
+				d.last_schedule = target.last_schedule;
+				d.last_schedule_ago = target.last_schedule_ago;
+				break;
+			}
+		}
+	}
+};
+
 var processMirrorItem = function(d){
 	if (options[d.name] != undefined ) {
 		d = $.extend(d, options[d.name]);
 	}
-	d.label = label_map[d.status];
 	d.help_url = help_url[d.name];
 	d.is_new = new_mirrors[d.name];
 	d.description = descriptions[d.name];
-	d.show_status = (d.status != "success");
 	if (d.is_master === undefined) {
 		d.is_master = true;
 	}
+	if (d.link_to !== undefined) {
+		return d;
+	}
+	d.label = label_map[d.status];
+	d.show_status = (d.status != "success");
 	// Strip the second component of last_update
 	[d.last_update, d.last_update_ago] = stringifyTime(d.last_update_ts);
 	[d.last_ended, d.last_ended_ago] = stringifyTime(d.last_ended_ts);

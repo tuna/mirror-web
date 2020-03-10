@@ -388,24 +388,15 @@ unlisted_mirrors:
     url: 'https://aur.tuna.tsinghua.edu.cn/'
     upstream: 'https://aur.archlinux.org/'
     is_master: true
-  - status: 'success'
-    last_update: '-'
+  - link_to: 'osdn'
     name: "manjaro-cd"
     url: '/osdn/storage/g/m/ma/manjaro/'
-    upstrame: '-'
-    is_master: true
-  - status: 'success'
-    last_update: '-'
+  - link_to: 'osdn'
     name: "manjaro-arm-cd"
     url: '/osdn/storage/g/m/ma/manjaro-arm/'
-    upstrame: '-'
-    is_master: true
-  - status: 'success'
-    last_update: '-'
+  - link_to: 'osdn'
     name: "mxlinux-isos"
     url: '/osdn/storage/g/m/mx/mx-linux/ISOs/'
-    upstrame: '-'
-    is_master: true
 
 force_help_mirrors:
   - AOSP
