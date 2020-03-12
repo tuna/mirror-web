@@ -40,7 +40,7 @@ def getSortKeys(template, result):
         if i[0] != '$':
             keys.append(i)
         else:
-            keys.append(result.group(int(i[1:])))
+            keys.append(result.group(int(i[1:])) or "")
     return keys
 
 
