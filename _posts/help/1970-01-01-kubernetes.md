@@ -1,0 +1,53 @@
+---
+category: help
+layout: help
+mirrorid: kubernetes
+---
+
+## Kubernetes 镜像使用帮助
+
+
+### Debian/Ubuntu 用户
+
+
+新建 `/etc/apt/sources.list.d/kubernetes.list`，内容为
+
+
+<form class="form-inline">
+<div class="form-group">
+	<label>你的Debian版本: </label>
+	<select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
+		<option data-os="ubuntu" data-release="trusty">Ubuntu 14.04 LTS</option>
+		<option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
+		<option data-os="debian" data-release="jessie">Debian 8 (Jessie)</option>
+		<option data-os="debian" data-release="stretch" selected>Debian 9 (Stretch)</option>
+</select>
+</div>
+</form>
+
+<p></p>
+<pre>
+<code id="apt-content">
+</code>
+</pre>
+
+
+{% raw %}
+<script id="apt-template" type="x-tmpl-markup">
+deb https://mirrors.tuna.tsinghua.edu.cn/kubernetes/apt kubernetes-{{release_name}} main
+</script>
+{%endraw%}
+
+
+### RHEL/CentOS 用户
+
+新建 `/etc/yum.repos.d/kubernetes.repo`，内容为：
+
+```
+[kubernetes]
+name=kubernetes
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+```
+
+**其中`x86_64`可换为相应的硬件架构，如`armhfp`、`aarch64`**
