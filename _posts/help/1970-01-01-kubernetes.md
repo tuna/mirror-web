@@ -52,3 +52,7 @@ enabled=1
 ```
 
 **其中`x86_64`可换为相应的硬件架构，如`armhfp`、`aarch64`**
+
+### Minikube
+
+请到 [minikube 镜像](https://mirrors.tuna.tsinghua.edu.cn/github-release/kubernetes/minikube/LatestRelease/) 下载。
