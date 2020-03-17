@@ -116,6 +116,13 @@ code{
     border-bottom: 1px solid #ffffff;
     margin-bottom: 25px;
 }
+
+table .row{
+  &:before, &:after{
+    content: none;
+  }
+}
+
 @include dark{
     .popover{
         background-color: #282828;
