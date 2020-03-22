@@ -10,12 +10,12 @@ mirrorid: virtualbox
 
 ## Microsoft Windows
 
-[点击下载 Windows 最新版](https://{{ site.host }}/virtualbox/virtualbox-Win-latest.exe)
+[点击下载 Windows 最新版](https://{{ site.hostname }}/virtualbox/virtualbox-Win-latest.exe)
 
 
 ## Macintosh OS X
 
-[点击下载 OS X 最新版](https://{{ site.host }}/virtualbox/virtualbox-osx-latest.dmg)
+[点击下载 OS X 最新版](https://{{ site.hostname }}/virtualbox/virtualbox-osx-latest.dmg)
 
 # Linux
 
@@ -76,7 +76,7 @@ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key a
 
 {% raw %}
 <script id="apt-template" type="x-tmpl-markup">
-deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://{{ site.host }}/virtualbox/apt/ {{release_name}} contrib
+deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://{{ site.hostname }}/virtualbox/apt/ {{release_name}} contrib
 </script>
 {% endraw %}
 
@@ -95,7 +95,7 @@ sudo apt-get install virtualbox-5.0
 ```
 [virtualbox]
 name=Virtualbox Repository
-baseurl=https://{{ site.host }}/virtualbox/rpm/el$releasever/
+baseurl=https://{{ site.hostname }}/virtualbox/rpm/el$releasever/
 gpgcheck=0
 enabled=1
 ```

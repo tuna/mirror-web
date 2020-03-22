@@ -7,7 +7,7 @@ author: Miao Wang
 
 由于 Debian 将给 \<CC\>.debian.org 域名设置 CAA 记录，并禁止给 *.\<CC\>.debian.org 签署 HTTPS 证书，所以我们无法再提供 https://ftp2.cn.debian.org 的访问。
 
-由于国内 ISP 经常会错误地缓存镜像站的内容，所以我们不鼓励用户使用 HTTP 访问镜像站，请大家把地址更改为 [https://{{ site.host }}](https://{{ site.host }})
+由于国内 ISP 经常会错误地缓存镜像站的内容，所以我们不鼓励用户使用 HTTP 访问镜像站，请大家把地址更改为 [https://{{ site.hostname }}](https://{{ site.hostname }})
 
 目前 ftp2.cn.debian.org 的证书将于 2017 年 11 月 25 日 过期，我们会在此之前取消 https://ftp2.cn.debian.org 的访问。
 
