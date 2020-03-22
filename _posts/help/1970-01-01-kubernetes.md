@@ -35,7 +35,7 @@ Kubernetes 是用于自动部署，扩展和管理容器化应用程序的开源
 
 {% raw %}
 <script id="apt-template" type="x-tmpl-markup">
-deb https://mirrors.tuna.tsinghua.edu.cn/kubernetes/apt kubernetes-{{release_name}} main
+deb https://{{ site.host }}/kubernetes/apt kubernetes-{{release_name}} main
 </script>
 {%endraw%}
 
@@ -47,7 +47,7 @@ deb https://mirrors.tuna.tsinghua.edu.cn/kubernetes/apt kubernetes-{{release_nam
 ```
 [kubernetes]
 name=kubernetes
-baseurl=https://mirrors.tuna.tsinghua.edu.cn/kubernetes/yum/repos/kubernetes-el7-x86_64
+baseurl=https://{{ site.host }}/kubernetes/yum/repos/kubernetes-el7-x86_64
 enabled=1
 ```
 
@@ -55,4 +55,4 @@ enabled=1
 
 ### Minikube
 
-请到 [minikube 镜像](https://mirrors.tuna.tsinghua.edu.cn/github-release/kubernetes/minikube/LatestRelease/) 下载。
+请到 [minikube 镜像](https://{{ site.host }}/github-release/kubernetes/minikube/LatestRelease/) 下载。

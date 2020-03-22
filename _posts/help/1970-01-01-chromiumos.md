@@ -20,7 +20,7 @@ curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 ```
 
-或者使用tuna的[git-repo镜像](https://mirrors.tuna.tsinghua.edu.cn/help/git-repo/)
+或者使用tuna的[git-repo镜像](https://{{ site.host }}/help/git-repo/)
 
 #### 下载代码
 
@@ -34,7 +34,7 @@ cd WORKING_DIRECTORY
 初始化仓库:
 
 ```
-repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/chromiumos/manifest
+repo init -u https://{{ site.host }}/git/chromiumos/chromiumos/manifest
 ```
 
 **注意: 本镜像是 Chromium OS 的 master 分支的镜像，如果使用本镜像下载 Chromium OS 的其他版本很大概率会失败**
@@ -50,7 +50,7 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/chromiumos/mani
 替换为
 
 ```
-"https://mirrors.tuna.tsinghua.edu.cn/git/chromiumos/"
+"https://{{ site.host }}/git/chromiumos/"
 ```
 
 接着将

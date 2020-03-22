@@ -14,7 +14,7 @@ tlpretest 是 TeX Live 在官方镜像之外发布的测试版本，详情可见
 在命令行中执行：
 
 ```
-tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/tlpretest
+tlmgr option repository https://{{ site.host }}/tlpretest
 ```
 
 即可永久更改镜像源。
@@ -22,7 +22,7 @@ tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/tlpretest
 如果只需要临时切换，可以用如下命令：
 
 ```
-tlmgr update --all --repository https://mirrors.tuna.tsinghua.edu.cn/tlpretest
+tlmgr update --all --repository https://{{ site.host }}/tlpretest
 ```
 
 其中的 `update --all` 指令可根据需要修改。

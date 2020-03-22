@@ -12,7 +12,7 @@ CocoaPods 是一个 Cocoa 和 Cocoa Touch 框架的依赖管理器，具体原�
 
 ```
 $ pod repo remove master
-$ pod repo add master https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git
+$ pod repo add master https://{{ site.host }}/git/CocoaPods/Specs.git
 $ pod repo update
 ```
 
@@ -21,11 +21,11 @@ $ pod repo update
 ```
 $ cd ~/.cocoapods/repos 
 $ pod repo remove master
-$ git clone https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git master
+$ git clone https://{{ site.host }}/git/CocoaPods/Specs.git master
 ```
 
 最后进入自己的工程，在自己工程的`podFile`第一行加上：
 
 ```
-source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+source 'https://{{ site.host }}/git/CocoaPods/Specs.git'
 ```

@@ -11,6 +11,9 @@ brand: Tsinghua Open Source Mirror
 baseurl: "" # the subpath of your site, e.g. /blog
 permalink: "/:categories/:title/"
 url: "https://mirrors.tuna.tsinghua.edu.cn"
+host: "mirrors.tuna.tsinghua.edu.cn"
+urlv4: "https://mirrors4.tuna.tsinghua.edu.cn"
+urlv6: "https://mirrors6.tuna.tsinghua.edu.cn"
 
 # Build settings
 highlighter: rouge

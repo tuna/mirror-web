@@ -7,7 +7,7 @@ permalink: /help/lineageOS/
 
 ## lineageOS 源代码镜像使用帮助
 
-**注意: 本镜像是 lineageOS 源代码的镜像，如果是希望下载lineage的rom，请访问 <https://mirrors.tuna.tsinghua.edu.cn/help/lineage-rom/>。**
+**注意: 本镜像是 lineageOS 源代码的镜像，如果是希望下载lineage的rom，请访问 <https://{{ site.host }}/help/lineage-rom/>。**
 
 ### 过程摘录
 
@@ -20,7 +20,7 @@ curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 ```
 
-或者使用tuna的[git-repo镜像](https://mirrors.tuna.tsinghua.edu.cn/help/git-repo/)
+或者使用tuna的[git-repo镜像](https://{{ site.host }}/help/git-repo/)
 
 建立工作目录:
 
@@ -32,7 +32,7 @@ cd WORKING_DIRECTORY
 初始化仓库:
 
 ```
-repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/lineageOS/LineageOS/android.git -b cm-14.1
+repo init -u https://{{ site.host }}/git/lineageOS/LineageOS/android.git -b cm-14.1
 ```
 
 (如果已经有从github同步的lineageOS源代码，可以从这里直接开始）
@@ -53,7 +53,7 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/lineageOS/LineageOS/androi
            fetch="https://github.com/" />
 
   <remote  name="lineage"
-           fetch="https://mirrors.tuna.tsinghua.edu.cn/git/lineageOS/"
+           fetch="https://{{ site.host }}/git/lineageOS/"
            review="review.lineageos.org" />
 ```
 
