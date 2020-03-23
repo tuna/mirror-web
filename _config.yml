@@ -14,6 +14,8 @@ brand: Tsinghua Open Source Mirror
 operator: 清华大学信息化技术中心
 # operator: 北外信息技术中心
 logo: true
+meow_404: true
+issue_tag: tuna
 baseurl: "" # the subpath of your site, e.g. /blog
 permalink: "/:categories/:title/"
 url: "https://mirrors.tuna.tsinghua.edu.cn"
