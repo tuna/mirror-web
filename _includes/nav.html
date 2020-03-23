@@ -11,6 +11,7 @@
       {% endunless %}
 			<a class="navbar-brand" href="/">
 				<span class="thuhidden">
+					{% if site.logo %}
 					<picture>
 						<source 
 							srcset="/static/img/logo-small-dark.png 1x,
@@ -25,6 +26,7 @@
 											/static/img/logo-small@4x.png 4x" 
 							alt=""/>
 					</picture>
+					{% endif %}
 					{{ site.school }}</span>开源软件镜像站
 			</a>
     </div>
