@@ -9,23 +9,24 @@
         <span class="icon-bar"></span>
       </button>
       {% endunless %}
-      <a class="navbar-brand" href="/"><!--
-   --><span class="thuhidden"><!--
-   --><picture>
-        <source 
-          srcset="/static/img/logo-small-dark.png 1x,
-                  /static/img/logo-small-dark@2x.png 2x,
-                  /static/img/logo-small-dark@3x.png 3x,
-                  /static/img/logo-small-dark@4x.png 4x"
-          media="(prefers-color-scheme: dark)"/>
-        <img src="/static/img/logo-small.png" 
-          srcset="/static/img/logo-small.png 1x, 
-                  /static/img/logo-small@2x.png 2x, 
-                  /static/img/logo-small@3x.png 3x, 
-                  /static/img/logo-small@4x.png 4x" 
-          alt=""/>
-			</picture>
-				{{ site.title }}
+			<a class="navbar-brand" href="/">
+				<span class="thuhidden">
+					<picture>
+						<source 
+							srcset="/static/img/logo-small-dark.png 1x,
+											/static/img/logo-small-dark@2x.png 2x,
+											/static/img/logo-small-dark@3x.png 3x,
+											/static/img/logo-small-dark@4x.png 4x"
+							media="(prefers-color-scheme: dark)"/>
+						<img src="/static/img/logo-small.png" 
+							srcset="/static/img/logo-small.png 1x, 
+											/static/img/logo-small@2x.png 2x, 
+											/static/img/logo-small@3x.png 3x, 
+											/static/img/logo-small@4x.png 4x" 
+							alt=""/>
+					</picture>
+					{{ site.school }}</span>开源软件镜像站
+			</a>
     </div>
     <div class="{% unless page.legacy %}navbar-collapse collapse {% endunless %}navbar-right">
       <ul class="nav navbar-nav" role="menubar">

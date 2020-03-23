@@ -8,9 +8,12 @@
 # Site settings
 title: 清华大学开源软件镜像站
 # title: 北京外国语大学开源软件镜像站
+school: 清华大学
+# school: 北京外国语大学
 brand: Tsinghua Open Source Mirror
 operator: 清华大学信息化技术中心
-# title: 北外信息技术中心
+# operator: 北外信息技术中心
+logo: true
 baseurl: "" # the subpath of your site, e.g. /blog
 permalink: "/:categories/:title/"
 url: "https://mirrors.tuna.tsinghua.edu.cn"
