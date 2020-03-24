@@ -10,7 +10,7 @@ docker 镜像作出相应调整。
 
 现在的镜像地址为:
 
-- APT: http://mirrors.tuna.tsinghua.edu.cn/docker/apt/repo
-- YUM: http://mirrors.tuna.tsinghua.edu.cn/docker/yum/repo
+- APT: http://{{ site.hostname }}/docker/apt/repo
+- YUM: http://{{ site.hostname }}/docker/yum/repo
 
 请根据 [docker镜像帮助](/help/docker) 调整至正确的打开方式。

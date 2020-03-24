@@ -10,7 +10,7 @@ category: news
 
 为了解决这一矛盾，我们对公开的日志中的 IP 地址信息进行了一定的变换，以确保用户的隐私不被泄露的同时，尽可能减少数据研究价值的减损。具体的变换规则是：保持 IPv4 地址的前 24 位或 IPv6 地址的前 48 位不变，将 IP 地址伪随机地映射至其他地址，该映射关系在 30 秒内保持固定，每隔 30 秒发生一次改变。
 
-我们目前共有两个后端服务器，日志的访问地址分别是 [https://mirrors.tuna.tsinghua.edu.cn/logs/neomirrors/](/logs/neomirrors/) 和 [https://mirrors.tuna.tsinghua.edu.cn/logs/nanomirrors/](/logs/nanomirrors/)。日志的格式是：
+我们目前共有两个后端服务器，日志的访问地址分别是 [https://{{ site.hostname }}/logs/neomirrors/](/logs/neomirrors/) 和 [https://{{ site.hostname }}/logs/nanomirrors/](/logs/nanomirrors/)。日志的格式是：
 
 ```
 $fake_remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$sent_http_content_type" "$http_referer" "$http_user_agent" - $scheme

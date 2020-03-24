@@ -13,7 +13,7 @@ mirrorid: repoforge
 1. 运行 `cat /etc/redhat-release` 获取 EL 版本号（如 EL6, EL7 等）
 2. 向系统中添加 Repoforge 的 GPG 公钥：
 ```
-rpm --import https://mirrors.tuna.tsinghua.edu.cn/repoforge/RPM-GPG-KEY.dag.txt
+rpm --import https://{{ site.hostname }}/repoforge/RPM-GPG-KEY.dag.txt
 ```
 3. 运行下列命令：
 
@@ -35,7 +35,7 @@ rpm --import https://mirrors.tuna.tsinghua.edu.cn/repoforge/RPM-GPG-KEY.dag.txt
 sudo cat > /etc/yum.repos.d/rpmforge.repo << EOF
 [rpmforge]
 name = RHEL $releasever - RPMforge.net - dag
-baseurl = https://mirrors.tuna.tsinghua.edu.cn/repoforge/redhat/{{release_name}}/en/$basearch/rpmforge
+baseurl = https://{{ site.hostname }}/repoforge/redhat/{{release_name}}/en/$basearch/rpmforge
 mirrorlist = http://mirrorlist.repoforge.org/{{release_name}}/mirrors-rpmforge
 enabled = 1
 protect = 0
@@ -44,7 +44,7 @@ gpgcheck = 1
 
 [rpmforge-extras]
 name = RHEL $releasever - RPMforge.net - extras
-baseurl = https://mirrors.tuna.tsinghua.edu.cn/repoforge/redhat/{{release_name}}/en/$basearch/extras
+baseurl = https://{{ site.hostname }}/repoforge/redhat/{{release_name}}/en/$basearch/extras
 mirrorlist = http://mirrorlist.repoforge.org/{{release_name}}/mirrors-rpmforge-extras
 enabled = 0
 protect = 0
@@ -53,7 +53,7 @@ gpgcheck = 1
 
 [rpmforge-testing]
 name = RHEL $releasever - RPMforge.net - testing
-baseurl = https://mirrors.tuna.tsinghua.edu.cn/repoforge/redhat/{{release_name}}/en/$basearch/testing
+baseurl = https://{{ site.hostname }}/repoforge/redhat/{{release_name}}/en/$basearch/testing
 mirrorlist = http://mirrorlist.repoforge.org/{{release_name}}/mirrors-rpmforge-testing
 enabled = 0  
 protect = 0

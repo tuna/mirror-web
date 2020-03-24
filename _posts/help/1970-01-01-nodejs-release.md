@@ -16,7 +16,7 @@ Nodejs Release 为各平台提供预编译的 nodejs 和 npm 等二进制文件�
 ```
 # 设定环境变量
 
-export NODE_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/
+export NODE_MIRROR=https://{{ site.hostname }}/nodejs-release/
 
 # 然后正常使用 n 即可
 

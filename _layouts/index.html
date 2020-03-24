@@ -91,9 +91,13 @@
 						<div class="thuhidden">
 							<h4> <span class="fa fa-link"></span> 域名选择 </h4>
 							<ul>
-								<li><a href="https://mirrors.tuna.tsinghua.edu.cn/">https://mirrors.tuna.tsinghua.edu.cn/</a> 自动选择 </li>
-								<li><a href="https://mirrors6.tuna.tsinghua.edu.cn/">https://mirrors6.tuna.tsinghua.edu.cn/</a> 只解析 IPv6</li>
-								<li><a href="https://mirrors4.tuna.tsinghua.edu.cn/">https://mirrors4.tuna.tsinghua.edu.cn/</a> 只解析 IPv4</li>
+								<li><a href="{{ site.url }}">{{ site.url }}</a> 自动选择 </li>
+								{% if site.urlv6 %}
+									<li><a href="{{ site.urlv6 }}">{{ site.urlv6 }}</a> 只解析 IPv6</li>
+								{% endif %}
+								{% if site.urlv4 %}
+									<li><a href="{{ site.urlv4 }}">{{ site.urlv4 }}</a> 只解析 IPv4</li>
+								{% endif %}
 							</ul>
 						</div>
 						{% unless page.legacy %}

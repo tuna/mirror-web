@@ -11,7 +11,7 @@ mirrorid: gentoo-portage
 在 `/etc/portage/make.conf` 中加入：
 
 ```
-GENTOO_MIRRORS="https://mirrors.tuna.tsinghua.edu.cn/gentoo"
+GENTOO_MIRRORS="https://{{ site.hostname }}/gentoo"
 ```
 
 执行 `emerge --sync` 或者 `eix-sync` 进行更新。
