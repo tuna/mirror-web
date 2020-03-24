@@ -17,6 +17,9 @@ $(document).ready(() => {
 			tmpl_data=$.extend({}, {
 				os_name: os_name,
 				release_name: release_name,
+				site: {
+					hostname: "{{ site.hostname }}"
+				},
 				release_security: release_security,
 			}, opt),
 			apt_content=Mark.up(
