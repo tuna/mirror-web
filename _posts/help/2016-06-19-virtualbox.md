@@ -76,7 +76,7 @@ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key a
 
 {% raw %}
 <script id="apt-template" type="x-tmpl-markup">
-deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://{{ site.hostname }}/virtualbox/apt/ {{release_name}} contrib
+deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://{%endraw%}{{ site.hostname }}{%raw%}/virtualbox/apt/ {{release_name}} contrib
 </script>
 {% endraw %}
 

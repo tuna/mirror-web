@@ -35,7 +35,7 @@ Kubernetes 是用于自动部署，扩展和管理容器化应用程序的开源
 
 {% raw %}
 <script id="apt-template" type="x-tmpl-markup">
-deb https://{{ site.hostname }}/kubernetes/apt kubernetes-{{release_name}} main
+deb https://{%endraw%}{{ site.hostname }}{%raw%}/kubernetes/apt kubernetes-{{release_name}} main
 </script>
 {%endraw%}
 
