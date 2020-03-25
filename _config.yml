@@ -26,6 +26,7 @@ aosp: "aosp.tuna.tsinghua.edu.cn"
 arch_archive: "arch-archive.tuna.tsinghua.edu.cn"
 aur: "aur.tuna.tsinghua.edu.cn"
 pypi: "pypi.tuna.tsinghua.edu.cn"
+homelink: "https://tuna.moe"
 
 # Build settings
 highlighter: rouge
