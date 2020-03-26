@@ -64,6 +64,8 @@ mirror_desc:
     desc: 北京龙芯 & Debian 俱乐部 的公开软件源
   - name: blackarch
     desc: 用于安全评估的基于 Arch Linux 的轻量级发行版
+  - name: blender
+    desc: 专业的三维计算机图形软件
   - name: cc
     desc: CERN CentOS
   - name: centos
@@ -385,6 +387,7 @@ new_mirrors:
   - nixos-images
   - proxmox
   - voidlinux
+  - blender
 
 unlisted_mirrors:
   - status: 'success'
