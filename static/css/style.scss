@@ -304,6 +304,12 @@ body {
         td:nth-child(odd) {
             text-align: right;
             font-weight: bold;
+            clear: left;
+        }
+        tr.row {
+            &:before, &:after{
+              content: " ";
+            }
         }
     }
 }
