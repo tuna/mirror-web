@@ -74,7 +74,7 @@ var vmMirList = new Vue({
 				var unlisted_mir = unlisted.map(d => processMirrorItem(d))
 				status_data = status_data.map(d => processMirrorItem(d));
 				var mir_data = $.merge(unlisted_mir, status_data);
-				processLinkItem(mir_data);
+				mir_data = processLinkItem(mir_data);
 				status_data = sortAndUniqMirrors(status_data);
 				mir_data = sortAndUniqMirrors(mir_data).filter(d => !(d.status == "disabled"));
 				self.mirrorList = mir_data;
@@ -119,9 +119,12 @@ var sortAndUniqMirrors = function(mirs){
 }
 
 var processLinkItem = function(mirrors) {
+	var processed = [];
 	for (let d of mirrors) {
-		if (d.link_to === undefined)
+		if (d.link_to === undefined) {
+			processed.push(d);
 			continue;
+		}
 		for (const target of mirrors) {
 			if (d.link_to === target.name) {
 				d.status = target.status;
@@ -134,10 +137,12 @@ var processLinkItem = function(mirrors) {
 				d.last_ended_ago = target.last_ended_ago;
 				d.last_schedule = target.last_schedule;
 				d.last_schedule_ago = target.last_schedule_ago;
+				processed.push(d);
 				break;
 			}
 		}
 	}
+	return processed;
 };
 
 var processMirrorItem = function(d){
