@@ -34,7 +34,7 @@ $color_row_hover: #e0f3fc;
 $color_row_hover_dark: #325475;
 
 @mixin dark {
-    @media (prefers-color-scheme: light) { 
+    @media (prefers-color-scheme: dark) { 
         @content
     }
 } 
