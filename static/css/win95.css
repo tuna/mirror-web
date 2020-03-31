@@ -554,19 +554,19 @@ TODO: make it draggable;
   color: black;
 }
 
-#mirror-list thead {
+#mirror-list thead, #status-page thead{
   background: silver;
   border-bottom: 0;
   box-shadow: rgba(0,0,0,.1) 0 2px 3px;
 }
 
-#mirror-list th {
+#mirror-list th, #status-page th {
   padding: 0 8px;
   border: black 2px solid;
   position: relative;
 }
 
-#mirror-list th:before {
+#mirror-list th:before, #status-page th:before {
   content: " ";
   position: absolute;
   bottom: 0;
@@ -678,4 +678,7 @@ TODO: make it draggable;
 .container.card .card-header {
   margin-right: -15px;
   margin-left: -15px;
+}
+.progress-bar {
+  background-color: #000080;
 }
