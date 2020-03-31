@@ -12,14 +12,14 @@ title: 镜像站新闻
 	<div class="spacing"></div>
 	<div class="container">
 	  <div class="row">
-			<div class="col-md-2"></div>
+			<div class="col-md-2 card"></div>
 			<div class="col-md-8">
 				<div>
 					<h2><span class="fa fa-newspaper-o"></span> 镜像站新闻</h2>
 					<div id="news-content">
 						{% for news in site.categories.news %}
 						<article>
-							<div class="head" id="{{news.slug}}">
+							<div class="head card-header" id="{{news.slug}}">
 								<h3><a href="{{news.url}}"># {{news.title}}</a></h3>
 							</div>
 							<div class="meta">

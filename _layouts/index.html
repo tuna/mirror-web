@@ -10,14 +10,14 @@
 			<div class="spacing hidden-xs"></div>
 			<div class="container">
 				<div class="row">
-					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-8 table-responsive" id="mirror-list">
-						<div class="row">
+					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-8 table-responsive card" id="mirror-list">
+						<div class="row card-header">
 							<h3 id="mirror-title"><span class="fa fa-cube"></span> 镜像列表 </h3>
 							{% unless page.legacy %}
 							<input type="search" v-model="filter" id="search" placeholder="搜索" autocomplete="off">
 							{% endunless %}
 						</div>
-						<table class="table" v-if="mirrorList.length">
+						<table class="table card-body" v-if="mirrorList.length">
 							<thead>
 								<tr class="row">
 									<th class="col-{% if page.legacy %}xs{% else %}sm{% endif %}-8">Name</th>
@@ -79,8 +79,8 @@
 						<div class="spacing hidden-xs"></div>
 						<div id="wizard">
 						</div>
-						<div id="news">
-							<h4><span class="fa fa-bullhorn"></span> 新闻公告 </h4>
+						<div id="news" class="card">
+							<h4 class="card-header"><span class="fa fa-bullhorn"></span> 新闻公告 </h4>
 							<ul>
 								{% for news in site.categories.news limit: 3%}
 								<li><a href="/news/#{{news.slug}}"><strong>{{news.date | date: "%Y-%m-%d"}}</strong> {{news.title}}</a></li>
@@ -88,8 +88,8 @@
 							</ul>
 							<div class="text-right"><a href="/news/"> more <span class="fa fa-angle-double-right"></span> </a></div>
 						</div>
-						<div class="thuhidden">
-							<h4> <span class="fa fa-link"></span> 域名选择 </h4>
+						<div class="thuhidden card">
+							<h4 class="card-header"> <span class="fa fa-link"></span> 域名选择 </h4>
 							<ul>
 								<li><a href="{{ site.url }}">{{ site.url }}</a> 自动选择 </li>
 								{% if site.urlv6 %}
@@ -101,24 +101,24 @@
 							</ul>
 						</div>
 						{% unless page.legacy %}
-						<div id="download-link">
-							<h4><span class="fa fa-file-archive-o"></span> 下载链接 </h4>
+						<div id="download-link" class="card">
+							<h4 class="card-header"><span class="fa fa-file-archive-o"></span> 下载链接 </h4>
 							<p>常用发行版 iso 和应用工具安装包直接下载</p>
 							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#isoModal">
 								获取下载链接
 							</button>
 						</div>
 						{% endunless %}
-						<div class="thuhidden">
-							<h4> <span class="fa fa-envelope-o"></span> 联系我们 </h4>
+						<div class="thuhidden card">
+							<h4 class="card-header"> <span class="fa fa-envelope-o"></span> 联系我们 </h4>
 							<ul>
 								<li><strong>意见反馈</strong> <br /> <a href="https://github.com/tuna/issues">https://github.com/tuna/issues</a></li>
 								<li><strong>发送邮件</strong> <br /> <a id="eib1gieB"></a></li>
 								<li><strong>在线交流</strong> <br /> <a href="https://fishroom.tuna.moe/log/tuna/today"> #tuna at freenode </a></li>
 							</ul>
 						</div>
-						<div>
-							<h4> <span class="fa fa-external-link"></span> 相关链接 </h4>
+						<div class="card">
+							<h4 class="card-header"> <span class="fa fa-external-link"></span> 相关链接 </h4>
 							<ul>
 								<li><a href="/help/">使用帮助</a></li>
 								<li><a href="/status/#server-status">服务器状态</a></li>

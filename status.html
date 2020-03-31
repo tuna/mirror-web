@@ -8,8 +8,8 @@ permalink: /status/
 	{% include nav.html %}
 	<div id="status-page">
 		<div class="spacing hidden-xs"></div>
-		<div class="container">
-			<h3 id="server-status"> # 服务器监控 </h3>
+		<div class="container card">
+			<h3 id="server-status" class="card-header"> # 服务器监控 </h3>
 			<h4> # 网络流量 </h4>
 			<div class="row">
 				{% include status-pic.html name="service_traffic_IPv4" %}
@@ -32,7 +32,9 @@ permalink: /status/
 				{% include status-pic.html name="cpu" %}
 				{% include status-pic.html name="memory" %}
 			</div>
-			<h3 id="syncing-status"># 同步状态</h3>
+		</div>
+		<div class="container card" style="margin-top: 1000px;">
+			<h3 id="syncing-status" class="card-header"># 同步状态</h3>
 			<table class="table table-condensed flat-md">
 				<thead class="hidden-xs hidden-sm">
 					<tr>
