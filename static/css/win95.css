@@ -587,6 +587,7 @@ TODO: make it draggable;
   border-radius: 0;
   outline: 0;
   border: silver 1px solid;
+  color: black;
 }
 
 #mirror-list .row td {
@@ -678,7 +679,9 @@ TODO: make it draggable;
 .card .card-header {
   margin-right: -15px;
   margin-left: -15px;
+  margin-bottom: 10px;
 }
+
 .progress-bar {
   background-color: #000080;
 }
