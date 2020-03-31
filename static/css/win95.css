@@ -150,7 +150,7 @@ Scrollbar (only chrome & safari)
     Button styles
 
 */
-.btn{
+.btn, .modal-header .close{
     border-width: 2px;
     border-style: outset;
     border-color: buttonface;
@@ -161,13 +161,13 @@ Scrollbar (only chrome & safari)
     padding: 0 0 4px;
     border-radius: 1px;
 }
-.btn:hover {
+.btn:hover, .modal-header .close:hover {
     border: 2px inset #fff;
     background: silver;
     color: #424242;
     box-shadow: -1px -1px #000;
 }
-.btn:focus {
+.btn:focus, .modal-header .close:focus{
     border: 2px inset #fff !important;
     background: silver;
     color: #424242;
@@ -175,7 +175,7 @@ Scrollbar (only chrome & safari)
     outline: 0 !important;
     background: url(/static/img/win95/background.bmp);
 }
-.btn:active {
+.btn:active, .modal-header .close:active {
     border: 2px inset #fff !important;
     color: #424242;
     box-shadow: -1px -1px #000 !important;
@@ -675,10 +675,25 @@ TODO: make it draggable;
   margin-left: -5px;
 }
 
-.container.card .card-header {
+.card .card-header {
   margin-right: -15px;
   margin-left: -15px;
 }
 .progress-bar {
   background-color: #000080;
+}
+
+.card{
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+}
+
+.modal-content{
+  border-radius: 0px;
+}
+
+.modal-header .close{
+  opacity: 1;
+  width: 29px;
 }
