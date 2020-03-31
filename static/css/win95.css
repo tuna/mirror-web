@@ -674,3 +674,8 @@ TODO: make it draggable;
   margin-right: 10px;
   margin-left: -5px;
 }
+
+.container.card .card-header {
+  margin-right: -15px;
+  margin-left: -15px;
+}
