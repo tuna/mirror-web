@@ -641,19 +641,32 @@ TODO: make it draggable;
   width: 100% !important;
 }
 
-.navbar-right.collapse {
-  float: none !important;
-  display: inline-block !important;
-  margin-left: 10px;
-  height: 100%;
-}
-
 @media(min-width: 768px) {
   .navbar-right.collapse {
     float: none !important;
     display: inline-block !important;
     margin-left: 10px;
+    height: 100%;
   }
+
+  .navbar-header {
+    max-width: calc(100% - 700px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media(max-width: 767px) {
+  .navbar-collapse {
+    position: fixed;
+    bottom: 32px;
+    right: 0;
+    z-index: 1;
+  }
+}
+
+.navbar {
+  white-space: nowrap;
 }
 
 .navbar-right a {
