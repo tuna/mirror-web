@@ -138,6 +138,8 @@ mirror_desc:
     desc: 多平台的飞行模拟器
   - name: flutter
     desc: Flutter 框架 SDK 镜像
+  - name: flutter-sdk.git
+    desc: Flutter 框架源码镜像
   - name: fzug
     desc: Fedora 中文用户组的软件包仓库
   - name: gcc.git
@@ -437,6 +439,7 @@ force_help_mirrors:
   - crates.io-index.git
   - binutils-gdb.git
   - glibc.git
+  - flutter-sdk.git
 
 label_map:
   unknown: label-default
