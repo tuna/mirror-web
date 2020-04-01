@@ -321,7 +321,9 @@ mirror_desc:
   - name: repoforge
     desc: Repoforge 是 RHEL 系统下的软件仓库，拥有 10000 多个软件包，被认为是最安全、最稳定的一个软件仓库
   - name: ros
-    desc: ROS (Robot Operating System) 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件
+    desc: ROS提供一系列程序库和工具以帮助软件开发者创建机器人应用软件
+  - name: ros2
+    desc: ROS (Robot Operating System) 2.0 版本
   - name: rpmfusion
     desc: RPM Fusion 提供了一些 Fedora Project 和 Red Hat 不包含的软件
   - name: rubygems
@@ -387,6 +389,7 @@ new_mirrors:
   - nixos-images
   - proxmox
   - voidlinux
+  - ros2
   - blender
 
 unlisted_mirrors:
