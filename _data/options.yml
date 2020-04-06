@@ -80,6 +80,8 @@ mirror_desc:
     desc: 专注于 Qt 与 KDE 软件的 Linux 发行版
   - name: chakra-releases
     desc: Chakra 发行版的安装镜像
+  - name: chef
+    desc: 自动化服务器配置管理工具
   - name: chromiumos
     desc: Google Chrome OS 的开放源代码开发版本
   - name: clickhouse
@@ -330,6 +332,8 @@ mirror_desc:
     desc: RPM Fusion 提供了一些 Fedora Project 和 Red Hat 不包含的软件
   - name: rubygems
     desc: Ruby 的一个包管理器
+  - name: rudder
+    desc: 自动化 IT 基础设施配置与审计工具
   - name: rustup
     desc: Rust 的官方安装工具
   - name: sagemath
@@ -378,8 +382,6 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - binutils-gdb.git
-  - glibc.git
   - artixlinux-iso
   - manjaro-arm
   - fdroid
@@ -393,6 +395,8 @@ new_mirrors:
   - voidlinux
   - ros2
   - blender
+  - chef
+  - rudder
 
 unlisted_mirrors:
   - status: 'success'
