@@ -22,7 +22,6 @@ curl https://packages.gitlab.com/gpg.key 2> /dev/null | sudo apt-key add - &>/de
 <div class="form-group">
 	<label>你的Debian/Ubuntu版本: </label>
 	<select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
-		<option data-os="debian" data-release="wheezy">Debian 7 (Wheezy)</option>
 		<option data-os="debian" data-release="jessie">Debian 8 (Jessie)</option>
 		<option data-os="debian" data-release="stretch">Debian 9 (Stretch)</option>
 		<option data-os="debian" data-release="buster" selected>Debian 10 (Buster)</option>
