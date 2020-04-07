@@ -163,6 +163,7 @@ var processMirrorItem = function(d){
 	// Strip the second component of last_update
 	[d.last_update, d.last_update_ago] = stringifyTime(d.last_update_ts);
 	[d.last_ended, d.last_ended_ago] = stringifyTime(d.last_ended_ts);
+	[d.last_started, d.last_started_ago] = stringifyTime(d.last_started_ts);
 	[d.next_schedule, d.next_schedule_ago] = stringifyTime(d.next_schedule_ts);
 	return d;
 }
