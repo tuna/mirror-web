@@ -17,7 +17,7 @@ sync-uri = rsync://rsync.gentoo.org/gentoo-portage
 修改为
 
 ```
-sync-uri = rsync://mirrors.tuna.tsinghua.edu.cn/gentoo-portage
+sync-uri = rsync://{{ site.hostname }}/gentoo-portage
 ```
 
 ### Distfiles 配置：
