@@ -8,7 +8,7 @@ mirrorid: gentoo-portage
 
 ### Gentoo Portage 镜像配置：
 
-修改`/etc/portage/repos.conf/gentoo.conf`,将
+修改 `/etc/portage/repos.conf/gentoo.conf` ,将
 
 ```
 sync-uri = rsync://rsync.gentoo.org/gentoo-portage
