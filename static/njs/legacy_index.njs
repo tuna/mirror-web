@@ -85,3 +85,5 @@ function legacyIndexRender(r){
   });
   
 }
+
+export default legacyIndexRender;
