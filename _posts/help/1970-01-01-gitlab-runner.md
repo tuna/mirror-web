@@ -58,7 +58,7 @@ deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://{%endraw%}{{ site.hos
 ```
 [gitlab-runner]
 name=gitlab-runner
-baseurl=https://{{ site.hostname }}/gitlab-runner/yum/el$releasever/
+baseurl=https://{{ site.hostname }}/gitlab-runner/yum/el$releasever-$basearch/
 repo_gpgcheck=0
 gpgcheck=0
 enabled=1
