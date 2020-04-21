@@ -6,7 +6,7 @@ mirrorid: gitlab-runner
 
 ## Gitlab Runner 镜像使用帮助
 
-**注意: gitlab-runner 镜像仅支持 x86-64 架构**
+**注意: gitlab-runner 镜像支持 x86-64 和 ARM64(aarch64) 架构**
 
 ### Debian/Ubuntu 用户
 
@@ -25,7 +25,6 @@ curl https://packages.gitlab.com/gpg.key 2> /dev/null | sudo apt-key add - &>/de
 		<option data-os="debian" data-release="jessie">Debian 8 (Jessie)</option>
 		<option data-os="debian" data-release="stretch">Debian 9 (Stretch)</option>
 		<option data-os="debian" data-release="buster" selected>Debian 10 (Buster)</option>
-		<option data-os="ubuntu" data-release="trusty">Ubuntu 14.04 LTS</option>
 		<option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
 		<option data-os="ubuntu" data-release="bionic">Ubuntu 18.04 LTS</option>		
 	</select>
