@@ -8,6 +8,8 @@ mirrorid: kubernetes
 
 Kubernetes 是用于自动部署，扩展和管理容器化应用程序的开源系统。详情可见 [官方介绍](https://kubernetes.io/zh/)。
 
+**硬件架构: `x86_64`, `armhfp`, `aarch64`**
+
 ### Debian/Ubuntu 用户
 
 
@@ -47,11 +49,9 @@ deb https://{%endraw%}{{ site.hostname }}{%raw%}/kubernetes/apt kubernetes-{{rel
 ```
 [kubernetes]
 name=kubernetes
-baseurl=https://{{ site.hostname }}/kubernetes/yum/repos/kubernetes-el7-x86_64
+baseurl=https://{{ site.hostname }}/kubernetes/yum/repos/kubernetes-el7-$basearch
 enabled=1
 ```
-
-**其中`x86_64`可换为相应的硬件架构，如`armhfp`、`aarch64`**
 
 ### Minikube
 
