@@ -6,10 +6,13 @@ mirrorid: gitlab-ci-multi-runner
 
 ## Gitlab CI Multi Runner 镜像使用帮助
 
-**注意: gitlab-ci-multi-runner 镜像仅支持 x86-64 架构**，如果你需要安装版本 10 及以上的
+**注意: gitlab-ci-multi-runner 已停止更新。** 如果你需要安装版本 10 及以上的
 Runner，由于官方名称发生变化，请前往 [gitlab-runner帮助页面](https://{{ site.hostname }}/help/gitlab-runner/)。
 
+
 ### Debian/Ubuntu 用户
+
+本镜像仅支持 i386 和 amd64 架构。
 
 首先信任 GitLab 的 GPG 公钥:
 
@@ -52,6 +55,8 @@ deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://{%endraw%}{{ site.hos
 {%endraw%}
 
 ### CentOS/RHEL
+
+本镜像仅支持 x86-64 架构。
 
 新建 `/etc/yum.repos.d/gitlab-ci-multi-runner.repo`，内容为
 
