@@ -49,7 +49,7 @@ sudo apt-get update
 
 {% raw %}
 <script id="apt-template" type="x-tmpl-markup">
-deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://{%endraw%}{{ site.hostname }}{%raw%}/AdoptOpenJDK/deb/{{os_name}} {{release_name}} main
+deb {{if os_name|equals>ubuntu}}https{{else}}http{{/if}}://{%endraw%}{{ site.hostname }}{%raw%}/AdoptOpenJDK/deb {{release_name}} main
 </script>
 {%endraw%}
 
