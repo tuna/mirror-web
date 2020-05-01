@@ -196,6 +196,12 @@ mirror_desc:
     desc: Kali Linux 的安装镜像
   - name: kali-security
     desc: Kali Linux 的安全更新
+  - name: kde
+    desc: KDE主源码镜像
+  - name: kde-application
+    desc: KDE应用程序源码镜像
+  - name: kde-neon
+    desc: KDE社区维护的一个基于Ubuntu LTS的Linux发行版
   - name: kernel
     desc: 各个版本的 Linux 内核源代码压缩包和补丁
   - name: kicad
@@ -268,6 +274,8 @@ mirror_desc:
     desc: 预编译的 Node.js 二进制程序
   - name: nodesource
     desc: 为 Debian, Ubuntu, Fedora, RHEL 等发行版提供预编译的 Node.js 和 npm 等软件包
+  - name: OpenMediaVault
+    desc: 基于 Debian Linux 的网络附加存储(NAS)解决方案
   - name: openresty
     desc: 基于 Nginx 与 Lua 的高性能 Web 平台
   - name: opensuse
@@ -399,6 +407,10 @@ new_mirrors:
   - blender
   - chef
   - rudder
+  - OpenMediaVault
+  - kde
+  - kde-application
+  - kde-neon
 
 unlisted_mirrors:
   - status: 'success'
