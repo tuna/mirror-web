@@ -8,6 +8,8 @@ mirrorid: gentoo-portage
 
 ### Gentoo Portage 镜像配置：
 
+#### `rsync` 方式
+
 修改 `/etc/portage/repos.conf/gentoo.conf` ,将
 
 ```
@@ -19,6 +21,23 @@ sync-uri = rsync://rsync.gentoo.org/gentoo-portage
 ```
 sync-uri = rsync://{{ site.hostname }}/gentoo-portage
 ```
+
+#### `git` 方式
+
+第一次使用 `git` 同步方式的用户需要进行如下操作：
+
+- 修改 `/etc/portage/repos.conf/gentoo.conf`
+		- 将 `sync-type` 改為 `git`
+		- 將 `sync-uri` 改為 `https://{{ site.hostname }}/git/gentoo-portage.git`
+- 刪除 `/var/db/repos/gentoo`
+- 執行 `emerge --sync`
+
+已經配置 `git` 同步的用戶只需：
+
+- 修改 `/etc/portage/repos.conf/gentoo.conf`
+		- 將 `sync-uri` 改為 `https://{{ site.hostname }}/git/gentoo-portage.git`
+- 於 `/var/db/repos/gentoo` 下，執行 `git remote set-url origin https://{{ site.hostname }}/git/gentoo-portage.git`
+- 執行 `emerge --sync`
 
 ### Distfiles 配置：
 
