@@ -151,9 +151,11 @@ mirror_desc:
   - name: gentoo
     desc: Gentoo Linux 的 Stage 3 镜像
   - name: gentoo-portage
-    desc: Gentoo Linux 的 Portage 包管理器镜像源
+    desc: Gentoo Linux 的 Portage 包管理器镜像源（HTTP / rsync 访问）
+  - name: gentoo-portage.git
+    desc: Gentoo Linux 的 Portage 包管理器镜像源（Git 访问）
   - name: gentoo-portage-prefix
-    desc: Gentoo/Prefix 的 Portage 包管理器镜像源
+    desc: Gentoo/Prefix 的 Portage 包管理器镜像源（仅适用于 macOS）
   - name: git-repo
     desc: Google 开发的项目依赖下载工具 repo 的镜像
   - name: github-release
@@ -449,6 +451,7 @@ force_help_mirrors:
   - linux-next.git
   - linux-stable.git
   - git-repo
+  - gentoo-portage.git
   - chromiumos
   - weave
   - CocoaPods

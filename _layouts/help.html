@@ -4,6 +4,14 @@
 <body>
 	{% include nav.html %}
 
+{% if page.redirect_help_id %}
+{% assign redirect_to_page = site.categories["help"] | where_exp:"p", "p.mirrorid == page.redirect_help_id" %}
+<script>
+	var redirect_to = window.location.protocol + "//" + window.location.host + "{{redirect_to_page[0].url}}";
+	window.location = redirect_to;
+</script>
+{% endif %}
+
 {% assign help_pages = site.categories["help"] | sort: 'mirrorid' %}
 <div id="help-page">
 	<div class="container">
@@ -11,7 +19,7 @@
 		  <div class="col-sm-2 hidden-xs">
 				<ul class="nav nav-pills nav-stacked" id="help-nav">
 					{% for h in help_pages %}
-					<li{% if h.mirrorid == page.mirrorid%} class="active"{%endif%}><a href="{{h.url}}">{{h.mirrorid}}</a></li>
+					<li{% if h.mirrorid == page.mirrorid or h.redirect_help_id == page.mirrorid %} class="active"{%endif%}><a href="{{h.url}}">{{h.mirrorid}}</a></li>
 					{% endfor %}
 				</ul>
 			</div><!-- sidenave -->
