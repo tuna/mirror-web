@@ -27,17 +27,17 @@ sync-uri = rsync://{{ site.hostname }}/gentoo-portage
 第一次使用 `git` 同步方式的用户需要进行如下操作：
 
 - 修改 `/etc/portage/repos.conf/gentoo.conf`
-		- 将 `sync-type` 改為 `git`
-		- 將 `sync-uri` 改為 `https://{{ site.hostname }}/git/gentoo-portage.git`
-- 刪除 `/var/db/repos/gentoo`
-- 執行 `emerge --sync`
+		- 将 `sync-type` 改为 `git`
+		- 将 `sync-uri` 改为 `https://{{ site.hostname }}/git/gentoo-portage.git`
+- 删除 `/var/db/repos/gentoo`
+- 执行 `emerge --sync`
 
-已經配置 `git` 同步的用戶只需：
+已经配置 `git` 同步的用户只需：
 
 - 修改 `/etc/portage/repos.conf/gentoo.conf`
-		- 將 `sync-uri` 改為 `https://{{ site.hostname }}/git/gentoo-portage.git`
-- 於 `/var/db/repos/gentoo` 下，執行 `git remote set-url origin https://{{ site.hostname }}/git/gentoo-portage.git`
-- 執行 `emerge --sync`
+		- 将 `sync-uri` 改为 `https://{{ site.hostname }}/git/gentoo-portage.git`
+- 于 `/var/db/repos/gentoo` 下，执行 `git remote set-url origin https://{{ site.hostname }}/git/gentoo-portage.git`
+- 执行 `emerge --sync`
 
 ### Distfiles 配置：
 

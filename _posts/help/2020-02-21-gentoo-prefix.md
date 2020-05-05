@@ -4,7 +4,7 @@ layout: help
 mirrorid: gentoo-portage-prefix
 ---
 
-**注意：Gentoo Prefix Portage tree 已合併進 gentoo.git。如果您是 Linux 用戶，請使用 `gentoo-portage` rsync 或 git 鏡像。此 repo 專為 macOS 下 prefix 用戶而設。**
+**注意：Gentoo Prefix Portage tree 已合并进 gentoo.git。如果您是 Linux 用户，请使用 `gentoo-portage` rsync 或 git 镜像。此 repo 专为 macOS 下 prefix 用户而设。**
 
 ## [Gentoo Prefix](https://wiki.gentoo.org/wiki/Project:Prefix) macOS 的镜像配置方法如下：
 
