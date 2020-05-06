@@ -22,6 +22,8 @@ mirror_desc:
     desc: 基于 Qt 的计算机辅助设计程序
   - name: HHVM
     desc: Facebook 开发的高性能 PHP 语言虚拟机
+  - name: KaOS
+    desc: 一个基于 KDE 的独立发行版
   - name: NetBSD
     desc: NetBSD 的安装镜像和部分系统源码
   - name: OpenBSD
@@ -413,6 +415,8 @@ new_mirrors:
   - kde
   - kde-application
   - kde-neon
+  - gentoo-portage.git
+  - KaOS
 
 unlisted_mirrors:
   - status: 'success'
