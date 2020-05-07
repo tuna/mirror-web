@@ -398,15 +398,6 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - artixlinux-iso
-  - manjaro-arm
-  - fdroid
-  - kubernetes
-  - tlpretest
-  - racket-installers
-  - AdoptOpenJDK
-  - nix-channels
-  - nixos-images
   - proxmox
   - voidlinux
   - ros2
