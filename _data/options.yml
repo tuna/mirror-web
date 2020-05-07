@@ -278,6 +278,8 @@ mirror_desc:
     desc: 预编译的 Node.js 二进制程序
   - name: nodesource
     desc: 为 Debian, Ubuntu, Fedora, RHEL 等发行版提供预编译的 Node.js 和 npm 等软件包
+  - name: openeuler
+    desc: 华为公司开源的服务器操作系统
   - name: OpenMediaVault
     desc: 基于 Debian Linux 的网络附加存储(NAS)解决方案
   - name: openresty
@@ -417,6 +419,7 @@ new_mirrors:
   - kde-neon
   - gentoo-portage.git
   - KaOS
+  - openeuler
 
 unlisted_mirrors:
   - status: 'success'
