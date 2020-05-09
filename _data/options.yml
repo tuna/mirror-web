@@ -292,6 +292,8 @@ mirror_desc:
     desc: OpenTHOS 源代码仓库
   - name: openwrt
     desc: OpenWrt/LEDE 软件包镜像源
+  - name: opnsense
+    desc: OPNsense 是基于 FreeBSD 的防火墙和路由软件
   - name: osdn
     desc: OSDN 网站提供的开源软件下载
   - name: osmc
@@ -411,6 +413,7 @@ new_mirrors:
   - gentoo-portage.git
   - KaOS
   - openeuler
+  - opnsense
 
 unlisted_mirrors:
   - status: 'success'
