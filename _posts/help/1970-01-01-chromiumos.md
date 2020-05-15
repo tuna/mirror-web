@@ -50,7 +50,7 @@ repo init -u https://{{ site.hostname }}/git/chromiumos/chromiumos/manifest
 替换为
 
 ```
-"https://{{ site.hostname }}/git/chromiumos/"
+"https://{{ site.hostname }}/git/chromiumos"
 ```
 
 接着将
@@ -62,7 +62,7 @@ repo init -u https://{{ site.hostname }}/git/chromiumos/chromiumos/manifest
 替换为
 
 ```
-"https://{{ site.aosp }}/"
+"https://{{ site.hostname }}/git/AOSP"
 ```
 
 
