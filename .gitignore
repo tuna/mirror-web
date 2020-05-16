@@ -6,6 +6,7 @@
 /static/status/
 /static/tunet.json
 /static/js/vue.js
+/robots.txt
 /_site
 /deploy.sh
 /.sass-cache/
