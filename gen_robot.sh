@@ -1,5 +1,5 @@
 #!/bin/bash
-HOST="mirrors.tuna.tsinghua.edu.cn"
+HOST=${1:-"mirrors.tuna.tsinghua.edu.cn"}
 
 echo "# robots.txt for https://$HOST" > robots.txt
 echo 'User-agent: *' >> robots.txt
