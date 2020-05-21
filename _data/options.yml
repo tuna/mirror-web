@@ -443,6 +443,10 @@ unlisted_mirrors:
   - link_to: 'github-release'
     name: "FreeCAD"
     url: '/github-release/FreeCAD/FreeCAD/'
+  - link_to: 'github-release'
+    name: "git-for-windows"
+    url: '/github-release/git-for-windows/git/'
+
 
 force_help_mirrors:
   - AOSP
