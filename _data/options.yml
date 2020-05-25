@@ -196,6 +196,10 @@ mirror_desc:
     desc: 为企业版 Linux 提供最新软件包的镜像源
   - name: jenkins
     desc: 用 Java 编写的持续集成框架
+  - name: julia
+    desc: Julia 编程语言的包管理器镜像
+  - name: julia-releases
+    desc: Julia 编译器程序镜像
   - name: kali
     desc: Kali Linux 的官方软件包仓库
   - name: kali-images
@@ -416,6 +420,8 @@ new_mirrors:
   - KaOS
   - openeuler
   - opnsense
+  - julia
+  - julia-releases
 
 unlisted_mirrors:
   - status: 'success'
