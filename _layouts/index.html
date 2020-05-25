@@ -37,7 +37,7 @@
 										<span class="label label-new">new</span>
 										{{/if}}
 										{{if help_url}}
-										<a href="{{help_url}}"><i class="fa fa-question-circle" title="Help"></i></a>
+										<a href="{{help_url}}"><i aria-hidden="true" class="fa fa-question-circle" title="Help"></i><span class="sr-only">[Help]</span></a>
 										{{/if}}
 									</td>
 									<td>
@@ -54,7 +54,7 @@
 											:data-content="mir.description" :href="getURL(mir)" :aria-label="mir.name + ', ' + mir.description">
 											{{mir.name}}
 											<span class="label label-new" v-if='mir.is_new'>new</span>
-											<a v-if='mir.help_url' :href="mir.help_url"><i class="fa fa-question-circle" title="Help"></i></a>
+											<a v-if='mir.help_url' :href="mir.help_url"><i aria-hidden="true" class="fa fa-question-circle" title="Help"></i><span class="sr-only">[Help]</span></a>
 										</a>
 									</td>
 									<td class="col-md-4">
