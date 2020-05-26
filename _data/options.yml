@@ -408,10 +408,6 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - proxmox
-  - voidlinux
-  - ros2
-  - blender
   - chef
   - rudder
   - OpenMediaVault
