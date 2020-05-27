@@ -6,7 +6,7 @@ mirrorid: julia-releases
 
 ## Julia 二进制安装程序
 
-Julia 是一个全新的以科学计算为核心的通用编程语言，其二进制程序可以到 <{{ site.url }}/julia/bin/> 下载。
+Julia 是一个全新的以科学计算为核心的通用编程语言，其二进制程序可以到 <{{ site.url }}/julia-releases/bin/> 下载。
 
 这里仅镜像 [JuliaLang Downloads](https://julialang.org/downloads/) 中提供的稳定发行版以及 rc 版本。每日构建的测试版 (nightlies) 以及 
 [Juno](http://junolab.org/)/[Julia Pro](https://juliacomputing.com/products/juliapro)等 IDE 版本不包括在内。
