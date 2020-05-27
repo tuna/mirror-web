@@ -199,7 +199,7 @@ mirror_desc:
   - name: julia
     desc: Julia 编程语言的包管理器镜像
   - name: julia-releases
-    desc: Julia 编译器程序镜像
+    desc: Julia 二进制程序镜像
   - name: kali
     desc: Kali Linux 的官方软件包仓库
   - name: kali-images
