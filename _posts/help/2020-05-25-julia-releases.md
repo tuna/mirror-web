@@ -23,7 +23,7 @@ Julia 的命令行工具。
 
 * 安装 Julia：`jill install [VERSION] [--upstream UPSTREAM] [--confirm]`
   * `jill install`：最新的 `x.y.z` 版本
-  * `jill install --confrom`：无需交互确认直接安装
+  * `jill install --confirm`：无需交互确认直接安装
   * `jill install --upstream BFSU`：从北外镜像下载并安装
   * `jill install 1.4`：安装最新的 `1.4.z` 版本
 * 查询现存的上游镜像：`jill upstream`
