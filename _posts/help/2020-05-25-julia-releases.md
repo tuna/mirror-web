@@ -16,7 +16,7 @@ Julia 是一个全新的以科学计算为核心的通用编程语言，其二�
 
 ## Julia 一键安装
 
-对于习惯命令行的用户而言，[`jill.py`](https://github.com/johnnychen94/jill.py) 是一个社区维护的全平台下一键安装
+对于习惯命令行的用户而言，[jill.py](https://github.com/johnnychen94/jill.py) 是一个社区维护的全平台下一键安装
 Julia 的命令行工具。
 
 安装/更新 `jill`： `pip install jill --user -U` (需要 Python `3.6` 或更新的版本)
