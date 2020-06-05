@@ -1,3 +1,9 @@
+---
+category: help
+layout: help
+mirrorid: julia-general.git
+---
+
 ## Julia 默认注册表 General 仓库镜像
 
 该镜像仅为 Julia 默认注册表 [General](https://github.com/JuliaRegistries/General) 仓库的 Git 镜像。
