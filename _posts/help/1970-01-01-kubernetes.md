@@ -12,6 +12,12 @@ Kubernetes 是用于自动部署，扩展和管理容器化应用程序的开源
 
 ### Debian/Ubuntu 用户
 
+首先导入 gpg key：
+
+```shell
+$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+```
+
 
 新建 `/etc/apt/sources.list.d/kubernetes.list`，内容为
 
