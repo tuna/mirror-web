@@ -343,9 +343,9 @@ mirror_desc:
   - name: raspberrypi
     desc: 一些专为树莓派提供的 Debian 软件包
   - name: raspbian
-    desc: 为树莓派编译的 Debian 系统软件源
+    desc: Raspberry Pi OS （原 Raspbian）系统软件源
   - name: raspbian-images
-    desc: Raspbian 的安装镜像
+    desc: Raspberry Pi OS （原 Raspbian） 的安装镜像
   - name: redhat
     desc: Red Hat Enterprise Linux 源码包（SRPM）仓库
   - name: remi
