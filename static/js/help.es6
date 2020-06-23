@@ -35,6 +35,13 @@ $(document).ready(() => {
 		let help_url = $(ev.target).find("option:selected").data('help-url');
 		window.location = `${window.location.protocol}//${window.location.host}${help_url}`;
 	});
+
+	$.getJSON("/static/tunasync.json", (statusData) => {
+		// remove help items for disabled/removed mirrors
+		let availableMirrorIds = new Set(statusData.map(x => x.name));
+		$('li').filter((_, node) => node.id && node.id.startsWith("toc-") && !availableMirrorIds.has(node.id.slice(4))).remove();
+		$('option').filter((_, node) => node.id && node.id.startsWith("toc-") && !availableMirrorIds.has(node.id.slice(4))).remove();
+	});
 });
 
 // vim: ts=2 sts=2 sw=2 noexpandtab
