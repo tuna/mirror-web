@@ -12,6 +12,10 @@
 </script>
 {% endif %}
 
+<script>
+	window.mirrorId = "{{page.mirrorid}}";
+</script>
+
 {% assign help_pages = site.categories["help"] | sort: 'mirrorid' %}
 <div id="help-page">
 	<div class="container">
