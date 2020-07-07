@@ -268,6 +268,8 @@ mirror_desc:
     desc: Manjanro ARM Linux 的安装镜像
   - name: mariadb
     desc: 衍生于 MySQL 的开源关系数据库
+  - name: miniforge
+    desc: 适用于 conda-forge 的最小化 conda 安装器
   - name: mongodb
     desc: 开源的跨平台 NoSQL 文档型数据库
   - name: msys2
@@ -425,6 +427,7 @@ new_mirrors:
   - julia
   - julia-releases
   - julia-general.git
+  - miniforge
 
 unlisted_mirrors:
   - status: 'success'
@@ -460,6 +463,9 @@ unlisted_mirrors:
   - link_to: 'github-release'
     name: "llvm-binary"
     url: '/github-release/llvm/llvm-project/'
+  - link_to: 'github-release'
+    name: "miniforge"
+    url: '/github-release/conda-forge/miniforge/'
 
 
 force_help_mirrors:
