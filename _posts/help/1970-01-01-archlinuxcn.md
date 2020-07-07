@@ -12,7 +12,7 @@ Arch Linux 中文社区仓库 是由 Arch Linux
 完整的包信息列表（包名称/架构/维护者/状态）请
 [点击这里](https://github.com/archlinuxcn/repo) 查看。
 
-*  官方仓库地址：<http://repo.archlinuxcn.org>
+*  官方仓库地址：<https://repo.archlinuxcn.org>
 *  镜像地址: <https://{{ site.hostname }}/archlinuxcn/>
 
 使用方法：在 `/etc/pacman.conf` 文件末尾添加以下两行：
