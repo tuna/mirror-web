@@ -1,5 +1,8 @@
 ---
 ---
+
+const globalOptions = {% include options.json %}.options;
+
 $(document).ready(() => {
 	$("#help-content")
 		.find('table')
@@ -39,9 +42,12 @@ $(document).ready(() => {
 	$.getJSON("/static/tunasync.json", (statusData) => {
 		// remove help items for disabled/removed mirrors
 		let availableMirrorIds = new Set(statusData.map(x => x.name));
+		globalOptions.unlisted_mirrors.forEach(elem => {
+			availableMirrorIds.add(elem.name)
+		});
 		console.log(window.mirrorId);
 		if (!availableMirrorIds.has(window.mirrorId)) {
-			location.href = "/404.html"; // this will break 404 issue submission
+			location.href = "/404-help-hidden.html"; // this will break 404 issue submission
 		}
 
 		$('li').filter((_, node) => node.id && node.id.startsWith("toc-") && !availableMirrorIds.has(node.id.slice(4))).remove();
