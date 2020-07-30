@@ -62,17 +62,28 @@ function legacyIndexRender(r){
           }catch(e){
           }
         }
-        var renMirs = mirs.filter(m => m.status != "disabled" && m.is_master).map(m => ({
-          status: m.status,
-          name: m.name,
-          description: descriptions[m.name],
-          url: force_help[m.name] ? help_url[m.name] : m.url ? m.url : '/' + m.name + '/',
-          is_new: !!new_mirrors[m.name],
-          help_url: help_url[m.name],
-          last_update: getMirDate(m),
-          label: label_map[m.status],
-          show_status: m.status != 'success'
-        }));
+        var renMirs = mirs.filter(m => m.status != "disabled" && m.is_master !== false).map(m => {
+          var status = m.status;
+          var target = m;
+          if(m.link_to){
+            var _target = mirs.filter(_m => _m.name == m.link_to)[0];
+            if(_target){
+              target = _target;
+              status = target.status;
+            }
+          }
+          return {
+            status: status,
+            name: m.name,
+            description: descriptions[m.name],
+            url: force_help[m.name] ? help_url[m.name] : m.url ? m.url : '/' + m.name + '/',
+            is_new: !!new_mirrors[m.name],
+            help_url: help_url[m.name],
+            last_update: getMirDate(target),
+            label: label_map[status],
+            show_status: status != 'success'
+          };
+        });
         renMirs.sort((a, b) => a.name < b.name ? -1: 1 );
         var result = Mark.up(tmpl, {mirs: renMirs});
         r.status = 200;
