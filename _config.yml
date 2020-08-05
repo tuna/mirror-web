@@ -27,6 +27,9 @@ arch_archive: "arch-archive.tuna.tsinghua.edu.cn"
 aur: "aur.tuna.tsinghua.edu.cn"
 pypi: "pypi.tuna.tsinghua.edu.cn"
 homelink: "https://tuna.moe"
+hide_navbar: false
+hide_download: false
+hide_server_status: false
 
 # Build settings
 highlighter: rouge
