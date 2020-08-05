@@ -9,6 +9,7 @@ permalink: /status/
 	<div id="status-page">
 		<div class="spacing hidden-xs"></div>
 		<div class="container">
+			{% unless site.hide_server_status %}
 			<h3 id="server-status"> # 服务器监控 </h3>
 			<h4> # 网络流量 </h4>
 			<div class="row">
@@ -32,6 +33,7 @@ permalink: /status/
 				{% include status-pic.html name="cpu" %}
 				{% include status-pic.html name="memory" %}
 			</div>
+			{% endunless %}
 			<h3 id="syncing-status"># 同步状态</h3>
 			<table class="table table-condensed flat-md">
 				<thead class="hidden-xs hidden-sm">
