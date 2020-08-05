@@ -100,7 +100,7 @@
 								{% endif %}
 							</ul>
 						</div>
-						{% unless page.legacy %}
+						{% unless page.legacy or site.hide_download %}
 						<div id="download-link">
 							<h4><span class="fa fa-file-archive-o"></span> 下载链接 </h4>
 							<p>常用发行版 iso 和应用工具安装包直接下载</p>

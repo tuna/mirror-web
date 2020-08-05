@@ -28,6 +28,7 @@ aur: "aur.tuna.tsinghua.edu.cn"
 pypi: "pypi.tuna.tsinghua.edu.cn"
 homelink: "https://tuna.moe"
 hide_navbar: false
+hide_download: false
 
 # Build settings
 highlighter: rouge
