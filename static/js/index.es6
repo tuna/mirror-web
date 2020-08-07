@@ -186,15 +186,19 @@ var vmIso = new Vue({
 		});
 	},
 	computed: {
-		curDistroList () {
+		curDistroList() {
 			return this.distroList
-				.filter((x)=> x.category === this.curCategory)
+				.filter((x) => x.category === this.curCategory)
 				.sort(function (a, b) {
 					return a.distro.localeCompare(b.distro);
 				});
-		}
+		},
 	},
 	methods: {
+		showCategory(category) {
+			return this.distroList
+				.findIndex((x) => x.category === category) > -1;
+		},
 		switchDistro (distro) {
 			this.selected = distro;
 		},
