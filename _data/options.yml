@@ -344,8 +344,8 @@ mirror_desc:
     desc: Racket 语言环境安装包
   - name: raspberrypi
     desc: 一些专为树莓派提供的 Debian 软件包
-  - name: raspberry-pi-os
-    desc: Raspberry Pi OS （原 Raspbian）系统软件源
+  - name: raspbian
+    desc: 为树莓派编译的 Debian 系统软件源
   - name: raspberry-pi-os-images
     desc: Raspberry Pi OS （原 Raspbian）的安装镜像
   - name: redhat
