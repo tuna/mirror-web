@@ -20,8 +20,6 @@ mirror_desc:
     desc: 现已更名为 Elastic Stack，仅保留用作向后兼容
   - name: FreeCAD
     desc: 基于 Qt 的计算机辅助设计程序
-  - name: HHVM
-    desc: Facebook 开发的高性能 PHP 语言虚拟机
   - name: KaOS
     desc: 一个基于 KDE 的独立发行版
   - name: NetBSD
@@ -186,6 +184,8 @@ mirror_desc:
     desc: Homebrew/Linuxbrew 的 taps（软件包描述文件 Git 仓库）
   - name: homebrew-bottles
     desc: 预编译的 Homebrew 软件包
+  - name: hugging-face-models
+    desc: Hugging Face Transformers 提供的预训练模型
   - name: iina
     desc: macOS 上的现代化开源视频播放器
   - name: infinality-bundle
@@ -243,11 +243,13 @@ mirror_desc:
   - name: linuxmint-cd
     desc: Linux Mint 的安装镜像
   - name: llvm
-    desc: LLVM 编译器套件的多个 git repo 的镜像
+    desc: LLVM 编译器套件的多个 git 源码仓库（已停止更新）
   - name: llvm-apt
     desc: LLVM 编译器套件的 APT 安装源
   - name: llvm-binary
     desc: LLVM 编译器套件可执行文件
+  - name: llvm-project.git
+    desc: LLVM 编译器套件的新源码仓库（monorepo）
   - name: loongson
     desc: 用于龙芯电脑的软件包
   - name: lxc-images
@@ -414,12 +416,6 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - chef
-  - rudder
-  - OpenMediaVault
-  - kde
-  - kde-application
-  - kde-neon
   - gentoo-portage.git
   - KaOS
   - openeuler
@@ -428,6 +424,8 @@ new_mirrors:
   - julia-releases
   - julia-general.git
   - miniforge
+  - hugging-face-models
+  - llvm-project.git
 
 unlisted_mirrors:
   - status: 'success'
@@ -481,6 +479,7 @@ force_help_mirrors:
   - weave
   - CocoaPods
   - llvm
+  - llvm-project.git
   - openthos-src
   - qemu.git
   - linux-firmware.git
