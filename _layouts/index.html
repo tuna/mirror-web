@@ -14,7 +14,7 @@
 						<div class="row">
 							<h3 id="mirror-title"><span class="fa fa-cube"></span> 镜像列表 </h3>
 							{% unless page.legacy %}
-							<input type="search" v-model="filter" id="search" placeholder="搜索" autocomplete="off">
+							<input type="search" v-model.trim="filter" id="search" placeholder="搜索" autocomplete="off">
 							{% endunless %}
 						</div>
 						<table class="table" v-if="mirrorList.length">
