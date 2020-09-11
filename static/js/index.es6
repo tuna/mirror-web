@@ -19,6 +19,31 @@ new Vue({
 	el: "#upgrade-mask",
 });
 
+/**
+ * 函数防抖 (只执行最后一次点击)
+ * 作者：YXi
+ * 链接：https://juejin.im/post/6844903994121256973
+ * 来源：掘金
+ * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+ */
+export const Debounce = (fn, t) => {
+	let delay = t || 500;
+	let timer;
+	return function () {
+			let args = arguments;
+			if(timer){
+					clearTimeout(timer);
+			}
+			timer = setTimeout(() => {
+					timer = null;
+					fn.apply(this, args);
+			}, delay);
+	}
+};
+
+// 节流时间
+const updateTime = 1000 * 5
+
 var vmMirList = new Vue({
 	el: "#mirror-list",
 	data: {
@@ -63,9 +88,10 @@ var vmMirList = new Vue({
 			}
 			return `/${mir.name}/`
 		},
-		refreshMirrorList () {
+		refreshMirrorList: Debounce(function() {
 			var self = this;
-			$.getJSON("/static/tunasync.json", (status_data) => {
+			var tunasyncApi = "/static/tunasync.json"
+			$.getJSON(tunasyncApi, (status_data) => {
 				var unlisted_mir = unlisted.map(d => processMirrorItem(d))
 				status_data = status_data.map(d => processMirrorItem(d));
 				var mir_data = $.merge(unlisted_mir, status_data);
@@ -76,7 +102,7 @@ var vmMirList = new Vue({
 				self.rawMirrorList = status_data;
 				setTimeout(() => {self.refreshMirrorList()}, 10000);
 			});
-		}
+		}, updateTime)
 	}
 })
 
@@ -172,7 +198,8 @@ var vmIso = new Vue({
 	},
 	created: function () {
 		var self = this;
-		$.getJSON("/static/status/isoinfo.json", function (isoinfo) {
+		var isoinfoApi = "/static/isoinfo.json"
+		$.getJSON(isoinfoApi, function (isoinfo) {
 			self.distroList = isoinfo;
 			self.selected = self.curDistroList[0];
 			if (window.location.hash.match(/#iso-download(\?.*)?/)) {
