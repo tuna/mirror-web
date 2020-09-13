@@ -29,6 +29,10 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+      - 
+        name: Prevent from loading rubygems from TUNA
+        run: |
+          sed -i "/^source/c source 'https://rubygems.org'" Gemfile
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
