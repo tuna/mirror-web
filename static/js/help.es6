@@ -45,6 +45,9 @@ $(document).ready(() => {
 		globalOptions.unlisted_mirrors.forEach(elem => {
 			availableMirrorIds.add(elem.name)
 		});
+		globalOptions.force_show_help_mirrors.forEach(elem => {
+			availableMirrorIds.add(elem)
+		});
 		console.log(window.mirrorId);
 		if (!availableMirrorIds.has(window.mirrorId)) {
 			location.href = "/404-help-hidden.html"; // this will break 404 issue submission

@@ -466,7 +466,7 @@ unlisted_mirrors:
     url: '/github-release/conda-forge/miniforge/'
 
 
-force_help_mirrors:
+force_redirect_help_mirrors:
   - AOSP
   - lineageOS
   - homebrew
@@ -489,6 +489,9 @@ force_help_mirrors:
   - glibc.git
   - flutter-sdk.git
   - julia-general.git
+
+force_show_help_mirrors:
+  - hugging-face-models
 
 label_map:
   unknown: label-default

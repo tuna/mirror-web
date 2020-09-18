@@ -47,7 +47,7 @@ function legacyIndexRender(r){
       global_options.options.new_mirrors.forEach((m) => new_mirrors[m] = true);
       var unlisted = global_options.options.unlisted_mirrors;
       var force_help = {}
-      global_options.options.force_help_mirrors.forEach((m) => force_help[m] = true);
+      global_options.options.force_redirect_help_mirrors.forEach((m) => force_help[m] = true);
       var descriptions = {};
       global_options.options.mirror_desc.forEach((m) => descriptions[m.name] = m.desc);
       r.subrequest('/static/tunasync.json', {

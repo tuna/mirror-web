@@ -11,7 +11,7 @@ var new_mirrors = {};
 global_options.options.new_mirrors.forEach((m) => new_mirrors[m] = true);
 var unlisted = global_options.options.unlisted_mirrors;
 var options = {};
-global_options.options.force_help_mirrors.forEach((m) => options[m] = {'url': "/help/" + m + "/"})
+global_options.options.force_redirect_help_mirrors.forEach((m) => options[m] = {'url': "/help/" + m + "/"})
 var descriptions = {};
 global_options.options.mirror_desc.forEach((m) => descriptions[m.name] = m.desc);
 
