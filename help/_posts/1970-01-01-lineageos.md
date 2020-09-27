@@ -68,7 +68,7 @@ repo init -u https://{{ site.hostname }}/git/lineageOS/LineageOS/android.git -b 
 
 ```xml
   <remote  name="aosp"
-           fetch="https://{{ site.aosp }}"
+           fetch="https://{{ site.hostname }}/git/AOSP"
 ```
 
 将
