@@ -11,16 +11,16 @@ permalink: /404.html
       <div class="container">
         <div class="row">
           <div class="not-found">
-						{% if site.meow_404 %}
-							<div class="not-found-bg"></div>
-						{% endif %}
+            {% if site.meow_404 %}
+              <div class="not-found-bg"></div>
+            {% endif %}
             <div class="not-found-hint">
               <div class="not-found-code">
               404 NOT FOUND
               </div>
-							{% if site.meow_404 %}
-								<span class="thuhidden">呜喵，金枪鱼</span>被吃掉了
-							{% endif %}
+              {% if site.meow_404 %}
+                <span class="thuhidden">呜喵，金枪鱼</span>被吃掉了
+              {% endif %}
             </div>
             <div class="not-found-text thuhidden">
               如果您认为这一定是出了什么问题，或者正在寻找暂未包含的镜像，欢迎您前往 
@@ -47,7 +47,7 @@ permalink: /404.html
     {% include footer.html %}
     <script type="application/javascript">
       (function(){
-				var tag = "[" + "{{ site.issue_tag }}" + "]";
+        var tag = "[" + "{{ site.issue_tag }}" + "]";
         var bugLink = document.getElementById("new_issue_bug");
         var bugURL = new URL(bugLink.href);
         bugURL.searchParams.append("title", tag + "404 at " + location.pathname);

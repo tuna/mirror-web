@@ -7,6 +7,7 @@ permalink: /status/
 <body>
 	{% include nav.html %}
 	<div id="status-page">
+	{% unless site.issue %}
 		<div class="spacing hidden-xs"></div>
 		<div class="container">
 			{% unless site.hide_server_status %}
@@ -139,6 +140,7 @@ permalink: /status/
 				</tbody>
 			</table>
 		</div><!--/container -->
+		{% endunless %}
 	</div><!--/status -->
 	{% include footer.html %}
 	<script src="/static/js/status.js"></script>

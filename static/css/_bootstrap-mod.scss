@@ -29,7 +29,9 @@ code{
     @include dark{
         background-color: $color_bg_dark;
     }
-    background-color: white;
+    @include noissue {
+        background-color: white;
+    }
     border-color: transparent;
 
     .navbar-nav > li.active > a {
@@ -87,7 +89,9 @@ code{
 }
 
 .dropdown-menu > li > a {
-    color: white;
+    @include noissue {
+      color: white;
+    }
     @include dark{
         color: $color_bg_dark;
     }

@@ -2,7 +2,7 @@
 <html>
 	{% include head.html %}
 	<body>
-		{% unless page.legacy %}
+		{% unless page.legacy or site.issue %}
 		{% include legacy_notes.html %}
 		{% endunless %}
 		{% include nav.html %}
@@ -10,6 +10,27 @@
 			<div class="spacing hidden-xs"></div>
 			<div class="container">
 				<div class="row">
+					{% if site.issue %}
+					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-12 table-responsive">
+						<div class="alert text-center" id="cover-alert">
+							<h1>{{ site.school }}开源软件镜像站</h1>
+							<h3>暂时无法提供服务</h3>
+							<div class="pull-right">
+								<img src="/static/img/candle.jpg" 
+									srcset="/static/img/candle.jpg 1x,
+													/static/img/candle@2x.jpg 2x"
+								/>
+							</div>
+							<div class="clearfix"></div>
+							<p>{{ site.issue }}</p>
+							{% if site.backtime %}
+							<p>预计恢复时间: {{ site.backtime }}</p>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					{% else %}
 					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-8 table-responsive" id="mirror-list">
 						<div class="row">
 							<h3 id="mirror-title"><span class="fa fa-cube"></span> 镜像列表 </h3>
@@ -75,11 +96,14 @@
 						</div>
 						{% endunless %}
 					</div>
+					{% endif %}
+					{% unless site.issue %}
 					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-4">
 						<div class="spacing hidden-xs"></div>
 						<div id="wizard">
 						</div>
-						<div id="news">
+					{% endunless %}
+						<div id="news" {%if site.issue%}class="col-md-3"{%endif%}>
 							<h4><span class="fa fa-bullhorn"></span> 新闻公告 </h4>
 							<ul>
 								{% for news in site.categories.news limit: 3%}
@@ -88,7 +112,7 @@
 							</ul>
 							<div class="text-right"><a href="/news/"> more <span class="fa fa-angle-double-right"></span> </a></div>
 						</div>
-						<div class="thuhidden">
+						<div class="thuhidden {%if site.issue%}col-md-4{%endif%}">
 							<h4> <span class="fa fa-link"></span> 域名选择 </h4>
 							<ul>
 								<li><a href="{{ site.url }}">{{ site.url }}</a> 自动选择 </li>
@@ -100,7 +124,7 @@
 								{% endif %}
 							</ul>
 						</div>
-						{% unless page.legacy or site.hide_download %}
+						{% unless page.legacy or site.hide_download or site.issue %}
 						<div id="download-link">
 							<h4><span class="fa fa-file-archive-o"></span> 下载链接 </h4>
 							<p>常用发行版 iso 和应用工具安装包直接下载</p>
@@ -109,7 +133,7 @@
 							</button>
 						</div>
 						{% endunless %}
-						<div class="thuhidden">
+						<div class="thuhidden {%if site.issue%}col-md-3{%endif%}">
 							<h4> <span class="fa fa-envelope-o"></span> 联系我们 </h4>
 							<ul>
 								<li><strong>意见反馈</strong> <br /> <a href="https://github.com/tuna/issues">https://github.com/tuna/issues</a></li>
@@ -117,23 +141,27 @@
 								<li><strong>在线交流</strong> <br /> <a href="https://fishroom.tuna.moe/log/tuna/today"> #tuna at freenode </a></li>
 							</ul>
 						</div>
-						<div>
+						<div {%if site.issue%}class="col-md-2"{%endif%}>
 							<h4> <span class="fa fa-external-link"></span> 相关链接 </h4>
 							<ul>
 								<li><a href="/help/">使用帮助</a></li>
+								{% unless site.issue %}
 								<li><a href="/status/#server-status">服务器状态</a></li>
 								<li><a href="/status/#syncing-status">同步状态</a></li>
+								{% endunless %}
 								<li class="thuhidden"><a href="https://tuna.moe/">清华大学 TUNA 协会</a></li>
 								<li><a href="https://github.com/tuna/tunasync">镜像管理器源码</a></li>
 								<li><a href="https://github.com/tuna/tunasync-scripts">自定义镜像脚本</a></li>
 							</ul>
 						</div>
+					{% unless site.issue %}
 					</div>
+					{% endunless %}
 				</div>
 			</div><!--/container -->
 		</div><!--/mirrors -->
 		{% include footer.html %}
-		{% unless page.legacy %}
+		{% unless page.legacy or site.issue %}
 		<!-- iso download wizard modal -->
 		<!-- Modal -->
 		{% raw %}
@@ -180,7 +208,7 @@
 	</body>
 	{% raw %}
 	{% endraw %}
-	{% unless page.legacy %}
+	{% unless page.legacy or site.issue %}
 	<script src="/static/js/index.js"></script>
 	<script src="/static/js/browser-update.js"></script>
 	{% endunless %}
