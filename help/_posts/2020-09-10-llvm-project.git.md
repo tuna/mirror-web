@@ -17,13 +17,13 @@ https://github.com/llvm/llvm-project.git
 若要将 TUNA mirror 加入已有代码库，可在已有仓库中运行：
 
 ```
-git remote add tuna https://{{ site.hostname }}/git/llvm/llvm-project.git
+git remote add tuna https://{{ site.hostname }}/git/llvm-project.git
 ```
 
 或运行：
 
 ```
-git remote set-url origin https://{{ site.hostname }}/git/llvm/llvm-project.git
+git remote set-url origin https://{{ site.hostname }}/git/llvm-project.git
 ```
 
 将默认上游设置为 TUNA 镜像。
