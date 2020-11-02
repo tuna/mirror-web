@@ -12,4 +12,6 @@ category: news
 
 该问卷为匿名问卷，**截止至10月30日**。谢谢大家的支持！
 
-<script src="https://jinshuju.net/f/To1oEA/embedded.js?inner_redirect=false&banner=show&background=white&height=2893"></script>
+Update1: 上述问卷已经关闭。
+
+<!--<script src="https://jinshuju.net/f/To1oEA/embedded.js?inner_redirect=false&banner=show&background=white&height=2893"></script>-->
