@@ -1,6 +1,6 @@
 ---
 layout: news
-title: "关于移除 Deepin 镜像中部分内容的通知"
+title: "关于移除 Deepin 镜像中部分内容的通知（已恢复）"
 date: 2020-10-29
 author: TUNA Staff
 category: news
@@ -21,3 +21,6 @@ category: news
 如果现有用户有需要使用上述目录中的软件包，请切换至官方上游，以防影响正常使用。
 
 感谢您的理解与支持！
+
+Update 1 on 2020-11-10: 经与 Deepin 社区沟通，上述涉及重分发授权问题的软件已经被移除，
+因此上述镜像已经恢复。
