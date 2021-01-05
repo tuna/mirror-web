@@ -416,16 +416,13 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - gentoo-portage.git
-  - KaOS
-  - openeuler
-  - opnsense
-  - julia
-  - julia-releases
-  - julia-general.git
-  - miniforge
   - hugging-face-models
   - llvm-project.git
+  - endeavouros
+  - ubuntukylin
+  - putty
+  - postmarketOS
+  - postmarketOS-images
 
 unlisted_mirrors:
   - status: 'success'
