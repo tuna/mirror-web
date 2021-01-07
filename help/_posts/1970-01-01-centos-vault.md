@@ -6,7 +6,8 @@ mirrorid: centos-vault
 
 ## centos-vault 镜像使用帮助
 
-该文件夹提供较早版本的 CentOS，例如 CentOS 6。
+该文件夹提供较早版本的 CentOS，例如 CentOS 6；同时提供当前 CentOS 大版本的历史小版本的归档；
+还提供 CentOS 各个版本的源代码和调试符号。
 
 建议先备份 `/etc/yum.repos.d/` 内的文件。
 
