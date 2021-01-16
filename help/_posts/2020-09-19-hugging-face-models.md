@@ -23,5 +23,5 @@ AutoModel.from_pretrained('bert-base-uncased', mirror='tuna')
 目前内置的两个来源为 `tuna` 与 `bfsu`。此外，也可以显式提供镜像地址，如：
 
 ```python
-AutoModel.from_pretrained('bert-base-uncased', mirror='https://mirrors.tuna.tsinghua.edu.cn/hugging-face-models')
+AutoModel.from_pretrained('bert-base-uncased', mirror='https://{{ site.hostname }}/hugging-face-models')
 ```
