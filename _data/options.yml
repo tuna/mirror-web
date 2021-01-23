@@ -146,6 +146,8 @@ mirror_desc:
     desc: Flutter 框架源码镜像
   - name: fzug
     desc: Fedora 中文用户组的软件包仓库
+  - name: garuda-linux
+    desc: Garuda Linux是基于Arch Linux操作系统的滚动式发行版
   - name: gcc.git
     desc: GCC 的源码仓库
   - name: gentoo
@@ -440,6 +442,9 @@ unlisted_mirrors:
   - link_to: 'osdn'
     name: "mxlinux-isos"
     url: '/osdn/storage/g/m/mx/mx-linux/ISOs/'
+  - link_to: 'osdn'
+    name: "garuda-linux"
+    url: '/osdn/storage/g/g/ga/garuda-linux/'
   - link_to: 'github-release'
     name: "prometheus"
     url: '/github-release/prometheus/prometheus/'
