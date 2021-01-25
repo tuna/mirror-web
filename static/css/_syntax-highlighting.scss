@@ -65,6 +65,7 @@
 }
 
 @include dark{
+.highlight {
 .hll { background-color: #272822; }
 .c { color: #75715e } /* Comment */
 .err { color: #960050; background-color: #1e0010 } /* Error */
@@ -131,6 +132,7 @@
 .gi { color: #a6e22e; background-color: inherit;} /* Generic.Inserted & Diff Inserted */
 .gd .x {background-color: inherit;}
 .gi .x {background-color: inherit;}
+}
 }
 
 }
