@@ -13,4 +13,4 @@
 .bundle
 vendor
 .vscode/
-
+.DS_Store
