@@ -78,4 +78,4 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/status/isoinfo.json -O static/s
 ### 特殊用法
 
 #### 表单选择
-例如 <http://mirrors.tuna.tsinghua.edu.cn/help/tensorflow/> 中，通过表单选择操作系统和版本号，建议直接使用 Vue.js
+例如 <http://mirrors.tuna.tsinghua.edu.cn/help/mongodb/> 中，通过表单选择操作系统和版本号，建议直接使用 Vue.js
