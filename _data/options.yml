@@ -240,6 +240,8 @@ mirror_desc:
     desc: Linux 内核源代码的 Git 仓库
   - name: linuxbrew-bottles
     desc: 预编译的 Linuxbrew 软件包
+  - name: linuxlite
+    desc: 一个基于 Ubuntu 长期支持版本（LTS）的 Linux 发行版
   - name: linuxmint
     desc: Linux Mint 的官方软件源
   - name: linuxmint-cd
@@ -445,6 +447,9 @@ unlisted_mirrors:
   - link_to: 'osdn'
     name: "garuda-linux"
     url: '/osdn/storage/g/g/ga/garuda-linux/'
+  - link_to: 'osdn'
+    name: "linuxlite"
+    url: '/osdn/storage/g/l/li/linuxlite/'
   - link_to: 'github-release'
     name: "prometheus"
     url: '/github-release/prometheus/prometheus/'
