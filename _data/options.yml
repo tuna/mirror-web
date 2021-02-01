@@ -416,6 +416,8 @@ mirror_desc:
     desc: 基于 xbps 包管理器的独立 Linux 发行版
   - name: winehq
     desc: Wine （允许类 Unix 操作系统运行 Windows 程序）
+  - name: wireshark
+    desc: 一个免费开源的网络数据包分析软件
   - name: zabbix
     desc: 著名的网络监视、管理系统
 
@@ -450,6 +452,9 @@ unlisted_mirrors:
   - link_to: 'osdn'
     name: "linuxlite"
     url: '/osdn/storage/g/l/li/linuxlite/'
+  - link_to: 'osdn'
+    name: "wireshark"
+    url: '/osdn/storage/g/w/wi/wireshark/'
   - link_to: 'github-release'
     name: "prometheus"
     url: '/github-release/prometheus/prometheus/'
