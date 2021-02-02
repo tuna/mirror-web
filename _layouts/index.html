@@ -76,8 +76,7 @@
 											{{mir.name}}
 											<span class="label label-new" v-if='mir.is_new'>new</span>
 											<a v-if='mir.help_url' :href="mir.help_url"><i aria-hidden="true" class="fa fa-question-circle" title="Help"></i><span class="sr-only">[Help]</span></a>
-											<a v-if='mir.github_release' :href="javascript:void(0)"></a><i aria-hidden="true" class="fa fa-github" title="GitHub Release"></i><span class="sr-only">[GitHub Release]</span>
-</a>										</a>
+											<a v-if='mir.github_release' href="javascript:void(0)"><i aria-hidden="true" class="fa fa-github" title="GitHub Release"></i><span class="sr-only">[GitHub Release]</span></a>
 									</td>
 									<td class="col-md-4">
 										{{mir.last_update}}<span v-if="mir.show_status" :class="['label', 'label-status', mir.label, 'hidden-xs']">{{mir.status}}</span>
