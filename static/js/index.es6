@@ -145,9 +145,8 @@ var processMirrorItem = function(d){
 		d = $.extend(d, options[d.name]);
 	}
 	d.help_url = help_url[d.name];
-	d.is_new = Boolean(new_mirrors[d.name]);
+	d.is_new = new_mirrors[d.name];
 	d.description = descriptions[d.name];
-	d.github_release = d.url && d.url.startsWith('/github-release/');
 	if (d.is_master === undefined) {
 		d.is_master = true;
 	}
