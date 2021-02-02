@@ -78,6 +78,7 @@ function legacyIndexRender(r){
             description: descriptions[m.name],
             url: force_help[m.name] ? help_url[m.name] : m.url ? m.url : '/' + m.name + '/',
             is_new: !!new_mirrors[m.name],
+            github_release: m.url && m.url.startsWith('/github-release/'),
             help_url: help_url[m.name],
             last_update: getMirDate(target),
             label: label_map[status],
