@@ -90,6 +90,8 @@ mirror_desc:
     desc: 用于联机分析（OLAP）的列式数据库管理系统
   - name: clojars
     desc: Clojure 语言的第三方软件包仓库
+  - name: cmder
+    desc: Windows 下的终端模拟器套件
   - name: crates.io-index.git
     desc: 面向 Rust 语言的软件包索引 crates.io
   - name: ctex
@@ -174,6 +176,8 @@ mirror_desc:
     desc: GitLab 持续集成框架版本 10 及以上
   - name: glibc.git
     desc: GNU C Library 的源码 Git 仓库
+  - name: googlefonts
+    desc: Google 设计的 Noto 系列开源字体
   - name: gnu
     desc: GNU 项目的软件包（源代码、文档和部分平台的二进制文件）
   - name: gnu-alpha
@@ -240,8 +244,8 @@ mirror_desc:
     desc: Linux 内核源代码的 Git 仓库
   - name: linuxbrew-bottles
     desc: 预编译的 Linuxbrew 软件包
-  - name: linuxlite
-    desc: 一个基于 Ubuntu 长期支持版本（LTS）的 Linux 发行版
+  - name: linuxlite-cd
+    desc: 基于 Ubuntu 长期支持版本（LTS）的 Linux 发行版 Linux Lite 的安装镜像
   - name: linuxmint
     desc: Linux Mint 的官方软件源
   - name: linuxmint-cd
@@ -276,6 +280,8 @@ mirror_desc:
     desc: 衍生于 MySQL 的开源关系数据库
   - name: miniforge
     desc: 适用于 conda-forge 的最小化 conda 安装器
+  - name: minikube
+    desc: 在本地运行的单节点 Kubernetes 集群安装工具
   - name: mongodb
     desc: 开源的跨平台 NoSQL 文档型数据库
   - name: msys2
@@ -298,6 +304,8 @@ mirror_desc:
     desc: 预编译的 Node.js 二进制程序
   - name: nodesource
     desc: 为 Debian, Ubuntu, Fedora, RHEL 等发行版提供预编译的 Node.js 和 npm 等软件包
+  - name: obs-studio
+    desc: 自由的流媒体与视频录制程序（Open Broadcast Software）
   - name: openeuler
     desc: 华为公司开源的服务器操作系统
   - name: OpenMediaVault
@@ -314,6 +322,8 @@ mirror_desc:
     desc: OpenWrt/LEDE 软件包镜像源
   - name: opnsense
     desc: OPNsense 是基于 FreeBSD 的防火墙和路由软件
+  - name: orchestrator
+    desc: MySQL 高可用与复制管理工具
   - name: osdn
     desc: OSDN 网站提供的开源软件下载
   - name: osmc
@@ -372,6 +382,8 @@ mirror_desc:
     desc: Ruby 的一个包管理器
   - name: rudder
     desc: 自动化 IT 基础设施配置与审计工具
+  - name: rust-analyzer
+    desc: Rust 语言的模块化编译器前端
   - name: rustup
     desc: Rust 的官方安装工具
   - name: sagemath
@@ -388,10 +400,16 @@ mirror_desc:
     desc: Haskell 项目管理器 stack 所需的元数据与 ghc 安装包的镜像
   - name: steamos
     desc: Valve 开发的基于 Debian 的操作系统，包含安装镜像和官方软件包仓库
+  - name: stellarium
+    desc: 自由的模拟天文台软件
   - name: tensorflow
     desc: 采用数据流图、用于数值计算的开源深度学习框架 TensorFlow
   - name: termux
     desc: 运行在 Android 上的终端模拟器 Termux 的官方软件包仓库
+  - name: texstudio
+    desc: 使用 Qt 编写的自由的 LaTeX 套件
+  - name: thuthesis
+    desc: 清华大学学位论文 LaTeX 模板
   - name: tinycorelinux
     desc: 为嵌入式开发的微型 Linux 发行版
   - name: tlpretest
@@ -423,12 +441,14 @@ mirror_desc:
 
 new_mirrors:
   - hugging-face-models
-  - llvm-project.git
   - endeavouros
   - ubuntukylin
   - putty
   - postmarketOS
   - postmarketOS-images
+  - obs-studio
+  - wireshark
+  - stellarium
 
 unlisted_mirrors:
   - status: 'success'
@@ -450,7 +470,7 @@ unlisted_mirrors:
     name: "garuda-linux"
     url: '/osdn/storage/g/g/ga/garuda-linux/'
   - link_to: 'osdn'
-    name: "linuxlite"
+    name: "linuxlite-cd"
     url: '/osdn/storage/g/l/li/linuxlite/'
   - link_to: 'osdn'
     name: "wireshark"
@@ -476,6 +496,33 @@ unlisted_mirrors:
   - link_to: 'github-release'
     name: "miniforge"
     url: '/github-release/conda-forge/miniforge/'
+  - link_to: 'github-release'
+    name: "stellarium"
+    url: '/github-release/Stellarium/stellarium/'
+  - link_to: 'github-release'
+    name: "cmder"
+    url: '/github-release/cmderdev/cmder/'
+  - link_to: 'github-release'
+    name: "googlefonts"
+    url: '/github-release/googlefonts/'
+  - link_to: 'github-release'
+    name: "minikube"
+    url: '/github-release/kubernetes/minikube/'
+  - link_to: 'github-release'
+    name: "obs-studio"
+    url: '/github-release/obsproject/obs-studio/'
+  - link_to: 'github-release'
+    name: "orchestrator"
+    url: '/github-release/openark/orchestrator/'
+  - link_to: 'github-release'
+    name: "texstudio"
+    url: '/github-release/texstudio-org/texstudio/'
+  - link_to: 'github-release'
+    name: "rust-analyzer"
+    url: '/github-release/rust-analyzer/rust-analyzer/'
+  - link_to: 'github-release'
+    name: "thuthesis"
+    url: '/github-release/tuna/thuthesis'
 
 
 force_redirect_help_mirrors:
