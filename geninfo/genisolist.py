@@ -94,10 +94,11 @@ def parseSection(items):
             images[key].append(imageinfo)
 
     for image_group in images.values():
-        image_group.sort(key=lambda k: (LooseVersion(k['version']),
-                                        getPlatformPriority(k['platform']),
-                                        k['type']),
-                         reverse=True)
+        if 'nosort' not in items:
+            image_group.sort(key=lambda k: (LooseVersion(k['version']),
+                                            getPlatformPriority(k['platform']),
+                                            k['type']),
+                             reverse=True)
 
         i = 0
         versions = set()
@@ -116,7 +117,7 @@ def getDetail(image_info, urlbase):
             image_info['version'],
             image_info['platform'],
             ", %s" % image_info['type'] if image_info['type'] else ''
-    )
+    ) if image_info['platform'] != "" else image_info['version']
 
     category = image_info.get('category', 'os') or "os"
     return (desc, url, category)
