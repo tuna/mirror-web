@@ -547,15 +547,9 @@ body .buorg {
   border-bottom: unset;
   background-color: unset;
 }
-body #buorgul, body #buorgig {
-  background-color: #5bc0de;
-}
 @media (prefers-color-scheme: dark) {
   body .buorg {
     color: #ddd;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-  }
-  body #buorgul, body #buorgig {
-    background-color: #40729e;
   }
 }
