@@ -541,3 +541,16 @@ body {
   }
 }
 {% endfor %}
+
+/* style for browser-update banner */
+div.buorg {
+  border-bottom: unset;
+  background-color: inherit;
+  color: inherit;
+  @include dark{
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    #buorgig, #buorgul, #buorgpermanent {
+      box-shadow: 0 0 2px rgba(255, 255, 255, 0.4);
+    }
+  }
+}
