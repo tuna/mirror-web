@@ -447,7 +447,6 @@ new_mirrors:
   - postmarketOS
   - postmarketOS-images
   - obs-studio
-  - wireshark
   - stellarium
 
 unlisted_mirrors:
@@ -472,9 +471,6 @@ unlisted_mirrors:
   - link_to: 'osdn'
     name: "linuxlite-cd"
     url: '/osdn/storage/g/l/li/linuxlite/'
-  - link_to: 'osdn'
-    name: "wireshark"
-    url: '/osdn/storage/g/w/wi/wireshark/'
   - link_to: 'github-release'
     name: "prometheus"
     url: '/github-release/prometheus/prometheus/'
