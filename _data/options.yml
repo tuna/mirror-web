@@ -371,7 +371,7 @@ mirror_desc:
   - name: repo-ck
     desc: repo-ck 是 Arch 的非官方仓库，内有包含 ck 补丁、BFS 调度器等
   - name: repoforge
-    desc: Repoforge 是 RHEL 系统下的软件仓库，拥有 10000 多个软件包，被认为是最安全、最稳定的一个软件仓库
+    desc: Repoforge 是 RHEL 系统下的软件仓库，已长期无更新
   - name: ros
     desc: ROS提供一系列程序库和工具以帮助软件开发者创建机器人应用软件
   - name: ros2

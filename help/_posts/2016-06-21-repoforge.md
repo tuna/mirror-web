@@ -6,7 +6,7 @@ mirrorid: repoforge
 
 # Repoforge (原Rpmforge) 镜像使用帮助
 
-[Repoforge](http://repoforge.org/) 是 RHEL 系统下的软件仓库，拥有 10000 多个软件包，被认为是最安全、最稳定的一个软件仓库。
+[Repoforge](http://repoforge.org/) 是 RHEL 系统下的软件仓库，拥有 10000 多个软件包，被认为是最安全、最稳定的一个软件仓库。目前已长期未更新，不推荐使用。
 
 ## 添加 Repoforge 仓库
 
