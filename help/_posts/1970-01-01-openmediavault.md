@@ -14,12 +14,12 @@ Open Media Vault 是一款基于 Debian 的 NAS 操作系统，本站提供 Open
 
 ```bash
 cat <<EOF > /etc/apt/sources.list.d/openmediavault.list
-deb https://mirrors.tuna.tsinghua.edu.cn/OpenMediaVault/public usul main
+deb https://{{ site.hostname }}/OpenMediaVault/public usul main
 ## Uncomment the following line to add software from the proposed repository.
-# deb https://mirrors.tuna.tsinghua.edu.cn/OpenMediaVault/public usul-proposed main
+# deb https://{{ site.hostname }}/OpenMediaVault/public usul-proposed main
 ## This software is not part of OpenMediaVault, but is offered by third-party
 ## developers as a service to OpenMediaVault users.
-# deb https://mirrors.tuna.tsinghua.edu.cn/OpenMediaVault/public usul partner
+# deb https://{{ site.hostname }}/OpenMediaVault/public usul partner
 EOF
 ```
 
@@ -45,11 +45,11 @@ apt-key add "/etc/apt/trusted.gpg.d/openmediavault-archive-keyring.asc"
 
 ```bash
 cat <<EOF > /etc/apt/sources.list.d/omvextras.list
-deb https://mirrors.tuna.tsinghua.edu.cn/OpenMediaVault/openmediavault-plugin-developers/usul buster main
-# deb https://mirrors.tuna.tsinghua.edu.cn/OpenMediaVault/openmediavault-plugin-developers/usul-beta buster main
-# deb https://mirrors.tuna.tsinghua.edu.cn/OpenMediaVault/openmediavault-plugin-developers/usul-extras buster main
-# deb https://mirrors.tuna.tsinghua.edu.cn/OpenMediaVault/openmediavault-plugin-developers/usul-testing buster main
-deb [arch=amd64] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/debian buster stable
+deb https://{{ site.hostname }}/OpenMediaVault/openmediavault-plugin-developers/usul buster main
+# deb https://{{ site.hostname }}/OpenMediaVault/openmediavault-plugin-developers/usul-beta buster main
+# deb https://{{ site.hostname }}/OpenMediaVault/openmediavault-plugin-developers/usul-extras buster main
+# deb https://{{ site.hostname }}/OpenMediaVault/openmediavault-plugin-developers/usul-testing buster main
+deb [arch=amd64] https://{{ site.hostname }}/docker-ce/linux/debian buster stable
 deb http://linux.teamviewer.com/deb stable main
 EOF
 ```
