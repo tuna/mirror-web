@@ -8,6 +8,8 @@ mirrorid: OpenMediaVault
 
 Open Media Vault 是一款基于 Debian 的 NAS 操作系统，本站提供 OpenMediaVault 的镜像，以加快国内访问速度。
 
+以下方法自 5.6.3-1 开始可用（2021-04-07）
+
 ### 替换 Open Media Vault 镜像源
 
 登录到已经部署的 Open Media Vault 使用如下命令可以替换 Open Media Vault 镜像源。
