@@ -455,7 +455,7 @@ unlisted_mirrors:
     name: "AUR"
     url: 'https://aur.tuna.tsinghua.edu.cn/'
     upstream: 'https://aur.archlinux.org/'
-    is_master: true
+    is_master: false
   - link_to: 'osdn'
     name: "manjaro-cd"
     url: '/osdn/storage/g/m/ma/manjaro/'
