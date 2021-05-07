@@ -11,7 +11,7 @@ mirrorid: linuxbrew-bottles
 ### 临时替换
 
 ```bash
-export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles"
+export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles/bottles"
 ```
 
 ### 长期替换
@@ -19,14 +19,14 @@ export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles"
 如果你使用 bash：
 
 ```bash
-test -r ~/.bash_profile && echo 'export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles"' >> ~/.bash_profile
-test -r ~/.profile && echo 'export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles"' >> ~/.profile
-export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles"
+test -r ~/.bash_profile && echo 'export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles/bottles"' >> ~/.bash_profile
+test -r ~/.profile && echo 'export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles/bottles"' >> ~/.profile
+export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles/bottles"
 ```
 
 如果你使用 zsh：
 
 ```zsh
-echo 'export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles"' >> ~/.zprofile
-export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles"
+echo 'export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles/bottles"' >> ~/.zprofile
+export HOMEBREW_BOTTLE_DOMAIN="https://{{ site.hostname }}/linuxbrew-bottles/bottles"
 ```
