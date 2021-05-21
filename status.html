@@ -3,7 +3,8 @@ permalink: /status/
 ---
 <!DOCTYPE html>
 <html>
-	{% include head.html %}
+{% capture metaDesc %}{{ site.title }}的监控，包括网络流量、磁盘状态、磁盘占用和 CPU 与内存的使用情况，以及各个镜像的同步状态。{% endcapture %}
+	{% include head.html metaDesc=metaDesc %}
 <body>
 	{% include nav.html %}
 	<div id="status-page">

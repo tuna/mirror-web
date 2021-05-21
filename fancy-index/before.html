@@ -4,7 +4,8 @@ title: Index of {{url}}
 ---
 <!DOCTYPE html>
 <html>
-	{% include head.html %}
+{% capture metaDesc %}Index of {% raw %}{{url}}{% endraw %}{% endcapture %}
+	{% include head.html metaDesc=metaDesc%}
 	<body>
 		{% include nav.html %}
 

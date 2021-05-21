@@ -3,7 +3,8 @@ permalink: /404.html
 ---
 <!DOCTYPE html>
 <html>
-  {% include head.html cattitle="404" %}
+{% capture metaDesc %}您访问的资源在{{ site.title }}上未找到。{% endcapture %}
+  {% include head.html cattitle="404" metaDesc=metaDesc%}
   <body>
     {% include nav.html %}
     <div id="mirrors">

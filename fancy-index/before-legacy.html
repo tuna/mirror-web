@@ -1,12 +1,12 @@
 ---
 permalink: /fancy-index/before-legacy.html
+title: Index of {{url}}
+legacy: true
 ---
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8">
-		<title>Index of {% raw %}{{url}}{% endraw %} | {{ site.title }}{% if site.brand %} | {{ site.brand }}{% endif %}</title>
-	</head>
+{% capture metaDesc %}Index of {% raw %}{{url}}{% endraw %}{% endcapture %}
+	{% include head.html metaDesc=metaDesc nostyle="true"%}
 	<body>
 	<h1>Index of
 <!--

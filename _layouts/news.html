@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-	{% include head.html cattitle="镜像站新闻"%}
+{% capture metaDesc %}{{ site.title }}{{ page.title }}。{% endcapture %}
+	{% include head.html cattitle="镜像站新闻" metaDesc=metaDesc %}
 <body>
 	{% include nav.html %}
 
