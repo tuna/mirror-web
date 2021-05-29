@@ -25,7 +25,7 @@ jobs:
           else
             tag=build-test
           fi
-          echo "::set-env name=docker_tag::${tag}"
+          echo "docker_tag=${tag}" >> $GITHUB_ENV
       -
         name: Checkout
         uses: actions/checkout@v2
