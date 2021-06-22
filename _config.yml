@@ -50,4 +50,21 @@ babel_js_extensions: 'es6'
 
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_robot.sh, gen_desc.py, Dockerfile*]
 
+sponsors:
+    megvii:
+        name: "旷视科技有限公司"
+        link: "https://megvii.com/"
+        short: "旷视"
+        eng: "Megvii Technology Ltd"
+        logo: megvii
+    huawei:
+        name: "华为技术有限公司"
+        link: "https://huawei.com/"
+        short: "华为"
+        eng: "Huawei Technologies Co., Ltd."
+        logo: huawei
+
+poweredbys:
+    kunpeng: "海思<sup>®</sup> Kunpeng<sup>®</sup> 920 处理器"
+
 # vim: ts=2 sts=2 sw=2 expandtab
