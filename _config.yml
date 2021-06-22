@@ -56,13 +56,13 @@ sponsors:
         link: "https://megvii.com/"
         short: "旷视"
         eng: "Megvii Technology Ltd"
-        logo: megvii
+        logo: "megvii-s"
     huawei:
         name: "华为技术有限公司"
         link: "https://huawei.com/"
         short: "华为"
         eng: "Huawei Technologies Co., Ltd."
-        logo: huawei
+        logo: "huawei"
 
 poweredbys:
     kunpeng: "海思<sup>®</sup> Kunpeng<sup>®</sup> 920 处理器"
