@@ -45,6 +45,7 @@ sass:
 gems:
     - jekyll-babel
     - jekyll-sitemap
+    - jekyll/fontawesome/svg
 
 babel_js_extensions: 'es6'
 

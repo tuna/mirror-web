@@ -160,7 +160,7 @@ body {
             vertical-align: 20%;
             margin-left: .5em;
         }
-       .fa-question-circle {
+       .question-circle {
             color: #234961;
             @include dark{
                 color: #6e9cdb;
@@ -212,9 +212,6 @@ body {
                 color: $color_grey_dark;
             }
         }
-    }
-    .fa-user {
-        font-family: #{$font_default}, 'FontAwesome';
     }
 }
 
@@ -553,5 +550,19 @@ div.buorg {
     #buorgig, #buorgul, #buorgpermanent {
       box-shadow: 0 0 2px rgba(255, 255, 255, 0.4);
     }
+  }
+}
+
+svg.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1.42857143em;
+  fill: currentColor;
+  vertical-align: bottom;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  svg.icon {
+    height: 1.1em;
   }
 }

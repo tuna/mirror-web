@@ -33,7 +33,7 @@
 					{% else %}
 					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-8 table-responsive" id="mirror-list">
 						<div class="row">
-							<h3 id="mirror-title"><span class="fa fa-cube"></span> 镜像列表 </h3>
+							<h3 id="mirror-title">{% fa_svg fas.fa-cube %} 镜像列表 </h3>
 							{% unless page.legacy %}
 							<input type="search" v-model.trim="filter" id="search" placeholder="搜索" autocomplete="off">
 							{% endunless %}
@@ -58,7 +58,7 @@
 										<span class="label label-new">new</span>
 										{{/if}}
 										{{if help_url}}
-										<a href="{{help_url}}"><i aria-hidden="true" class="fa fa-question-circle" title="Help"></i><span class="sr-only">[Help]</span></a>
+										<a href="{{help_url}}"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-question %}{% raw %}</i><span class="sr-only">[Help]</span></a>
 										{{/if}}
 									</td>
 									<td>
@@ -75,8 +75,8 @@
 											:data-content="mir.description" :href="getURL(mir)" :aria-label="mir.name + ', ' + mir.description">
 											{{mir.name}}
 											<span class="label label-new" v-if='mir.is_new'>new</span>
-											<a v-if='mir.help_url' :href="mir.help_url"><i aria-hidden="true" class="fa fa-question-circle" title="Help"></i><span class="sr-only">[Help]</span></a>
-											<a v-if='mir.github_release' href="javascript:void(0)"><i aria-hidden="true" class="fa fa-github" title="GitHub Release"></i><span class="sr-only">[GitHub Release]</span></a>
+											<a v-if='mir.help_url' :href="mir.help_url"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-question-circle %}{% raw %}</i><span class="sr-only">[Help]</span></a>
+											<a v-if='mir.github_release' href="javascript:void(0)"><i aria-hidden="true" title="GitHub Release">{% endraw %}{% fa_svg fab.fa-github %}{% raw %}</i><span class="sr-only">[GitHub Release]</span></a>
 									</td>
 									<td class="col-md-4">
 										{{mir.last_update}}<span v-if="mir.show_status" :class="['label', 'label-status', mir.label, 'hidden-xs']">{{mir.status}}</span>
@@ -104,16 +104,16 @@
 						</div>
 					{% endunless %}
 						<div id="news" {%if site.issue%}class="col-md-3"{%endif%}>
-							<h4><span class="fa fa-bullhorn"></span> 新闻公告 </h4>
+							<h4>{% fa_svg fas.fa-bullhorn %} 新闻公告 </h4>
 							<ul>
 								{% for news in site.categories.news limit: 3%}
 								<li><a href="/news/#{{news.slug}}"><strong>{{news.date | date: "%Y-%m-%d"}}</strong> {{news.title}}</a></li>
 								{% endfor %}
 							</ul>
-							<div class="text-right"><a href="/news/"> more <span class="fa fa-angle-double-right"></span> </a></div>
+							<div class="text-right"><a href="/news/"> more {% fa_svg fas.fa-angle-double-right %} </a></div>
 						</div>
 						<div class="thuhidden {%if site.issue%}col-md-4{%endif%}">
-							<h4> <span class="fa fa-link"></span> 域名选择 </h4>
+							<h4> {% fa_svg fas.fa-link %} 域名选择 </h4>
 							<ul>
 								<li><a href="{{ site.url }}">{{ site.url }}</a> 自动选择 </li>
 								{% if site.urlv6 %}
@@ -126,7 +126,7 @@
 						</div>
 						{% unless page.legacy or site.hide_download or site.issue %}
 						<div id="download-link">
-							<h4><span class="fa fa-file-archive-o"></span> 下载链接 </h4>
+							<h4>{% fa_svg far.fa-file-archive %} 下载链接 </h4>
 							<p>常用发行版 iso 和应用工具安装包直接下载</p>
 							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#isoModal">
 								获取下载链接
@@ -134,7 +134,7 @@
 						</div>
 						{% endunless %}
 						<div class="thuhidden {%if site.issue%}col-md-3{%endif%}">
-							<h4> <span class="fa fa-envelope-o"></span> 联系我们 </h4>
+							<h4> {% fa_svg far.fa-envelope %} 联系我们 </h4>
 							<ul>
 								<li><strong>意见反馈</strong> <br /> <a href="https://github.com/tuna/issues">https://github.com/tuna/issues</a></li>
 								<li><strong>发送邮件</strong> <br /> <a class="eib1gieB"></a></li>
@@ -142,7 +142,7 @@
 							</ul>
 						</div>
 						<div {%if site.issue%}class="col-md-2"{%endif%}>
-							<h4> <span class="fa fa-external-link"></span> 相关链接 </h4>
+							<h4> {% fa_svg fas.fa-external-link-alt %} 相关链接 </h4>
 							<ul>
 								<li><a href="/help/">使用帮助</a></li>
 								{% unless site.issue %}
