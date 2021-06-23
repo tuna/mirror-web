@@ -9,20 +9,20 @@
 <link rel="shortcut icon" href="/static/img/favicon.png">
 <title>{% if page.mirrorid %} {{ page.mirrorid }} |{% elsif page.title %} {{ page.title }} |{% endif %}{% if include.cattitle %} {{ include.cattitle }} |{% endif %}{% if (page.title or include.cattitle) %}{{" "}}{% endif %}{{ site.title }}{% if site.brand %} | {{ site.brand }}{% endif %}</title>
 {% unless include.nostyle %}
-<link rel="stylesheet" href="/static/css/bootstrap.min.css">
-<link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
-<link rel="stylesheet" href="/static/css/font-awesome.min.css" >
-<link rel="stylesheet" href="/static/css/style.css">
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-<script src="/static/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css?{{ site.data['hash'] }}">
+<link rel="stylesheet" href="/static/css/bootstrap-select.min.css?{{ site.data['hash'] }}">
+<link rel="stylesheet" href="/static/css/font-awesome.min.css?{{ site.data['hash'] }}" >
+<link rel="stylesheet" href="/static/css/style.css?{{ site.data['hash'] }}">
+<script src="/static/js/jquery.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/bootstrap.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/bootstrap-select.min.js?{{ site.data['hash'] }}"></script>
 {% unless page.legacy %}
-<script src="/static/js/vue.min.js"></script>
-<script src="/static/js/timeago.min.js"></script>
+<script src="/static/js/vue.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/timeago.min.js?{{ site.data['hash'] }}"></script>
 {% endunless %}
-<script src="/static/js/markup.min.js"></script>
-<script src="/static/js/webfont.js"></script>
-<script src="/static/js/thuhidden.js"></script>
+<script src="/static/js/markup.min.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/webfont.js?{{ site.data['hash'] }}"></script>
+<script src="/static/js/thuhidden.js?{{ site.data['hash'] }}"></script>
 {% if page.legacy %}
 <style>
 .container {
