@@ -16,7 +16,7 @@
 							<h1>{{ site.school }}开源软件镜像站</h1>
 							<h3>暂时无法提供服务</h3>
 							<div class="pull-right">
-								<img src="/static/img/candle.jpg" 
+								<img src="/static/img/candle.jpg"
 									srcset="/static/img/candle.jpg 1x,
 													/static/img/candle@2x.jpg 2x"
 								/>
@@ -71,7 +71,7 @@
 								{% raw %}
 								<tr v-for="mir in filteredMirrorList" :class="['row', 'status-'+mir.status]" :key="mir.name">
 									<td class="col-md-8">
-										<a class="mirror-item-label"  data-toggle="popover" data-trigger="hover" data-placement="right" 
+										<a class="mirror-item-label"  data-toggle="popover" data-trigger="hover" data-placement="right"
 											:data-content="mir.description" :href="getURL(mir)" :aria-label="mir.name + ', ' + mir.description">
 											{{mir.name}}
 											<span class="label label-new" v-if='mir.is_new'>new</span>

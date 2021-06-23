@@ -47,7 +47,7 @@ $color_primary_dark: $color_thu_purple_dark;
 
 @mixin dark {
   {% unless site.issue %}
-    @media (prefers-color-scheme: dark) { 
+    @media (prefers-color-scheme: dark) {
         @content
     }
   {% else %}
@@ -481,14 +481,14 @@ body {
       color: #fff;
       text-align: center;
       border-radius: 5px;
-      
+
       /* Position the tooltip text - see examples below! */
       position: absolute;
       top: 0;
       left: 0;
       z-index: 1;
     }
-    
+
     &:hover > .tooltiptext {
       visibility: visible;
     }
