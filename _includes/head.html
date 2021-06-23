@@ -9,10 +9,9 @@
 <link rel="shortcut icon" href="/static/img/favicon.png">
 <title>{% if page.mirrorid %} {{ page.mirrorid }} |{% elsif page.title %} {{ page.title }} |{% endif %}{% if include.cattitle %} {{ include.cattitle }} |{% endif %}{% if (page.title or include.cattitle) %}{{" "}}{% endif %}{{ site.title }}{% if site.brand %} | {{ site.brand }}{% endif %}</title>
 {% unless include.nostyle %}
-<link rel="stylesheet" href="/static/css/bootstrap.css">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="/static/css/font-awesome.min.css" >
-<link rel="stylesheet" href="/static/css/spinkit.css">
 <link rel="stylesheet" href="/static/css/style.css">
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
