@@ -3,7 +3,8 @@ FROM ruby:2.6
 RUN mkdir /data
 WORKDIR /data
 
-RUN apt-get update && apt-get -y install nodejs
+RUN apt-get update
+RUN curl -fsSL "https://cdn.jsdelivr.net/gh/tj/n@7.3.0/bin/n#v14.17.1" | bash -s -- lts
 
 COPY Gemfile /data/
 
