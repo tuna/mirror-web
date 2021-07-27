@@ -164,7 +164,7 @@ def getImageList():
 
     url_dict = {}
     for distro, images in img_dict.items():
-        images.sort(key=lambda x: x['sort_key'])
+        images.sort(key=lambda x: x['sort_key'], reverse=True)
         logger.debug("[IMAGES] %r %r", distro, images)
         url_dict[distro] = [getDetail(image, urlbase) for image in images]
 
