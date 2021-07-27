@@ -7,6 +7,7 @@ import glob
 import json
 import logging
 import collections
+import sys
 from urllib.parse import urljoin
 from distutils.version import LooseVersion
 from configparser import ConfigParser
@@ -146,6 +147,10 @@ def getImageList():
 
     root = ini.get("%main%", 'root')
     urlbase = ini.get("%main%", 'urlbase')
+
+    if len(sys.argv) > 1:
+        # Allow to override root in command-line
+        root = sys.argv[1]
 
     prior = {}
     for (name, value) in ini.items("%main%"):
