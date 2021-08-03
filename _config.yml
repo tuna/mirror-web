@@ -13,6 +13,7 @@ school: 清华大学
 brand: Tsinghua Open Source Mirror
 operator: 清华大学信息化技术中心
 author: Tsinghua University TUNA Association
+desc: 致力于为国内和校内用户提供高质量的开源软件镜像、Linux 镜像源服务，帮助用户更方便地获取开源软件。本镜像站由清华大学 TUNA 协会负责运行维护。
 # operator: 北外信息技术中心
 logo: true
 meow_404: true
