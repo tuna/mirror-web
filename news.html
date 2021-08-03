@@ -4,8 +4,8 @@ title: 镜像站新闻
 ---
 <!DOCTYPE html>
 <html>
-{% capture metaDesc %}{{ site.title }}的新闻。{% endcapture %}
-	{% include head.html metaDesc=metaDesc %}
+{% capture metaDesc %}{{ site.title }}的新闻{% endcapture %}
+	{% include head.html metaDesc=metaDesc notArticle=true %}
 <body>
 	{% include nav.html %}
 

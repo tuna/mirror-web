@@ -6,7 +6,7 @@ legacy: true
 <!DOCTYPE html>
 <html>
 {% capture metaDesc %}Index of {% raw %}{{url}}{% endraw %}{% endcapture %}
-	{% include head.html metaDesc=metaDesc nostyle="true"%}
+	{% include head.html metaDesc=metaDesc nostyle="true" notArticle=true %}
 	<body>
 	<h1>Index of
 <!--

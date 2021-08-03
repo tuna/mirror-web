@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	{% include head.html %}
+	{% include head.html notArticle=true %}
 	<body>
 		{% unless page.legacy or site.issue %}
 		{% include legacy_notes.html %}
