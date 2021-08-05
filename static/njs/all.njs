@@ -1,4 +1,4 @@
 import legacyIndexRender from 'legacy_index.njs';
 import _renders from 'fancy_index.njs';
-var fancyIndexBeforeRender = _renders[0];
-var fancyIndexAfterRender = _renders[1];
+var fancyIndexBeforeRender = _renders.fancyIndexBeforeRender;
+var fancyIndexAfterRender = _renders.fancyIndexAfterRender;

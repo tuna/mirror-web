@@ -39,4 +39,4 @@ function fancyIndexAfterRender(r){
   }
 }
 
-export default [fancyIndexBeforeRender, fancyIndexAfterRender];
+export default {fancyIndexBeforeRender, fancyIndexAfterRender};
