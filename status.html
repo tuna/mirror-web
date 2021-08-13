@@ -20,7 +20,7 @@ permalink: /status/
 			</div>
 			<h4># 磁盘状态 </h4>
 			<div class="row" id="disk-usage">{% raw %}
-				<div class="col-md-12" v-if="diskUsages.length"><strong>磁盘占用</strong>: </div>
+				<div class="col-xs-12" v-if="diskUsages.length"><strong>磁盘占用</strong>: </div>
 				<template v-for="disk in diskUsages">
 				<div class="col-xs-1" v-if="disk.desc">{{ disk.desc }}</div>
 				<div :class="['col-xs-' + (disk.desc ? '11' : '12')]">
