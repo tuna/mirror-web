@@ -25,7 +25,7 @@ permalink: /status/
 				<div class="col-xs-1" v-if="disk.desc">{{ disk.desc }}</div>
 				<div :class="['col-xs-' + (disk.desc ? '11' : '12')]">
 				<div class="progress">
-					<div class="progress-bar" role="progressbar" :aria-valuenow="disk.persentage" aria-valuemin="0" aria-valuemax="100" :style="{width: disk.persentage + '%'}">
+					<div class="progress-bar" role="progressbar" :aria-valuenow="disk.percentage" aria-valuemin="0" aria-valuemax="100" :style="{width: disk.percentage + '%'}">
 						<strong>{{ disk.used }} / {{ disk.total }}</strong>
 					</div>
 				</div>

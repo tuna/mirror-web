@@ -25,12 +25,12 @@ $(document).ready(() => {
           desc: disk.desc,
           used: readableFileSize(disk.used_kb * 1024),
           total: readableFileSize(disk.total_kb * 1024),
-          persentage: 0,
-          _persentage: Math.round(disk.used_kb * 100 / disk.total_kb)
+          percentage: 0,
+          _percentage: Math.round(disk.used_kb * 100 / disk.total_kb)
         }));
         setTimeout(()=>{
           this.diskUsages.forEach((disk) => {
-            disk.persentage = disk._persentage;
+            disk.percentage = disk._percentage;
           });
         }, 0);
       });
