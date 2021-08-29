@@ -22,11 +22,12 @@ wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo 
 
 <form class="form-inline">
 <div class="form-group">
-	<label>你的Debian/Ubuntu版本: </label>
+	<label>你的 Debian/Ubuntu 版本: </label>
 	<select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
 		<option data-os="debian" data-release="jessie">Debian 8 (Jessie)</option>
 		<option data-os="debian" data-release="stretch">Debian 9 (Stretch)</option>
-		<option data-os="debian" data-release="buster" selected>Debian 10 (Buster)</option>
+		<option data-os="debian" data-release="buster">Debian 10 (Buster)</option>
+		<option data-os="debian" data-release="bullseye" selected>Debian 11 (Bullseye)</option>
 		<option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
 		<option data-os="ubuntu" data-release="bionic">Ubuntu 18.04 LTS</option>	
 		<option data-os="ubuntu" data-release="focal">Ubuntu 20.04 LTS</option>

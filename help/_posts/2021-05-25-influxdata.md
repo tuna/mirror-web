@@ -25,10 +25,11 @@ curl -s https://repos.influxdata.com/influxdb.key | sudo apt-key add -
 		<option data-os="debian" data-release="jessie">Debian 8 (Jessie)</option>
 		<option data-os="debian" data-release="stretch">Debian 9 (Stretch)</option>
 		<option data-os="debian" data-release="buster">Debian 10 (Buster)</option>
+		<option data-os="debian" data-release="bullseye" selected>Debian 11 (Bullseye)</option>
 		<option data-os="ubuntu" data-release="trusty">Ubuntu 14.04 LTS</option>
 		<option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
 		<option data-os="ubuntu" data-release="bionic">Ubuntu 18.04 LTS</option>		
-		<option data-os="ubuntu" data-release="focal" selected>Ubuntu 20.04 LTS</option>
+		<option data-os="ubuntu" data-release="focal">Ubuntu 20.04 LTS</option>
 </select>
 </div>
 </form>
