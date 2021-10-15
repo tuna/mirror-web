@@ -21,7 +21,8 @@ TUNA 的软件源镜像。
 	  <option data-release="xenial">16.04 LTS</option>
 	  <option data-release="bionic">18.04 LTS</option>
 	  <option data-release="focal" selected>20.04 LTS</option>
-	  <option data-release="groovy">20.10</option>
+	  <option data-release="hirsute">21.04</option>
+		<option data-release="impish">21.10</option>
 	</select>
 </div>
 </form>
