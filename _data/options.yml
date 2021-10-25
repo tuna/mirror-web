@@ -242,8 +242,6 @@ mirror_desc:
     desc: Linux 内核源代码的 Git 仓库, 稳定版分支
   - name: linux.git
     desc: Linux 内核源代码的 Git 仓库
-  - name: linuxbrew-bottles
-    desc: 预编译的 Linuxbrew 软件包
   - name: linuxlite-cd
     desc: 基于 Ubuntu 长期支持版本（LTS）的 Linux 发行版 Linux Lite 的安装镜像
   - name: linuxmint
@@ -440,7 +438,6 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - hugging-face-models
   - endeavouros
   - ubuntukylin
   - putty
@@ -520,7 +517,6 @@ unlisted_mirrors:
     name: "thuthesis"
     url: '/github-release/tuna/thuthesis'
 
-
 force_redirect_help_mirrors:
   - AOSP
   - lineageOS
@@ -544,9 +540,6 @@ force_redirect_help_mirrors:
   - glibc.git
   - flutter-sdk.git
   - julia-general.git
-
-force_show_help_mirrors:
-  - hugging-face-models
 
 label_map:
   unknown: label-default
