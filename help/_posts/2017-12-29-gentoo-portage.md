@@ -48,3 +48,15 @@ GENTOO_MIRRORS="https://{{ site.hostname }}/gentoo"
 ```
 
 配置好以上两项后,执行 `emerge --sync` 进行更新。
+
+### Gentoo Prefix Bootstrap 镜像配置：
+
+在运行 Bootstrap 脚本之前，可通过设置以下环境变量选择 Bootstrap 过程中使用的镜像。
+
+```
+export GENTOO_MIRRORS="http://{{ site.hostname }}/gentoo"
+export GNU_URL="http://{{ site.hostname }}/gnu"
+export SNAPSHOT_URL="http://{{ site.hostname }}/gentoo/snapshots"
+```
+
+Bootstrap 成功后，若对 Gentoo Portage 和 Distfiles 换源，可参照以上几节，只需将 `/etc` 换成 `$EPREFIX/etc`
