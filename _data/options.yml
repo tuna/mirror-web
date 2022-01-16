@@ -164,6 +164,8 @@ mirror_desc:
     desc: Git 工具的 Windows 系统版本
   - name: git-repo
     desc: Google 开发的项目依赖下载工具 repo 的镜像
+  - name: github-raw
+    desc: 一些 Github 项目的部分文件镜像（被其他镜像所使用）
   - name: github-release
     desc: 一些项目的 Github Release 镜像
   - name: gitlab-ce
@@ -438,13 +440,9 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - endeavouros
-  - ubuntukylin
-  - putty
-  - postmarketOS
-  - postmarketOS-images
-  - obs-studio
-  - stellarium
+  - wireshark
+  - centos-stream
+  - ohmyzsh.git
 
 unlisted_mirrors:
   - status: 'success'
