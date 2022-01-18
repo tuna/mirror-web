@@ -452,12 +452,6 @@ unlisted_mirrors:
     upstream: 'https://aur.archlinux.org/'
     is_master: true
   - link_to: 'osdn'
-    name: "manjaro-cd"
-    url: '/osdn/storage/g/m/ma/manjaro/'
-  - link_to: 'osdn'
-    name: "manjaro-arm-cd"
-    url: '/osdn/storage/g/m/ma/manjaro-arm/'
-  - link_to: 'osdn'
     name: "mxlinux-isos"
     url: '/osdn/storage/g/m/mx/mx-linux/ISOs/'
   - link_to: 'osdn'
