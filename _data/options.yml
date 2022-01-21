@@ -300,6 +300,8 @@ mirror_desc:
     desc: Nixpkgs 软件包发行版
   - name: nixos-images
     desc: NixOS 的安装镜像和虚拟机镜像
+  - name: nginx.io
+    desc: nginx.io 为Debian / Ubuntu 编译的最新版 nginx 
   - name: nodejs-release
     desc: 预编译的 Node.js 二进制程序
   - name: nodesource
@@ -443,6 +445,7 @@ new_mirrors:
   - wireshark
   - centos-stream
   - ohmyzsh.git
+  - nginx.io
 
 unlisted_mirrors:
   - status: 'success'
