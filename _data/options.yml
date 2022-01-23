@@ -454,6 +454,12 @@ unlisted_mirrors:
     url: 'https://aur.tuna.tsinghua.edu.cn/'
     upstream: 'https://aur.archlinux.org/'
     is_master: true
+  - status: 'success'
+    last_update: '-'
+    name: "tuna"
+    url: '/tuna/'
+    upstream: 'cloud.tsinghua.edu.cn'
+    is_master: true
   - link_to: 'osdn'
     name: "mxlinux-isos"
     url: '/osdn/storage/g/m/mx/mx-linux/ISOs/'
