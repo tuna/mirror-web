@@ -4,8 +4,6 @@ mirror_desc:
     desc: Android 操作系统源代码
   - name: AdoptOpenJDK
     desc: 社区维护的 OpenJDK 二进制包
-  - name: AUR
-    desc: Arch Linux 用户软件库
   - name: Bananian
     desc: 为 Banana Pi 制作的，基于官方 Debian 仓库的发行版镜像和软件包仓库
   - name: CPAN
@@ -450,12 +448,6 @@ new_mirrors:
   - nginx.io
 
 unlisted_mirrors:
-  - status: 'success'
-    last_update: '-'
-    name: "AUR"
-    url: 'https://aur.tuna.tsinghua.edu.cn/'
-    upstream: 'https://aur.archlinux.org/'
-    is_master: true
   - status: 'success'
     last_update: '-'
     name: "tuna"
