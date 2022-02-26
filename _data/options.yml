@@ -299,7 +299,7 @@ mirror_desc:
   - name: nixos-images
     desc: NixOS 的安装镜像和虚拟机镜像
   - name: u.sb
-    desc: 为Debian / Ubuntu 编译的最新版 nginx
+    desc: 为 Debian / Ubuntu 编译的最新版 nginx
   - name: nodejs-release
     desc: 预编译的 Node.js 二进制程序
   - name: nodesource
