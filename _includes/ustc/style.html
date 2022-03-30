@@ -1,0 +1,541 @@
+<style rel='stylesheet' type='text/css'>
+    /* css reset */
+    html {
+        color: #000;
+        background: transparent;
+    }
+
+    body,
+    div,
+    dl,
+    dt,
+    dd,
+    ul,
+    ol,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    pre,
+    code,
+    form,
+    fieldset,
+    legend,
+    input,
+    textarea,
+    p,
+    blockquote,
+    th,
+    td {
+        margin: 0;
+        padding: 0
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0
+    }
+
+    fieldset,
+    img {
+        border: 0
+    }
+
+    address,
+    caption,
+    cite,
+    code,
+    dfn,
+    em,
+    strong,
+    th,
+    var {
+        font-style: normal;
+        font-weight: normal
+    }
+
+    li {
+        list-style: none
+    }
+
+    caption,
+    th {
+        text-align: left
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 100%;
+        font-weight: normal
+    }
+
+    q:before,
+    q:after {
+        content: ''
+    }
+
+    abbr,
+    acronym {
+        border: 0;
+        font-variant: normal
+    }
+
+    sup {
+        vertical-align: text-top
+    }
+
+    sub {
+        vertical-align: text-bottom
+    }
+
+    input,
+    textarea,
+    select {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit
+    }
+
+    input,
+    textarea,
+    select {
+        *font-size: 100%
+    }
+
+    legend {
+        color: #000
+    }
+
+    /*stylesheet here*/
+    body {
+        background-color: #FDFFFD;
+    }
+
+    #header {
+        width: 75%;
+        margin: 0 auto;
+    }
+
+    #headlinks {
+        float: right;
+        margin-right: 10px;
+        padding: 10px 0;
+    }
+
+    #headlinks li {
+        float: left;
+        margin-left: 25px;
+        font-family: "Open Sans", "Ubuntu", Helvetica, Arial, Geneva, sans-serif;
+        font-size: 16px;
+        color: #EEECDF;
+    }
+
+    #headlinks li:hover {
+        color: #FFF;
+    }
+
+    #headlinks li a {
+        font-family: "Open Sans", "Ubuntu", Helvetica, Arial, Geneva, sans-serif;
+        font-size: 16px;
+        color: #EEECDF;
+        text-decoration: none;
+    }
+
+    #headlinks li a:hover {
+        color: #FFF;
+    }
+
+    #welcome {
+        /*width: 100%;*/
+        padding: 40px 15px 40px 0px;
+        background: #40bd97;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #40bd97 0%, #07a878 100%);
+        /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #40bd97), color-stop(100%, #07a878));
+        /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #40bd97 0%, #07a878 100%);
+        /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #40bd97 0%, #07a878 100%);
+        /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #40bd97 0%, #07a878 100%);
+        /* IE10+ */
+        background: linear-gradient(to bottom, #40bd97 0%, #07a878 100%);
+        /* W3C */
+    }
+
+    #intro {
+        margin: 0 auto;
+        width: 75%;
+        color: #F1F1F1;
+    }
+
+    #intro h1 {
+        font-family: "Open Sans", "Ubuntu", Helvetica, Arial, Geneva, sans-serif;
+        font-weight: 400;
+        font-size: 48px;
+        margin-top: 10px;
+        color: #FFF;
+    }
+
+    #intro h2 {
+        font-family: "Open Sans", "Ubuntu", Helvetica, Arial, Geneva, sans-serif;
+        font-weight: 300;
+        font-size: 24px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #intro p {
+        margin-bottom: 0px;
+        line-height: 1.3em;
+        font-family: "Open Sans", "Ubuntu", Helvetica, Arial, Geneva, sans-serif;
+        font-weight: 300;
+        font-size: 18px;
+    }
+
+    #wrapper {
+        width: 75%;
+        margin: 25px auto;
+    }
+
+    #filelist h3 {
+        color: #07A878;
+        font-family: "Open Sans", "Ubuntu", "Hiragino Sans GB", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei", "Apple LiGothic Medium", "STXihei", "ST Heiti", "WenQuanYi Zen Hei Sharp", sans-serif;
+        font-weight: 100;
+        font-size: 24px;
+        margin: 5px 0 5px 0;
+    }
+
+    #filelist table {
+        width: 100%;
+        empty-cells: hide;
+    }
+
+    th {
+        font-weight: normal;
+        text-align: left;
+        font-size: 16px;
+        font-family: "Open Sans", "Ubuntu", Helvetica, Arial, Geneva, sans-serif;
+        padding: 3px 0px;
+    }
+
+    thead {
+        /*border-bottom:thin dotted #000;*/
+    }
+
+    #name {
+        text-align: left;
+        padding: 3px 0 3px 3px;
+    }
+
+    #help {
+        text-align: left;
+        padding: 3px 3px 3px 0;
+    }
+
+    #filelist td {
+        font-size: 14px;
+        line-height: 20px;
+        font-family: "Open Sans", "Ubuntu", Helvetica, Arial, Geneva, sans-serif;
+    }
+
+    #filelist td.help {
+        padding: 0px 3px 0px 0px;
+        text-align: left;
+    }
+
+    #filelist td.filename {
+        padding-left: 3px;
+    }
+
+    #filelist td a {
+        color: #0B486B;
+        text-decoration: none;
+    }
+
+    #filelist a:hover {
+        text-decoration: underline;
+    }
+
+    #revproxy,
+    #revproxy+h3>label>span+span,
+    #revproxy:checked+h3>label>span,
+    #revproxy~div {
+        display: none;
+    }
+
+    #revproxy:checked+h3>label>span+span {
+        display: inline-block;
+    }
+
+    #revproxy:checked~div {
+        display: block;
+    }
+
+    #filename {
+        text-align: left;
+        width: 15%;
+    }
+
+    .filesize {
+        display: none;
+        text-align: right;
+        width: 0%;
+    }
+
+    .filetime {
+        text-align: left;
+        width: 35%;
+    }
+
+    .help {
+        text-align: left;
+        width: 20px;
+    }
+
+    tbody tr:hover {
+        background-color: #DDEADD;
+    }
+
+    #sidebar div {
+        margin-bottom: 25px;
+    }
+
+    #sidebar h3 {
+        color: #07A878;
+        font-family: "Hiragino Sans GB", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei", "Apple LiGothic Medium", "STXihei", "ST Heiti", "WenQuanYi Zen Hei Sharp", sans-serif;
+        font-weight: 300;
+        font-size: 24px;
+        margin: 0px 0 15px 0;
+    }
+
+    #sidebar p,
+    a {
+        line-height: 1.5em;
+        font-family: "Open Sans", "Ubuntu", "Hiragino Sans GB", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei", "Apple LiGothic Medium", "STXihei", "ST Heiti", "WenQuanYi Zen Hei Sharp", sans-serif;
+    }
+
+    #sidebar a {
+        color: #030303;
+        text-decoration: none;
+    }
+
+    #sidebar a:hover {
+        text-decoration: underline;
+    }
+
+    .btn {
+        display: inline-block;
+        background-color: #07A878;
+        margin: 12px auto 12px auto;
+        padding: 3px 20px;
+        line-height: 1.5em;
+        font-family: "Open Sans", "Ubuntu", "Hiragino Sans GB", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei", "Apple LiGothic Medium", "STXihei", "ST Heiti", "WenQuanYi Zen Hei Sharp", sans-serif;
+        font-size: 20px;
+        color: #f3f3f3;
+        text-align: center;
+        -webkit-transition: background 0.3s linear;
+        -moz-transition: background 0.3s linear;
+        -ms-transition: background 0.3s linear;
+        -o-transition: background 0.3s linear;
+        transition: background 0.3s linear;
+        cursor: pointer;
+
+    }
+
+    .btn:hover {
+        background-color: #40BD97;
+    }
+
+    #footer {
+        background-color: #333;
+        color: #bbb;
+        padding: 30px 0;
+    }
+
+    #footercontent {
+        width: 75%;
+        margin: 0 auto;
+    }
+
+    #footerleft {
+        font-family: "Open Sans", "Ubuntu", "Hiragino Sans GB", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei", "Apple LiGothic Medium", "STXihei", "ST Heiti", "WenQuanYi Zen Hei Sharp", sans-serif;
+        width: 60%;
+        float: left;
+        font-size: 14px;
+        line-height: 1.5em;
+    }
+
+    #footerleft a {
+        color: #ccc;
+    }
+
+    #footerright {
+        width: 33%;
+        float: right;
+        text-align: center;
+    }
+
+    #footerright p {
+        margin-top: 5px;
+    }
+
+    .modal {
+        visibility: hidden;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        z-index: 5;
+    }
+
+    .modalclear {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.85);
+        height: 100%;
+        z-index: 6;
+    }
+
+    .modalcontainer {
+        position: absolute;
+        width: 40%;
+        min-width: 345px;
+        top: 10%;
+        left: 30%;
+        margin: 0 auto;
+        background-color: #FCFCFC;
+        border: 3px solid #ccc;
+        padding: 0px;
+        text-align: left;
+        overflow: hidden;
+        -webkit-box-shadow: 0px 0px 6px 3px rgba(128, 128, 128, 128);
+        box-shadow: 0px 0px 6px 3px rgba(128, 128, 128, 128);
+        opacity: 1;
+        z-index: 7;
+    }
+
+    .modaltitle {
+        font-family: "Open Sans", "Ubuntu", Helvetica, Arial, Geneva, sans-serif;
+        font-weight: 300;
+        font-size: 22px;
+        padding: 8px 20px;
+        background-color: #07A878;
+        color: #FCFCFC;
+    }
+
+    .modalcontent {
+        font-family: "Open Sans", "Ubuntu", "Hiragino Sans GB", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei", "Apple LiGothic Medium", "STXihei", "ST Heiti", "WenQuanYi Zen Hei Sharp", sans-serif;
+        font-size: 22px;
+        padding: 8px 20px;
+        background-color: #FFFFFF;
+        line-height: 1.8em;
+    }
+
+    .modalcontent p {
+        margin-bottom: 10px;
+    }
+
+    .modalcontent select {
+        width: 300px;
+    }
+
+    @media screen and (min-width:881px) {
+        #filelist {
+            float: left;
+            width: 60%;
+            border-right: 1px solid #eee;
+            padding-right: 30px;
+        }
+
+        #sidebar {
+            float: right;
+            width: 33%;
+        }
+    }
+
+    @media screen and (max-width:880px) {
+        #filelist {
+            float: left;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        #sidebar {
+            float: left;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        #isomodalcontainer {
+            left: 0%;
+            width: 100%;
+            text-align: center;
+            min-width: 0;
+        }
+    }
+
+    /* when a page is narrower than 540px,
+   regarded as mobile device
+ */
+    @media screen and (max-width:540px) {
+
+        .update,
+        .filetime,
+        #infinity {
+            display: none;
+        }
+
+        #intro h2 {
+            font-weight: 500;
+        }
+
+        #footerleft,
+        #header {
+            width: 100%;
+            float: none;
+        }
+
+        #footerright {
+            float: none;
+            width: 100%;
+            margin-top: 2em;
+        }
+
+        #welcome {
+            padding-bottom: 0px;
+        }
+
+        #search {
+            width: 50%;
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    #filetitle {
+        float: left;
+        line-height: 36px;
+    }
+
+    #search {
+        float: right;
+        line-height: 18px;
+        padding: 8px;
+        border: 1px solid #e3e3e3;
+        margin-top: 5px;
+        max-width: 240px;
+        font-size: 16px;
+    }
+</style>

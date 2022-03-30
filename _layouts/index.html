@@ -1,218 +1,76 @@
 <!DOCTYPE html>
-<html>
-	{% include head.html notArticle=true %}
-	<body>
-		{% unless page.legacy or site.issue %}
-		{% include legacy_notes.html %}
-		{% endunless %}
-		{% include nav.html %}
-		<div id="mirrors">
-			<div class="spacing hidden-xs"></div>
-			<div class="container">
-				<div class="row">
-					{% if site.issue %}
-					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-12 table-responsive">
-						<div class="alert text-center" id="cover-alert">
-							<h1>{{ site.school }}开源软件镜像站</h1>
-							<h3>暂时无法提供服务</h3>
-							<div class="pull-right">
-								<img src="/static/img/candle.jpg"
-									srcset="/static/img/candle.jpg 1x,
-													/static/img/candle@2x.jpg 2x"
-								/>
-							</div>
-							<div class="clearfix"></div>
-							<p>{{ site.issue }}</p>
-							{% if site.backtime %}
-							<p>预计恢复时间: {{ site.backtime }}</p>
-							{% endif %}
-						</div>
-					</div>
+<html lang="zh-Hans-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>{{ site.title }}</title>
+	<link href="/static/ustc/css/fonts.css" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" type="image/png" href="/static/img/favicon.png">
+	<script src="/static/js/jquery.min.js?{{ site.data['hash'] }}"></script>
+	<script src="/static/js/bootstrap.min.js?{{ site.data['hash'] }}"></script>
+	<script src="/static/js/bootstrap-select.min.js?{{ site.data['hash'] }}"></script>
+	<!-- <script src="/static/js/vue.min.js?{{ site.data['hash'] }}"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.0.5/dist/vue.js"></script>
+	<script src="/static/js/timeago.min.js?{{ site.data['hash'] }}"></script>
+	<script src="/static/js/markup.min.js?{{ site.data['hash'] }}"></script>
+	<script src="/static/js/webfont.js?{{ site.data['hash'] }}"></script>
+	<script src="/static/js/thuhidden.js?{{ site.data['hash'] }}"></script>
+	{% include ustc/style.html %}
+</head>
+
+<body>
+	{% include ustc/header.html %}
+	<div id="wrapper">
+		<div id="mirror-list">
+			<div id="filelist">
+				<div>
+					<h3 id="filetitle">文件列表</h3>
+					<input placeholder="按 S 过滤" id="search" type="search" autocomplete="off" />
 				</div>
-				<div class="row">
-					{% else %}
-					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-8 table-responsive" id="mirror-list">
-						<div class="row">
-							<h3 id="mirror-title">{% fa_svg fas.fa-cube %} 镜像列表 </h3>
-							{% unless page.legacy %}
-							<input type="search" v-model.trim="filter" id="search" placeholder="搜索" autocomplete="off">
-							{% endunless %}
-						</div>
-						<table class="table" v-if="mirrorList.length">
-							<thead>
-								<tr class="row">
-									<th class="col-{% if page.legacy %}xs{% else %}sm{% endif %}-8">Name</th>
-									<th class="col-{% if page.legacy %}xs{% else %}sm{% endif %}-4">Last Update</th>
-								</tr>
-							</thead>
-							<tbody>
-								{% if page.legacy %}
-								{% raw %}
-								{{mirs}}
-								<tr class="row status-{{status}}">
-									<td>
-										<a class="mirror-item-label" href="{{url}}" title="{{description}}">
-											{{name}}
-										</a>
-										{{if is_new}}
-										<span class="label label-new">new</span>
-										{{/if}}
-										{{if help_url}}
-										<a href="{{help_url}}"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-question-circle %}{% raw %}</i><span class="sr-only">[Help]</span></a>
-										{{/if}}
-									</td>
-									<td>
-										{{last_update}}{{if show_status}}<span class="label label-status {{label}}">{{status}}</span>{{/if}}
-									</td>
-								</tr>
-								{{/mirs}}
-								{% endraw %}
-								{% else %}
-								{% raw %}
-								<tr v-for="mir in filteredMirrorList" :class="['row', 'status-'+mir.status]" :key="mir.name">
-									<td class="col-md-8">
-										<a class="mirror-item-label"  data-toggle="popover" data-trigger="hover" data-placement="right"
-											:data-content="mir.description" :href="getURL(mir)" :aria-label="mir.name + ', ' + mir.description">
-											{{mir.name}}
-											<span class="label label-new" v-if='mir.is_new'>new</span>
-											<a v-if='mir.help_url' :href="mir.help_url"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-question-circle %}{% raw %}</i><span class="sr-only">[Help]</span></a>
-											<a v-if='mir.github_release' href="javascript:void(0)"><i aria-hidden="true" title="GitHub Release">{% endraw %}{% fa_svg fab.fa-github %}{% raw %}</i><span class="sr-only">[GitHub Release]</span></a>
-									</td>
-									<td class="col-md-4">
-										{{mir.last_update}}<span v-if="mir.show_status" :class="['label', 'label-status', mir.label, 'hidden-xs']">{{mir.status}}</span>
-									</td>
-								</tr>
-								{% endraw %}
-								{% endif %}
-							</tbody>
-						</table>
-						{% unless page.legacy %}
-						<div v-else class="sk-wave">
-							<div class="sk-rect sk-rect1"></div>
-							<div class="sk-rect sk-rect2"></div>
-							<div class="sk-rect sk-rect3"></div>
-							<div class="sk-rect sk-rect4"></div>
-							<div class="sk-rect sk-rect5"></div>
-						</div>
-						{% endunless %}
-					</div>
-					{% endif %}
-					{% unless site.issue %}
-					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-4">
-						<div class="spacing hidden-xs"></div>
-						<div id="wizard">
-						</div>
-					{% endunless %}
-						<div id="news" {%if site.issue%}class="col-md-3"{%endif%}>
-							<h4>{% fa_svg fas.fa-bullhorn %} 新闻公告 </h4>
-							<ul>
-								{% for news in site.categories.news limit: 3%}
-								<li><a href="/news/#{{news.slug}}"><strong>{{news.date | date: "%Y-%m-%d"}}</strong> {{news.title}}</a></li>
-								{% endfor %}
-							</ul>
-							<div class="text-right"><a href="/news/"> more {% fa_svg fas.fa-angle-double-right %} </a></div>
-						</div>
-						<div class="thuhidden {%if site.issue%}col-md-4{%endif%}">
-							<h4> {% fa_svg fas.fa-link %} 域名选择 </h4>
-							<ul>
-								<li><a href="{{ site.url }}">{{ site.url }}</a> 自动选择 </li>
-								{% if site.urlv6 %}
-									<li><a href="{{ site.urlv6 }}">{{ site.urlv6 }}</a> 只解析 IPv6</li>
-								{% endif %}
-								{% if site.urlv4 %}
-									<li><a href="{{ site.urlv4 }}">{{ site.urlv4 }}</a> 只解析 IPv4</li>
-								{% endif %}
-							</ul>
-						</div>
-						{% unless page.legacy or site.hide_download or site.issue %}
-						<div id="download-link">
-							<h4>{% fa_svg far.fa-file-archive %} 下载链接 </h4>
-							<p>常用发行版 iso 和应用工具安装包直接下载</p>
-							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#isoModal">
-								获取下载链接
-							</button>
-						</div>
-						{% endunless %}
-						<div class="thuhidden {%if site.issue%}col-md-3{%endif%}">
-							<h4> {% fa_svg far.fa-envelope %} 联系我们 </h4>
-							<ul>
-								<li><strong>意见反馈</strong> <br /> <a href="https://github.com/tuna/issues">https://github.com/tuna/issues</a></li>
-								<li><strong>发送邮件</strong> <br /> <a class="eib1gieB"></a></li>
-								<li><strong>在线交流</strong> <br /> <a href="https://web.libera.chat/#tuna"> #tuna at Libera.Chat </a></li>
-							</ul>
-						</div>
-						<div {%if site.issue%}class="col-md-2"{%endif%}>
-							<h4> {% fa_svg fas.fa-external-link-alt %} 相关链接 </h4>
-							<ul>
-								<li><a href="/help/">使用帮助</a></li>
-								{% unless site.issue %}
-								<li><a href="/status/#server-status">服务器状态</a></li>
-								<li><a href="/status/#syncing-status">同步状态</a></li>
-								{% endunless %}
-								<li class="thuhidden"><a href="https://tuna.moe/">清华大学 TUNA 协会</a></li>
-								<li><a href="https://github.com/tuna/tunasync">镜像管理器源码</a></li>
-								<li><a href="https://github.com/tuna/tunasync-scripts">自定义镜像脚本</a></li>
-							</ul>
-						</div>
-					{% unless site.issue %}
-					</div>
-					{% endunless %}
-				</div>
-			</div><!--/container -->
-		</div><!--/mirrors -->
-		{% include footer.html %}
-		{% unless page.legacy or site.issue %}
-		<!-- iso download wizard modal -->
-		<!-- Modal -->
-		{% raw %}
-		<div class="modal fade" id="isoModal" tabindex="-1" role="dialog" aria-labelledby="isoModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-lg" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		        <h4 class="modal-title" id="isoModalLabel">获取安装镜像</h4>
-		      </div>
-		      <div class="modal-body">
-					<div class="row">
-						<div class="col-md-12">
-							<ul class="nav nav-tabs">
-								<li role="presentation" :class="[curCategory === 'os' ? 'active' : '']" @click="switchCategory('os')" v-show="showCategory('os')"><a href="#">操作系统</a></li>
-								<li role="presentation" :class="[curCategory === 'app' ? 'active' : '']" @click="switchCategory('app')" v-show="showCategory('app')"><a href="#">应用软件</a></li>
-								<li role="presentation" :class="[curCategory === 'font' ? 'active' : '']" @click="switchCategory('font')" v-show="showCategory('font')"><a href="#">字体</a></li>
-							</ul>
-						</div>
-						<div class="col-md-3">
-							<ul class="nav nav-pills nav-stacked">
-								<li v-for="distro in curDistroList" :class="[selected.distro == distro.distro ? 'active' : '']">
-									<a href="#" @click="switchDistro(distro)">{{ distro.distro }}</a>
-								</li>
-							</ul>
-						</div>
-						<div class="col-md-9">
-							<h3>{{selected.distro}}</h3>
-							<ul>
-								<template v-for="url in selected.urls">
-								<li><a :href="url.url">{{url.name}}</a></li>
-								</template>
-							</ul>
-						</div>
-					</div>
-		      </div>
-		    </div>
-		  </div>
-		</div><!-- /iso download wizard modal -->
-		{% endraw %}
-		{% endunless %}
-	</body>
-	{% raw %}
-	{% endraw %}
-	{% unless page.legacy or site.issue %}
+				<table class="filelist">
+					<thead>
+						<tr id="firstline">
+							<th id="name">Folder</th>
+							<th class="update">Last Update</th>
+							<th id="help">Help</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% raw %}
+						<tr v-for="mir in filteredMirrorList" :key="mir.name">
+							<td class="filename"><a :href="getURL(mir)">{{ mir.name }}</a></td>
+							<td class="filetime">{{ mir.last_update }}</td>
+							<td class="help">
+								<a v-if='mir.help_url' :href="mir.help_url">Help</a>
+							</td>
+						</tr>
+						{% endraw %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		{% include ustc/sidebar.html %}
+	</div>
+	{% include ustc/footer.html %}
+	<div class="modal" id="isomodal">
+		<div class="modalclear" id="isomodalclear" onclick="modal()"></div>
+		<div class="modalcontainer" id="isomodalcontainer" onclick="">
+			<div class="modaltitle" id="isomodaltitle"><span>获取安装镜像</span><span onclick="modal()"
+					style="float:right;cursor:pointer">X</span></div>
+			<div class="modalcontent" id="isomodalcontent">
+				<p>选择安装发行版： <select id="isodistro" onchange="switchdistro()"></select></p>
+				<p>选择发行版版本： <select id="isoversion">
+						<option value="none">-</option>
+					</select>
+				</p>
+				<span class="btn" onclick="downloadiso();">获取 ISO &gt;</span>
+			</div>
+		</div>
+	</div>
+	{% include ustc/script.html %}
 	<script src="/static/js/index.js?{{ site.data['hash'] }}"></script>
 	<script src="/static/js/browser-update.js?{{ site.data['hash'] }}"></script>
-	{% endunless %}
+</body>
+
 </html>
-<!--
-	vim: ts=2 sts=2 sw=2 noexpandtab
--->

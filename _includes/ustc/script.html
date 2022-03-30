@@ -1,0 +1,74 @@
+<script type="text/javascript">
+	var isoinfo;
+
+	function update_isodistro_options() {
+		$.getJSON("/static/status/isoinfo.json", function (data) {
+			isoinfo = data;
+			var s = document.getElementById("isodistro");
+			s.options.length = 0;
+			for (var i = 0; i < isoinfo.length; i++) {
+				s.options[s.options.length] = new Option(isoinfo[i].distro, i);
+			}
+			switchdistro();
+		});
+	}
+
+	function modal() {
+		var bx = document.getElementById("isomodal");
+		bx.style.visibility = (bx.style.visibility == "visible") ? "hidden" : "visible";
+	}
+
+	function switchdistro() {
+		var distro = document.getElementById("isodistro");
+		var idx = distro.selectedIndex;
+		var s = document.getElementById('isoversion');
+		s.options.length = 0;
+		for (var i = 0; i < isoinfo[idx].urls.length; i++) {
+			s.options[s.options.length] = new Option(isoinfo[idx].urls[i].name, i)
+		}
+	}
+
+	function downloadiso() {
+		var distro = document.getElementById("isodistro");
+		var version = document.getElementById("isoversion");
+		var i = distro.selectedIndex;
+		var j = version.selectedIndex;
+		var link = isoinfo[i].urls[j].url;
+		window.open(link);
+		modal();
+	}
+
+	update_isodistro_options();
+</script>
+
+<script>
+	(function () {
+		'use strict'
+
+		var userInput = document.getElementById('search')
+		var repoList = document.querySelectorAll('.filelist > tbody > tr')
+
+		userInput.addEventListener('input', function (evt) {
+			var pat = new RegExp(userInput.value, 'i')
+			Array.prototype.slice.call(repoList).forEach(function (tr) {
+				var a = tr.querySelector('a')
+				if (!pat.test(a.text)) {
+					tr.classList.add('hidden')
+				} else {
+					tr.classList.remove('hidden')
+				}
+			})
+		})
+
+		document.body.onkeyup = function (evt) {
+			if (evt.keyCode === 83 && document.activeElement.tagName !== 'INPUT') {
+				userInput.scrollIntoView()
+				userInput.focus()
+			}
+		}
+	})()
+</script>
+<!-- Designed by Miaomiao Li. It's a wonderful life! -->
+<!--
+    vim:ai:et:sta:ts=4:sts=4:sw=4
+-->
