@@ -5,7 +5,7 @@
         </a>
         {% if site.categories.news|length > 0 %}
         {% for news in site.categories.news limit: 3%}
-        <p><a href="{{ /news/#{{news.slug}} }}">{{ news.title }}</a></p>
+        <p><a href="/news/#{{news.slug}}">{{ news.title }}</a></p>
         {%- endfor %}
         {% else %}
         <p>暂无新闻
@@ -34,9 +34,9 @@
     </div> -->
     <div id="mirrorlinks">
         <h3>相关链接</h3>
-        <a href="https://mirrors.tuna.tsinghua.edu.cn/help/" target="_blank">使用帮助</a><br />
-        <a href="https://mirrors.tuna.tsinghua.edu.cn/status/#server-status" target="_blank">服务器状态</a><br />
-        <a href="https://mirrors.tuna.tsinghua.edu.cn/status/#syncing-status" target="_blank">同步状态</a><br />
+        <a href="/help/" target="_blank">使用帮助</a><br />
+        <a href="/status/#server-status" target="_blank">服务器状态</a><br />
+        <a href="/status/#syncing-status" target="_blank">同步状态</a><br />
         <a href="https://tuna.moe/" target="_blank">清华大学 TUNA 协会</a><br />
         <a href="https://github.com/tuna/tunasync" target="_blank">镜像管理器源码</a><br />
         <a href="https://github.com/tuna/tunasync-scripts" target="_blank">自定义镜像脚本</a><br />
