@@ -10,7 +10,7 @@
 	<script src="/static/js/jquery.min.js?{{ site.data['hash'] }}"></script>
 	<script src="/static/js/bootstrap.min.js?{{ site.data['hash'] }}"></script>
 	<script src="/static/js/bootstrap-select.min.js?{{ site.data['hash'] }}"></script>
-  <script src="/static/js/vue.min.js?{{ site.data['hash'] }}"></script>
+	<script src="/static/js/vue.min.js?{{ site.data['hash'] }}"></script>
 	<script src="/static/js/timeago.min.js?{{ site.data['hash'] }}"></script>
 	<script src="/static/js/markup.min.js?{{ site.data['hash'] }}"></script>
 	<script src="/static/js/webfont.js?{{ site.data['hash'] }}"></script>
@@ -25,7 +25,7 @@
 			<div id="filelist">
 				<div>
 					<h3 id="filetitle">文件列表</h3>
-					<input placeholder="按 S 过滤" id="search" type="search" autocomplete="off" />
+					<input placeholder="按 S 过滤" v-model.trim="filter" id="search" type="search" autocomplete="off" />
 				</div>
 				<table class="filelist">
 					<thead>

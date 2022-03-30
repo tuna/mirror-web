@@ -44,28 +44,13 @@
 <script>
 	(function () {
 		'use strict'
-
-		var userInput = document.getElementById('search')
-		var repoList = document.querySelectorAll('.filelist > tbody > tr')
-
-		userInput.addEventListener('input', function (evt) {
-			var pat = new RegExp(userInput.value, 'i')
-			Array.prototype.slice.call(repoList).forEach(function (tr) {
-				var a = tr.querySelector('a')
-				if (!pat.test(a.text)) {
-					tr.classList.add('hidden')
-				} else {
-					tr.classList.remove('hidden')
-				}
-			})
-		})
-
-		document.body.onkeyup = function (evt) {
+		document.body.addEventListener('keyup', function (evt) {
 			if (evt.keyCode === 83 && document.activeElement.tagName !== 'INPUT') {
-				userInput.scrollIntoView()
-				userInput.focus()
+			  var userInput = document.getElementById('search');
+				userInput.scrollIntoView();
+				userInput.focus();
 			}
-		}
+		})
 	})()
 </script>
 <!-- Designed by Miaomiao Li. It's a wonderful life! -->
