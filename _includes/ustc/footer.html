@@ -6,6 +6,24 @@
             <p>本站相关源码可在 <a href="https://github.com/tuna/tunasync"><em>这里(镜像管理器)</em></a> 和 <a
                     href="https://github.com/tuna/mirror-web"><em>这里(镜像站网页)</em></a> 获取。</p>
             <p>根据相关法律法规，本站不对欧盟用户提供服务。</p>
+						{% if site.sponsor %}
+						<div class="img-responsive thuhidden">
+						{% for sponsor in site.sponsor %}
+						<img src="/static/img/{{ site.sponsors[sponsor].logo }}.png" srcset="/static/img/{{ site.sponsors[sponsor].logo }}.png 1x, /static/img/{{ site.sponsors[sponsor].logo }}@2x.png 2x, /static/img/{{ site.sponsors[sponsor].logo }}@3x.png 3x, /static/img/{{ site.sponsors[sponsor].logo }}@4x.png 4x" alt="{{ site.sponsors[sponsor].short }}" />
+						{% endfor %}
+						</div>
+						{% assign first_sponsor = site.sponsors[site.sponsor.first] %}
+						<p class="thuhidden">本存储服务器由<a href="{{ first_sponsor.link }}">{{ first_sponsor.name }}</a>（{{ first_sponsor.eng }}）赞助{% if site.poweredby %}，并由{{ site.poweredbys[site.poweredby] }}强力驱动{% endif %}。TUNA 感谢<!--
+						{% for sponsor in site.sponsor %}
+						-->{{ site.sponsors[sponsor].short }}<!--
+							{% if forloop.rindex0 == 1 %}
+							-->和<!--
+							{% elsif forloop.rindex0 > 1 %}
+							-->、<!--
+							{% endif %}
+						{% endfor %}
+						-->对开源软件和社区的贡献。</p>
+						{% endif %}
         </div>
         <div id="footerright">
             <p>
