@@ -10,8 +10,7 @@
 	<script src="/static/js/jquery.min.js?{{ site.data['hash'] }}"></script>
 	<script src="/static/js/bootstrap.min.js?{{ site.data['hash'] }}"></script>
 	<script src="/static/js/bootstrap-select.min.js?{{ site.data['hash'] }}"></script>
-	<!-- <script src="/static/js/vue.min.js?{{ site.data['hash'] }}"></script> -->
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.0.5/dist/vue.js"></script>
+  <script src="/static/js/vue.min.js?{{ site.data['hash'] }}"></script>
 	<script src="/static/js/timeago.min.js?{{ site.data['hash'] }}"></script>
 	<script src="/static/js/markup.min.js?{{ site.data['hash'] }}"></script>
 	<script src="/static/js/webfont.js?{{ site.data['hash'] }}"></script>
@@ -37,6 +36,21 @@
 						</tr>
 					</thead>
 					<tbody>
+						{% if page.legacy %}
+						{% raw %}
+						{{mirs}}
+						<tr>
+							<td class="filename"><a :href="{{url}}" title="{{description}}">{{name}}</a></td>
+							<td class="filetime">{{last_update}}</td>
+							<td class="help">
+								{{if help_url}}
+								<a href="{{help_url}}">Help</a>
+								{{/if}}
+							</td>
+						</tr>
+						{{/mirs}}
+						{% endraw %}
+						{% else %}
 						{% raw %}
 						<tr v-for="mir in filteredMirrorList" :key="mir.name">
 							<td class="filename"><a :href="getURL(mir)">{{ mir.name }}</a></td>
@@ -46,6 +60,7 @@
 							</td>
 						</tr>
 						{% endraw %}
+						{% endif %}
 					</tbody>
 				</table>
 			</div>
