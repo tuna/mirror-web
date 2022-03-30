@@ -47,7 +47,7 @@ $color_primary_dark: $color_thu_purple_dark;
 
 @mixin dark {
   {% unless site.issue %}
-  .____亲爱的朋友_你是否有时间停下来听我向您介绍一下我们的教父和救主_橙子 {
+    @media (prefers-color-scheme: dark) {
         @content
     }
   {% else %}
