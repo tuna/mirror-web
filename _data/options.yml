@@ -46,6 +46,8 @@ mirror_desc:
     desc: 用于 ARM 平台的 Arch Linux 镜像和软件包仓库
   - name: archlinuxcn
     desc: 由 Arch Linux 中文社区驱动的非官方用户仓库，包含中文用户常用软件、工具、字体/美化包等
+  - name: archlinux-gui
+    desc: Arch Linux 图形化安装器
   - name: armbian
     desc: Armbian（面向 ARM 单板机的发行版）的软件源
   - name: armbian-releases
@@ -463,6 +465,9 @@ unlisted_mirrors:
   - link_to: 'osdn'
     name: "linuxlite-cd"
     url: '/osdn/storage/g/l/li/linuxlite/'
+  - link_to: 'osdn'
+    name: "archlinux-gui"
+    url: '/osdn/arch-linux-gui/'
   - link_to: 'github-release'
     name: "prometheus"
     url: '/github-release/prometheus/prometheus/'
