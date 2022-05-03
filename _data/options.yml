@@ -14,8 +14,6 @@ mirror_desc:
     desc: TeX 的各种发行版、软件包和文档
   - name: CocoaPods
     desc: Objective-C 和 Swift 的依赖管理器
-  - name: ELK
-    desc: 现已更名为 Elastic Stack，仅保留用作向后兼容
   - name: FreeCAD
     desc: 基于 Qt 的计算机辅助设计程序
   - name: KaOS
