@@ -373,9 +373,11 @@ mirror_desc:
   - name: repoforge
     desc: Repoforge 是 RHEL 系统下的软件仓库，已长期无更新
   - name: ros
-    desc: ROS提供一系列程序库和工具以帮助软件开发者创建机器人应用软件
+    desc: ROS 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件
   - name: ros2
     desc: ROS (Robot Operating System) 2.0 版本
+  - name: rosdistro
+    desc: rosdep 所使用的依赖关系数据库
   - name: rpmfusion
     desc: RPM Fusion 提供了一些 Fedora Project 和 Red Hat 不包含的软件
   - name: rubygems
