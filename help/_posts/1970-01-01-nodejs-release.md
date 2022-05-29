@@ -34,3 +34,28 @@ export FNM_NODE_DIST_MIRROR=https://{{ site.hostname }}/nodejs-release/
 
 fnm install <version>
 ```
+
+#### volta
+
+创建或编辑 `~/.volta/hooks.json` (Linux/MacOS)，或 `%LOCALAPPDATA%\Volta\hooks.json` (Windows)，将内容替换如下
+
+```
+{
+    "node": {
+        "index": {
+            "template": "https://{{ site.hostname }}/nodejs-release/index.json"
+        },
+        "distro": {
+            "template": "https://{{ site.hostname }}/nodejs-release/v{% raw %}{{version}}/node-v{{version}}-{{os}}-{{arch}}{% endraw %}.tar.gz"
+        }
+    }
+}
+```
+
+之后即可正常使用 `volta`
+
+```
+volta install node@<version>
+```
+
+
