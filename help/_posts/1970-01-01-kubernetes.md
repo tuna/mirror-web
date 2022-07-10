@@ -15,38 +15,14 @@ Kubernetes 是用于自动部署，扩展和管理容器化应用程序的开源
 首先导入 gpg key：
 
 ```shell
-$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+$ sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 ```
-
 
 新建 `/etc/apt/sources.list.d/kubernetes.list`，内容为
 
-
-<form class="form-inline">
-<div class="form-group">
-	<label>你的Debian版本: </label>
-	<select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
-		<option data-os="ubuntu" data-release="trusty">Ubuntu 14.04 LTS</option>
-		<option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
-		<option data-os="debian" data-release="jessie">Debian 8 (Jessie)</option>
-		<option data-os="debian" data-release="stretch" selected>Debian 9 (Stretch)</option>
-</select>
-</div>
-</form>
-
-<p></p>
-<pre>
-<code id="apt-content">
-</code>
-</pre>
-
-
-{% raw %}
-<script id="apt-template" type="x-tmpl-markup">
-deb https://{%endraw%}{{ site.hostname }}{%raw%}/kubernetes/apt kubernetes-{{release_name}} main
-</script>
-{%endraw%}
-
+```
+deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://{{ site.hostname }}/kubernetes/apt kubernetes-xenial main
+```
 
 ### RHEL/CentOS 用户
 
