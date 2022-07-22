@@ -54,8 +54,6 @@ mirror_desc:
     desc: Artix Linux 的官方软件包仓库（基于 Arch Linux 的不使用 systemd 的发行版）
   - name: artixlinux-iso
     desc: Artix Linux 的安装镜像
-  - name: bananian
-    desc: 用于 Banana Pi 的 Debian 操作系统
   - name: binutils-gdb.git
     desc: Binutils 和 GDB 等开发工具的源码 Git 仓库
   - name: bioconductor
