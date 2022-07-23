@@ -37,7 +37,7 @@ repo init -u https://{{ site.hostname }}/git/lineageOS/LineageOS/android.git -b 
 
 (如果已经有从github同步的lineageOS源代码，可以从这里直接开始）
 
-打开`.repo/manifest.xml`，将
+打开`.repo/manifests/default.xml`，将
 
 ```xml
   <remote  name="github"
