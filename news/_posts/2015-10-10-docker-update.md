@@ -14,3 +14,5 @@ docker 镜像作出相应调整。
 - YUM: http://{{ site.hostname }}/docker/yum/repo
 
 请根据 [docker镜像帮助](/help/docker) 调整至正确的打开方式。
+
+**Update1**: 以上链接已失效，docker 镜像已被 docker-ce 镜像替代，可参考 [docker-ce 镜像帮助](/help/docker-ce)。
