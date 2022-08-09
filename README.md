@@ -64,7 +64,7 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/status/isoinfo.json -O static/s
 
 1. Fork 本项目并 clone
 2. 创建分支 `git checkout -b foo-doc`
-3. 在 `_posts/help` 中建立文档文件，文件名格式为 `年-月-日-名称.md`
+3. 在 `help/_post` 中建立文档文件，文件名格式为 `年-月-日-名称.md`
 4. 用 markdown 语法编写文档
 5. 提交并推送代码
 6. 发送 Pull Request
