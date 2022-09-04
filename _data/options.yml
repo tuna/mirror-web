@@ -394,6 +394,8 @@ mirror_desc:
     desc: 用于 ARM 设备的 Slackware 发行版源代码和官方软件包仓库
   - name: solus
     desc: Solus 的软件仓库，致力于制作对新手友好的发行版
+  - name: sourceware
+    desc: sourceware 网站的项目
   - name: stackage
     desc: Haskell 项目管理器 stack 所需的元数据与 ghc 安装包的镜像
   - name: steamos
@@ -452,6 +454,9 @@ unlisted_mirrors:
     url: '/tuna/'
     upstream: 'cloud.tsinghua.edu.cn'
     is_master: true
+  - link_to: 'sourceware'
+    name: "cygwin"
+    url: '/cygwin/'
   - link_to: 'osdn'
     name: "mxlinux-isos"
     url: '/osdn/storage/g/m/mx/mx-linux/ISOs/'
