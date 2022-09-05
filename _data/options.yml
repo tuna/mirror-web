@@ -124,6 +124,8 @@ mirror_desc:
     desc: RHEL 及其变体的 RPM 软件包仓库
   - name: elvish
     desc: TUNA 前会长 xiaq 开发的革命性 Shell
+  - name: entware
+    desc: 适用于嵌入式系统的软件包库
   - name: epel
     desc: 企业版 Linux 附加软件包
   - name: erlang-solutions
