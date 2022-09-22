@@ -543,6 +543,7 @@ force_redirect_help_mirrors:
   - flutter-sdk.git
   - julia-general.git
   - pkgsrc.git
+  - nixpkgs.git
 
 label_map:
   unknown: label-default
