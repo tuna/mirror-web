@@ -336,6 +336,8 @@ mirror_desc:
     desc: 开源的数据库解决方案，详见 http://www.percona.com
   - name: pkgsrc
     desc: NetBSD 的第三方软件源
+  - name: pkgsrc.git
+    desc: pkgsrc 的源码仓库
   - name: postgresql
     desc: 著名的开源关系型数据库 PostgreSQL 的镜像
   - name: prometheus
@@ -540,6 +542,7 @@ force_redirect_help_mirrors:
   - glibc.git
   - flutter-sdk.git
   - julia-general.git
+  - pkgsrc.git
 
 label_map:
   unknown: label-default
