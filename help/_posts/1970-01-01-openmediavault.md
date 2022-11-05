@@ -38,16 +38,16 @@ omv-salt stage run all
 
 ```bash
 cat <<EOF > /etc/apt/sources.list.d/openmediavault.list
-deb https://{{ site.hostname }}/OpenMediaVault/public usul main
-deb https://{{ site.hostname }}/OpenMediaVault/packages usul main
+deb https://{{ site.hostname }}/OpenMediaVault/public shaitan main
+deb https://{{ site.hostname }}/OpenMediaVault/packages shaitan main
 ## Uncomment the following line to add software from the proposed repository.
-# deb https://{{ site.hostname }}/OpenMediaVault/public usul-proposed main
-# deb https://{{ site.hostname }}/OpenMediaVault/packages usul-proposed main
+# deb https://{{ site.hostname }}/OpenMediaVault/public shaitan-proposed main
+# deb https://{{ site.hostname }}/OpenMediaVault/packages shaitan-proposed main
 ## This software is not part of OpenMediaVault, but is offered by third-party
 ## developers as a service to OpenMediaVault users.
-# deb https://{{ site.hostname }}/OpenMediaVault/public usul partner
-# deb https://{{ site.hostname }}/OpenMediaVault/packages usul partner
+# deb https://{{ site.hostname }}/OpenMediaVault/public shaitan partner
+# deb https://{{ site.hostname }}/OpenMediaVault/packages shaitan partner
 EOF
 ```
 
-其中 `usul` 为 Open Media Vault 的 codename（本样例代码为 5.x 的 codename）
+其中 `shaitan` 为 Open Media Vault 的 codename（本样例代码为 6.x 的 codename）
