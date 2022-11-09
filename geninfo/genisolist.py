@@ -20,8 +20,16 @@ def getPlatformPriority(platform):
     platform = platform.lower()
     if platform in ['amd64', 'x86_64', '64bit']:
         return 100
+    elif platform in ['arm64', 'aarch64', 'arm64v8']:
+        return 95
+    elif platform in ['riscv64']:
+        return 95
+    elif platform in ['loongson2f', 'loongson3']:
+        return 95
     elif platform in ['i386', 'i486', 'i586', 'i686', 'x86', '32bit']:
         return 90
+    elif platform in ['arm32', 'armhf', 'armv7']:
+        return 85
     else:
         return 0
 
