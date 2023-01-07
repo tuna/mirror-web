@@ -1,46 +1,19 @@
 # TUNA mirrors 主页
 
+注意：如果使用本项目搭建开源镜像站，**必须**：
+
+* 移除所有与清华大学和 TUNA 相关的内容，包括且不限于站名、logo 和各种文档中出现的所有文本和图形；
+* 在网站首页恰当标注项目来源（`tuna/mirror-web`）；
+* 遵循 GPLv2 协议开放修改后的源代码；
+
 ## 运行 Demo
 
 ### 直接编译
 
 本站使用 Jekyll 编写，并使用 babel 编译 ECMAScript6，因此必须安装 ruby >= 2.0 和 nodejs.
 
-### For Centos
-1.安装 nodejs
-```
-yum install nodejs
-```
-2.安装 ruby 2.2.4 and rubygems
-
-Step 1: Install Required Packages
-```
-yum install gcc-c++ patch readline readline-devel zlib zlib-devel
-yum install libyaml-devel libffi-devel openssl-devel make
-yum install bzip2 autoconf automake libtool bison iconv-devel sqlite-devel
-```
-Step 2: Compile ruby 2.2.4 source code
-```
-wget -c https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.4.tar.gz
-```
-Step 3: Install rubygems
-```
-wget -c https://rubygems.org/rubygems/rubygems-2.4.8.tgz
-ruby setup.rb
-```
-3. 安装 bundle 和 build
-```
-gem install bundle
-gem install build
-```
-4. Fork mirrors source code
-
-```
-bundle install
-jekyll build
-```
-
 ### Build In Docker
+
 ```
 cd mirror-web
 docker build -t builden -f Dockerfile.build .
@@ -51,7 +24,6 @@ docker run -it -v /path/to/mirror-web/:/data builden
 
 ```
 wget https://mirrors.tuna.tsinghua.edu.cn/static/tunasync.json -O static/tunasync.json
-wget https://mirrors.tuna.tsinghua.edu.cn/static/tunet.json -O static/tunet.json
 mkdir -p static/status
 wget https://mirrors.tuna.tsinghua.edu.cn/static/status/isoinfo.json -O static/status/isoinfo.json
 ```
@@ -79,3 +51,4 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/status/isoinfo.json -O static/s
 
 #### 表单选择
 例如 <http://mirrors.tuna.tsinghua.edu.cn/help/mongodb/> 中，通过表单选择操作系统和版本号，建议直接使用 Vue.js
+
