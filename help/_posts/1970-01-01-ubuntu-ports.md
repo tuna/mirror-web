@@ -20,8 +20,8 @@ TUNA 的软件源镜像。
 		<option data-release="xenial">16.04 LTS</option>
 		<option data-release="bionic">18.04 LTS</option>
 		<option data-release="focal">20.04 LTS</option>
-		<option data-release="impish">21.10</option>
 		<option data-release="jammy" selected>22.04 LTS</option>
+		<option data-release="kinetic">22.10</option>
 	</select>
 </div>
 </form>
