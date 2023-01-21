@@ -29,6 +29,7 @@ curl https://packages.gitlab.com/gpg.key 2> /dev/null | sudo apt-key add - &>/de
 		<option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
 		<option data-os="ubuntu" data-release="bionic">Ubuntu 18.04 LTS</option>
 		<option data-os="ubuntu" data-release="focal">Ubuntu 20.04 LTS</option>
+		<option data-os="ubuntu" data-release="jammy">Ubuntu 22.04 LTS</option>
 	</select>
 </div>
 </form>
