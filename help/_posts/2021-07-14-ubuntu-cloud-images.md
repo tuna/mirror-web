@@ -11,4 +11,4 @@ ubuntu-cloud-images 镜像使用指南
 
 收录官方对 KVM,Hyper-v,XEN 等虚拟结构的官方定制镜像
 
-使用 <https://mirrors.tuna.tsinghua.edu.cn/ubuntu-cloud-images/locator/> 进行查找所需要的镜像
+使用 <https://{{ site.hostname }}/ubuntu-cloud-images/locator/> 进行查找所需要的镜像
