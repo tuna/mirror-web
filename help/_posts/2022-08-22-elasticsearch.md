@@ -1,7 +1,7 @@
 ---
 category: help
 layout: help
-mirrorid: elasticsearch
+mirrorid: elasticstack
 ---
 
 # Elasticsearch 镜像安装帮助
