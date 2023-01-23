@@ -30,6 +30,7 @@ curl -s https://repos.influxdata.com/influxdb.key | sudo apt-key add -
 		<option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
 		<option data-os="ubuntu" data-release="bionic">Ubuntu 18.04 LTS</option>		
 		<option data-os="ubuntu" data-release="focal">Ubuntu 20.04 LTS</option>
+		<option data-os="ubuntu" data-release="jammy">Ubuntu 22.04 LTS</option>
 </select>
 </div>
 </form>
@@ -61,9 +62,7 @@ sudo apt install influxdb
 <div class="form-group">
 	<label>你的 CentOS / RHEL 版本: </label>
 	<select class="form-control release-select" data-template="#yum-template" data-target="#yum-content">
-		<option data-release="el6-x86_64">6</option>
 		<option data-release="el7-x86_64">7</option>
-		<option data-release="el8-x86_64">8 / Stream</option>
 	</select>
 </div>
 </form>
