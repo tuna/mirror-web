@@ -296,6 +296,8 @@ mirror_desc:
     desc: Nixpkgs 软件包发行版
   - name: nixos-images
     desc: NixOS 的安装镜像和虚拟机镜像
+  - name: openbsd
+    desc: OpenBSD 软件包镜像源
   - name: u.sb
     desc: 为 Debian / Ubuntu 编译的最新版 nginx
   - name: nodejs-release
