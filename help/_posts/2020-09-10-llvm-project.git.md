@@ -29,7 +29,4 @@ git remote set-url origin https://{{ site.hostname }}/git/llvm-project.git
 将默认上游设置为 TUNA 镜像。
 
 
-注：
-
-* 如需要各个子项目的发布版本代码，请至 [GitHub Release 镜像](https://{{ site.hostname }}/github-release/llvm/llvm-project/) 下载。
-* 如需要 LLVM 合并为 monorepo 前的各个子仓库（已经不再更新），请至 [此页面](/help/llvm/) 查看使用帮助。
+注：如需要各个子项目的发布版本代码，请至 [GitHub Release 镜像](https://{{ site.hostname }}/github-release/llvm/llvm-project/) 下载。
