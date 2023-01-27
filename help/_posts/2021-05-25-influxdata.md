@@ -13,7 +13,7 @@ mirrorid: influxdata
 首先信任来自 [influxdata](https://docs.influxdata.com/telegraf/v1.18/introduction/installation/) 的PGP公钥：
 
 ```shell
-curl -s https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+wget -qO- https://repos.influxdata.com/influxdata-archive_compat.key | sudo apt-key add -  
 ```
 
 将下方文本框中的内容写入 `/etc/apt/sources.list.d/influxdb.list`
