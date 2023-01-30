@@ -298,6 +298,8 @@ mirror_desc:
     desc: NixOS 的安装镜像和虚拟机镜像
   - name: openbsd
     desc: OpenBSD 软件包镜像源
+  - name: netbsd
+    desc: NetBSD 系统镜像源
   - name: u.sb
     desc: 为 Debian / Ubuntu 编译的最新版 nginx
   - name: nodejs-release
