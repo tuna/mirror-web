@@ -12,41 +12,18 @@ mirrorid: influxdata
 
 首先信任来自 [influxdata](https://docs.influxdata.com/telegraf/v1.18/introduction/installation/) 的PGP公钥：
 
+_注：Influxdata 在 2023-01-26 使用了新的 GPG 密钥，详情可参考[此处](https://www.influxdata.com/blog/linux-package-signing-key-rotation/)_
+
 ```shell
-wget -qO- https://repos.influxdata.com/influxdata-archive_compat.key | sudo apt-key add -  
+wget -q https://repos.influxdata.com/influxdata-archive_compat.key
+cat influxdata-archive_compat.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null
 ```
 
-将下方文本框中的内容写入 `/etc/apt/sources.list.d/influxdb.list`
+将下方文本框中的内容写入 `/etc/apt/sources.list.d/influxdata.list`
 
-<form class="form-inline">
-<div class="form-group">
-	<label>你的 Debian / Ubuntu 版本: </label>
-	<select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
-		<option data-os="debian" data-release="jessie">Debian 8 (Jessie)</option>
-		<option data-os="debian" data-release="stretch">Debian 9 (Stretch)</option>
-		<option data-os="debian" data-release="buster">Debian 10 (Buster)</option>
-		<option data-os="debian" data-release="bullseye" selected>Debian 11 (Bullseye)</option>
-		<option data-os="ubuntu" data-release="trusty">Ubuntu 14.04 LTS</option>
-		<option data-os="ubuntu" data-release="xenial">Ubuntu 16.04 LTS</option>
-		<option data-os="ubuntu" data-release="bionic">Ubuntu 18.04 LTS</option>		
-		<option data-os="ubuntu" data-release="focal">Ubuntu 20.04 LTS</option>
-		<option data-os="ubuntu" data-release="jammy">Ubuntu 22.04 LTS</option>
-</select>
-</div>
-</form>
-
-<p></p>
-<pre>
-<code id="apt-content">
-</code>
-</pre>
-
-
-{% raw %}
-<script id="apt-template" type="x-tmpl-markup">
-deb https://{%endraw%}{{ site.hostname }}{%raw%}/influxdata/{{os_name}}/ {{release_name}} stable
-</script>
-{%endraw%}
+```properties
+deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://{{ site.hostname }}/influxdata/debian stable main
+```
 
 即可安装相关软件，如：
 
@@ -81,7 +58,7 @@ name = InfluxDB Repository - RHEL $releasever
 baseurl=https://{%endraw%}{{ site.hostname }}{%raw%}/influxdata/yum/{{release_name}}
 enabled=1
 gpgcheck=1
-gpgkey = https://{%endraw%}{{ site.hostname }}{%raw%}/influxdata/influxdb.key
+gpgkey = https://repos.influxdata.com/influxdata-archive_compat.key
 </script>
 {% endraw %}
 
