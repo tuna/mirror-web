@@ -33,7 +33,7 @@ sudo apt install influxdb
 
 ### Centos / Redhat 用户
 
-新建 `/etc/yum.repos.d/influxdb.repo`，内容为
+新建 `/etc/yum.repos.d/influxdata.repo`，内容为
 
 <form class="form-inline">
 <div class="form-group">
@@ -53,8 +53,8 @@ sudo apt install influxdb
 
 {% raw %}
 <script id="yum-template" type="x-tmpl-markup">
-[influxdb]
-name = InfluxDB Repository - RHEL $releasever
+[influxdata]
+name = InfluxData Repository - RHEL $releasever
 baseurl=https://{%endraw%}{{ site.hostname }}{%raw%}/influxdata/yum/{{release_name}}
 enabled=1
 gpgcheck=1
