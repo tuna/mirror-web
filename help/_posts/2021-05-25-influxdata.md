@@ -21,7 +21,7 @@ cat influxdata-archive_compat.key | gpg --dearmor | sudo tee /etc/apt/trusted.gp
 
 将下方文本框中的内容写入 `/etc/apt/sources.list.d/influxdata.list`
 
-```properties
+```
 deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://{{ site.hostname }}/influxdata/debian stable main
 ```
 
