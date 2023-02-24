@@ -32,6 +32,10 @@ hide_navbar: false
 hide_download: false
 hide_server_status: false
 
+mirrorz_host: "https://mirrors.cernet.edu.cn"
+mirrorz_help_host: "https://help.mirrors.cernet.edu.cn"
+mirrorz_help_mirror: "TUNA"
+
 # Build settings
 highlighter: rouge
 markdown: kramdown

@@ -14,6 +14,8 @@ var options = {};
 global_options.options.force_redirect_help_mirrors.forEach((m) => options[m] = {'url': "/help/" + m + "/"})
 var descriptions = {};
 global_options.options.mirror_desc.forEach((m) => descriptions[m.name] = m.desc);
+var mirrorz_help = {};
+global_options.options.mirrorz_help.forEach((m) => mirrorz_help[m.name] = m.cname ? m.cname : m.name);
 
 new Vue({
 	el: "#upgrade-mask",
@@ -145,6 +147,9 @@ var processMirrorItem = function(d){
 		d = $.extend(d, options[d.name]);
 	}
 	d.help_url = help_url[d.name];
+	if (mirrorz_help[d.name] !== undefined) {
+		d.mirrorz_help_url = "{{ site.mirrorz_help_host }}/" + mirrorz_help[d.name] + "/?mirror={{ site.mirrorz_help_mirror }}";
+	}
 	d.is_new = Boolean(new_mirrors[d.name]);
 	d.description = descriptions[d.name];
 	d.github_release = d.url && d.url.startsWith('/github-release/');

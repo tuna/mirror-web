@@ -76,6 +76,7 @@
 											{{mir.name}}
 											<span class="label label-new" v-if='mir.is_new'>new</span>
 											<a v-if='mir.help_url' :href="mir.help_url"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-question-circle %}{% raw %}</i><span class="sr-only">[Help]</span></a>
+											<a v-if='mir.mirrorz_help_url' :href="mir.mirrorz_help_url"><div aria-hidden="true" class="mirrorz-icon" title="CERNET Help"></div><span class="sr-only">[CERNET Help]</span></a>
 											<a v-if='mir.github_release' href="javascript:void(0)"><i aria-hidden="true" title="GitHub Release">{% endraw %}{% fa_svg fab.fa-github %}{% raw %}</i><span class="sr-only">[GitHub Release]</span></a>
 									</td>
 									<td class="col-md-4">

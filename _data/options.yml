@@ -525,6 +525,9 @@ unlisted_mirrors:
     name: "thuthesis"
     url: '/github-release/tuna/thuthesis'
 
+mirrorz_help:
+  - name: AOSP
+
 force_redirect_help_mirrors:
   - AOSP
   - lineageOS

@@ -540,12 +540,18 @@ body {
 }
 {% endfor %}
 
-svg.icon {
+svg.icon, .mirrorz-icon {
   display: inline-block;
   width: 1em;
   height: 1.42857143em;
   fill: currentColor;
   vertical-align: bottom;
+}
+
+.mirrorz-icon {
+  background-color: currentColor;
+  -webkit-mask: url({{ site.mirrorz_host }}/static/img/mirrorz.svg) no-repeat center;
+  mask: url({{ site.mirrorz_host }}/static/img/mirrorz.svg) no-repeat center;
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
