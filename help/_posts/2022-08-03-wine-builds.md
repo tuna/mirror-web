@@ -4,53 +4,116 @@ layout: help
 mirrorid: wine-builds
 ---
 
-## wine-builds 镜像使用帮助
+# Wine builds 软件仓库镜像使用帮助
+
+<form class="form-inline">
+<div class="form-group">
+	<label>是否使用 HTTPS</label>
+	<select id="http-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3">
+	  <option data-http_protocol="https://" selected>是</option>
+	  <option data-http_protocol="http://">否</option>
+	</select>
+</div>
+</form>
+
+
+<form class="form-inline">
+<div class="form-group">
+	<label>是否使用 sudo</label>
+	<select id="sudo-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3">
+	  <option data-sudo="sudo " selected>是</option>
+	  <option data-sudo="">否</option>
+	</select>
+</div>
+</form>
+
+
 
 由于上游并未提供 rsync，镜像站只同步了 ubuntu/debian 部分。
 
 首先启用 32 位架构
 
-```bash
-sudo dpkg --add-architecture i386
-```
 
-之后信任来自 <https://dl.winehq.org/> 的公钥
-
-```
-sudo wget -nc -O /usr/share/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-```
-
-新增 `/etc/apt/sources.list.d/winehq.list`，内容为
-
-<form class="form-inline">
-<div class="form-group">
-	<label>选择你的版本: </label>
-	<select class="form-control release-select" data-template="#apt-template" data-target="#apt-content">
-		<option data-os="ubuntu" data-release="bionic">Ubuntu 18.04 LTS</option>
-		<option data-os="ubuntu" data-release="focal">Ubuntu 20.04 LTS</option>
-		<option data-os="ubuntu" data-release="jammy" selected>Ubuntu 22.04 LTS</option>
-		<option data-os="debian" data-release="buster">Debian 10</option>
-		<option data-os="debian" data-release="bullseye">Debian 11</option>
-	</select>
-</div>
-</form>
 
 {% raw %}
-<script id="apt-template" type="x-tmpl-markup">
-deb [arch=amd64,i386 signed-by=/usr/share/keyrings/winehq-archive.key] https://{%endraw%}{{ site.hostname }}{%raw%}/wine-builds/{{os_name}}/ {{release_name}} main
+<script id="template-0" type="x-tmpl-markup">
+{{sudo}}dpkg --add-architecture i386
 </script>
 {% endraw %}
 
 <p></p>
 
 <pre>
-<code id="apt-content">
+<code id="content-0" data-template="#template-0" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
+
+之后信任来自 https://dl.winehq.org/ 的公钥
+
+
+
+{% raw %}
+<script id="template-1" type="x-tmpl-markup">
+{{sudo}}wget -nc -O /usr/share/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-1" data-template="#template-1" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
+
+新增 `/etc/apt/sources.list.d/winehq.list`，内容为
+
+
+
+<form class="form-inline">
+<div class="form-group">
+  <label>发行版：</label>
+    <select id="select-2-0" class="form-control content-select" data-target="#content-2">
+      <option data-os_name="debian" data-release_name="bullseye" selected>Debian 11</option>
+      <option data-os_name="debian" data-release_name="buster">Debian 10</option>
+      <option data-os_name="ubuntu" data-release_name="jammy">Ubuntu 22.04 LTS</option>
+      <option data-os_name="ubuntu" data-release_name="focal">Ubuntu 20.04 LTS</option>
+      <option data-os_name="ubuntu" data-release_name="bionic">Ubuntu 18.04 LTS</option>
+    </select>
+</div>
+</form>
+
+{% raw %}
+<script id="template-2" type="x-tmpl-markup">
+deb [arch=amd64,i386 signed-by=/usr/share/keyrings/winehq-archive.key] {{http_protocol}}{{mirror}}/{{os_name}}/ {{release_name}} main
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-2" data-template="#template-2" data-select="#http-select,#sudo-select,#select-2-0">
+</code>
+</pre>
+
+
 通过以下命令安装 winehq
 
-```bash
-sudo apt update
-sudo apt install --install-recommends winehq-stable
-```
+
+
+{% raw %}
+<script id="template-3" type="x-tmpl-markup">
+{{sudo}}apt update
+{{sudo}}apt install --install-recommends winehq-stable
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-3" data-template="#template-3" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
+
