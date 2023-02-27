@@ -4,72 +4,124 @@ layout: help
 mirrorid: influxdata
 ---
 
-## Influxdata 镜像帮助
+# Influxdata 软件仓库镜像使用帮助
+
+<form class="form-inline">
+<div class="form-group">
+	<label>是否使用 HTTPS</label>
+	<select id="http-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3">
+	  <option data-http_protocol="https://" selected>是</option>
+	  <option data-http_protocol="http://">否</option>
+	</select>
+</div>
+</form>
+
+
+<form class="form-inline">
+<div class="form-group">
+	<label>是否使用 sudo</label>
+	<select id="sudo-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3">
+	  <option data-sudo="sudo " selected>是</option>
+	  <option data-sudo="">否</option>
+	</select>
+</div>
+</form>
+
+
 
 本目录是 `influxdb` ， `telegraf` 等时序型数据库的相关组件的镜像软件源。
 
 ### Debian / Ubuntu 用户
 
-首先信任来自 [influxdata](https://docs.influxdata.com/telegraf/v1.18/introduction/installation/) 的PGP公钥：
+首先信任来自 [influxdata](https://docs.influxdata.com/telegraf/v1.18/introduction/installation/) 的 PGP 公钥：
 
 _注：Influxdata 在 2023-01-26 使用了新的 GPG 密钥，详情可参考[此处](https://www.influxdata.com/blog/linux-package-signing-key-rotation/)_
 
-```shell
+
+
+{% raw %}
+<script id="template-0" type="x-tmpl-markup">
 wget -q https://repos.influxdata.com/influxdata-archive_compat.key
-cat influxdata-archive_compat.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null
-```
-
-将下方文本框中的内容写入 `/etc/apt/sources.list.d/influxdata.list`
-
-```
-deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://{{ site.hostname }}/influxdata/debian stable main
-```
-
-即可安装相关软件，如：
-
-```shell
-sudo apt install influxdb
-```
-
-### Centos / Redhat 用户
-
-新建 `/etc/yum.repos.d/influxdata.repo`，内容为
-
-<form class="form-inline">
-<div class="form-group">
-	<label>你的 CentOS / RHEL 版本: </label>
-	<select class="form-control release-select" data-template="#yum-template" data-target="#yum-content">
-		<option data-release="el7-x86_64">7</option>
-	</select>
-</div>
-</form>
+cat influxdata-archive_compat.key | gpg --dearmor | {{sudo}}tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null
+</script>
+{% endraw %}
 
 <p></p>
+
 <pre>
-<code id="yum-content">
+<code id="content-0" data-template="#template-0" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
 
+将下方文本框中的内容写入 `/etc/apt/sources.list.d/influxdata.list`
+
+
+
 {% raw %}
-<script id="yum-template" type="x-tmpl-markup">
-[influxdata]
-name = InfluxData Repository - RHEL $releasever
-baseurl=https://{%endraw%}{{ site.hostname }}{%raw%}/influxdata/yum/{{release_name}}
-enabled=1
-gpgcheck=1
-gpgkey = https://repos.influxdata.com/influxdata-archive_compat.key
+<script id="template-1" type="x-tmpl-markup">
+deb {{http_protocol}}{{mirror}}/debian/ stable main
 </script>
 {% endraw %}
 
-再执行
+<p></p>
 
-```shell
-sudo yum makecache
-```
+<pre>
+<code id="content-1" data-template="#template-1" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
+
 
 即可安装相关软件，如：
 
-```shell
-sudo yum install influxdb
-```
+
+
+{% raw %}
+<script id="template-2" type="x-tmpl-markup">
+{{sudo}}apt install influxdb
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-2" data-template="#template-2" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
+
+### CentOS / RedHat 用户
+
+新建 `/etc/yum.repos.d/influxdata.repo`，内容为
+
+
+
+<form class="form-inline">
+<div class="form-group">
+  <label>发行版：</label>
+    <select id="select-3-0" class="form-control content-select" data-target="#content-3">
+      <option data-release_name="el7-x86_64" selected>CentOS/RHEL 7 (x86_64)</option>
+    </select>
+</div>
+</form>
+
+{% raw %}
+<script id="template-3" type="x-tmpl-markup">
+[influxdata]
+name = InfluxData Repository - RHEL $releasever
+baseurl={{http_protocol}}{{mirror}}/yum/{{release_name}}
+enabled=1
+gpgcheck=1
+gpgkey=https://repos.influxdata.com/influxdata-archive_compat.key
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-3" data-template="#template-3" data-select="#http-select,#sudo-select,#select-3-0">
+</code>
+</pre>
+
+
