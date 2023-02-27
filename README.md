@@ -32,6 +32,10 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/status/isoinfo.json -O static/s
 
 ## 贡献文档
 
+目前文档分为两部分维护，一部分是通用文档，从 [mirrorz-org/mirrorz-help](https://github.com/mirrorz-org/mirrorz-help) 生成并维护在本仓库，具体列表与生成方法可以参考 [tuna/mirrorz-help](https://github.com/tuna/mirrorz-help/blob/tuna/custom/tuna/transpile.sh)；如果您的改动是镜像站通用的，可以往 mirrorz-org/mirrorz-help 发送 PR；如果是 TUNA 特有的，可以往 tuna/mirrorz-help 发送。
+
+另一部分维护在本仓库内，需要往本仓库 PR。mirror-web 会逐渐迁移到使用通用文档。
+
 ### 基本步骤
 
 1. Fork 本项目并 clone
@@ -50,5 +54,17 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/status/isoinfo.json -O static/s
 ### 特殊用法
 
 #### 表单选择
-例如 <http://mirrors.tuna.tsinghua.edu.cn/help/mongodb/> 中，通过表单选择操作系统和版本号，建议直接使用 Vue.js
 
+该功能实现在 mirrorz-org/mirrorz-help 中，需要让相应文档迁移到使用通用文档以该功能。
+
+#### 快速配置
+
+TODO。在 mirrorz-org/mirrorz-help 中有实现。
+
+#### 拷贝命令
+
+TODO。在 mirrorz-org/mirrorz-help 中有实现。
+
+#### 域名选择
+
+TODO。
