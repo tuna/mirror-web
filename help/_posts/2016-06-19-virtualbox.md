@@ -45,7 +45,7 @@ mirrorid: virtualbox
 <p></p>
 
 <pre>
-<code id="content-0" data-template="#template-0" data-select="#http-select,#sudo-select">
+<code id="content-0" class="language-bash" data-template="#template-0" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -65,7 +65,7 @@ mirrorid: virtualbox
 <p></p>
 
 <pre>
-<code id="content-1" data-template="#template-1" data-select="#http-select,#sudo-select">
+<code id="content-1" class="language-bash" data-template="#template-1" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -85,7 +85,7 @@ mirrorid: virtualbox
 <p></p>
 
 <pre>
-<code id="content-2" data-template="#template-2" data-select="#http-select,#sudo-select">
+<code id="content-2" class="language-plaintext" data-template="#template-2" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -123,7 +123,7 @@ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | {{sudo}}a
 <p></p>
 
 <pre>
-<code id="content-3" data-template="#template-3" data-select="#http-select,#sudo-select">
+<code id="content-3" class="language-shell" data-template="#template-3" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -141,7 +141,7 @@ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | {{sudo}}apt-ke
 <p></p>
 
 <pre>
-<code id="content-4" data-template="#template-4" data-select="#http-select,#sudo-select">
+<code id="content-4" class="language-shell" data-template="#template-4" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -176,7 +176,7 @@ deb {{http_protocol}}{{mirror}}/apt/ {{release_name}} contrib
 <p></p>
 
 <pre>
-<code id="content-5" data-template="#template-5" data-select="#http-select,#sudo-select,#select-5-0">
+<code id="content-5" class="language-bash" data-template="#template-5" data-select="#http-select,#sudo-select,#select-5-0">
 </code>
 </pre>
 
@@ -196,7 +196,7 @@ deb {{http_protocol}}{{mirror}}/apt/ {{release_name}} contrib
 <p></p>
 
 <pre>
-<code id="content-6" data-template="#template-6" data-select="#http-select,#sudo-select">
+<code id="content-6" class="language-bash" data-template="#template-6" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -221,7 +221,7 @@ enabled=1
 <p></p>
 
 <pre>
-<code id="content-7" data-template="#template-7" data-select="#http-select,#sudo-select">
+<code id="content-7" class="language-ini" data-template="#template-7" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -241,7 +241,7 @@ enabled=1
 <p></p>
 
 <pre>
-<code id="content-8" data-template="#template-8" data-select="#http-select,#sudo-select">
+<code id="content-8" class="language-bash" data-template="#template-8" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 

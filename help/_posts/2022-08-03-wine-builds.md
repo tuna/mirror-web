@@ -44,7 +44,7 @@ mirrorid: wine-builds
 <p></p>
 
 <pre>
-<code id="content-0" data-template="#template-0" data-select="#http-select,#sudo-select">
+<code id="content-0" class="language-bash" data-template="#template-0" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -62,7 +62,7 @@ mirrorid: wine-builds
 <p></p>
 
 <pre>
-<code id="content-1" data-template="#template-1" data-select="#http-select,#sudo-select">
+<code id="content-1" class="language-bash" data-template="#template-1" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -93,7 +93,7 @@ deb [arch=amd64,i386 signed-by=/usr/share/keyrings/winehq-archive.key] {{http_pr
 <p></p>
 
 <pre>
-<code id="content-2" data-template="#template-2" data-select="#http-select,#sudo-select,#select-2-0">
+<code id="content-2" class="language-properties" data-template="#template-2" data-select="#http-select,#sudo-select,#select-2-0">
 </code>
 </pre>
 
@@ -112,7 +112,7 @@ deb [arch=amd64,i386 signed-by=/usr/share/keyrings/winehq-archive.key] {{http_pr
 <p></p>
 
 <pre>
-<code id="content-3" data-template="#template-3" data-select="#http-select,#sudo-select">
+<code id="content-3" class="language-bash" data-template="#template-3" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
