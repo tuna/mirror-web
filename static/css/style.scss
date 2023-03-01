@@ -553,3 +553,9 @@ svg.icon {
     height: 1.1em;
   }
 }
+
+.content-select {
+  /* override color of form-control from bootstrap */
+  color: inherit;
+  background-color: transparent;
+}
