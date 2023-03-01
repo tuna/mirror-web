@@ -48,7 +48,7 @@ Server = {{http_protocol}}{{mirror}}/$repo/os/$arch
 <p></p>
 
 <pre>
-<code id="content-0" data-template="#template-0" data-select="#http-select,#sudo-select">
+<code id="content-0" class="language-ini" data-template="#template-0" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -66,7 +66,7 @@ Server = {{http_protocol}}{{mirror}}/$repo/os/$arch
 <p></p>
 
 <pre>
-<code id="content-1" data-template="#template-1" data-select="#http-select,#sudo-select">
+<code id="content-1" class="language-shell" data-template="#template-1" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -86,7 +86,7 @@ Server = {{http_protocol}}{{mirror}}/$repo/os/$arch
 <p></p>
 
 <pre>
-<code id="content-2" data-template="#template-2" data-select="#http-select,#sudo-select">
+<code id="content-2" class="language-shell" data-template="#template-2" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 

@@ -49,7 +49,7 @@ cat influxdata-archive_compat.key | gpg --dearmor | {{sudo}}tee /etc/apt/trusted
 <p></p>
 
 <pre>
-<code id="content-0" data-template="#template-0" data-select="#http-select,#sudo-select">
+<code id="content-0" class="language-shell" data-template="#template-0" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -67,7 +67,7 @@ deb {{http_protocol}}{{mirror}}/debian/ stable main
 <p></p>
 
 <pre>
-<code id="content-1" data-template="#template-1" data-select="#http-select,#sudo-select">
+<code id="content-1" class="language-properties" data-template="#template-1" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -86,7 +86,7 @@ deb {{http_protocol}}{{mirror}}/debian/ stable main
 <p></p>
 
 <pre>
-<code id="content-2" data-template="#template-2" data-select="#http-select,#sudo-select">
+<code id="content-2" class="language-bash" data-template="#template-2" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -120,7 +120,7 @@ gpgkey=https://repos.influxdata.com/influxdata-archive_compat.key
 <p></p>
 
 <pre>
-<code id="content-3" data-template="#template-3" data-select="#http-select,#sudo-select,#select-3-0">
+<code id="content-3" class="language-ini" data-template="#template-3" data-select="#http-select,#sudo-select,#select-3-0">
 </code>
 </pre>
 

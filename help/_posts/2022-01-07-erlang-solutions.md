@@ -54,7 +54,7 @@ curl -s https://packages.erlang-solutions.com/{{os_name}}/erlang_solutions.asc |
 <p></p>
 
 <pre>
-<code id="content-0" data-template="#template-0" data-select="#http-select,#sudo-select,#select-0-0">
+<code id="content-0" class="language-bash" data-template="#template-0" data-select="#http-select,#sudo-select,#select-0-0">
 </code>
 </pre>
 
@@ -87,7 +87,7 @@ deb {{http_protocol}}{{mirror}}/{{os_name}} {{release_name}} contrib
 <p></p>
 
 <pre>
-<code id="content-1" data-template="#template-1" data-select="#http-select,#sudo-select,#select-1-0">
+<code id="content-1" class="language-properties" data-template="#template-1" data-select="#http-select,#sudo-select,#select-1-0">
 </code>
 </pre>
 
@@ -107,7 +107,7 @@ deb {{http_protocol}}{{mirror}}/{{os_name}} {{release_name}} contrib
 <p></p>
 
 <pre>
-<code id="content-2" data-template="#template-2" data-select="#http-select,#sudo-select">
+<code id="content-2" class="language-bash" data-template="#template-2" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -138,7 +138,7 @@ enabled=1
 <p></p>
 
 <pre>
-<code id="content-3" data-template="#template-3" data-select="#http-select,#sudo-select">
+<code id="content-3" class="language-ini" data-template="#template-3" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -157,7 +157,7 @@ enabled=1
 <p></p>
 
 <pre>
-<code id="content-4" data-template="#template-4" data-select="#http-select,#sudo-select">
+<code id="content-4" class="language-bash" data-template="#template-4" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
