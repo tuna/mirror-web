@@ -465,6 +465,7 @@ unlisted_mirrors:
     upstream: 'cloud.tsinghua.edu.cn'
     is_master: true
   - link_to: 'sourceware'
+    last_update: '-'
     name: "cygwin"
     url: '/cygwin/'
   - link_to: 'osdn'
