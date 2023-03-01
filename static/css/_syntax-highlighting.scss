@@ -64,6 +64,26 @@
     .il    { color: #099 } // Literal.Number.Integer.Long
 }
 
+.hljs-comment     { color: #998; font-style: italic } // Comment
+.hljs-keyword     { font-weight: bold } // Keyword
+.hljs-operator     { font-weight: bold } // Operator
+.hljs-deletion    { color: #000; background-color: #fdd } // Generic.Deleted
+.hljs-emphasis    { font-style: italic } // Generic.Emph
+.hljs-meta.prompt    { color: #555 } // Generic.Prompt
+.hljs-strong    { font-weight: bold } // Generic.Strong
+.hljs-section    { color: #999 } // Generic.Heading
+.hljs-variable.constant    { font-weight: bold } // Keyword.Constant
+.hljs-params    { font-weight: bold } // Keyword.Declaration
+.hljs-type    { color: #458; font-weight: bold } // Keyword.Type
+.hljs-number     { color: #099 } // Literal.Number
+.hljs-string     { color: #d14 } // Literal.String
+.hljs-attr, .hljs-attribute    { color: #008080 } // Name.Attribute
+.hljs-built_in    { color: #0086B3 } // Name.Builtin
+.hljs-title.class    { color: #458; font-weight: bold } // Name.Class
+.hljs-title.function    { color: #900; font-weight: bold } // Name.Function
+.hljs-tag    { color: #000080 } // Name.Tag
+.hljs-variable    { color: #008080 } // Name.Variable
+
 @include dark{
 .highlight {
 .hll { background-color: #272822; }
@@ -133,6 +153,25 @@
 .gd .x {background-color: inherit;}
 .gi .x {background-color: inherit;}
 }
+
+.hljs-comment     { color: #75715e } // Comment
+.hljs-keyword     { color: #66d9ef } // Keyword
+.hljs-operator     { color: #f92672 } // Operator
+.hljs-deletion    { color: #f92672; } // Generic.Deleted
+.hljs-emphasis    { font-style: italic } // Generic.Emph
+.hljs-strong    { font-weight: bold } // Generic.Strong
+.hljs-variable.constant    { color: #66d9ef } // Keyword.Constant
+.hljs-params    { color: #66d9ef } // Keyword.Declaration
+.hljs-type    { color: #66d9ef } // Keyword.Type
+.hljs-number     { color: #ae81ff } // Literal.Number
+.hljs-string     { color: #e6db74 } // Literal.String
+.hljs-attr, .hljs-attribute    { color: #a6e22e } // Name.Attribute
+.hljs-built_in    { color: #f8f8f2 } // Name.Builtin
+.hljs-title.class    { color: #a6e22e } // Name.Class
+.hljs-title.function    { color: #a6e22e } // Name.Function
+.hljs-tag    { color: #f92672 } // Name.Tag
+.hljs-variable    { color: #f8f8f2 } // Name.Variable
+
 }
 
 }

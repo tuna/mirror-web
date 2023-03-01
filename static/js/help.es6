@@ -27,6 +27,7 @@ $(document).ready(() => {
 				template_data
 			);
 			$(target_selector).html(content);
+			hljs.highlightElement($(target_selector).get(0));
 		}
 	};
 
