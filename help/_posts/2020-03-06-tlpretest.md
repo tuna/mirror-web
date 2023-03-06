@@ -4,8 +4,30 @@ layout: help
 mirrorid: tlpretest
 ---
 
-tlpretest 镜像使用帮助
-===================
+# TeXLive Pretest 软件仓库镜像使用帮助
+
+<form class="form-inline">
+<div class="form-group">
+	<label>是否使用 HTTPS</label>
+	<select id="http-select" class="form-control content-select" data-target="#content-0,#content-1">
+	  <option data-http_protocol="https://" selected>是</option>
+	  <option data-http_protocol="http://">否</option>
+	</select>
+</div>
+</form>
+
+
+<form class="form-inline">
+<div class="form-group">
+	<label>是否使用 sudo</label>
+	<select id="sudo-select" class="form-control content-select" data-target="#content-0,#content-1">
+	  <option data-sudo="sudo " selected>是</option>
+	  <option data-sudo="">否</option>
+	</select>
+</div>
+</form>
+
+
 
 tlpretest 是 TeX Live 在官方镜像之外发布的测试版本，详情可见 [官方介绍](https://www.tug.org/texlive/pretest.html)。
 
@@ -13,17 +35,41 @@ tlpretest 是 TeX Live 在官方镜像之外发布的测试版本，详情可见
 
 在命令行中执行：
 
-```
-tlmgr option repository https://{{ site.hostname }}/tlpretest
-```
+
+
+{% raw %}
+<script id="template-0" type="x-tmpl-markup">
+tlmgr option repository {{http_protocol}}{{mirror}}
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-0" class="language-plaintext" data-template="#template-0" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
 
 即可永久更改镜像源。
 
 如果只需要临时切换，可以用如下命令：
 
-```
-tlmgr update --all --repository https://{{ site.hostname }}/tlpretest
-```
+
+
+{% raw %}
+<script id="template-1" type="x-tmpl-markup">
+tlmgr update --all --repository {{http_protocol}}{{mirror}}
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-1" class="language-plaintext" data-template="#template-1" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
 
 其中的 `update --all` 指令可根据需要修改。
 
