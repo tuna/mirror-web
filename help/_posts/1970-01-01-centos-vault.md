@@ -4,36 +4,63 @@ layout: help
 mirrorid: centos-vault
 ---
 
-## centos-vault 镜像使用帮助
+# CentOS Vault 软件仓库镜像使用帮助
+
+<form class="form-inline">
+<div class="form-group">
+	<label>是否使用 HTTPS</label>
+	<select id="http-select" class="form-control content-select" data-target="#content-0,#content-1">
+	  <option data-http_protocol="https://" selected>是</option>
+	  <option data-http_protocol="http://">否</option>
+	</select>
+</div>
+</form>
+
+
+<form class="form-inline">
+<div class="form-group">
+	<label>是否使用 sudo</label>
+	<select id="sudo-select" class="form-control content-select" data-target="#content-0,#content-1">
+	  <option data-sudo="sudo " selected>是</option>
+	  <option data-sudo="">否</option>
+	</select>
+</div>
+</form>
+
+
 
 该文件夹提供较早版本的 CentOS，例如 CentOS 6；同时提供当前 CentOS 大版本的历史小版本的归档；
 还提供 CentOS 各个版本的源代码和调试符号。
 
-建议先备份 `/etc/yum.repos.d/` 内的文件。
-
 需要确定您所需要的小版本，如无特殊需要则使用该大版本的最后一个小版本，比如 6.10，5.11，我们将其标记为 `$minorver`，需要您在之后的命令中替换。
 
-然后编辑 `/etc/yum.repos.d/` 中的相应文件，在 `mirrorlist=` 开头行前面加 `#` 注释掉；并将 `baseurl=` 开头行取消注释（如果被注释的话）。
-对于 CentOS 8 之前的版本，请把该行内的域名及路径（例如`mirror.centos.org/centos/$releasever`）替换为 `{{ site.hostname }}/centos-vault/$minorver`。
-对于 CentOS 8 ，请注意域名及路径发生了更换，此时需要替换的字段为 `http://mirror.centos.org/$contentdir/$releasever` 。
 
-以上步骤可以被下方的命令完成
 
-```
+{% raw %}
+<script id="template-0" type="x-tmpl-markup">
 # CentOS 8 之前
 minorver=6.10
-sudo sed -e "s|^mirrorlist=|#mirrorlist=|g" \
-         -e "s|^#baseurl=http://mirror.centos.org/centos/\$releasever|baseurl=https://{{ site.hostname }}/centos-vault/$minorver|g" \
+{{sudo}}sed -e "s|^mirrorlist=|#mirrorlist=|g" \
+         -e "s|^#baseurl=http://mirror.centos.org/centos/\$releasever|baseurl={{http_protocol}}{{mirror}}/$minorver|g" \
          -i.bak \
          /etc/yum.repos.d/CentOS-*.repo
 
 # CentOS 8 之后
 minorver=8.5.2111
-sudo sed -e "s|^mirrorlist=|#mirrorlist=|g" \
-         -e "s|^#baseurl=http://mirror.centos.org/\$contentdir/\$releasever|baseurl=https://{{ site.hostname }}/centos-vault/$minorver|g" \
+{{sudo}}sed -e "s|^mirrorlist=|#mirrorlist=|g" \
+         -e "s|^#baseurl=http://mirror.centos.org/\$contentdir/\$releasever|baseurl={{http_protocol}}{{mirror}}/$minorver|g" \
          -i.bak \
          /etc/yum.repos.d/CentOS-*.repo
-```
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-0" class="language-shell" data-template="#template-0" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
 
 注意其中的`*`通配符，如果只需要替换一些文件中的源，请自行增删。
 
@@ -41,6 +68,19 @@ sudo sed -e "s|^mirrorlist=|#mirrorlist=|g" \
 
 最后，更新软件包缓存
 
-```
-sudo yum makecache
-```
+
+
+{% raw %}
+<script id="template-1" type="x-tmpl-markup">
+{{sudo}}yum makecache
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-1" class="language-shell" data-template="#template-1" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
+

@@ -38,6 +38,7 @@ Ubuntu 的软件源配置文件是 `/etc/apt/sources.list`。将系统自带的�
   <label>Ubuntu 版本：</label>
     <select id="select-0-0" class="form-control content-select" data-target="#content-0">
       <option data-release_name="jammy" selected>22.04 LTS</option>
+      <option data-release_name="lunar">23.04</option>
       <option data-release_name="kinetic">22.10</option>
       <option data-release_name="focal">20.04 LTS</option>
       <option data-release_name="bionic">18.04 LTS</option>
