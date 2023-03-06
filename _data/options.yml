@@ -551,6 +551,7 @@ force_redirect_help_mirrors:
   - julia-general.git
   - pkgsrc.git
   - nixpkgs.git
+  - ohmyzsh.git
 
 label_map:
   unknown: label-default
