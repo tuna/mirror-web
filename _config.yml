@@ -32,6 +32,10 @@ hide_navbar: false
 hide_download: false
 hide_server_status: false
 
+hide_mirrorz: false
+mirrorz_desc: 校园网联合镜像站
+mirrorz_link: "https://mirrors.cernet.edu.cn/list"
+
 # Build settings
 highlighter: rouge
 markdown: kramdown

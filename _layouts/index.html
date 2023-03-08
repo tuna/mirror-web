@@ -154,10 +154,12 @@
 								<li><a href="https://github.com/tuna/tunasync-scripts">自定义镜像脚本</a></li>
 							</ul>
 						</div>
+						{% unless site.hide_mirrorz %}
 						<div class="thuhidden {%if site.issue%}col-md-2{%endif%}">
 							<h4> {% fa_svg fas.fa-compact-disc %} 更多镜像 </h4>
-							<p><a href="https://mirrors.cernet.edu.cn/list">校园网联合镜像站</a></p>
+							<p><a href="{{ site.mirrorz_link }}">{{ site.mirrorz_desc }}</a></p>
 						</div>
+						{% endunless %}
 					{% unless site.issue %}
 					</div>
 					{% endunless %}
