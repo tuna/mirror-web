@@ -121,7 +121,7 @@ nix-channel --update
       <option data-version="22.11" selected>22.11</option>
       <option data-version="unstable">unstable</option>
       <option data-version="22.05">22.05</option>
-      <option data-version="21.11">22.11</option>
+      <option data-version="21.11">21.11</option>
     </select>
 </div>
 </form>
