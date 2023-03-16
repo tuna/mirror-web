@@ -38,7 +38,7 @@ LXC 1.0 以上版本增加了 `download` 模版，支持下载定义好的系统
 
 {% raw %}
 <script id="template-0" type="x-tmpl-markup">
-lxc-create -t download -n my-container -- --server {{http_protocol}}{{mirror}}
+lxc-create -t download -n my-container -- --server {{mirror}}
 </script>
 {% endraw %}
 
