@@ -14,8 +14,12 @@ $(document).ready(() => {
 		for (const target_selector of target_selectors) {
 			const template_selector = $(target_selector).data("template");
 			const select_selectors = $(target_selector).data("select").split(",");
+			let url = "/" + window.mirrorId
+			if (window.mirrorId.endsWith(".git")) {
+				url = "/git/" + window.mirrorId
+			}
 			const template_data = {
-				"mirror": "{{ site.hostname }}/" + window.mirrorId,
+				"mirror": "{{ site.hostname }}" + url,
 			};
 			for (const select_selector of select_selectors) {
 				const opt = $(select_selector).find('option:selected').data();
