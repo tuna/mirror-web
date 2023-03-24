@@ -4,26 +4,84 @@ layout: help
 mirrorid: linux-firmware.git
 ---
 
-## Linux 固件仓库 Git 镜像使用帮助
+# Linux Firmware Git 镜像使用帮助
 
-如需克隆 Linux 固件仓库，使用
+<form class="form-inline">
+<div class="form-group">
+	<label>是否使用 HTTPS</label>
+	<select id="http-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2">
+	  <option data-http_protocol="https://" selected>是</option>
+	  <option data-http_protocol="http://">否</option>
+	</select>
+</div>
+</form>
 
-```
-git clone https://{{ site.hostname }}/git/linux-firmware.git
-```
 
-若要将 tuna mirror 加入已有仓库，可在已有仓库中运行
+<form class="form-inline">
+<div class="form-group">
+	<label>是否使用 sudo</label>
+	<select id="sudo-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2">
+	  <option data-sudo="sudo " selected>是</option>
+	  <option data-sudo="">否</option>
+	</select>
+</div>
+</form>
 
-```
-git remote add tuna https://{{ site.hostname }}/git/linux-firmware.git
-```
+
+
+如需克隆 Linux Firmware 代码，使用
+
+
+
+{% raw %}
+<script id="template-0" type="x-tmpl-markup">
+git clone {{http_protocol}}{{mirror}}
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-0" class="language-plaintext" data-template="#template-0" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
+
+若要将 mirror 加入已有代码库，可在已有仓库中运行
+
+
+
+{% raw %}
+<script id="template-1" type="x-tmpl-markup">
+git remote add mirror {{http_protocol}}{{mirror}}
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-1" class="language-plaintext" data-template="#template-1" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
 
 或运行
 
-```
-git remote set-url origin https://{{ site.hostname }}/git/linux-firmware.git
-```
 
-将默认上游设置为 TUNA 镜像。
 
+{% raw %}
+<script id="template-2" type="x-tmpl-markup">
+git remote set-url origin {{http_protocol}}{{mirror}}
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-2" class="language-plaintext" data-template="#template-2" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
+
+将默认上游设置为镜像站
 
