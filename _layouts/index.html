@@ -216,6 +216,9 @@
 	{% endraw %}
 	{% unless page.legacy or site.issue %}
 	<script src="/static/js/index.js?{{ site.data['hash'] }}"></script>
+	<script src="/static/js/matter.min.js?{{ site.data['hash'] }}"></script>
+	<script src="/static/js/meow.js?{{ site.data['hash'] }}"></script>
+	<link rel="stylesheet" href="/static/css/meow.css?{{ site.data['hash'] }}">
 	{% endunless %}
 </html>
 <!--

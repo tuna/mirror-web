@@ -1,0 +1,49 @@
+* {
+  overflow: visible;
+}
+
+#mirror-list {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+
+.meow-floating {
+  z-index: 1000;
+}
+
+.meow-floating > * {
+  z-index: 1000;
+  position: relative;
+}
+
+
+.meow-floating::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--real-width);
+  height: var(--real-height);
+  box-shadow: rgba(0,0,0,.3) 0 4px 12px;
+}
+
+.meow-floating::before {
+  background: #F9F9F9;
+  z-index: -1;
+}
+
+/*
+.meow-floating::after {
+  transform: var(--inverse);
+  box-shadow: rgba(0,0,0,.3) 0 2px 6px inset;
+  background: rgba(0,0,0,.5);
+  z-index: -10 !important;
+}
+*/
+
+@media (prefers-color-scheme: dark) {
+  .meow-floating::before {
+    background: #333;
+  }
+}
