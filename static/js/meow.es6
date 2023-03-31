@@ -10,8 +10,36 @@ function findNearestBlock(elem) {
   return findNearestBlock(elem.parentNode);
 }
 
+let engine = null;
+
+window.addEventListener('devicemotion', ev => {
+  if(!engine) return;
+  if(ev.accelerationIncludingGravity) {
+    const x = ev.accelerationIncludingGravity.x;
+    const y = ev.accelerationIncludingGravity.y;
+    if(x === null || y === null) return;
+    const grav = Matter.Vector.create(x * 0.0002, - y * 0.0002);
+    const gravScale = Matter.Vector.magnitude(grav);
+    const gravDir = Matter.Vector.normalise(grav);
+
+    engine.gravity.x = gravDir.x;
+    engine.gravity.y = gravDir.y;
+    engine.gravity.scale = gravScale;
+  }
+
+  if(ev.rotationRate) {
+    const gamma = ev.rotationRate.gamma;
+    if(gamma === null) return;
+
+    const centerX = window.innerWidth / 2 + window.scrollX;
+    const centerY = window.innerHeight / 2 + window.scrollY;
+    for(const body of engine.world.bodies)
+      Matter.Body.rotate(body, gamma * 0.0002, { x: centerX, y: centerY });
+  }
+});
+
 function bootstrap() {
-  const engine = Matter.Engine.create({
+  engine = Matter.Engine.create({
     gravity: {
       x: 0,
       y: -0.1,
@@ -109,30 +137,38 @@ function bootstrap() {
   let lastScrollY = window.scrollY;
   let lastScreenX = window.screenX;
   let lastScreenY = window.screenY;
+  let lastScreenUpdate = lastRender;
+
   function render(ts) {
-    const diff = ts - lastRender;
+    const diff = Math.min(ts - lastRender, 100); // At max 100ms to avoid wierd effects
     lastRender = ts;
 
     const curScrollX = window.scrollX;
     const curScrollY = window.scrollY;
 
-    if(walls)
-      Matter.Composite.translate(walls, {
-        x: curScrollX - lastScrollX,
-        y: curScrollY - lastScrollY,
-      });
-    
-    const diffScreenX = window.screenX - lastScreenX;
-    const diffScreenY = window.screenY - lastScreenY;
-    for(const body of engine.world.bodies) {
-      if(body === walls) continue;
-      Matter.Body.translate(body, {
-        x: -diffScreenX,
-        y: -diffScreenY,
-      });
+    if(ts > lastScreenUpdate + 100) {
+
+      if(walls)
+        Matter.Composite.translate(walls, {
+          x: curScrollX - lastScrollX,
+          y: curScrollY - lastScrollY,
+        });
+
+      lastScrollX = curScrollX;
+      lastScrollY = curScrollY;
+
+      const diffScreenX = window.screenX - lastScreenX;
+      const diffScreenY = window.screenY - lastScreenY;
+      for(const body of engine.world.bodies) {
+        if(body === walls) continue;
+        Matter.Body.translate(body, {
+          x: -diffScreenX,
+          y: -diffScreenY,
+        });
+      }
+      lastScreenX = window.screenX;
+      lastScreenY = window.screenY;
     }
-    lastScreenX = window.screenX;
-    lastScreenY = window.screenY;
 
     /*
     Matter.Bounds.translate(bounds, {
@@ -140,9 +176,6 @@ function bootstrap() {
       y: curScrollY - lastScrollY,
     });
     */
-
-    lastScrollX = curScrollX;
-    lastScrollY = curScrollY;
 
     Matter.Engine.update(engine, diff);
 
@@ -183,7 +216,7 @@ function bootstrap() {
     e.stopImmediatePropagation();
 
     // Flush
-    const computed = getComputedStyle(floating);
+    // const computed = getComputedStyle(floating);
     // const width = computed.width;
     // const height = computed.height;
 
@@ -195,19 +228,18 @@ function bootstrap() {
     const worldX = scrollX + left;
     const worldY = scrollY + top;
 
-    floating.style.setProperty('--real-width', `${width}px`);
-    floating.style.setProperty('--real-height', `${height}px`);
-
     const box = Matter.Bodies.rectangle(worldX + width / 2, worldY + height / 2, width, height, { restitution: 0.8 });
     const id = box.id;
 
     // Apply random velocity at start
-    const initVelX = Math.random() * 0.5 - 0.25;
-    const initVelY = Math.random() * 0.5 - 0.25;
-    const initVelAng = Math.random() * 0.01 - 0.005;
+    const initVelX = Math.random() * 2 - 1;
+    const initVelY = Math.random() * 2 - 1;
+    const initVelAng = Math.random() * 0.02 - 0.01;
     Matter.Body.setVelocity(box, { x: initVelX, y: initVelY });
     Matter.Body.setAngularVelocity(box, initVelAng);
 
+    floating.style.setProperty('--real-width', `${width}px`);
+    floating.style.setProperty('--real-height', `${height}px`);
     floating.classList.add('meow-floating');
     // Hacks for popovers
     const triggers = floating.querySelectorAll('a[data-toggle=popover]');
