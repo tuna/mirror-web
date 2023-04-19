@@ -25,6 +25,10 @@ $(document).ready(() => {
 				const opt = $(select_selector).find('option:selected').data();
 				$.extend(template_data, opt);
 			}
+			// special hack for case-insensitive
+			if ("sudoe" in template_data) {
+				template_data.sudoE = template_data.sudoe;
+			}
 			const template = $.trim($(template_selector).text());
 			const content = Mark.up(
 				template,
