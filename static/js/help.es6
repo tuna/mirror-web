@@ -57,7 +57,11 @@ $(document).ready(() => {
 		});
 		console.log(window.mirrorId);
 		if (!availableMirrorIds.has(window.mirrorId)) {
-			location.href = "/404-help-hidden.html"; // this will break 404 issue submission
+			if ({{ site.hide_mirrorz }}) {
+				location.href = "/404-help-hidden.html"; // this will break 404 issue submission
+			} else {
+				location.href = "{{ site.mirrorz_help_link }}" + window.mirrorId; // TODO: convert this to mirrorz cname
+			}
 		}
 
 		$('li').filter((_, node) => node.id && node.id.startsWith("toc-") && !availableMirrorIds.has(node.id.slice(4))).remove();

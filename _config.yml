@@ -35,6 +35,7 @@ hide_server_status: false
 hide_mirrorz: false
 mirrorz_desc: 校园网联合镜像站
 mirrorz_link: "https://mirrors.cernet.edu.cn/list"
+mirrorz_help_link: "https://help.mirrors.cernet.edu.cn/"
 
 # Build settings
 highlighter: rouge
