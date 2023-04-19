@@ -9,7 +9,7 @@ mirrorid: nix-channels
 <form class="form-inline">
 <div class="form-group">
 	<label>是否使用 HTTPS</label>
-	<select id="http-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3,#content-4">
+	<select id="http-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3,#content-4,#content-5,#content-6">
 	  <option data-http_protocol="https://" selected>是</option>
 	  <option data-http_protocol="http://">否</option>
 	</select>
@@ -20,9 +20,9 @@ mirrorid: nix-channels
 <form class="form-inline">
 <div class="form-group">
 	<label>是否使用 sudo</label>
-	<select id="sudo-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3,#content-4">
-	  <option data-sudo="sudo " selected>是</option>
-	  <option data-sudo="">否</option>
+	<select id="sudo-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3,#content-4,#content-5,#content-6">
+	  <option data-sudo="sudo " data-sudoE="sudo -E " selected>是</option>
+	  <option data-sudo="" data-sudoE="">否</option>
 	</select>
 </div>
 </form>
@@ -32,6 +32,8 @@ mirrorid: nix-channels
 ### Nixpkgs binary cache
 
 目前并未提供 nix-darwin 的 binary cache，请使用官方源或 SJTUG。
+
+#### 持久配置
 
 以优先选择镜像，备选源站为例，选择以下配置之一：
 
@@ -89,6 +91,50 @@ mirrorid: nix-channels
 </pre>
 
 
+#### 临时使用
+
+在安装 NixOS 时临时使用：
+
+
+
+{% raw %}
+<script id="template-3" type="x-tmpl-markup">
+nixos-install --option substituters "{{http_protocol}}{{mirror}}/store"
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-3" class="language-shell" data-template="#template-3" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
+
+在 NixOS 切换配置时临时使用：
+
+
+
+{% raw %}
+<script id="template-4" type="x-tmpl-markup">
+nixos-rebuild --option substituters "{{http_protocol}}{{mirror}}/store"
+</script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-4" class="language-shell" data-template="#template-4" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
+
+临时关闭可以通过清空 substituters 实现：
+
+```shell
+nixos-rebuild --options substituters ""
+```
+
 ### Nixpkgs channel
 
 单独安装的 Nix 替换 `nixpkgs-unstable` 命令如下：
@@ -96,7 +142,7 @@ mirrorid: nix-channels
 
 
 {% raw %}
-<script id="template-3" type="x-tmpl-markup">
+<script id="template-5" type="x-tmpl-markup">
 nix-channel --add {{http_protocol}}{{mirror}}/nixpkgs-unstable nixpkgs
 nix-channel --update
 </script>
@@ -105,7 +151,7 @@ nix-channel --update
 <p></p>
 
 <pre>
-<code id="content-3" class="language-bash" data-template="#template-3" data-select="#http-select,#sudo-select">
+<code id="content-5" class="language-bash" data-template="#template-5" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -117,7 +163,7 @@ nix-channel --update
 <form class="form-inline">
 <div class="form-group">
   <label>系统版本：</label>
-    <select id="select-4-0" class="form-control content-select" data-target="#content-4">
+    <select id="select-6-0" class="form-control content-select" data-target="#content-6">
       <option data-version="22.11" selected>22.11</option>
       <option data-version="unstable">unstable</option>
       <option data-version="22.05">22.05</option>
@@ -127,7 +173,7 @@ nix-channel --update
 </form>
 
 {% raw %}
-<script id="template-4" type="x-tmpl-markup">
+<script id="template-6" type="x-tmpl-markup">
 nix-channel --add {{http_protocol}}{{mirror}}/nixos-{{version}} nixos
 nix-channel --update
 </script>
@@ -136,7 +182,7 @@ nix-channel --update
 <p></p>
 
 <pre>
-<code id="content-4" class="language-bash" data-template="#template-4" data-select="#http-select,#sudo-select,#select-4-0">
+<code id="content-6" class="language-bash" data-template="#template-6" data-select="#http-select,#sudo-select,#select-6-0">
 </code>
 </pre>
 

@@ -21,8 +21,8 @@ mirrorid: tlpretest
 <div class="form-group">
 	<label>是否使用 sudo</label>
 	<select id="sudo-select" class="form-control content-select" data-target="#content-0,#content-1">
-	  <option data-sudo="sudo " selected>是</option>
-	  <option data-sudo="">否</option>
+	  <option data-sudo="sudo " data-sudoE="sudo -E " selected>是</option>
+	  <option data-sudo="" data-sudoE="">否</option>
 	</select>
 </div>
 </form>
