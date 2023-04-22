@@ -91,7 +91,7 @@ mirror_desc:
   - name: crates.io-index.git
     desc: 面向 Rust 语言的软件包索引 crates.io
   - name: ctex
-    desc: 旧版 CTEX 安装镜像存档
+    desc: CTEX 安装镜像存档
   - name: cygwin
     desc: Cygwin 官方软件包仓库
   - name: dart-pub
