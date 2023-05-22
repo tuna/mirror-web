@@ -90,6 +90,21 @@ mirrorid: nix-channels
 </code>
 </pre>
 
+如果因为无法访问 https://cache.nixos.org 等原因，希望避免自动添加该默认地址，请在配置中使用`lib.mkForce`。
+
+{% raw %}
+<script id="template-2-1" type="x-tmpl-markup">
+	  # load `lib` into namespace at the file head with `{ config, pkgs, lib, ... }:`
+    nix.settings.substituters = lib.mkForce [ "{{http_protocol}}{{mirror}}/store" ];
+    </script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-2-1" class="language-nix" data-template="#template-2-1" data-select="#http-select,#sudo-select">
+</code>
+</pre>
 
 #### 临时使用
 
