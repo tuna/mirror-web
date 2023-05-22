@@ -9,7 +9,7 @@ mirrorid: nix-channels
 <form class="form-inline">
 <div class="form-group">
 	<label>是否使用 HTTPS</label>
-	<select id="http-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3,#content-4,#content-5,#content-6">
+	<select id="http-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3,#content-4,#content-5,#content-6,#content-7">
 	  <option data-http_protocol="https://" selected>是</option>
 	  <option data-http_protocol="http://">否</option>
 	</select>
@@ -20,7 +20,7 @@ mirrorid: nix-channels
 <form class="form-inline">
 <div class="form-group">
 	<label>是否使用 sudo</label>
-	<select id="sudo-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3,#content-4,#content-5,#content-6">
+	<select id="sudo-select" class="form-control content-select" data-target="#content-0,#content-1,#content-2,#content-3,#content-4,#content-5,#content-6,#content-7">
 	  <option data-sudo="sudo " data-sudoE="sudo -E " selected>是</option>
 	  <option data-sudo="" data-sudoE="">否</option>
 	</select>
@@ -91,6 +91,25 @@ mirrorid: nix-channels
 </pre>
 
 
+  如果因为无法访问 https://cache.nixos.org 等原因，希望避免自动添加该默认地址，请在配置中使用`lib.mkForce`。
+
+    
+
+{% raw %}
+<script id="template-3" type="x-tmpl-markup">
+    # load `lib` into namespace at the file head with `{ config, pkgs, lib, ... }:`
+    nix.settings.substituters = lib.mkForce [ "{{http_protocol}}{{mirror}}/store" ];
+    </script>
+{% endraw %}
+
+<p></p>
+
+<pre>
+<code id="content-3" class="language-nix" data-template="#template-3" data-select="#http-select,#sudo-select">
+</code>
+</pre>
+
+
 #### 临时使用
 
 在安装 NixOS 时临时使用：
@@ -98,7 +117,7 @@ mirrorid: nix-channels
 
 
 {% raw %}
-<script id="template-3" type="x-tmpl-markup">
+<script id="template-4" type="x-tmpl-markup">
 nixos-install --option substituters "{{http_protocol}}{{mirror}}/store"
 </script>
 {% endraw %}
@@ -106,7 +125,7 @@ nixos-install --option substituters "{{http_protocol}}{{mirror}}/store"
 <p></p>
 
 <pre>
-<code id="content-3" class="language-shell" data-template="#template-3" data-select="#http-select,#sudo-select">
+<code id="content-4" class="language-shell" data-template="#template-4" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -116,7 +135,7 @@ nixos-install --option substituters "{{http_protocol}}{{mirror}}/store"
 
 
 {% raw %}
-<script id="template-4" type="x-tmpl-markup">
+<script id="template-5" type="x-tmpl-markup">
 nixos-rebuild --option substituters "{{http_protocol}}{{mirror}}/store"
 </script>
 {% endraw %}
@@ -124,7 +143,7 @@ nixos-rebuild --option substituters "{{http_protocol}}{{mirror}}/store"
 <p></p>
 
 <pre>
-<code id="content-4" class="language-shell" data-template="#template-4" data-select="#http-select,#sudo-select">
+<code id="content-5" class="language-shell" data-template="#template-5" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -142,7 +161,7 @@ nixos-rebuild --options substituters ""
 
 
 {% raw %}
-<script id="template-5" type="x-tmpl-markup">
+<script id="template-6" type="x-tmpl-markup">
 nix-channel --add {{http_protocol}}{{mirror}}/nixpkgs-unstable nixpkgs
 nix-channel --update
 </script>
@@ -151,7 +170,7 @@ nix-channel --update
 <p></p>
 
 <pre>
-<code id="content-5" class="language-bash" data-template="#template-5" data-select="#http-select,#sudo-select">
+<code id="content-6" class="language-bash" data-template="#template-6" data-select="#http-select,#sudo-select">
 </code>
 </pre>
 
@@ -163,7 +182,7 @@ nix-channel --update
 <form class="form-inline">
 <div class="form-group">
   <label>系统版本：</label>
-    <select id="select-6-0" class="form-control content-select" data-target="#content-6">
+    <select id="select-7-0" class="form-control content-select" data-target="#content-7">
       <option data-version="22.11" selected>22.11</option>
       <option data-version="unstable">unstable</option>
       <option data-version="22.05">22.05</option>
@@ -173,7 +192,7 @@ nix-channel --update
 </form>
 
 {% raw %}
-<script id="template-6" type="x-tmpl-markup">
+<script id="template-7" type="x-tmpl-markup">
 nix-channel --add {{http_protocol}}{{mirror}}/nixos-{{version}} nixos
 nix-channel --update
 </script>
@@ -182,7 +201,7 @@ nix-channel --update
 <p></p>
 
 <pre>
-<code id="content-6" class="language-bash" data-template="#template-6" data-select="#http-select,#sudo-select,#select-6-0">
+<code id="content-7" class="language-bash" data-template="#template-7" data-select="#http-select,#sudo-select,#select-7-0">
 </code>
 </pre>
 
