@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# usage:
+# on server: python3 genisolist.py
+# development: python3 genisolist.py -R mirrors.tuna.tsinghua.edu.cn -T Debian
 
 import os
 import re
@@ -188,7 +191,7 @@ def getJsonOutput(url_dict, prio={}):
 
     raw.sort(key=lambda d: prio.get(d["distro"], 0xFFFF))
 
-    return json.dumps(raw)
+    return json.dumps(raw, indent=2)
 
 
 def getImageList():
