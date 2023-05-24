@@ -11,6 +11,17 @@ import sys
 from urllib.parse import urljoin
 from distutils.version import LooseVersion
 from configparser import ConfigParser
+from argparse import ArgumentParser, ArgumentError
+
+parser = ArgumentParser(
+    prog='iso info list generator',
+    description='Generate iso info list',
+)
+parser.add_argument(
+    '-d', '--dir', default=None,
+    help='Override root directory.'
+)
+args = parser.parse_args()
 
 logger = logging.getLogger(__name__)
 CONFIG_FILE = os.path.join(os.path.dirname(__file__), 'genisolist.ini')
@@ -157,9 +168,9 @@ def getImageList():
     root = ini.get("%main%", 'root')
     urlbase = ini.get("%main%", 'urlbase')
 
-    if len(sys.argv) > 1:
+    if args.dir:
         # Allow to override root in command-line
-        root = sys.argv[1]
+        root = args.dir
 
     prior = {}
     for (name, value) in ini.items("%main%"):
