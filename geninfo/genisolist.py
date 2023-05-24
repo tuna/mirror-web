@@ -78,7 +78,7 @@ def parseSection(items):
 
             result = prog.search(imagepath)
 
-            if not(result):
+            if not (result):
                 logger.debug("[MATCH] None")
                 continue
             else:
@@ -91,8 +91,9 @@ def parseSection(items):
             if 'version' not in imageinfo:
                 imageinfo['version'] = '0.0'
             sort_by = items.get("sort_by", "")
-            if not(sort_by):
-                imageinfo['sort_key'] = (imageinfo['version'], imageinfo['platform'], imageinfo['type'])
+            if not (sort_by):
+                imageinfo['sort_key'] = (
+                    imageinfo['version'], imageinfo['platform'], imageinfo['type'])
             else:
                 imageinfo['sort_key'] = getSortKeys(sort_by, result)
 
@@ -123,9 +124,9 @@ def parseSection(items):
 def getDetail(image_info, urlbase):
     url = urljoin(urlbase, image_info['filepath'])
     desc = "%s (%s%s)" % (
-            image_info['version'],
-            image_info['platform'],
-            ", %s" % image_info['type'] if image_info['type'] else ''
+        image_info['version'],
+        image_info['platform'],
+        ", %s" % image_info['type'] if image_info['type'] else ''
     ) if image_info['platform'] != "" else image_info['version']
 
     category = image_info.get('category', 'os') or "os"
@@ -150,7 +151,7 @@ def getJsonOutput(url_dict, prio={}):
 
 def getImageList():
     ini = ConfigParser()
-    if not(ini.read(CONFIG_FILE)):
+    if not (ini.read(CONFIG_FILE)):
         raise Exception("%s not found!" % CONFIG_FILE)
 
     root = ini.get("%main%", 'root')
