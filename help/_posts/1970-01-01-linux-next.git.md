@@ -4,6 +4,8 @@ layout: help
 mirrorid: linux-next.git
 ---
 
+<!-- 本 markdown 从 mirrorz-org/mirrorz-help 自动生成，如需修改，请修改 mirrorz-org/mirrorz-help 的对应部分 -->
+
 # Linux Next Git 镜像使用帮助
 
 <form class="form-inline">
