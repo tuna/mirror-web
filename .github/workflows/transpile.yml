@@ -23,6 +23,8 @@ jobs:
           node-version: '16'
       - name: Transpile
         run: |
+          git config user.name "TUNA Bot"
+          git config user.email "bot@tuna.moe"
           export MIRRORZ_HELP_HOME=${PWD}/mirrorz-help
           export MIRROR_WEB_HOME=${PWD}
           bash ${MIRRORZ_HELP_HOME}/custom/tuna/transpile.sh
