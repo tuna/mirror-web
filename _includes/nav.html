@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       {% endunless %}
-			<a class="navbar-brand" href="/">
+			<a class="navbar-brand" href="{{ '/' | relative_url}}">
 				<span class="thuhidden">
 					{% if site.logo %}
 					<picture>
@@ -18,21 +18,21 @@
 						{% else %}
 						<source 
 						{% endif %}
-							srcset="/static/img/logo-small-dark.png 1x,
-											/static/img/logo-small-dark@2x.png 2x,
-											/static/img/logo-small-dark@3x.png 3x,
-											/static/img/logo-small-dark@4x.png 4x"
+							srcset="{{ '/static/img/logo-small-dark.png'}} 1x,
+							{{ '/static/img/logo-small-dark@2x.png' | relative_url}} 2x,
+							{{ '/static/img/logo-small-dark@3x.png' | relative_url}} 3x,
+							{{ '/static/img/logo-small-dark@4x.png' | relative_url}} 4x"
 						{% if site.issue %}
 							alt=""/>
 						{% else %}
 							media="(prefers-color-scheme: dark)"/>
 						{% endif %}
 						{% unless site.issue %}
-						<img src="/static/img/logo-small.png" 
-							srcset="/static/img/logo-small.png 1x, 
-											/static/img/logo-small@2x.png 2x, 
-											/static/img/logo-small@3x.png 3x, 
-											/static/img/logo-small@4x.png 4x" 
+						<img src="{{ '/static/img/logo-small.png' | relative_url}}" 
+							srcset="{{ '/static/img/logo-small.png' | relative_url}} 1x, 
+							{{ '/static/img/logo-small@2x.png' | relative_url}} 2x, 
+							{{ '/static/img/logo-small@3x.png' | relative_url}} 3x, 
+							{{ '/static/img/logo-small@4x.png' | relative_url}}4x" 
 							alt=""/>
 						{% endunless %}
 					</picture>

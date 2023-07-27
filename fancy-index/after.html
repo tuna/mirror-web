@@ -17,7 +17,7 @@ ref fa-cube icon from before.html
 	</body>
 	{% raw %}
 	{% endraw %}
-	<script src="/static/js/index.js?{{ site.data['hash'] }}"></script>
+	<script src="{{ 'static/js/index.js?' | append: site.data['hash'] | relative_url }}"></script>
 	{% raw %}
 	<script>
 		document.getElementById("list").setAttribute("class", "table");

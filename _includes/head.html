@@ -9,7 +9,7 @@
 <meta name="description" content="{{ page_desc }}">
 <meta name="keywords" content="镜像站,镜像源,Linux,软件源,开源">
 <meta name="author" content="{{ site.author }}">
-<link rel="shortcut icon" href="/static/img/favicon.png">
+<link rel="shortcut icon" href="{{ '/static/img/favicon.png' | relative_url}}">
 
 <!-- Open Graph metadata -->
 <meta property="og:title" content="{{ page_title }}" />
@@ -29,19 +29,19 @@
 
 <title>{{ page_title }}</title>
 {% unless include.nostyle %}
-<link rel="stylesheet" href="/static/css/bootstrap.min.css?{{ site.data['hash'] }}">
-<link rel="stylesheet" href="/static/css/bootstrap-select.min.css?{{ site.data['hash'] }}">
-<link rel="stylesheet" href="/static/css/style.css?{{ site.data['hash'] }}">
-<script src="/static/js/jquery.min.js?{{ site.data['hash'] }}"></script>
-<script src="/static/js/bootstrap.min.js?{{ site.data['hash'] }}"></script>
-<script src="/static/js/bootstrap-select.min.js?{{ site.data['hash'] }}"></script>
+<link rel="stylesheet" href="{{ 'static/css/bootstrap.min.css?' | append: site.data['hash'] | relative_url }}">
+<link rel="stylesheet" href="{{ 'static/css/bootstrap-select.min.css?' | append: site.data['hash'] | relative_url }}">
+<link rel="stylesheet" href="{{ 'static/css/style.css?' | append: site.data['hash'] | relative_url }}">
+<script src="{{ 'static/js/jquery.min.js?' | append: site.data['hash'] | relative_url }}"></script>
+<script src="{{ 'static/js/bootstrap.min.js?' | append: site.data['hash'] | relative_url }}"></script>
+<script src="{{ 'static/js/bootstrap-select.min.js?' | append: site.data['hash'] | relative_url }}"></script>
 {% unless page.legacy %}
-<script src="/static/js/vue.min.js?{{ site.data['hash'] }}"></script>
-<script src="/static/js/timeago.min.js?{{ site.data['hash'] }}"></script>
+<script src="{{ 'static/js/vue.min.js?' | append: site.data['hash'] | relative_url }}"></script>
+<script src="{{ 'static/js/timeago.min.js?' | append: site.data['hash'] | relative_url }}"></script>
 {% endunless %}
-<script src="/static/js/markup.min.js?{{ site.data['hash'] }}"></script>
-<script src="/static/js/webfont.js?{{ site.data['hash'] }}"></script>
-<script src="/static/js/thuhidden.js?{{ site.data['hash'] }}"></script>
+<script src="{{ 'static/js/markup.min.js?' | append: site.data['hash'] | relative_url }}"></script>
+<script src="{{ 'static/js/webfont.js?' | append: site.data['hash'] | relative_url }}"></script>
+<script src="{{ 'static/js/thuhidden.js?' | append: site.data['hash'] | relative_url }}"></script>
 {% if page.legacy %}
 <style>
 .container {
