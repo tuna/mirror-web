@@ -30,6 +30,10 @@ var vmMirList = new Vue({
 	},
 	created () {
 		this.refreshMirrorList();
+		window.addEventListener("keypress", this.onKeyPress);
+	},
+	beforeDestroy() {
+		window.removeEventListener("keypress", this.onKeyPress);
 	},
 	updated () {
 		$('.mirror-item-label').popover();
@@ -76,6 +80,12 @@ var vmMirList = new Vue({
 				self.rawMirrorList = status_data;
 				setTimeout(() => {self.refreshMirrorList()}, 10000);
 			});
+		},
+		onKeyPress(event) {
+			if (event.key === '/' && document.activeElement !== this.$refs.search) {
+				event.preventDefault();
+				this.$refs.search.focus();
+			}
 		}
 	}
 })
