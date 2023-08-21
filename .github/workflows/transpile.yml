@@ -18,9 +18,9 @@ jobs:
       - name: Install jq
         run: sudo apt-get install -y jq
       - name: Use Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 16
       - name: Transpile
         run: |
           git config user.name "TUNA Bot"
@@ -29,7 +29,7 @@ jobs:
           export MIRROR_WEB_HOME=${PWD}
           bash ${MIRRORZ_HELP_HOME}/custom/tuna/transpile.sh
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           commit-message: "help: transpile from mirrorz-help"
           add-paths: help/_posts/
