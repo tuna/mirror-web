@@ -59,13 +59,14 @@ var vmMirList = new Vue({
 	methods: {
 		getURL (mir) {
 			if (mir.url !== undefined) {
+				console.log(mir)
 				return mir.url
 			}
 			return `/${mir.name}/`
 		},
 		refreshMirrorList () {
 			var self = this;
-			$.getJSON("/static/tunasync.json", (status_data) => {
+			$.getJSON("{{ '/static/tunasync.json' | relative_url}}", (status_data) => {
 				var unlisted_mir = unlisted.map(d => processMirrorItem(d))
 				status_data = status_data.map(d => processMirrorItem(d));
 				var mir_data = $.merge(unlisted_mir, status_data);
@@ -173,7 +174,7 @@ var vmIso = new Vue({
 	},
 	created: function () {
 		var self = this;
-		$.getJSON("/static/status/isoinfo.json", function (isoinfo) {
+		$.getJSON("{{ '/static/status/isoinfo.json' | relative_url}}", function (isoinfo) {
 			self.distroList = isoinfo;
 			self.selected = self.curDistroList[0];
 			if (window.location.hash.match(/#iso-download(\?.*)?/)) {

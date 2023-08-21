@@ -34,7 +34,12 @@
         <h4>Sponsor</h4>
         <div class="img-responsive thuhidden">
         {% for sponsor in site.sponsor %}
-        <img src="/static/img/{{ site.sponsors[sponsor].logo }}.png" srcset="/static/img/{{ site.sponsors[sponsor].logo }}.png 1x, /static/img/{{ site.sponsors[sponsor].logo }}@2x.png 2x, /static/img/{{ site.sponsors[sponsor].logo }}@3x.png 3x, /static/img/{{ site.sponsors[sponsor].logo }}@4x.png 4x" alt="{{ site.sponsors[sponsor].short }}" />
+        <img src="{{ '/static/img/' | append: site.sponsors[sponsor].logo | append: '.png' | relative_url }}" srcset="
+                {{ '/static/img/' | append: site.sponsors[sponsor].logo | append: '.png' | relative_url }} 1x, 
+                {{ '/static/img/' | append: site.sponsors[sponsor].logo | append: '@2x.png' | relative_url }} 2x, 
+                {{ '/static/img/' | append: site.sponsors[sponsor].logo | append: '@3x.png' | relative_url }} 3x, 
+                {{ '/static/img/' | append: site.sponsors[sponsor].logo | append: '@4x.png' | relative_url }} 4x"
+          alt="{{ site.sponsors[sponsor].short }}" />
         {% endfor %}
         </div>
         {% assign first_sponsor = site.sponsors[site.sponsor.first] %}
@@ -51,7 +56,12 @@
         {% endif %}
       </div>
       <div class="col-lg-4 col-md-4{% if page.legacy %} col-xs-4{% endif %}">
-        <img class="img-responsive thuhidden center-block" style="margin-top:5%" src="/static/img/logo-white.png" srcset="/static/img/logo-white.png 1x, /static/img/logo-white@2x.png 2x, /static/img/logo-white@3x.png 3x, /static/img/logo-white@4x.png 4x" />
+        <img class="img-responsive thuhidden center-block" style="margin-top:5%"
+          src="{{ '/static/img/logo-white.png' | relative_url }}" srcset="
+                          {{ '/static/img/logo-white.png' | relative_url }} 1x, 
+                          {{ '/static/img/logo-white@2x.png' | relative_url }} 2x, 
+                          {{ '/static/img/logo-white@3x.png' | relative_url }} 3x, 
+                          {{ '/static/img/logo-white@4x.png' | relative_url }} 4x" />
       </div>
     </div><!--/row -->
   </div><!--/container -->

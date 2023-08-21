@@ -14,9 +14,9 @@ $(document).ready(() => {
 		for (const target_selector of target_selectors) {
 			const template_selector = $(target_selector).data("template");
 			const select_selectors = $(target_selector).data("select").split(",");
-			let url = "/" + window.mirrorId
+			let url = "{{ '/' | relative_url }}" + window.mirrorId
 			if (window.mirrorId.endsWith(".git")) {
-				url = "/git/" + window.mirrorId
+				url = "{{ '/git/' | relative_url }}" + window.mirrorId
 			}
 			const template_data = {
 				"mirror": "{{ site.hostname }}" + url,
@@ -49,7 +49,7 @@ $(document).ready(() => {
 		window.location = `${window.location.protocol}//${window.location.host}${help_url}`;
 	});
 
-	$.getJSON("/static/tunasync.json", (statusData) => {
+	$.getJSON("{{ '/static/tunasync.json' | relative_url }}", (statusData) => {
 		// remove help items for disabled/removed mirrors
 		let availableMirrorIds = new Set(statusData.map(x => x.name));
 		globalOptions.unlisted_mirrors.forEach(elem => {
@@ -58,7 +58,7 @@ $(document).ready(() => {
 		console.log(window.mirrorId);
 		if (!availableMirrorIds.has(window.mirrorId)) {
 			if ({{ site.hide_mirrorz }}) {
-				location.href = "/404-help-hidden.html"; // this will break 404 issue submission
+				location.href = "{{ '/404-help-hidden.html' | relative_url }}"; // this will break 404 issue submission
 			} else {
 				location.href = "{{ site.mirrorz_help_link }}" + window.mirrorId; // TODO: convert this to mirrorz cname
 			}

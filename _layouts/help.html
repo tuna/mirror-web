@@ -24,7 +24,7 @@
 		  <div class="col-sm-2 hidden-xs">
 				<ul class="nav nav-pills nav-stacked" id="help-nav">
 					{% for h in help_pages %}
-					<li{% if h.mirrorid == page.mirrorid or h.redirect_help_id == page.mirrorid %} class="active"{%endif%} id="toc-{{h.mirrorid}}"><a href="{{h.url}}">{{h.mirrorid}}</a></li>
+					<li{% if h.mirrorid == page.mirrorid or h.redirect_help_id == page.mirrorid %} class="active"{%endif%} id="toc-{{h.mirrorid}}"><a href="{{h.url | relative_url}}">{{h.mirrorid}}</a></li>
 					{% endfor %}
 				</ul>
 			</div><!-- sidenave -->
@@ -52,8 +52,8 @@
 	{% include footer.html %}
 </body>
 
-<script src="/static/js/highlight.min.js?{{ site.data['hash'] }}"></script>
-<script src="/static/js/help.js?{{ site.data['hash'] }}"></script>
+<script src="{{ 'static/js/highlight.min.js?' | append: site.data['hash'] | relative_url }}"></script>
+<script src="{{ 'static/js/help.js?' | append: site.data['hash'] | relative_url }}"></script>
 
 </html>
 <!--

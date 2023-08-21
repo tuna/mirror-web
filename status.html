@@ -148,8 +148,8 @@ permalink: /status/
 		{% endunless %}
 	</div><!--/status -->
 	{% include footer.html %}
-	<script src="/static/js/status.js?{{ site.data['hash'] }}"></script>
-	<script src="/static/js/index.js?{{ site.data['hash'] }}"></script>
+	<script src="{{ 'static/js/status.js?' | append: site.data['hash'] | relative_url }}"></script>
+	<script src="{{ 'static/js/index.js?' | append: site.data['hash'] | relative_url }}"></script>
 </body>
 </html>
 <!--
