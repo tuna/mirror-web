@@ -41,7 +41,8 @@ Linux Mint 也采用 apt 作为包管理器，与 Ubuntu 和 Debian 类似，你
 <div class="form-group">
   <label>Linux Mint 版本：</label>
     <select id="select-0-0" class="form-control content-select" data-target="#content-0">
-      <option data-release_name="vera" selected>21.1</option>
+      <option data-release_name="victoria" selected>21.2</option>
+      <option data-release_name="vera">21.1</option>
       <option data-release_name="vanessa">21</option>
       <option data-release_name="una">20.3</option>
       <option data-release_name="uma">20.2</option>

@@ -35,7 +35,7 @@ Bioconductor 为高通量基因组数据的分析和可视化提供开源工具�
 
 使用方法：[Bioconductor](https://www.bioconductor.org) 镜像源配置文件之一是 `.Rprofile`（linux 下位于 `~/.Rprofile`, Windows 下位于 `~\library\base\R\Rprofile`）。
 
-在文末添加如下语句或在R/RStudio终端下键入：
+在文末添加如下语句或在 R/RStudio 终端下键入：
 
 
 
