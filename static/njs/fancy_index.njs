@@ -9,7 +9,7 @@ function fancyIndexRender(r, templateUrl){
     if(rTmpl.status != 200){
       return r.return(rTmpl.status);
     }
-    var tmpl = rTmpl.responseBody;
+    var tmpl = rTmpl.responseText;
     var result = Mark.up(tmpl, {
       url: r.variables.request_uri.replace(/\/+/g, '/').replace(/\?.*$/, ''),
       open: '{{',

@@ -24,7 +24,7 @@ function legacyIndexRender(r){
     if(rTmpl.status != 200){
       return r.return(rTmpl.status);
     }
-    var tmpl = rTmpl.responseBody;
+    var tmpl = rTmpl.responseText;
     
     r.subrequest('/static/njs/options.json', {
       args: '',
@@ -36,7 +36,7 @@ function legacyIndexRender(r){
       }
       var global_options;
       try{
-        global_options = JSON.parse(rOpt.responseBody);
+        global_options = JSON.parse(rOpt.responseText);
       }catch(e){
         return r.return(500);
       }
@@ -58,7 +58,7 @@ function legacyIndexRender(r){
         var mirs = unlisted;
         if(rMirs.status == 200){
           try{
-            mirs = mirs.concat(JSON.parse(rMirs.responseBody));
+            mirs = mirs.concat(JSON.parse(rMirs.responseText));
           }catch(e){
           }
         }
