@@ -189,12 +189,20 @@ var vmIso = new Vue({
 	data: {
 		distroList: [],
 		selected: {},
-		curCategory: "os"
+		curCategory: "",
+		knownCategories: {
+			os: "操作系统",
+			app: "应用软件",
+			font: "字体",
+		},
+		availableCategories: []
 	},
 	created: function () {
 		var self = this;
 		$.getJSON("/static/status/isoinfo.json", function (isoinfo) {
 			self.distroList = isoinfo;
+			self.availableCategories = [... new Set(isoinfo.map((x) => x.category))]
+			self.curCategory = self.availableCategories[0];
 			self.selected = self.curDistroList[0];
 			if (window.location.hash.match(/#iso-download(\?.*)?/)) {
 				$('#isoModal').modal();
@@ -211,10 +219,6 @@ var vmIso = new Vue({
 		},
 	},
 	methods: {
-		showCategory(category) {
-			return this.distroList
-				.findIndex((x) => x.category === category) > -1;
-		},
 		switchDistro (distro) {
 			this.selected = distro;
 		},

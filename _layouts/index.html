@@ -181,12 +181,16 @@
 		        <h4 class="modal-title" id="isoModalLabel">获取安装镜像</h4>
 		      </div>
 		      <div class="modal-body">
-					<div class="row">
+					<div class="row" v-if="availableCategories.length > 0">
 						<div class="col-md-12">
 							<ul class="nav nav-tabs">
-								<li role="presentation" :class="[curCategory === 'os' ? 'active' : '']" @click="switchCategory('os')" v-show="showCategory('os')"><a href="#">操作系统</a></li>
-								<li role="presentation" :class="[curCategory === 'app' ? 'active' : '']" @click="switchCategory('app')" v-show="showCategory('app')"><a href="#">应用软件</a></li>
-								<li role="presentation" :class="[curCategory === 'font' ? 'active' : '']" @click="switchCategory('font')" v-show="showCategory('font')"><a href="#">字体</a></li>
+								<li role="presentation"
+									v-for="cat in availableCategories"
+									:class="[curCategory === cat ? 'active' : '']"
+									@click="switchCategory(cat)"
+								>
+									<a href="#">{{ knownCategories[cat] ? knownCategories[cat] : cat  }}</a>
+								</li>
 							</ul>
 						</div>
 						<div class="col-md-3">
