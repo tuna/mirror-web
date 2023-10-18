@@ -41,7 +41,8 @@ mirrorid: raspberrypi
 <div class="form-group">
   <label>选择你的 Raspbian 对应的 Debian 版本：</label>
     <select id="select-0-0" class="form-control content-select" data-target="#content-0">
-      <option data-release_name="bullseye" selected>Debian 11 (bullseye)</option>
+      <option data-release_name="bookworm" selected>Debian 12 (bookworm)</option>
+      <option data-release_name="bullseye">Debian 11 (bullseye)</option>
       <option data-release_name="buster">Debian 10 (buster)</option>
       <option data-release_name="stretch">Debian 9 (stretch)</option>
     </select>
