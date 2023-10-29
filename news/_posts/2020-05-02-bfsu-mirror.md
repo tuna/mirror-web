@@ -10,3 +10,4 @@ category: news
 
 对于在镜像使用中遇到的问题，您可以提交 [issue](https://github.com/tuna/issues/issues/new?labels=BFSU) 提出反馈或通过发送邮件到 <a class="eib1gieB"></a> 联系我们。
 
+Update1: IPv6 线路已变更为中国移动（2023-10-25）。
