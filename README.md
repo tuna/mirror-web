@@ -8,6 +8,12 @@
 
 ## 运行 Demo
 
+由于本站部分文档使用 Submodule 方式嵌入仓库，clone 后构建前请运行：
+
+```bash
+git submodule update --init
+```
+
 ### 直接编译
 
 本站使用 Jekyll 编写，并使用 babel 编译 ECMAScript6，因此必须安装 ruby >= 2.0 和 nodejs.
@@ -32,9 +38,9 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/status/isoinfo.json -O static/s
 
 ## 贡献文档
 
-目前文档分为两部分维护，一部分是通用文档，从 [mirrorz-org/mirrorz-help](https://github.com/mirrorz-org/mirrorz-help) 生成并维护在本仓库，具体列表与生成方法可以参考 [tuna/mirrorz-help](https://github.com/tuna/mirrorz-help/blob/tuna/custom/tuna/transpile.sh)；如果您的改动是镜像站通用的，可以往 mirrorz-org/mirrorz-help 发送 PR；如果是 TUNA 特有的，可以往 tuna/mirrorz-help 发送。
+目前文档分为两部分维护，一部分是通用文档（helpz 目录），从 [mirrorz-org/mirrorz-docs](https://github.com/mirrorz-org/mirrorz-docs) 生成，在 TUNA 本地化维护在 [tuna/mirrorz-help-ng](https://github.com/tuna/mirrorz-help-ng) ，最终以 submodule 方式引入本仓库。如果您的改动是镜像站通用的，可以向前者贡献内容；如果是 TUNA 特有的，可以向后者 PR 。
 
-另一部分维护在本仓库内，需要往本仓库 PR。mirror-web 会逐渐迁移到使用通用文档。
+另一部分维护在本仓库内（help 目录），需要向本仓库 PR 。mirror-web 会逐渐迁移到使用通用文档。
 
 ### 基本步骤
 
@@ -57,14 +63,4 @@ wget https://mirrors.tuna.tsinghua.edu.cn/static/status/isoinfo.json -O static/s
 
 该功能实现在 mirrorz-org/mirrorz-help 中，需要让相应文档迁移到使用通用文档以该功能。
 
-#### 快速配置
-
-TODO。在 mirrorz-org/mirrorz-help 中有实现。
-
-#### 拷贝命令
-
-TODO。在 mirrorz-org/mirrorz-help 中有实现。
-
-#### 域名选择
-
-TODO。
+即将推出（TODO）：快速配置、拷贝命令、线路选择……
