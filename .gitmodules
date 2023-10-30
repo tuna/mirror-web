@@ -1,0 +1,4 @@
+[submodule "helpz/_posts"]
+	path = helpz/_posts
+	url = https://github.com/tuna/mirrorz-help-ng.git
+	branch = transpiled
