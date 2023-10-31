@@ -28,9 +28,7 @@ jobs:
           echo "docker_tag=${tag}" >> $GITHUB_ENV
       -
         name: Checkout
-        uses: actions/checkout@v3
-        with:
-          submodules: true
+        uses: actions/checkout@v4
       - 
         name: Prevent from loading rubygems from TUNA
         run: |

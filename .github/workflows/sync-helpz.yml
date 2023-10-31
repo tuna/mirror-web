@@ -13,7 +13,7 @@ jobs:
         submodules: true
     - name: Sync submodule
       run: |
-        git submodule update --remote helpz/_posts
+        git submodule update --remote help/_posts/mirrorz-help-ng-transpiled
         echo -n 'See content changes in: ' > /tmp/pr_msg
         echo -n 'https://github.com/tuna/mirrorz-help-ng/compare/' >> /tmp/pr_msg
         git diff --submodule=diff | head -n1 | cut -c24-39 >> /tmp/pr_msg
