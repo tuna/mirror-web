@@ -16,6 +16,11 @@
 <script>
 	window.mirrorId = "{{page.mirrorid}}";
 </script>
+<style>
+	.z-help pre.z-tmpl {
+		display: none;
+	}
+</style>
 
 {% assign help_pages = site.categories["help"] | sort: 'mirrorid' %}
 <div id="help-page">

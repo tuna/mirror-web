@@ -1,6 +1,8 @@
 ---
 ---
 
+window.addEventListener('DOMContentLoaded', function () {
+
 function generateFormConfig(form) {
     const formData = Object.fromEntries(new FormData(form).entries());
     Array.from(  // FormData ignores unchecked checkboxes, workaround
@@ -54,7 +56,6 @@ function renderCode(tmpl) {
     let rendered = globalThis.Mustache.render(
         tmpl.textContent.trim(), conf, {}, { escape: x => x }
     )
-    console.log(rendered);
     try {
         const lang = tmpl.attributes.getNamedItem('z-lang');
         if (lang && hljs.getLanguage(lang.value)) {
@@ -68,21 +69,15 @@ function renderCode(tmpl) {
 
 function renderForm(event) {
     if (!event || event.currentTarget.classList.contains('z-global')) {
-        Array.from(document.querySelectorAll('.z-help tmpl')).forEach(renderCode);
+        Array.from(document.querySelectorAll('.z-help pre.z-tmpl')).forEach(renderCode);
     }
     else {
         renderCode(event.currentTarget.parentElement.nextElementSibling);
     }
 }
 
-const form_update = renderForm;
-
 // Load project config
 const GLOBAL_CONFIG = JSON.parse(atob(document.getElementById('z-config').textContent));
-
-// Adjust <h1> and top <form> postion
-const h1 = document.getElementsByTagName('h1')[0];
-h1.parentElement.parentElement.insertBefore(h1, h1.parentElement.previousElementSibling);
 
 // Hide HTTPS selector if filtered
 if (GLOBAL_CONFIG.filter && GLOBAL_CONFIG.filter.scheme) {
@@ -90,4 +85,17 @@ if (GLOBAL_CONFIG.filter && GLOBAL_CONFIG.filter.scheme) {
 }
 
 // Render code
-window.addEventListener('DOMContentLoaded', () => { renderForm(null); });
+renderForm(null);
+
+const ignoreEventHandler = (event) => event.preventDefault();
+
+for(const form of document.querySelectorAll('form.z-form')) {
+    form.addEventListener('submit', ignoreEventHandler);
+    if(form.classList.contains('z-global')) {
+        form.addEventListener('change', ()=>renderForm(null));
+    }else{
+        form.addEventListener('change', renderForm);
+    }
+}
+
+});
