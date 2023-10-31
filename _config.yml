@@ -56,6 +56,12 @@ plugins:
 
 babel_js_extensions: 'es6'
 
+jekyll-minifier:
+    # remove_spaces_inside_tags: false
+    remove_multi_spaces: false
+    # preserve_patterns:
+        # - /<tmpl[\s\S]*?>[\s\S]*?<\/tmpl>/m
+
 exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_robot.sh, gen_desc.py, Dockerfile*]
 
 sponsors:
