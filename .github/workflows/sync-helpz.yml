@@ -23,8 +23,8 @@ jobs:
       run: |
         transpiled_dir="help/_posts/mirrorz-help-ng-transpiled"
         if [ -n "$NEW_COMMIT" ]; then
-          git -C "$transpiled_dir" fetch --all
-          git -C "$transpiled_dir" checkout "$NEW_COMMIT"
+          git -C "$transpiled_dir" fetch origin "+$NEW_COMMIT:refs/remotes/origin/incoming" --depth=1
+          git -C "$transpiled_dir" checkout --force "$NEW_COMMIT"
         else
           git submodule update --remote "$transpiled_dir"
         fi
