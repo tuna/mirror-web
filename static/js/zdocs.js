@@ -40,11 +40,16 @@ function update_code(tmpl) {
     rendered = mustache.render(
         tmpl.textContent.trim(), vars, {}, {escape: x => x}
     )
-    let lang = tmpl.attributes.getNamedItem('z-lang')  // get z-lang
-    lang = hljs.getLanguage(lang ? lang.value : '')    // check support
-    lang = lang ? lang.aliases[0] : 'plaintext'        // fallback
-    hl = hljs.highlight(rendered, {language: lang})
-    code.innerHTML = hl.value
+    try {
+        let lang = tmpl.attributes.getNamedItem('z-lang')
+        if (lang && hljs.getLanguage(lang.value)) {
+            rendered = hljs.highlight(rendered, {language: lang.value}).value
+        }
+    }
+    catch (err) {
+        console.error(err)
+    }
+    code.innerHTML = rendered
 }
 
 function form_update(event) {
