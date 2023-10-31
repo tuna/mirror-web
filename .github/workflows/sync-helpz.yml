@@ -1,6 +1,12 @@
 name: 'Sync mirrorz-help-ng'
 on:
   workflow_dispatch:
+    inputs:
+      new_commit:
+        description: 'New commit hash'
+        required: false
+        type: string
+        default: ''
   schedule:
     - cron: '33 22 * * *'  # 06:33 AM in Asia/Shanghai (UTC+8)
 jobs:
@@ -12,8 +18,15 @@ jobs:
       with:
         submodules: true
     - name: Sync submodule
+      env:
+        NEW_COMMIT: ${{ inputs.new_commit }}
       run: |
-        git submodule update --remote help/_posts/mirrorz-help-ng-transpiled
+        transpiled_dir="help/_posts/mirrorz-help-ng-transpiled"
+        if [ -n "$NEW_COMMIT" ]; then
+          git -C "$transpiled_dir" checkout "$NEW_COMMIT"
+        else
+          git submodule update --remote "$transpiled_dir"
+        fi
         echo -n 'See content changes in: ' > /tmp/pr_msg
         echo -n 'https://github.com/tuna/mirrorz-help-ng/compare/' >> /tmp/pr_msg
         git diff --submodule=diff | head -n1 | cut -c24-39 >> /tmp/pr_msg
