@@ -27,15 +27,16 @@ jobs:
           git -C "$transpiled_dir" checkout --force "$NEW_COMMIT"
         else
           git submodule update --remote "$transpiled_dir"
+          NEW_COMMIT=$(git -C "$transpiled_dir" rev-parse HEAD)
         fi
-        echo -n 'See content changes in: ' > /tmp/pr_msg
-        echo -n 'https://github.com/tuna/mirrorz-help-ng/compare/' >> /tmp/pr_msg
-        git diff --submodule=diff | head -n1 | cut -c24-39 >> /tmp/pr_msg
+        NEW_COMMIT_SHORT=$(echo "$NEW_COMMIT" | cut -c1-8)
+        echo "NEW_COMMIT_SHORT=$NEW_COMMIT_SHORT" >> $GITHUB_ENV
+        echo -n "Update submodules to tuna/mirrorz-help-ng@$NEW_COMMIT" > /tmp/pr_msg
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
-        title: 'helpz: sync mirrorz-help-ng'
-        commit-message: 'helpz: sync mirrorz-help-ng'
+        title: 'helpz: sync mirrorz-help-ng@${{ env.NEW_COMMIT_SHORT }}'
+        commit-message: 'helpz: sync tuna/mirrorz-help-ng@${{ env.NEW_COMMIT_SHORT }}'
         author: 'GitHub Actions <41898282+github-actions[bot]@users.noreply.github.com>'
         branch: helpz
         delete-branch: true
