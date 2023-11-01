@@ -22,11 +22,13 @@ jobs:
         NEW_COMMIT: ${{ inputs.new_commit }}
       run: |
         transpiled_dir="help/_posts/mirrorz-help-ng-transpiled"
+        track_branch="transpiled"
         if [ -n "$NEW_COMMIT" ]; then
           git -C "$transpiled_dir" fetch origin "+$NEW_COMMIT:refs/remotes/origin/incoming" --depth=1
           git -C "$transpiled_dir" checkout --force "$NEW_COMMIT"
         else
-          git submodule update --remote "$transpiled_dir"
+          git -C "$transpiled_dir" fetch origin "+refs/heads/${track_branch}:refs/remotes/origin/${track_branch}" --depth=1
+          git -C "$transpiled_dir" checkout --force "origin/${track_branch}"
           NEW_COMMIT=$(git -C "$transpiled_dir" rev-parse HEAD)
         fi
         NEW_COMMIT_SHORT=$(echo "$NEW_COMMIT" | cut -c1-8)
