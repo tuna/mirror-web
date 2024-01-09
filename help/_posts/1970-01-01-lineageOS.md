@@ -52,7 +52,7 @@ repo init -u https://{{ site.hostname }}/git/lineageOS/LineageOS/android.git -b 
            fetch="https://github.com/" />
 
   <remote  name="lineage"
-           fetch="https://{{ site.hostname }}/git/lineageOS/LineageOS/"
+           fetch="https://{{ site.hostname }}/git/lineageOS/"
            review="review.lineageos.org" />
 ```
 
