@@ -13,9 +13,94 @@ import collections
 import sys
 import fnmatch
 from urllib.parse import urljoin
-from version import LooseVersion
 from configparser import ConfigParser
 from argparse import ArgumentParser, ArgumentError
+
+class Version:
+    def __init__(self, vstring=None):
+        if vstring:
+            self.parse(vstring)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__} ('{str(self)}')"
+
+    def __eq__(self, other):
+        c = self._cmp(other)
+        if c is NotImplemented:
+            return c
+        return c == 0
+
+    def __lt__(self, other):
+        c = self._cmp(other)
+        if c is NotImplemented:
+            return c
+        return c < 0
+
+    def __le__(self, other):
+        c = self._cmp(other)
+        if c is NotImplemented:
+            return c
+        return c <= 0
+
+    def __gt__(self, other):
+        c = self._cmp(other)
+        if c is NotImplemented:
+            return c
+        return c > 0
+
+    def __ge__(self, other):
+        c = self._cmp(other)
+        if c is NotImplemented:
+            return c
+        return c >= 0
+
+
+class LooseVersion(Version):
+    component_re = re.compile(r'(\d+ | [a-z]+ | \.)', re.VERBOSE)
+
+    def parse(self, vstring):
+        self.vstring = vstring
+        components = [x for x in self.component_re.split(vstring) if x and x != '.']
+        for i, obj in enumerate(components):
+            try:
+                components[i] = int(obj)
+            except ValueError:
+                pass
+        # special handling for "latest"
+        if components[0] == "latest":
+            components[0] = float("inf")
+
+        self.version = components
+
+    def __str__(self):
+        return self.vstring
+
+    def __repr__(self):
+        return "LooseVersion ('%s')" % str(self)
+
+    def _cmp(self, other):
+        if isinstance(other, str):
+            other = LooseVersion(other)
+        elif not isinstance(other, LooseVersion):
+            return NotImplemented
+
+        try:
+            if self.version == other.version:
+                return 0
+            if self.version < other.version:
+                return -1
+            if self.version > other.version:
+                return 1
+        except TypeError:
+            # if comparison fails, convert everything into string and try again
+            self_version = [str(x) for x in self.version]
+            other_version = [str(x) for x in other.version]
+            if self_version == other_version:
+                return 0
+            if self_version < other_version:
+                return -1
+            if self_version > other_version:
+                return 1
 
 parser = ArgumentParser(
     prog='iso info list generator',
