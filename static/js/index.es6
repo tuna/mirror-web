@@ -50,7 +50,7 @@ const vmMirList = new Vue({
 		$('.mirror-item-label').popover();
 	},
 	computed: {
-		nowBrowsingMirror: () => {
+		nowBrowsingMirror: function() {
 			var mirrorName = location.pathname.split('/')[1];
 			if (!mirrorName){
 				return false;
@@ -64,7 +64,7 @@ const vmMirList = new Vue({
 			}
 			return result;
 		},
-		filteredMirrorList: () => {
+		filteredMirrorList: function() {
 			var filter = this.filter.toLowerCase();
 			return this.mirrorList.filter((m) =>  {
 				return m.is_master && m.name.toLowerCase().indexOf(filter) !== -1;
@@ -83,7 +83,7 @@ const vmMirList = new Vue({
 			if (document.hidden === true) {
 				return;
 			}
-			const self = this;
+			var self = this;
 			$.getJSON("/static/tunasync.json", (status_data) => {
 				const unlisted_mir = unlisted.map(d => processMirrorItem(d))
 				status_data = status_data.map(d => processMirrorItem(d));
@@ -209,7 +209,7 @@ var vmIso = new Vue({
 		},
 		availableCategories: []
 	},
-	created: () => {
+	created: function() {
 		var self = this;
 		$.getJSON("/static/status/isoinfo.json", (isoinfo) => {
 			self.distroList = isoinfo;
