@@ -80,7 +80,7 @@ const vmMirList = new Vue({
 		},
 		refreshMirrorList() {
 			// do nothing if the tab is not visible
-			if (document.hidden ?? false) {
+			if (document.hidden === true) {
 				return;
 			}
 			const self = this;
