@@ -19,7 +19,7 @@ new Vue({
 	el: "#upgrade-mask",
 });
 
-var vmMirList = new Vue({
+const vmMirList = new Vue({
 	el: "#mirror-list",
 	data: {
 		test: "hello",
@@ -29,58 +29,63 @@ var vmMirList = new Vue({
 		dateTooltip: localStorage.getItem('DateTooltip') !== 'false',
 		haveSearchBox: false,
 	},
-	created () {
+	created() {
 		this.refreshMirrorList();
 	},
-	mounted () {
-		if(this.$refs.search){
+	mounted() {
+		if (this.$refs.search){
 			this.haveSearchBox = true;
 		}
-		if(this.haveSearchBox){
+		if (this.haveSearchBox){
 			window.addEventListener("keypress", this.onKeyPress);
 		}
+		window.addEventListener("visibilitychange", this.onVisibilityChange);
 	},
 	beforeDestroy() {
-		if(this.haveSearchBox){
+		if (this.haveSearchBox){
 			window.removeEventListener("keypress", this.onKeyPress);
 		}
 	},
-	updated () {
+	updated() {
 		$('.mirror-item-label').popover();
 	},
 	computed: {
-		nowBrowsingMirror: function(){
+		nowBrowsingMirror: () => {
 			var mirrorName = location.pathname.split('/')[1];
-			if(!mirrorName){
+			if (!mirrorName){
 				return false;
 			}
 			mirrorName = mirrorName.toLowerCase();
-			var result = this.mirrorList.filter(function(m){
+			const result = this.mirrorList.filter((m) => {
 				return m.name.toLowerCase() === mirrorName;
 			})[0];
-			if(!result){
+			if (!result){
 				return false;
 			}
 			return result;
 		},
-		filteredMirrorList: function() {
+		filteredMirrorList: () => {
 			var filter = this.filter.toLowerCase();
-			return this.mirrorList.filter(function(m){
+			return this.mirrorList.filter((m) =>  {
 				return m.is_master && m.name.toLowerCase().indexOf(filter) !== -1;
 			});
 		},
 	},
 	methods: {
-		getURL (mir) {
+		getURL(mir) {
 			if (mir.url !== undefined) {
 				return mir.url
 			}
 			return `/${mir.name}/`
 		},
-		refreshMirrorList () {
-			var self = this;
+		refreshMirrorList() {
+			// do nothing if the tab is not visible
+			if (document.hidden ?? false) {
+				return;
+			}
+			const self = this;
 			$.getJSON("/static/tunasync.json", (status_data) => {
-				var unlisted_mir = unlisted.map(d => processMirrorItem(d))
+				const unlisted_mir = unlisted.map(d => processMirrorItem(d))
 				status_data = status_data.map(d => processMirrorItem(d));
 				var mir_data = $.merge(unlisted_mir, status_data);
 				mir_data = processLinkItem(mir_data);
@@ -88,7 +93,7 @@ var vmMirList = new Vue({
 				mir_data = sortAndUniqMirrors(mir_data).filter(d => !(d.status == "disabled"));
 				self.mirrorList = mir_data;
 				self.rawMirrorList = status_data;
-				setTimeout(() => {self.refreshMirrorList()}, 10000);
+				self.refreshTimer = setTimeout(() => {self.refreshMirrorList()}, 10000);
 			});
 		},
 		onKeyPress(event) {
@@ -96,12 +101,19 @@ var vmMirList = new Vue({
 				event.preventDefault();
 				this.$refs.search.focus();
 			}
+		},
+		onVisibilityChange() {
+			// disable the timer anyway
+			clearTimeout(this.refreshTimer);
+			if (document.visibilityState === 'visible') {
+				this.refreshMirrorList();
+			}
 		}
 	}
 })
 
-var stringifyTime = function(ts){
-	var date = new Date(ts * 1000);
+var stringifyTime = (ts) => {
+	const date = new Date(ts * 1000);
 	var str = "";
 	var ago = "";
 	if (date.getFullYear() > 2000) {
@@ -115,7 +127,7 @@ var stringifyTime = function(ts){
 	return [str, ago];
 }
 
-var sortAndUniqMirrors = function(mirs){
+var sortAndUniqMirrors = (mirs) => {
 	mirs.sort((a, b) => { return a.name < b.name ? -1: 1 });
 	return mirs.reduce((acc, cur)=>{
 		if(acc.length > 1 && acc[acc.length - 1].name == cur.name){
@@ -133,7 +145,7 @@ var sortAndUniqMirrors = function(mirs){
 	}, []);
 }
 
-var processLinkItem = function(mirrors) {
+const processLinkItem = (mirrors) => {
 	var processed = [];
 	for (let d of mirrors) {
 		if (d.link_to === undefined) {
@@ -160,7 +172,7 @@ var processLinkItem = function(mirrors) {
 	return processed;
 };
 
-var processMirrorItem = function(d){
+const processMirrorItem = (d) => {
 	if (options[d.name] != undefined ) {
 		d = $.extend(d, options[d.name]);
 	}
@@ -197,9 +209,9 @@ var vmIso = new Vue({
 		},
 		availableCategories: []
 	},
-	created: function () {
+	created: () => {
 		var self = this;
-		$.getJSON("/static/status/isoinfo.json", function (isoinfo) {
+		$.getJSON("/static/status/isoinfo.json", (isoinfo) => {
 			self.distroList = isoinfo;
 			self.availableCategories = [... new Set(isoinfo.map((x) => x.category))]
 			self.curCategory = self.availableCategories[0];
