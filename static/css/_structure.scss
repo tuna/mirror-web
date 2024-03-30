@@ -11,7 +11,7 @@ body {
     margin: 0;
     /* height: 100%; */ 
     color: $color_secondary;
-    @include dark{
+    @include dark(&) {
         color: $color_secondary_dark;
     }
     font-family: $font_default;
@@ -33,7 +33,7 @@ p {
     font-size: 14px;
     line-height: 24px;
     color: $color_secondary ;
-    @include dark{
+    @include dark(&) {
         color: $color_secondary_dark;
     }
     margin-top: 10px;
@@ -46,7 +46,7 @@ img {
 
 a {
     color:$color_link;
-    @include dark{
+    @include dark(&) {
       color: $color_link_dark;
     }
     padding: 0;
@@ -68,7 +68,7 @@ a:hover, a:focus {
     color: #fff;
     text-shadow:none;
     background:$color_secondary;
-    @include dark{
+    @include dark(&) {
       background: $color_secondary_dark;
     }
 }
@@ -76,7 +76,7 @@ a:hover, a:focus {
     color: #fff;
     text-shadow:none;
     background:$color_secondary;
-    @include dark{
+    @include dark(&) {
       background: white;
       color: $color_secondary;
     }

@@ -7,26 +7,26 @@ BOOTSTRAP MODIFICATIONS & TWEAKS
 }
 
 .nav > li > a:hover, .nav > li > a:focus{
-    @include dark{
+    @include dark(&) {
         background-color: #111;
     }
 }
 
 pre{
-    @include dark{
+    @include dark(&) {
         color: #ccc;
         background-color: #272822;
     }
 }
 
 code{
-    @include dark{
+    @include dark(&) {
         background-color: #060d0b;
     }
 }
 
 .navbar-default {
-    @include dark{
+    @include dark(&) {
         background-color: $color_bg_dark;
     }
     @include noissue {
@@ -37,13 +37,13 @@ code{
     .navbar-nav > li.active > a {
         color: $color_thu_purple; 
         border-bottom: 2px solid $color_thu_purple;
-        @include dark{
+        @include dark(&) {
             color: $color_thu_purple_dark; 
             border-bottom-color: $color_thu_purple_dark; 
         }
     }
     .navbar-nav > li > a {
-        @include dark{
+        @include dark(&) {
             color: $color_secondary_dark;
         }
         color: $color_secondary;
@@ -54,7 +54,7 @@ code{
         &:hover, &:focus {
             color: $color_primary !important;
             background: transparent !important;
-            @include dark{
+            @include dark(&) {
                 color: $color_primary_dark !important; 
             }
         } 
@@ -73,7 +73,7 @@ code{
 
 .navbar-header .navbar-brand {
     color: $color_secondary;
-    @include dark{
+    @include dark(&) {
         color: $color_secondary_dark;
         &:hover {
             color: #fff;
@@ -82,7 +82,7 @@ code{
 }
 
 .dropdown-menu {
-    @include dark{
+    @include dark(&) {
         background: $color_secondary_dark;
     }
     background: $color_secondary ;
@@ -92,7 +92,7 @@ code{
     @include noissue {
       color: white;
     }
-    @include dark{
+    @include dark(&) {
         color: $color_bg_dark;
     }
     font-weight: 700;
@@ -127,7 +127,7 @@ table .row{
   }
 }
 
-@include dark{
+@include dark(&) {
     .popover{
         background-color: #282828;
         border-color: rgba(255, 255, 255, 0.2);

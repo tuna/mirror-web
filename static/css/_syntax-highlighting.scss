@@ -84,7 +84,7 @@
 .hljs-tag    { color: #000080 } // Name.Tag
 .hljs-variable    { color: #008080 } // Name.Variable
 
-@include dark{
+@include dark(&) {
 .highlight {
 .hll { background-color: #272822; }
 .c { color: #75715e } /* Comment */

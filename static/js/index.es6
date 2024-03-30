@@ -64,10 +64,13 @@ const vmMirList = new Vue({
 			}
 			return result;
 		},
-		filteredMirrorList: function() {
+		mappedMirrorList: function() {
 			var filter = this.filter.toLowerCase();
-			return this.mirrorList.filter((m) =>  {
-				return m.is_master && m.name.toLowerCase().indexOf(filter) !== -1;
+			return this.mirrorList.map((m) =>  {
+				return {
+					...m,
+					shown: m.is_master && m.name.toLowerCase().indexOf(filter) !== -1,
+				};
 			});
 		},
 	},

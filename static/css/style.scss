@@ -45,11 +45,19 @@ $color_bg_dark: #222;
 $color_primary: $color_thu_purple;
 $color_primary_dark: $color_thu_purple_dark;
 
-@mixin dark {
+@mixin dark($cur) {
   {% unless site.issue %}
+  @each $br in $cur {
     @media (prefers-color-scheme: dark) {
+        @at-root html:not(.forced-light) #{$br} {
+            @content
+        }
+    }
+
+    @at-root html.forced-dark #{$br} {
         @content
     }
+}
   {% else %}
   @content
   {% endunless %}
@@ -97,7 +105,7 @@ html {
 body {
     position: relative;
     min-height: 100%;
-    @include dark{
+    @include dark(&) {
         background: $color_bg_dark;
     }
 }
@@ -122,18 +130,18 @@ body {
 
 .status-fail, .status-failed, .status-paused {
     background-color: #fff4e3;
-    @include dark{
+    @include dark(&) {
         background-color: #524841;
     }
 }
 .status-syncing {
     background-color: #e3fffd;
-    @include dark{
+    @include dark(&) {
         background-color: #254059;
     }
 }
 .sk-wave .sk-rect {
-    @include dark{
+    @include dark(&) {
         background-color: $color_secondary_dark;
     }
 }
@@ -142,7 +150,7 @@ body {
     tbody {
         tr:hover {
             background-color: $color_row_hover;
-            @include dark{
+            @include dark(&) {
                 background-color: $color_row_hover_dark;
             }
         }
@@ -164,7 +172,7 @@ body {
         }
        .question-circle {
             color: #234961;
-            @include dark{
+            @include dark(&) {
                 color: #6e9cdb;
             }
         }
@@ -172,7 +180,7 @@ body {
     #news {
         li > a {
             color: $color_secondary;
-            @include dark{
+            @include dark(&) {
                 color: $color_secondary_dark;
             }
         }
@@ -194,7 +202,7 @@ body {
     #mirror-list {
         tr:hover {
             background-color: $color_row_hover;
-            @include dark{
+            @include dark(&) {
                 background-color: $color_row_hover_dark;
             }
         }
@@ -210,7 +218,7 @@ body {
     article {
         .meta {
             color: $color_grey;
-            @include dark{
+            @include dark(&) {
                 color: $color_grey_dark;
             }
         }
@@ -402,7 +410,7 @@ body {
       url("/static/img/missing@3x.png") 3x,
       url("/static/img/missing@4x.png") 4x);
     }
-    @include dark {
+    @include dark(&)  {
         opacity: 1;
         filter: none;
         background-image: url(/static/img/missing-dark.png);

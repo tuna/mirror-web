@@ -36,10 +36,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 console.log("喵呜喵呜喵");
 var modes = ["light", "dark", "darker", "lighter"];
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    modes[0] = 'dark';
+    modes[1] = 'light';
+    var toggle = document.getElementsByClassName('dark-switch')[0];
+    toggle.setAttribute('data-mode', 'dark');
+}
+var tmpCtx = document.createElement('canvas').getContext('2d');
 var vertShaderSrc = "\nattribute vec4 a_pos;\nuniform vec2 u_screen;\nuniform vec2 u_mouse;\nuniform vec2 u_offset;\n\nvarying float v_opacity;\n\nvoid main() {\n  vec2 pos_screen = a_pos.xy + u_offset;\n  vec2 pos_translated;\n  vec2 diff = pos_screen - u_mouse;\n  pos_translated.x = pos_screen.x + diff.x * a_pos.z;\n  pos_translated.y = pos_screen.y + diff.y * a_pos.z;\n  gl_Position.x = pos_translated.x / u_screen.x * 2.0 - 1.0;\n  gl_Position.y = - (pos_translated.y / u_screen.y * 2.0 - 1.0);\n  gl_Position.z = 0.0;\n  gl_Position.w = 1.0;\n\n  float dist = sqrt(diff.x * diff.x + diff.y * diff.y);\n  // 30 - 50px\n  v_opacity = clamp((dist - 30.0) / 20.0, 0.0, 1.0);\n}\n";
 var fragShaderSrc = "\nprecision mediump float;\nvarying float v_opacity;\n\nvoid main() {\n  gl_FragColor = vec4(0.0, 0.0, 0.0, v_opacity);\n}\n";
-var radialVertShaderSrc = "\n\n";
-var radialFragShaderSrc = "\n";
 function loadFont(fn) {
     return __awaiter(this, void 0, void 0, function () {
         var url, req, resp;
@@ -157,14 +162,53 @@ function discretize(path) {
     return loop;
 }
 function applyMode(m) {
-    if (m === 'darker') {
-        ensureCanvas();
-        rescanAt(document.body);
-        // TODO: async reassemble
-        reassemble();
-        ensureObs();
-        renderLoop();
-    }
+    return __awaiter(this, void 0, void 0, function () {
+        var tmpl_1, flames_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    document.body.parentElement.classList.remove('forced-light');
+                    document.body.parentElement.classList.remove('forced-dark');
+                    if (!(m === 'light' || m === 'dark')) return [3 /*break*/, 1];
+                    document.body.parentElement.classList.add("forced-".concat(m));
+                    return [3 /*break*/, 4];
+                case 1:
+                    if (!(m === 'darker')) return [3 /*break*/, 3];
+                    document.body.parentElement.classList.add('forced-light');
+                    document.body.classList.add('darker-engaging');
+                    return [4 /*yield*/, allFonts];
+                case 2:
+                    _a.sent();
+                    setTimeout(function () {
+                        ensureCanvas();
+                        rescanAt(document.body);
+                        // TODO: async reassemble
+                        reassemble();
+                        ensureObs();
+                        renderLoop();
+                        document.body.classList.remove('darker-engaging');
+                    }, 100);
+                    return [3 /*break*/, 4];
+                case 3:
+                    tmpl_1 = document.querySelector('.dark-switch-icon[data-active="lighter"] svg').cloneNode(true);
+                    flames_1 = document.querySelector('.flames');
+                    renderStopped = true;
+                    document.body.classList.add('darker-cleanup');
+                    setTimeout(function () {
+                        document.body.addEventListener('click', function (e) {
+                            e.target.remove();
+                            e.preventDefault();
+                            var inserted = tmpl_1.cloneNode(true);
+                            inserted.style.top = e.pageY + 'px';
+                            inserted.style.left = e.pageX + 'px';
+                            flames_1.appendChild(inserted);
+                        });
+                    });
+                    _a.label = 4;
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
 }
 var mx = 0;
 var my = 0;
@@ -186,20 +230,24 @@ function rescan(mutations, obs) {
             var n = _b[_a];
             rescanAt(n);
         }
-        reassemble();
     }
+    setTimeout(function () { return reassemble(); });
 }
 // TODO: allow scaning arbitrary HTML-side nodes
 function rescanAt(el) {
-    var _a;
+    var _a, _b, _c, _d, _e, _f;
+    if ((_a = el.classList) === null || _a === void 0 ? void 0 : _a.contains('sr-only'))
+        return;
+    if ((_b = el.classList) === null || _b === void 0 ? void 0 : _b.contains('dark-switch-hint'))
+        return;
     // Check if is svg
     if (el.tagName === 'svg') {
         rescanSVG(el);
         return;
     }
-    if ((_a = el.classList) === null || _a === void 0 ? void 0 : _a.contains('label-status')) {
+    if (((_c = el.classList) === null || _c === void 0 ? void 0 : _c.contains('label-status')) || ((_d = el.classList) === null || _d === void 0 ? void 0 : _d.contains('label-new')) || ((_e = el.classList) === null || _e === void 0 ? void 0 : _e.contains('input-wrapper')) || ((_f = el.classList) === null || _f === void 0 ? void 0 : _f.contains('popover'))) {
         var r = parseFloat(window.getComputedStyle(el).borderRadius.match(/^[0-9.]+/)[0]);
-        var _b = el.getBoundingClientRect(), width = _b.width, height = _b.height;
+        var _g = el.getBoundingClientRect(), width = _g.width, height = _g.height;
         var d = "\n      M 0 ".concat(r, " A ").concat(r, " ").concat(r, " 0 0 1 ").concat(r, " 0\n      L ").concat(width - r, " 0 A ").concat(r, " ").concat(r, " 0 0 1 ").concat(width, " ").concat(r, "\n      L ").concat(width, " ").concat(height - r, " A ").concat(r, " ").concat(r, " 0 0 1 ").concat(width - r, " ").concat(height, "\n      L ").concat(r, " ").concat(height, " A ").concat(r, " ").concat(r, " 0 0 1 0 ").concat(height - r, "\n      z\n    ");
         var svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
         svg.setAttribute('viewbox', "0 0 ".concat(width, " ").concat(height));
@@ -213,10 +261,11 @@ function rescanAt(el) {
         svg.appendChild(path);
         el.appendChild(svg);
         svg.classList.add('darker-traced');
+        svg.classList.add('darker-traced-misc');
         rescanAt(svg);
     }
-    for (var _i = 0, _c = el.childNodes; _i < _c.length; _i++) {
-        var child = _c[_i];
+    for (var _i = 0, _h = el.childNodes; _i < _h.length; _i++) {
+        var child = _h[_i];
         if (child.nodeType === Node.TEXT_NODE) {
             var inner = child.nodeValue;
             if (!inner)
@@ -307,22 +356,28 @@ function splitPathSegs(path) {
         var seg = segs_1[_i];
         var _a = seg.match(/^[mM] *(-?[.0-9]+) *(-?[.0-9]+)/), firstMove = _a[0], mx_1 = _a[1], my_1 = _a[2];
         // console.log(firstMove);
-        var d_1 = firstMove[0] === 'M' ? seg : "M ".concat(last.x + parseFloat(mx_1), " ").concat(last.y + parseFloat(my_1), " ").concat(seg.substring(firstMove.length));
+        var bx = firstMove[0] === 'M' ? parseFloat(mx_1) : last.x + parseFloat(mx_1);
+        var by = firstMove[0] === 'M' ? parseFloat(my_1) : last.y + parseFloat(my_1);
+        var d_1 = "M ".concat(bx, " ").concat(by, " ").concat(seg.substring(firstMove.length).trim());
         var path_1 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
         path_1.setAttribute('d', d_1);
         path_1.classList.add('darker-processed');
         path_1.classList.add('darker-surrogate');
-        last = path_1.getPointAtLength(path_1.getTotalLength());
-        paths.push([path_1, new Path2D(d_1)]);
+        if (d_1[d_1.length - 1] === 'z' || d_1[d_1.length - 1] === 'Z') {
+            last = { x: bx, y: by };
+        }
+        else {
+            console.error("Cannot find path end: ".concat(d_1));
+            last = { x: bx, y: by };
+        }
+        paths.push([path_1, { x: bx, y: by }, new Path2D(d_1)]);
     }
-    var tmpCtx = document.createElement('canvas').getContext('2d');
     var outerPaths = [];
     for (var _b = 0, paths_1 = paths; _b < paths_1.length; _b++) {
-        var _c = paths_1[_b], path_2 = _c[0], _ = _c[1];
-        var starting = path_2.getPointAtLength(0);
+        var _c = paths_1[_b], path_2 = _c[0], starting = _c[1], _ = _c[2];
         var outer = true;
         for (var _d = 0, paths_2 = paths; _d < paths_2.length; _d++) {
-            var _e = paths_2[_d], another = _e[0], repr = _e[1];
+            var _e = paths_2[_d], another = _e[0], _1 = _e[1], repr = _e[2];
             if (another !== path_2) {
                 if (tmpCtx.isPointInPath(repr, starting.x, starting.y)) {
                     outer = false;
@@ -448,11 +503,11 @@ function ensureObs() {
     }
 }
 var textCache = new WeakMap();
+var assembleCache = new WeakMap();
 function reassemble() {
     var traced = document.getElementsByClassName('darker-traced');
-    var assembledBuffer = [];
-    var trig = 0;
     function assemblePath(paths, sx, sy, scale) {
+        var buf = [];
         for (var _i = 0, paths_3 = paths; _i < paths_3.length; _i++) {
             var path = paths_3[_i];
             var dpath = discretize(path);
@@ -464,21 +519,27 @@ function reassemble() {
                 var nx = dpath[(i + 1) % dpath.length].x * scale + sx;
                 var ny = dpath[(i + 1) % dpath.length].y * scale + sy;
                 // Expand a little bit
-                assembledBuffer.push(cx, cy, 0, nx, ny, 0, cx, cy, 100, cx, cy, 100, nx, ny, 100, nx, ny, 0);
-                trig += 2;
+                buf.push(cx, cy, -0.01, nx, ny, -0.01, cx, cy, 100, cx, cy, 100, nx, ny, 100, nx, ny, -0.01);
             }
         }
+        return buf;
     }
+    var total = [];
     for (var _i = 0, traced_1 = traced; _i < traced_1.length; _i++) {
         var trace = traced_1[_i];
+        if (assembleCache.has(trace)) {
+            var cached = assembleCache.get(trace);
+            total.push.apply(total, cached);
+            continue;
+        }
         var _a = trace.getBoundingClientRect(), x = _a.x, y = _a.y, width = _a.width, height = _a.height;
-        var scale = 1;
+        var populated = [];
         if (trace.tagName === 'use') {
             var sym = document.getElementById(trace.getAttribute('xlink:href').substring(1));
             var vbox = sym.viewBox.baseVal;
             // TODO: handle browsers without baseVal
             // TODO: handle origins other than 0,0
-            var scale_1 = width / vbox.width;
+            var scale = width / vbox.width;
             var vscale = height / vbox.height;
             // if(scale > vscale * 1.01 || scale < vscale * 0.99)
             //   console.warn(`incompatible scales: ${scale}, ${vscale}`);
@@ -487,15 +548,21 @@ function reassemble() {
                 console.warn("Symbol not in cache: ".concat(sym.id));
                 continue;
             }
-            assemblePath(paths, x, y + window.scrollY, scale_1);
+            populated = assemblePath(paths, x, y + window.scrollY, scale);
         }
         else if (trace.tagName === 'svg') {
+            var scale = 1;
+            var vb = trace.getAttribute('viewBox');
+            if (vb) {
+                var _b = vb.split(' ').map(function (e) { return parseFloat(e); }), _ = _b[0], __ = _b[1], vboxw = _b[2], vboxh = _b[3];
+                scale = width / vboxw;
+            }
             var paths = svgCache[trace.id];
             if (paths === undefined) {
                 console.warn("SVG not in cache: ".concat(trace.id));
                 continue;
             }
-            assemblePath(paths, x, y + window.scrollY, scale);
+            populated = assemblePath(paths, x, y + window.scrollY, scale);
         }
         else if (trace.classList.contains('darker-text')) {
             var cached = textCache.get(trace);
@@ -505,17 +572,21 @@ function reassemble() {
                 cached = paths.map(function (e) { return e.getAttribute('d'); });
                 textCache.set(trace, cached);
             }
-            assemblePath(cached, x, y + window.scrollY, scale);
+            populated = assemblePath(cached, x, y + window.scrollY, 1);
         }
+        assembleCache.set(trace, populated);
+        total.push.apply(total, populated);
     }
     // TODO: error on me
     if (!shaderCtx.gl)
         return;
-    shaderCtx.gl.bufferData(shaderCtx.gl.ARRAY_BUFFER, new Float32Array(assembledBuffer), shaderCtx.gl.STATIC_DRAW);
-    shaderCtx.triangleCnt = trig * 3;
+    shaderCtx.gl.bufferData(shaderCtx.gl.ARRAY_BUFFER, new Float32Array(total), shaderCtx.gl.STATIC_DRAW);
+    shaderCtx.triangleCnt = total.length / 3;
 }
 var renderStopped = false;
 function renderLoop() {
+    if (renderStopped)
+        return;
     if (!canvas || !backdrop || !overlay || !shaderCtx.gl)
         return;
     canvas.width = window.innerWidth;
@@ -525,7 +596,7 @@ function renderLoop() {
         backdrop.height = window.innerHeight;
         var ctx = backdrop.getContext('2d');
         var grad = ctx.createRadialGradient(mx, my, 100, mx, my, 600);
-        grad.addColorStop(0, "#333");
+        grad.addColorStop(0, "#222");
         grad.addColorStop(1, "#111");
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, backdrop.width, backdrop.height);
@@ -557,13 +628,26 @@ function renderLoop() {
 }
 document.addEventListener('DOMContentLoaded', function () {
     var dark = document.getElementsByClassName('dark-switch-inner')[0];
+    var hint = document.querySelector('.dark-switch-hint');
     dark.addEventListener('click', function () {
+        hint === null || hint === void 0 ? void 0 : hint.classList.add('dark-switch-hint-ack');
+        window.localStorage.setItem('2024-april-fools', 'meow');
         var parent = dark.parentNode;
         var cur = parent.getAttribute("data-mode");
+        if (cur === 'lighter')
+            return;
         var idx = (modes.findIndex(function (e) { return e === cur; }) + 1) % modes.length;
         var next = modes[idx];
         applyMode(next);
         parent.setAttribute('data-mode', next);
     });
+    if (hint) {
+        hint.addEventListener('click', function (e) {
+            hint.classList.add('dark-switch-hint-ack');
+            window.localStorage.setItem('2024-april-fools', 'meow');
+        });
+        if (window.localStorage.getItem('2024-april-fools') === null)
+            hint.classList.remove('dark-switch-hint-ack');
+    }
     document.addEventListener('mousemove', tracker);
 });

@@ -1,9 +1,16 @@
 console.log("喵呜喵呜喵");
 
-const modes = ["light", "dark", "darker", "lighter"] as const;
-type Mode = typeof modes[number];
+const modes = ["light", "dark", "darker", "lighter"];
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  modes[0] = 'dark';
+  modes[1] = 'light';
+
+  const toggle = document.getElementsByClassName('dark-switch')[0];
+  toggle.setAttribute('data-mode', 'dark');
+}
 
 type DiscreteLoop = { x: number, y: number }[];
+const tmpCtx = document.createElement('canvas').getContext('2d')!;
 
 const vertShaderSrc = `
 attribute vec4 a_pos;
@@ -38,13 +45,6 @@ void main() {
   gl_FragColor = vec4(0.0, 0.0, 0.0, v_opacity);
 }
 `;
-
-const radialVertShaderSrc = `
-
-`
-
-const radialFragShaderSrc = `
-`
 
 async function loadFont(fn: string): Promise<any> {
   const url = `/static/fonts/${fn}`;
@@ -147,14 +147,41 @@ function discretize(path: string): DiscreteLoop {
   return loop;
 }
 
-function applyMode(m: Mode) {
-  if(m === 'darker') {
-    ensureCanvas();
-    rescanAt(document.body);
-    // TODO: async reassemble
-    reassemble();
-    ensureObs();
-    renderLoop();
+async function applyMode(m: string) {
+  (document.body.parentElement as HTMLElement).classList.remove('forced-light');
+  (document.body.parentElement as HTMLElement).classList.remove('forced-dark');
+  if(m === 'light' || m === 'dark') {
+    (document.body.parentElement as HTMLElement).classList.add(`forced-${m}`);
+  } else if(m === 'darker') {
+    (document.body.parentElement as HTMLElement).classList.add('forced-light');
+    document.body.classList.add('darker-engaging');
+    await allFonts;
+    setTimeout(() => {
+      ensureCanvas();
+      rescanAt(document.body);
+      // TODO: async reassemble
+      reassemble();
+      ensureObs();
+      renderLoop();
+      document.body.classList.remove('darker-engaging');
+    }, 100);
+  } else {
+    const tmpl = document.querySelector('.dark-switch-icon[data-active="lighter"] svg')!.cloneNode(true);
+    const flames = document.querySelector('.flames')!;
+
+    renderStopped = true;
+    document.body.classList.add('darker-cleanup');
+    setTimeout(() => {
+      document.body.addEventListener('click', e => {
+        (e.target as HTMLElement).remove();
+        e.preventDefault();
+        const inserted = tmpl.cloneNode(true) as HTMLElement;
+        inserted.style.top = e.pageY + 'px';
+        inserted.style.left = e.pageX + 'px';
+
+        flames.appendChild(inserted);
+      })
+    });
   }
 }
 
@@ -175,19 +202,22 @@ function rescan(mutations: MutationRecord[], obs: MutationObserver) {
     }
 
     for(const n of m.addedNodes) rescanAt(n as HTMLElement);
-    reassemble();
   }
+  setTimeout(() => reassemble());
 }
 
 // TODO: allow scaning arbitrary HTML-side nodes
 function rescanAt(el: HTMLElement) {
+  if(el.classList?.contains('sr-only')) return;
+  if(el.classList?.contains('dark-switch-hint')) return;
+
   // Check if is svg
   if(el.tagName === 'svg') {
     rescanSVG(el as unknown as SVGElement);
     return;
   }
 
-  if(el.classList?.contains('label-status')) {
+  if(el.classList?.contains('label-status') || el.classList?.contains('label-new') || el.classList?.contains('input-wrapper') || el.classList?.contains('popover')) {
     const r = parseFloat(window.getComputedStyle(el).borderRadius.match(/^[0-9.]+/)![0]);
     const { width, height } = el.getBoundingClientRect();
     const d = `
@@ -213,6 +243,7 @@ function rescanAt(el: HTMLElement) {
     el.appendChild(svg);
 
     svg.classList.add('darker-traced');
+    svg.classList.add('darker-traced-misc');
     rescanAt(svg as unknown as HTMLElement);
   }
 
@@ -316,26 +347,31 @@ function splitPathSegs(path: string): SVGPathElement[] {
   }
 
   let last = { x: 0, y: 0 };
-  const paths: [SVGPathElement, Path2D][] = [];
+  const paths: [SVGPathElement, { x: number, y: number }, Path2D][] = [];
   for(const seg of segs) {
     const [firstMove, mx, my] = seg.match(/^[mM] *(-?[.0-9]+) *(-?[.0-9]+)/)!;
     // console.log(firstMove);
-    const d = firstMove[0] === 'M' ? seg : `M ${last.x + parseFloat(mx)} ${last.y + parseFloat(my)} ${seg.substring(firstMove.length)}`;
+    const bx = firstMove[0] === 'M' ? parseFloat(mx) : last.x + parseFloat(mx);
+    const by = firstMove[0] === 'M' ? parseFloat(my) : last.y + parseFloat(my);
+    const d = `M ${bx} ${by} ${seg.substring(firstMove.length).trim()}`;
 
     const path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
     path.setAttribute('d', d);
     path.classList.add('darker-processed');
     path.classList.add('darker-surrogate');
-    last = path.getPointAtLength(path.getTotalLength());
-    paths.push([path, new Path2D(d)]);
+    if(d[d.length-1] === 'z' || d[d.length-1] === 'Z') {
+      last = { x: bx, y: by };
+    } else {
+      console.error(`Cannot find path end: ${d}`);
+      last = { x: bx, y: by };
+    }
+    paths.push([path, { x: bx, y: by }, new Path2D(d)]);
   }
 
-  const tmpCtx = document.createElement('canvas').getContext('2d')!;
   const outerPaths: SVGPathElement[] = [];
-  for(const [path, _] of paths) {
-    const starting = path.getPointAtLength(0);
+  for(const [path, starting, _] of paths) {
     let outer = true;
-    for(const [another, repr] of paths) if(another !== path) {
+    for(const [another, _, repr] of paths) if(another !== path) {
       if(tmpCtx.isPointInPath(repr, starting.x, starting.y)) {
         outer = false;
         break;
@@ -466,13 +502,13 @@ function ensureObs() {
 }
 
 const textCache: WeakMap<Element, string[]> = new WeakMap();
+const assembleCache: WeakMap<Element, number[]> = new WeakMap();
 
 function reassemble() {
   const traced = document.getElementsByClassName('darker-traced');
 
-  const assembledBuffer: number[] = [];
-  let trig = 0;
-  function assemblePath(paths: string[], sx: number, sy: number, scale: number) {
+  function assemblePath(paths: string[], sx: number, sy: number, scale: number): number[] {
+    const buf: number[] = [];
     for(const path of paths) {
       const dpath = discretize(path);
       if(dpath.length === 1) continue;
@@ -485,24 +521,31 @@ function reassemble() {
         let ny = dpath[(i + 1) % dpath.length].y * scale + sy;
 
         // Expand a little bit
-        assembledBuffer.push(
-          cx, cy, 0,
-          nx, ny, 0,
+        buf.push(
+          cx, cy, -0.01,
+          nx, ny, -0.01,
           cx, cy, 100,
 
           cx, cy, 100,
           nx, ny, 100,
-          nx, ny, 0,
+          nx, ny, -0.01,
         );
-        trig += 2;
       }
     }
+    return buf;
   }
 
+  const total: number[] = [];
   for(const trace of traced) {
+    if(assembleCache.has(trace)) {
+      const cached = assembleCache.get(trace)!;
+      total.push(...cached);
+      continue;
+    }
+
     const { x, y, width, height } = trace.getBoundingClientRect();
 
-    let scale = 1;
+    let populated: number[] = [];
 
     if(trace.tagName === 'use') {
       const sym = document.getElementById(trace.getAttribute('xlink:href')!.substring(1)) as unknown as SVGSymbolElement;
@@ -520,14 +563,20 @@ function reassemble() {
         continue;
       }
 
-      assemblePath(paths, x, y + window.scrollY, scale);
+      populated = assemblePath(paths, x, y + window.scrollY, scale);
     } else if(trace.tagName === 'svg') {
+      let scale = 1;
+      const vb = trace.getAttribute('viewBox');
+      if(vb) {
+        const [_, __, vboxw, vboxh] = vb.split(' ').map(e => parseFloat(e))!;
+        scale = width / vboxw;
+      }
       const paths: string[] | undefined = svgCache[trace.id];
       if(paths === undefined) {
         console.warn(`SVG not in cache: ${trace.id}`);
         continue;
       }
-      assemblePath(paths, x, y + window.scrollY, scale);
+      populated = assemblePath(paths, x, y + window.scrollY, scale);
     } else if(trace.classList.contains('darker-text')) {
       let cached = textCache.get(trace);
       if(!cached) {
@@ -536,19 +585,23 @@ function reassemble() {
         cached = paths.map(e => e.getAttribute('d')!);
         textCache.set(trace, cached);
       }
-      assemblePath(cached, x, y + window.scrollY, scale);
+      populated = assemblePath(cached, x, y + window.scrollY, 1);
     }
+
+    assembleCache.set(trace, populated);
+    total.push(...populated);
   }
 
   // TODO: error on me
   if(!shaderCtx.gl) return;
 
-  shaderCtx.gl.bufferData(shaderCtx.gl.ARRAY_BUFFER, new Float32Array(assembledBuffer), shaderCtx.gl.STATIC_DRAW);
-  shaderCtx.triangleCnt = trig * 3;
+  shaderCtx.gl.bufferData(shaderCtx.gl.ARRAY_BUFFER, new Float32Array(total), shaderCtx.gl.STATIC_DRAW);
+  shaderCtx.triangleCnt = total.length / 3;
 }
 
 let renderStopped = false;
 function renderLoop() {
+  if(renderStopped) return;
   if(!canvas || !backdrop || !overlay || !shaderCtx.gl) return;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -558,7 +611,7 @@ function renderLoop() {
     backdrop.height = window.innerHeight;
     const ctx = backdrop.getContext('2d')!;
     const grad = ctx.createRadialGradient(mx, my, 100, mx, my, 600);
-    grad.addColorStop(0, "#333");
+    grad.addColorStop(0, "#222");
     grad.addColorStop(1, "#111");
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, backdrop.width, backdrop.height);
@@ -597,14 +650,30 @@ function renderLoop() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const dark = document.getElementsByClassName('dark-switch-inner')[0];
+  const hint = document.querySelector('.dark-switch-hint');
+
   dark.addEventListener('click', () => {
+    hint?.classList.add('dark-switch-hint-ack');
+    window.localStorage.setItem('2024-april-fools', 'meow');
+
     const parent = dark.parentNode as HTMLElement;
     const cur = parent.getAttribute("data-mode");
+    if(cur === 'lighter') return;
     const idx = (modes.findIndex(e => e === cur) + 1) % modes.length;
     const next = modes[idx];
     applyMode(next);
     parent.setAttribute('data-mode', next);
   })
+
+  if(hint) {
+    hint.addEventListener('click', e => {
+      hint.classList.add('dark-switch-hint-ack');
+      window.localStorage.setItem('2024-april-fools', 'meow');
+    })
+
+    if(window.localStorage.getItem('2024-april-fools') === null)
+      hint.classList.remove('dark-switch-hint-ack');
+  }
 
   document.addEventListener('mousemove', tracker);
 })
