@@ -21,7 +21,7 @@ $color_link_dark: #6793cf;
 $color_link_hover: #62bbe7;
 $color_footer_heading: #ffffff;
 $color_footer_content: #bfc9d3;
-$font_default: 'Lato', 'Hiragino Sans GB', 'Source Han Sans SC', 'Source Han Sans CN', 'Noto Sans CJK SC', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
+$font_default: 'Lato', 'Source Han Sans SC', 'Hiragino Sans GB', 'Source Han Sans CN', 'Noto Sans CJK SC', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
 $color_row_hover_dark: #325475;
 
 {% if site.issue %}
@@ -69,6 +69,8 @@ $color_primary_dark: $color_thu_purple_dark;
 "bootstrap-mod",
 "syntax-highlighting",
 "_spinners/3-wave";
+
+@import "dark";
 
 {% unless site.issue %}
 :root {

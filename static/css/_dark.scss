@@ -1,0 +1,143 @@
+// TODO: < 768 px width
+
+.nav-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dark-switch {
+  $this: &;
+  flex: 1;
+  position: relative;
+  height: 36px;
+
+  &-inner {
+    height: 36px;
+    width: 36px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+  }
+
+  &-icon {
+    opacity: 0;
+    transform: scale(0.8);
+
+    font-size: 18px;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    transition: opacity .2s ease-in;
+    pointer-events: none;
+
+    @keyframes icon-exit {
+      0% {
+        transform: none;
+      }
+
+      100% {
+        transform: translateY(-10px);
+      }
+    }
+
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in;
+    animation-name: icon-exit;
+  }
+
+  @each $mode in "light", "dark", "darker", "lighter" {
+    &[data-mode="#{$mode}"] {
+      #{$this}-icon[data-active="#{$mode}"] {
+        transition: transform .2s ease-out, opacity .2s ease-out;
+        transition-delay: .15s;
+        opacity: .8;
+        transform: none;
+        pointer-events: all;
+
+        @keyframes icon-enter {
+          0% {
+            transform: translateY(10px);
+          }
+
+          100% {
+            transform: none;
+          }
+        }
+
+        animation-duration: 0.2s;
+        animation-timing-function: ease-in;
+        animation-name: icon-enter;
+        animation-delay: .1s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.darker-surrogate {
+  z-index: -1;
+  fill: transparent;
+}
+
+.darker-text-display {
+  fill: currentColor;
+}
+
+.darker-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.label-status {
+  position: relative;
+}
+
+.darker-text {
+  position: relative;
+}
+
+.darker-rounded-debug, .darker-text-render {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.darker-text > span {
+  color: transparent;
+}
+
+@font-face {
+    font-family: 'Source Han Sans SC';
+    src: url('../fonts/sss-regular.otf') format('otf'),
+         url('../fonts/sss-regular.woff2') format('woff2');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Source Han Sans SC';
+    src: url('../fonts/sss-bold.otf') format('otf'),
+         url('../fonts/sss-bold.woff2') format('woff2');
+    font-style: normal;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+}

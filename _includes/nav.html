@@ -40,17 +40,27 @@
 					{{ site.school }}</span>开源软件镜像站
 			</a>
     </div>
-    <div class="{% unless page.legacy %}navbar-collapse collapse {% endunless %}navbar-right">
-      <ul class="nav navbar-nav" role="menubar">
-        {% unless site.hide_navbar %}
-        <li role="none"><a role="menuitem" href="{{ site.homelink }}">HOME</a></li>
-        <li role="none"><a role="menuitem" href="https://tuna.moe/events/">EVENTS</a></li>
-        <li role="none"><a role="menuitem" href="https://tuna.moe/blog/">BLOG</a></li>
-        <li role="none"><a role="menuitem" href="https://tuna.moe/feed.xml">RSS</a></li>
-        <li role="none"><a role="menuitem" href="https://podcast.tuna.moe/">PODCAST</a></li>
-        <li role="none" class="active"><a role="menuitem" aria-checked="true" href="{{ site.url }}">MIRRORS</a></li>
-        {% endunless %}
-      </ul>
-    </div><!--/.nav-collapse -->
+		<div class="nav-right">
+			<div class="dark-switch" data-mode="light">
+				<div class="dark-switch-inner" data-mode="light">
+					<span class="dark-switch-icon" data-active="light">{% fa_svg fas.fa-sun %}</span>
+					<span class="dark-switch-icon" data-active="dark">{% fa_svg fas.fa-moon %}</span>
+					<span class="dark-switch-icon" data-active="darker">{% fa_svg fas.fa-lightbulb %}</span>
+					<span class="dark-switch-icon" data-active="lighter">{% fa_svg fas.fa-fire %}</span>
+				</div>
+			</div>
+			<div class="{% unless page.legacy %}navbar-collapse collapse {% endunless %}navbar-right">
+				<ul class="nav navbar-nav" role="menubar">
+					{% unless site.hide_navbar %}
+					<li role="none"><a role="menuitem" href="{{ site.homelink }}">HOME</a></li>
+					<li role="none"><a role="menuitem" href="https://tuna.moe/events/">EVENTS</a></li>
+					<li role="none"><a role="menuitem" href="https://tuna.moe/blog/">BLOG</a></li>
+					<li role="none"><a role="menuitem" href="https://tuna.moe/feed.xml">RSS</a></li>
+					<li role="none"><a role="menuitem" href="https://podcast.tuna.moe/">PODCAST</a></li>
+					<li role="none" class="active"><a role="menuitem" aria-checked="true" href="{{ site.url }}">MIRRORS</a></li>
+					{% endunless %}
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
   </div>
 </div>
