@@ -91,18 +91,24 @@
   fill: transparent;
 }
 
-.darker-text-display {
-  fill: currentColor;
+.darker-canvases > canvas {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  mix-blend-mode: normal;
 }
 
-.darker-canvas {
+.darker-canvases {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
-  z-index: 100;
+  z-index: 100000;
   pointer-events: none;
+  mix-blend-mode: multiply;
 }
 
 .label-status {
@@ -118,10 +124,6 @@
   top: 0;
   left: 0;
   pointer-events: none;
-}
-
-.darker-text > span {
-  color: transparent;
 }
 
 @font-face {

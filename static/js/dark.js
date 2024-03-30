@@ -36,6 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 console.log("喵呜喵呜喵");
 var modes = ["light", "dark", "darker", "lighter"];
+var vertShaderSrc = "\nattribute vec4 a_pos;\nuniform vec2 u_screen;\nuniform vec2 u_mouse;\nuniform vec2 u_offset;\n\nvarying float v_opacity;\n\nvoid main() {\n  vec2 pos_screen = a_pos.xy + u_offset;\n  vec2 pos_translated;\n  vec2 diff = pos_screen - u_mouse;\n  pos_translated.x = pos_screen.x + diff.x * a_pos.z;\n  pos_translated.y = pos_screen.y + diff.y * a_pos.z;\n  gl_Position.x = pos_translated.x / u_screen.x * 2.0 - 1.0;\n  gl_Position.y = - (pos_translated.y / u_screen.y * 2.0 - 1.0);\n  gl_Position.z = 0.0;\n  gl_Position.w = 1.0;\n\n  float dist = sqrt(diff.x * diff.x + diff.y * diff.y);\n  // 30 - 50px\n  v_opacity = clamp((dist - 30.0) / 20.0, 0.0, 1.0);\n}\n";
+var fragShaderSrc = "\nprecision mediump float;\nvarying float v_opacity;\n\nvoid main() {\n  gl_FragColor = vec4(0.0, 0.0, 0.0, v_opacity);\n}\n";
+var radialVertShaderSrc = "\n\n";
+var radialFragShaderSrc = "\n";
 function loadFont(fn) {
     return __awaiter(this, void 0, void 0, function () {
         var url, req, resp;
@@ -154,8 +158,11 @@ function discretize(path) {
 }
 function applyMode(m) {
     if (m === 'darker') {
+        ensureCanvas();
         rescanAt(document.body);
-        ensureDarker();
+        // TODO: async reassemble
+        reassemble();
+        ensureObs();
         renderLoop();
     }
 }
@@ -179,6 +186,7 @@ function rescan(mutations, obs) {
             var n = _b[_a];
             rescanAt(n);
         }
+        reassemble();
     }
 }
 // TODO: allow scaning arbitrary HTML-side nodes
@@ -220,7 +228,7 @@ function rescanAt(el) {
             var fs = styles.fontSize;
             var fsNum = parseFloat(fs.match(/^[0-9.]+/)[0]);
             var isBold = styles.fontWeight !== '400';
-            var _loop_2 = function () {
+            while (inner !== '') {
                 // Trim empty stuff
                 var startTrim = inner.length - inner.trimStart().length;
                 if (startTrim != 0) {
@@ -234,39 +242,36 @@ function rescanAt(el) {
                 else {
                     var first = inner.substring(0, 1);
                     inner = inner.substring(1);
-                    var node_1 = document.createElement('span');
-                    node_1.classList.add('darker-text');
+                    var node = document.createElement('span');
+                    node.classList.add('darker-text');
                     var holder = document.createElement('span');
                     holder.innerText = first;
-                    node_1.appendChild(holder);
-                    wrapper.appendChild(node_1);
+                    node.appendChild(holder);
+                    wrapper.appendChild(node);
                     // console.log(fsNum);
-                    var glyph_1 = resolveGlyph(first, fsNum, isBold);
-                    if (!glyph_1)
-                        return "continue";
-                    node_1.classList.add('darker-traced');
-                    node_1.setAttribute('data-glyph', glyph_1);
+                    var glyph = resolveGlyph(first, fsNum, isBold);
+                    if (!glyph)
+                        continue;
+                    node.classList.add('darker-traced');
+                    node.setAttribute('data-glyph', glyph);
                     // console.log(first, glyph);
                     // Debug
                     // TODO: drop me
-                    setTimeout(function () {
-                        var _a = node_1.getBoundingClientRect(), width = _a.width, height = _a.height;
-                        var svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
-                        svg.setAttribute('viewbox', "0 0 ".concat(width, " ").concat(height));
-                        svg.style.width = width + 'px';
-                        svg.style.height = height + 'px';
-                        svg.classList.add('darker-text-render');
-                        var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                        path.setAttribute('d', glyph_1);
-                        path.classList.add('darker-processed');
-                        path.classList.add('darker-text-display');
-                        svg.appendChild(path);
-                        node_1.appendChild(svg);
-                    });
+                    // setTimeout(() => {
+                    //   const { width, height } = node.getBoundingClientRect();
+                    //   const svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
+                    //   svg.setAttribute('viewbox', `0 0 ${width} ${height}`);
+                    //   svg.style.width = width + 'px';
+                    //   svg.style.height = height + 'px';
+                    //   svg.classList.add('darker-text-render');
+                    //   const path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                    //   path.setAttribute('d', glyph);
+                    //   path.classList.add('darker-processed');
+                    //   path.classList.add('darker-text-display');
+                    //   svg.appendChild(path);
+                    //   node.appendChild(svg);
+                    // });
                 }
-            };
-            while (inner !== '') {
-                _loop_2();
             }
             el.replaceChild(wrapper, child);
         }
@@ -377,7 +382,63 @@ function rescanSVG(el) {
 }
 var obs = null;
 var canvas = null;
-function ensureDarker() {
+var backdrop = null;
+var overlay = null;
+var shaderCtx = {
+    a_pos: null,
+    u_screen_loc: null,
+    u_mouse_loc: null,
+    u_offset_loc: null,
+    triangleCnt: 0,
+    gl: null,
+};
+function ensureCanvas() {
+    var container = document.createElement('div');
+    container.classList.add('darker-canvases');
+    if (backdrop === null) {
+        backdrop = document.createElement('canvas');
+        container.appendChild(backdrop);
+    }
+    if (canvas === null) {
+        canvas = document.createElement('canvas');
+        canvas.classList.add('darker-canvas');
+        container.appendChild(canvas);
+        var gl = canvas.getContext('webgl');
+        if (!gl) {
+            alert('WebGL Missing!');
+            return;
+        }
+        shaderCtx.gl = gl;
+        var vertShader = gl.createShader(gl.VERTEX_SHADER);
+        var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
+        gl.shaderSource(vertShader, vertShaderSrc);
+        gl.shaderSource(fragShader, fragShaderSrc);
+        gl.compileShader(vertShader);
+        console.log(gl.getShaderInfoLog(vertShader));
+        gl.compileShader(fragShader);
+        console.log(gl.getShaderInfoLog(fragShader));
+        // TODO: check compile status
+        var prog = gl.createProgram();
+        gl.attachShader(prog, vertShader);
+        gl.attachShader(prog, fragShader);
+        gl.linkProgram(prog);
+        var a_pos_loc = gl.getAttribLocation(prog, 'a_pos');
+        shaderCtx.a_pos = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, shaderCtx.a_pos);
+        gl.useProgram(prog);
+        gl.enableVertexAttribArray(a_pos_loc);
+        gl.vertexAttribPointer(a_pos_loc, 3, gl.FLOAT, false, 0, 0);
+        shaderCtx.u_screen_loc = gl.getUniformLocation(prog, 'u_screen');
+        shaderCtx.u_mouse_loc = gl.getUniformLocation(prog, 'u_mouse');
+        shaderCtx.u_offset_loc = gl.getUniformLocation(prog, 'u_offset');
+    }
+    if (overlay === null) {
+        overlay = document.createElement('canvas');
+        container.appendChild(overlay);
+    }
+    document.body.appendChild(container);
+}
+function ensureObs() {
     if (obs === null) {
         obs = new MutationObserver(rescan);
         obs.observe(document.body, {
@@ -385,105 +446,32 @@ function ensureDarker() {
             subtree: true,
         });
     }
-    if (canvas === null) {
-        canvas = document.createElement('canvas');
-        canvas.classList.add('darker-canvas');
-        document.body.appendChild(canvas);
-    }
 }
 var textCache = new WeakMap();
-var renderStopped = false;
-function renderLoop() {
-    if (renderStopped)
-        return;
-    if (canvas === null)
-        return;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    var ctx = canvas.getContext('2d');
+function reassemble() {
     var traced = document.getElementsByClassName('darker-traced');
-    var cnt = 0;
-    function tracePaths(paths, sx, sy, width, height, scale) {
-        var _loop_3 = function (path) {
+    var assembledBuffer = [];
+    var trig = 0;
+    function assemblePath(paths, sx, sy, scale) {
+        for (var _i = 0, paths_3 = paths; _i < paths_3.length; _i++) {
+            var path = paths_3[_i];
             var dpath = discretize(path);
             if (dpath.length === 1)
-                return "continue";
-            ctx.beginPath();
-            var lastAng = null;
-            var incRegionStart = null;
-            function commit(x, y) {
-                if (incRegionStart === null)
-                    return;
-                var color = "black";
-                // if(x < sx || x > sx + width || y < sy || y > sy + height) {
-                //   color = 'red';
-                // }
-                var bx = incRegionStart.x, by = incRegionStart.y;
-                // if(bx < sx || bx > sx + width || by < sy || by > sy + height) {
-                //   color = 'green';
-                // }
-                ctx.fillStyle = "".concat(color);
-                ctx.beginPath();
-                ctx.moveTo(bx, by);
-                ctx.lineTo((bx - mx) * 1000 + bx, (by - my) * 1000 + by);
-                ctx.lineTo((x - mx) * 1000 + x, (y - my) * 1000 + y);
-                ctx.lineTo(x, y);
-                ctx.fill();
-                cnt += 2;
-                lastAng = null;
-                incRegionStart = null;
-            }
+                continue;
             for (var i = 0; i < dpath.length; ++i) {
                 var cx = dpath[i].x * scale + sx;
                 var cy = dpath[i].y * scale + sy;
                 var nx = dpath[(i + 1) % dpath.length].x * scale + sx;
                 var ny = dpath[(i + 1) % dpath.length].y * scale + sy;
-                // Test angle. This is a counter-clockwise loop (in canonical axis orientation)
-                var segAng = Math.atan2(nx - cx, ny - cy);
-                var rayAng = Math.atan2(cx - mx, cy - my);
-                var diffAng = segAng - rayAng;
-                if (diffAng > Math.PI)
-                    diffAng -= Math.PI * 2;
-                if (diffAng < -Math.PI)
-                    diffAng += Math.PI * 2;
-                if (diffAng < 0 || diffAng > Math.PI) {
-                    commit(cx, cy);
-                    // TODO: commit
-                    continue;
-                }
-                // Check for continous increasing region
-                if (lastAng === null) {
-                    lastAng = segAng;
-                    incRegionStart = { x: cx, y: cy };
-                    continue;
-                }
-                var diffLastAng = segAng - rayAng;
-                if (diffLastAng > Math.PI)
-                    diffLastAng -= Math.PI * 2;
-                if (diffLastAng < -Math.PI)
-                    diffLastAng += Math.PI * 2;
-                if (diffLastAng > 0) {
-                    lastAng = segAng;
-                    continue;
-                }
-                else {
-                    commit(cx, cy);
-                    lastAng = segAng;
-                    continue;
-                }
+                // Expand a little bit
+                assembledBuffer.push(cx, cy, 0, nx, ny, 0, cx, cy, 100, cx, cy, 100, nx, ny, 100, nx, ny, 0);
+                trig += 2;
             }
-            var bx = dpath[0].x * scale + sx;
-            var by = dpath[0].y * scale + sy;
-            commit(bx, by);
-        };
-        for (var _i = 0, paths_3 = paths; _i < paths_3.length; _i++) {
-            var path = paths_3[_i];
-            _loop_3(path);
         }
     }
     for (var _i = 0, traced_1 = traced; _i < traced_1.length; _i++) {
         var trace = traced_1[_i];
-        var _a = trace.getBoundingClientRect(), sx = _a.x, sy = _a.y, width = _a.width, height = _a.height;
+        var _a = trace.getBoundingClientRect(), x = _a.x, y = _a.y, width = _a.width, height = _a.height;
         var scale = 1;
         if (trace.tagName === 'use') {
             var sym = document.getElementById(trace.getAttribute('xlink:href').substring(1));
@@ -499,7 +487,7 @@ function renderLoop() {
                 console.warn("Symbol not in cache: ".concat(sym.id));
                 continue;
             }
-            tracePaths(paths, sx, sy, width, height, scale_1);
+            assemblePath(paths, x, y + window.scrollY, scale_1);
         }
         else if (trace.tagName === 'svg') {
             var paths = svgCache[trace.id];
@@ -507,7 +495,7 @@ function renderLoop() {
                 console.warn("SVG not in cache: ".concat(trace.id));
                 continue;
             }
-            tracePaths(paths, sx, sy, width, height, 1);
+            assemblePath(paths, x, y + window.scrollY, scale);
         }
         else if (trace.classList.contains('darker-text')) {
             var cached = textCache.get(trace);
@@ -517,10 +505,54 @@ function renderLoop() {
                 cached = paths.map(function (e) { return e.getAttribute('d'); });
                 textCache.set(trace, cached);
             }
-            tracePaths(cached, sx, sy, width, height, 1);
+            assemblePath(cached, x, y + window.scrollY, scale);
         }
     }
-    console.log(cnt);
+    // TODO: error on me
+    if (!shaderCtx.gl)
+        return;
+    shaderCtx.gl.bufferData(shaderCtx.gl.ARRAY_BUFFER, new Float32Array(assembledBuffer), shaderCtx.gl.STATIC_DRAW);
+    shaderCtx.triangleCnt = trig * 3;
+}
+var renderStopped = false;
+function renderLoop() {
+    if (!canvas || !backdrop || !overlay || !shaderCtx.gl)
+        return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    {
+        backdrop.width = window.innerWidth;
+        backdrop.height = window.innerHeight;
+        var ctx = backdrop.getContext('2d');
+        var grad = ctx.createRadialGradient(mx, my, 100, mx, my, 600);
+        grad.addColorStop(0, "#333");
+        grad.addColorStop(1, "#111");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, backdrop.width, backdrop.height);
+    }
+    var gl = shaderCtx.gl;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform2fv(shaderCtx.u_screen_loc, [window.innerWidth, window.innerHeight]);
+    gl.uniform2fv(shaderCtx.u_mouse_loc, [mx, my]);
+    gl.uniform2fv(shaderCtx.u_offset_loc, [0, -window.scrollY]);
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    gl.enable(gl.BLEND);
+    gl.disable(gl.DEPTH_TEST);
+    // gl.enable(gl.SAMPLE_COVERAGE);
+    // gl.sampleCoverage(0.5, false);
+    gl.drawArrays(gl.TRIANGLES, 0, shaderCtx.triangleCnt);
+    {
+        overlay.width = window.innerWidth;
+        overlay.height = window.innerHeight;
+        var ctx = overlay.getContext('2d');
+        var grad = ctx.createRadialGradient(mx, my, 40, mx, my, 60);
+        grad.addColorStop(0, "rgba(255,255,255,0.4)");
+        grad.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, overlay.width, overlay.height);
+    }
     requestAnimationFrame(renderLoop);
 }
 document.addEventListener('DOMContentLoaded', function () {
