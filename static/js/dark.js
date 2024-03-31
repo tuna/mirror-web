@@ -43,7 +43,7 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
     toggle.setAttribute('data-mode', 'dark');
 }
 var tmpCtx = document.createElement('canvas').getContext('2d');
-var vertShaderSrc = "\nattribute vec4 a_pos;\nuniform vec2 u_screen;\nuniform vec2 u_mouse;\nuniform vec2 u_offset;\n\nvarying float v_opacity;\n\nvoid main() {\n  vec2 pos_screen = a_pos.xy + u_offset;\n  vec2 pos_translated;\n  vec2 diff = pos_screen - u_mouse;\n  pos_translated.x = pos_screen.x + diff.x * a_pos.z;\n  pos_translated.y = pos_screen.y + diff.y * a_pos.z;\n  gl_Position.x = pos_translated.x / u_screen.x * 2.0 - 1.0;\n  gl_Position.y = - (pos_translated.y / u_screen.y * 2.0 - 1.0);\n  gl_Position.z = 0.0;\n  gl_Position.w = 1.0;\n\n  float dist = sqrt(diff.x * diff.x + diff.y * diff.y);\n  // 30 - 50px\n  v_opacity = clamp((dist - 30.0) / 20.0, 0.0, 1.0);\n}\n";
+var vertShaderSrc = "\nattribute vec4 a_pos;\nuniform vec2 u_screen;\nuniform vec2 u_mouse;\nuniform vec2 u_offset;\n\nvarying float v_opacity;\n\nvoid main() {\n  vec2 pos_screen = a_pos.xy + u_offset;\n  vec2 pos_translated;\n  vec2 diff = pos_screen - u_mouse;\n  pos_translated.x = pos_screen.x + diff.x * a_pos.z;\n  pos_translated.y = pos_screen.y + diff.y * a_pos.z;\n  gl_Position.x = pos_translated.x / u_screen.x * 2.0 - 1.0;\n  gl_Position.y = - (pos_translated.y / u_screen.y * 2.0 - 1.0);\n  gl_Position.z = 0.0;\n  gl_Position.w = 1.0;\n\n  if(a_pos.z > 0.0) {\n    v_opacity = 0.0;\n  } else {\n    float dist = sqrt(diff.x * diff.x + diff.y * diff.y);\n    // 30 - 50px\n    v_opacity = clamp((dist - 30.0) / 20.0, 0.0, 1.0);\n  }\n}\n";
 var fragShaderSrc = "\nprecision mediump float;\nvarying float v_opacity;\n\nvoid main() {\n  gl_FragColor = vec4(0.0, 0.0, 0.0, v_opacity);\n}\n";
 function loadFont(fn) {
     return __awaiter(this, void 0, void 0, function () {
@@ -519,7 +519,7 @@ function reassemble() {
                 var nx = dpath[(i + 1) % dpath.length].x * scale + sx;
                 var ny = dpath[(i + 1) % dpath.length].y * scale + sy;
                 // Expand a little bit
-                buf.push(cx, cy, -0.01, nx, ny, -0.01, cx, cy, 100, cx, cy, 100, nx, ny, 100, nx, ny, -0.01);
+                buf.push(cx, cy, -0.01, nx, ny, -0.01, cx, cy, 5, cx, cy, 5, nx, ny, 5, nx, ny, -0.01);
             }
         }
         return buf;
@@ -598,7 +598,7 @@ function renderLoop() {
         backdrop.height = window.innerHeight;
         var ctx = backdrop.getContext('2d');
         var grad = ctx.createRadialGradient(mx, my, 100, mx, my, 600);
-        grad.addColorStop(0, "#222");
+        grad.addColorStop(0, "#333");
         grad.addColorStop(1, "#111");
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, backdrop.width, backdrop.height);

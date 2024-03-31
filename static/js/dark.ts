@@ -31,9 +31,13 @@ void main() {
   gl_Position.z = 0.0;
   gl_Position.w = 1.0;
 
-  float dist = sqrt(diff.x * diff.x + diff.y * diff.y);
-  // 30 - 50px
-  v_opacity = clamp((dist - 30.0) / 20.0, 0.0, 1.0);
+  if(a_pos.z > 0.0) {
+    v_opacity = 0.0;
+  } else {
+    float dist = sqrt(diff.x * diff.x + diff.y * diff.y);
+    // 30 - 50px
+    v_opacity = clamp((dist - 30.0) / 20.0, 0.0, 1.0);
+  }
 }
 `;
 
@@ -524,10 +528,10 @@ function reassemble() {
         buf.push(
           cx, cy, -0.01,
           nx, ny, -0.01,
-          cx, cy, 100,
+          cx, cy, 5,
 
-          cx, cy, 100,
-          nx, ny, 100,
+          cx, cy, 5,
+          nx, ny, 5,
           nx, ny, -0.01,
         );
       }
@@ -614,7 +618,7 @@ function renderLoop() {
     backdrop.height = window.innerHeight;
     const ctx = backdrop.getContext('2d')!;
     const grad = ctx.createRadialGradient(mx, my, 100, mx, my, 600);
-    grad.addColorStop(0, "#222");
+    grad.addColorStop(0, "#333");
     grad.addColorStop(1, "#111");
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, backdrop.width, backdrop.height);
