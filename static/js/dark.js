@@ -279,7 +279,7 @@ function rescan(el) {
 }
 // TODO: allow scaning arbitrary HTML-side nodes
 function rescanAt(el, buf) {
-    var _a, _b, _c, _d, _e, _f;
+    var _a, _b, _c, _d, _e, _f, _g;
     if ((_a = el.classList) === null || _a === void 0 ? void 0 : _a.contains('sr-only'))
         return;
     if ((_b = el.classList) === null || _b === void 0 ? void 0 : _b.contains('dark-switch-hint'))
@@ -290,9 +290,10 @@ function rescanAt(el, buf) {
         return;
     }
     if (((_c = el.classList) === null || _c === void 0 ? void 0 : _c.contains('label-status')) || ((_d = el.classList) === null || _d === void 0 ? void 0 : _d.contains('label-new')) || ((_e = el.classList) === null || _e === void 0 ? void 0 : _e.contains('input-wrapper')) || ((_f = el.classList) === null || _f === void 0 ? void 0 : _f.contains('popover'))) {
+        var isPopover = (_g = el.classList) === null || _g === void 0 ? void 0 : _g.contains('popover');
         var r = parseFloat(window.getComputedStyle(el).borderRadius.match(/^[0-9.]+/)[0]);
-        var _g = el.getBoundingClientRect(), width = _g.width, height = _g.height;
-        var d = "\n      M 0 ".concat(r, " A ").concat(r, " ").concat(r, " 0 0 1 ").concat(r, " 0\n      L ").concat(width - r, " 0 A ").concat(r, " ").concat(r, " 0 0 1 ").concat(width, " ").concat(r, "\n      L ").concat(width, " ").concat(height - r, " A ").concat(r, " ").concat(r, " 0 0 1 ").concat(width - r, " ").concat(height, "\n      L ").concat(r, " ").concat(height, " A ").concat(r, " ").concat(r, " 0 0 1 0 ").concat(height - r, "\n      z\n    ");
+        var _h = el.getBoundingClientRect(), width = _h.width, height = _h.height;
+        var d = "\n      M 0 ".concat(r, " A ").concat(r, " ").concat(r, " 0 0 1 ").concat(r, " 0\n      L ").concat(width - r, " 0 A ").concat(r, " ").concat(r, " 0 0 1 ").concat(width, " ").concat(r, "\n      L ").concat(width, " ").concat(height - r, " A ").concat(r, " ").concat(r, " 0 0 1 ").concat(width - r, " ").concat(height, "\n      L ").concat(r, " ").concat(height, " A ").concat(r, " ").concat(r, " 0 0 1 0 ").concat(height - r, "\n      ").concat(isPopover ? "L 0 ".concat(height / 2 + 10, " L -10 ").concat(height / 2, " L 0 ").concat(height / 2 - 10) : '', " \n      z\n    ");
         var svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
         svg.setAttribute('viewbox', "0 0 ".concat(width, " ").concat(height));
         svg.style.width = width + 'px';
@@ -303,8 +304,8 @@ function rescanAt(el, buf) {
         svg.appendChild(path);
         el.appendChild(svg);
     }
-    for (var _i = 0, _h = el.childNodes; _i < _h.length; _i++) {
-        var child = _h[_i];
+    for (var _i = 0, _j = el.childNodes; _i < _j.length; _i++) {
+        var child = _j[_i];
         if (child.nodeType === Node.TEXT_NODE) {
             var inner = child.nodeValue;
             if (!inner)

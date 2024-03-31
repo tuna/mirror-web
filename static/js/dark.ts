@@ -276,6 +276,7 @@ function rescanAt(el: HTMLElement, buf: HTMLElement[]) {
   }
 
   if(el.classList?.contains('label-status') || el.classList?.contains('label-new') || el.classList?.contains('input-wrapper') || el.classList?.contains('popover')) {
+    const isPopover = el.classList?.contains('popover');
     const r = parseFloat(window.getComputedStyle(el).borderRadius.match(/^[0-9.]+/)![0]);
     const { width, height } = el.getBoundingClientRect();
     const d = `
@@ -283,6 +284,7 @@ function rescanAt(el: HTMLElement, buf: HTMLElement[]) {
       L ${ width - r } 0 A ${r} ${r} 0 0 1 ${width} ${r}
       L ${width} ${ height - r } A ${r} ${r} 0 0 1 ${width - r} ${height}
       L ${r} ${ height } A ${r} ${r} 0 0 1 0 ${height - r}
+      ${isPopover ? `L 0 ${height / 2 + 10} L -10 ${height / 2} L 0 ${height / 2 - 10}` : ''} 
       z
     `;
     const svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
