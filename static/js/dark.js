@@ -34,15 +34,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 console.log("喵呜喵呜喵");
 var modes = ["light", "dark", "darker", "lighter"];
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -172,7 +163,7 @@ function discretize(path) {
 }
 var staticPathSet;
 var tmpPathSets = new Map();
-window.tmpPathSets = tmpPathSets;
+var tmpPathKeys = [];
 function ratify(ps) {
     if (shaderCtx.gl === null)
         throw new Error('WebGL not initialized!');
@@ -270,6 +261,7 @@ function onMutate(mutations, obs) {
             // Based on n
             var ps = assembleAll(els);
             tmpPathSets.set(n, ratify(ps));
+            tmpPathKeys.push(n);
         }
         for (var _c = 0, _d = m.removedNodes; _c < _d.length; _c++) {
             var n = _d[_c];
@@ -486,8 +478,7 @@ function rescanSVG(el, buf, pathCollector) {
 }
 var obs = null;
 var canvas = null;
-var backdrop = null;
-var overlay = null;
+var onscreen = null;
 var shaderCtx = {
     u_screen_loc: null,
     u_mouse_loc: null,
@@ -498,14 +489,14 @@ var shaderCtx = {
 function ensureCanvas() {
     var container = document.createElement('div');
     container.classList.add('darker-canvases');
-    if (backdrop === null) {
-        backdrop = document.createElement('canvas');
-        container.appendChild(backdrop);
+    if (onscreen === null) {
+        onscreen = document.createElement('canvas');
+        container.appendChild(onscreen);
     }
     if (canvas === null) {
         canvas = document.createElement('canvas');
-        canvas.classList.add('darker-canvas');
-        container.appendChild(canvas);
+        // canvas.classList.add('darker-canvas');
+        // container.appendChild(canvas);
         var gl = canvas.getContext('webgl');
         if (!gl) {
             alert('WebGL Missing!');
@@ -530,10 +521,6 @@ function ensureCanvas() {
         shaderCtx.u_screen_loc = gl.getUniformLocation(prog, 'u_screen');
         shaderCtx.u_mouse_loc = gl.getUniformLocation(prog, 'u_mouse');
         shaderCtx.u_offset_loc = gl.getUniformLocation(prog, 'u_offset');
-    }
-    if (overlay === null) {
-        overlay = document.createElement('canvas');
-        container.appendChild(overlay);
     }
     document.body.appendChild(container);
 }
@@ -633,20 +620,10 @@ var renderStopped = false;
 function renderLoop() {
     if (renderStopped)
         return;
-    if (!canvas || !backdrop || !overlay || !shaderCtx.gl)
+    if (!canvas || !onscreen || !shaderCtx.gl)
         return;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    {
-        backdrop.width = window.innerWidth;
-        backdrop.height = window.innerHeight;
-        var ctx = backdrop.getContext('2d');
-        var grad = ctx.createRadialGradient(mx, my, 100, mx, my, 600);
-        grad.addColorStop(0, "#333");
-        grad.addColorStop(1, "#111");
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, backdrop.width, backdrop.height);
-    }
     var gl = shaderCtx.gl;
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.clearColor(0, 0, 0, 0);
@@ -664,26 +641,32 @@ function renderLoop() {
         ext.bindVertexArrayOES(ps[0]);
         gl.drawArrays(gl.TRIANGLES, 0, ps[1]);
     }
-    // drawPathSet(staticPathSet);
-    // for(const el of tmpPathSets.keys())
-    //   if(!document.contains(el)) tmpPathSets.delete(el);
-    window.wtf = __spreadArray([], tmpPathSets.keys(), true);
-    window.wtf2 = tmpPathSets;
-    console.log(tmpPathSets.size);
-    console.log(__spreadArray([], tmpPathSets.entries(), true));
-    for (var _i = 0, _a = tmpPathSets.keys(); _i < _a.length; _i++) {
-        var k = _a[_i];
-        console.log(k);
+    drawPathSet(staticPathSet);
+    for (var _i = 0, tmpPathKeys_1 = tmpPathKeys; _i < tmpPathKeys_1.length; _i++) {
+        var k = tmpPathKeys_1[_i];
+        if (!document.contains(k))
+            tmpPathSets.delete(k);
+        else {
+            var lookup = tmpPathSets.get(k);
+            if (lookup)
+                drawPathSet(lookup);
+        }
     }
     {
-        overlay.width = window.innerWidth;
-        overlay.height = window.innerHeight;
-        var ctx = overlay.getContext('2d');
-        var grad = ctx.createRadialGradient(mx, my, 40, mx, my, 60);
-        grad.addColorStop(0, "rgba(255,255,255,0.4)");
-        grad.addColorStop(1, "rgba(255,255,255,0)");
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, overlay.width, overlay.height);
+        onscreen.width = window.innerWidth;
+        onscreen.height = window.innerHeight;
+        var ctx = onscreen.getContext('2d');
+        var bggrad = ctx.createRadialGradient(mx, my, 100, mx, my, 600);
+        bggrad.addColorStop(0, "#333");
+        bggrad.addColorStop(1, "#111");
+        ctx.fillStyle = bggrad;
+        ctx.fillRect(0, 0, onscreen.width, onscreen.height);
+        ctx.drawImage(canvas, 0, 0);
+        var fggrad = ctx.createRadialGradient(mx, my, 40, mx, my, 60);
+        fggrad.addColorStop(0, "rgba(255,255,255,0.4)");
+        fggrad.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = fggrad;
+        ctx.fillRect(0, 0, onscreen.width, onscreen.height);
     }
     requestAnimationFrame(renderLoop);
 }

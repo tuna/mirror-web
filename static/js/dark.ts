@@ -156,7 +156,7 @@ type RatifiedPathSet = [WebGLVertexArrayObjectOES, number];
 
 let staticPathSet: RatifiedPathSet;
 const tmpPathSets: Map<HTMLElement, RatifiedPathSet> = new Map();
-window.tmpPathSets = tmpPathSets;
+const tmpPathKeys: HTMLElement[] = [];
 
 function ratify(ps: PathSet): RatifiedPathSet {
   if(shaderCtx.gl === null) throw new Error('WebGL not initialized!');
@@ -248,6 +248,7 @@ function onMutate(mutations: MutationRecord[], obs: MutationObserver) {
       // Based on n
       const ps = assembleAll(els);
       tmpPathSets.set(n as HTMLElement, ratify(ps));
+      tmpPathKeys.push(n);
     }
     for(const n of m.removedNodes) {
       const orig = tmpPathSets.get(n as HTMLElement);
@@ -478,8 +479,7 @@ function rescanSVG(el: SVGElement, buf: HTMLOrSVGElement[], pathCollector: strin
 
 let obs: MutationObserver | null = null;
 let canvas: HTMLCanvasElement | null = null;
-let backdrop: HTMLCanvasElement | null = null;
-let overlay: HTMLCanvasElement | null = null;
+let onscreen: HTMLCanvasElement | null = null;
 const shaderCtx = {
   u_screen_loc: null as WebGLUniformLocation | null,
   u_mouse_loc: null as WebGLUniformLocation | null,
@@ -493,14 +493,14 @@ function ensureCanvas() {
   const container = document.createElement('div');
   container.classList.add('darker-canvases');
 
-  if(backdrop === null) {
-    backdrop = document.createElement('canvas');
-    container.appendChild(backdrop);
+  if(onscreen === null) {
+    onscreen = document.createElement('canvas');
+    container.appendChild(onscreen);
   }
   if(canvas === null) {
     canvas = document.createElement('canvas');
-    canvas.classList.add('darker-canvas');
-    container.appendChild(canvas);
+    // canvas.classList.add('darker-canvas');
+    // container.appendChild(canvas);
 
     const gl = canvas.getContext('webgl');
     if(!gl) {
@@ -531,10 +531,6 @@ function ensureCanvas() {
     shaderCtx.u_screen_loc = gl.getUniformLocation(prog, 'u_screen');
     shaderCtx.u_mouse_loc = gl.getUniformLocation(prog, 'u_mouse');
     shaderCtx.u_offset_loc = gl.getUniformLocation(prog, 'u_offset');
-  }
-  if(overlay === null) {
-    overlay = document.createElement('canvas');
-    container.appendChild(overlay);
   }
 
   document.body.appendChild(container);
@@ -653,20 +649,9 @@ function assembleAll(els: HTMLElement[]): PathSet {
 let renderStopped = false;
 function renderLoop() {
   if(renderStopped) return;
-  if(!canvas || !backdrop || !overlay || !shaderCtx.gl) return;
+  if(!canvas || !onscreen || !shaderCtx.gl) return;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-
-  {
-    backdrop.width = window.innerWidth;
-    backdrop.height = window.innerHeight;
-    const ctx = backdrop.getContext('2d')!;
-    const grad = ctx.createRadialGradient(mx, my, 100, mx, my, 600);
-    grad.addColorStop(0, "#333");
-    grad.addColorStop(1, "#111");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, backdrop.width, backdrop.height);
-  }
 
   const gl = shaderCtx.gl;
   gl.viewport(0, 0, canvas.width, canvas.height);
@@ -690,24 +675,33 @@ function renderLoop() {
     gl.drawArrays(gl.TRIANGLES, 0, ps[1]);
   }
 
-  // drawPathSet(staticPathSet);
-  // for(const el of tmpPathSets.keys())
-  //   if(!document.contains(el)) tmpPathSets.delete(el);
-  window.wtf = [...tmpPathSets.keys()];
-  window.wtf2 = tmpPathSets;
-  console.log(tmpPathSets.size);
-  console.log([...tmpPathSets.entries()]);
-  for(const k of tmpPathSets.keys()) console.log(k)
+  drawPathSet(staticPathSet);
+  for(const k of tmpPathKeys) {
+    if(!document.contains(k)) tmpPathSets.delete(k);
+    else {
+      const lookup = tmpPathSets.get(k);
+      if(lookup) drawPathSet(lookup);
+    }
+  }
 
   {
-    overlay.width = window.innerWidth;
-    overlay.height = window.innerHeight;
-    const ctx = overlay.getContext('2d')!;
-    const grad = ctx.createRadialGradient(mx, my, 40, mx, my, 60);
-    grad.addColorStop(0, "rgba(255,255,255,0.4)");
-    grad.addColorStop(1, "rgba(255,255,255,0)");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, overlay.width, overlay.height);
+    onscreen.width = window.innerWidth;
+    onscreen.height = window.innerHeight;
+    const ctx = onscreen.getContext('2d')!;
+    const bggrad = ctx.createRadialGradient(mx, my, 100, mx, my, 600);
+    bggrad.addColorStop(0, "#333");
+    bggrad.addColorStop(1, "#111");
+    ctx.fillStyle = bggrad;
+    ctx.fillRect(0, 0, onscreen.width, onscreen.height);
+
+    ctx.drawImage(canvas!, 0, 0);
+
+    const fggrad = ctx.createRadialGradient(mx, my, 40, mx, my, 60);
+    fggrad.addColorStop(0, "rgba(255,255,255,0.4)");
+    fggrad.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = fggrad;
+    ctx.fillRect(0, 0, onscreen.width, onscreen.height);
+
   }
 
   requestAnimationFrame(renderLoop);
