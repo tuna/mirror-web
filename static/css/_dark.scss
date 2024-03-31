@@ -9,7 +9,16 @@
   align-items: center;
 
   > * {
-    float: none;
+    float: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-nav {
+    display: flex;
+  }
+  .navbar-nav > li {
+    float: none !important;
   }
 }
 
@@ -21,9 +30,6 @@
 
   @media (max-width: 991px) and (min-width: 768px) {
     margin-right: -20px;
-  }
-
-  @media (max-width: 767.999px) {
   }
 
   &-inner {
@@ -302,6 +308,21 @@
     pointer-events: none;
   }
 }
+
+@media (max-width: 767.999px) {
+  .navbar-right {
+    position: absolute;
+    top: 80px;
+    width: 100vw;
+    right: 0;
+    background: white;
+    z-index: 20;
+    @include dark(&) {
+      background: $color_bg_dark;
+    }
+  }
+}
+
 
 @font-face {
     font-family: 'Source Han Sans SC';
