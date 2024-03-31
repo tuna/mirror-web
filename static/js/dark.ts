@@ -650,8 +650,8 @@ function renderLoop() {
   if(renderStopped) return;
   if(!canvas || !onscreen || !shaderCtx.gl) return;
 
-  const search = document.getElementById('search')! as HTMLInputElement;
-  if(search.value !== lastRecordedSearch) {
+  const search = document.getElementById('search') as HTMLInputElement;
+  if(search && search.value !== lastRecordedSearch) {
     lastRecordedSearch = search.value;
     setTimeout(() => {
       free(staticPathSet);

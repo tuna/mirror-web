@@ -620,7 +620,7 @@ function renderLoop() {
     if (!canvas || !onscreen || !shaderCtx.gl)
         return;
     var search = document.getElementById('search');
-    if (search.value !== lastRecordedSearch) {
+    if (search && search.value !== lastRecordedSearch) {
         lastRecordedSearch = search.value;
         setTimeout(function () {
             free(staticPathSet);
