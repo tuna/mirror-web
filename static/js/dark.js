@@ -183,6 +183,8 @@ function ratify(ps) {
     return [vao, ps.length / 3];
 }
 function free(ps) {
+    if (!ps)
+        return;
     if (shaderCtx.gl === null)
         throw new Error('WebGL not initialized!');
     var gl = shaderCtx.gl;
@@ -344,7 +346,8 @@ function rescanAt(el, buf) {
                         continue;
                     // node.classList.add('darker-traced');
                     buf.push(node);
-                    node.setAttribute('data-glyph', glyph);
+                    var paths = splitPathSegs(glyph);
+                    textCache.set(node, paths);
                     // console.log(first, glyph);
                     // Debug
                     // TODO: drop me
@@ -412,11 +415,11 @@ function splitPathSegs(path) {
             console.error("Cannot find path end: ".concat(d_1));
             last = { x: bx, y: by };
         }
-        paths.push([path_1, { x: bx, y: by }, new Path2D(d_1)]);
+        paths.push([path_1, { x: bx, y: by }, new Path2D(d_1), d_1]);
     }
     var outerPaths = [];
     for (var _b = 0, paths_1 = paths; _b < paths_1.length; _b++) {
-        var _c = paths_1[_b], path_2 = _c[0], starting = _c[1], _ = _c[2];
+        var _c = paths_1[_b], path_2 = _c[0], starting = _c[1], _ = _c[2], ret = _c[3];
         var outer = true;
         for (var _d = 0, paths_2 = paths; _d < paths_2.length; _d++) {
             var _e = paths_2[_d], another = _e[0], _1 = _e[1], repr = _e[2];
@@ -428,7 +431,7 @@ function splitPathSegs(path) {
             }
         }
         if (outer)
-            outerPaths.push(path_2);
+            outerPaths.push(ret);
     }
     return outerPaths;
 }
@@ -439,10 +442,7 @@ function rescanSVG(el, buf, pathCollector) {
         var d = (_a = el.getAttribute('d')) === null || _a === void 0 ? void 0 : _a.trim();
         try {
             var segs = splitPathSegs(d);
-            for (var _i = 0, segs_2 = segs; _i < segs_2.length; _i++) {
-                var path = segs_2[_i];
-                pathCollector.push(path.getAttribute('d'));
-            }
+            pathCollector.push.apply(pathCollector, segs);
         }
         catch (e) {
             console.error(e);
@@ -461,8 +461,8 @@ function rescanSVG(el, buf, pathCollector) {
     else if (el.tagName === 'svg' && el.getAttribute('display') !== 'none') {
         childPathCollector = [];
     }
-    for (var _b = 0, _c = el.children; _b < _c.length; _b++) {
-        var child = _c[_b];
+    for (var _i = 0, _b = el.children; _i < _b.length; _i++) {
+        var child = _b[_i];
         rescanSVG(child, buf, childPathCollector);
     }
     if (el.tagName === 'symbol' && el.id !== '') {
@@ -596,10 +596,8 @@ function assembleOne(el, buffer) {
     else if (el.classList.contains('darker-text')) {
         var cached = textCache.get(el);
         if (!cached) {
-            var glyph = el.getAttribute('data-glyph');
-            var paths = splitPathSegs(glyph);
-            cached = paths.map(function (e) { return e.getAttribute('d'); });
-            textCache.set(el, cached);
+            console.warn("Text not in cache: ".concat(el.id));
+            return;
         }
         populated = assemblePath(cached, x, y + window.scrollY, 1);
     }
@@ -625,6 +623,7 @@ function renderLoop() {
     if (search.value !== lastRecordedSearch) {
         lastRecordedSearch = search.value;
         setTimeout(function () {
+            free(staticPathSet);
             staticPathSet = ratify(assembleAll(staticEls));
         }, 10);
     }

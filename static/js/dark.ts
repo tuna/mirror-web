@@ -182,6 +182,7 @@ function ratify(ps: PathSet): RatifiedPathSet {
 }
 
 function free(ps: RatifiedPathSet) {
+  if(!ps) return;
   if(shaderCtx.gl === null) throw new Error('WebGL not initialized!');
   const gl = shaderCtx.gl;
   const ext = gl.getExtension("OES_vertex_array_object")!;
@@ -249,7 +250,7 @@ function onMutate(mutations: MutationRecord[], obs: MutationObserver) {
       // Based on n
       const ps = assembleAll(els);
       tmpPathSets.set(n as HTMLElement, ratify(ps));
-      tmpPathKeys.push(n);
+      tmpPathKeys.push(n as HTMLElement);
     }
     for(const n of m.removedNodes) {
       const orig = tmpPathSets.get(n as HTMLElement);
@@ -346,7 +347,9 @@ function rescanAt(el: HTMLElement, buf: HTMLElement[]) {
 
           // node.classList.add('darker-traced');
           buf.push(node);
-          node.setAttribute('data-glyph', glyph);
+
+          const paths = splitPathSegs(glyph);
+          textCache.set(node, paths);
 
           // console.log(first, glyph);
 
@@ -387,7 +390,7 @@ const svgCache: Record<string, string[]> = {};
 let svgIDGen = 0;
 
 // FIXME: return string instead
-function splitPathSegs(path: string): SVGPathElement[] {
+function splitPathSegs(path: string): string[] {
   let d = path.trim();
 
   const segs: string[] = [];
@@ -402,7 +405,7 @@ function splitPathSegs(path: string): SVGPathElement[] {
   }
 
   let last = { x: 0, y: 0 };
-  const paths: [SVGPathElement, { x: number, y: number }, Path2D][] = [];
+  const paths: [SVGPathElement, { x: number, y: number }, Path2D, string][] = [];
   for(const seg of segs) {
     const [firstMove, mx, my] = seg.match(/^[mM] *(-?[.0-9]+) *(-?[.0-9]+)/)!;
     // console.log(firstMove);
@@ -420,11 +423,11 @@ function splitPathSegs(path: string): SVGPathElement[] {
       console.error(`Cannot find path end: ${d}`);
       last = { x: bx, y: by };
     }
-    paths.push([path, { x: bx, y: by }, new Path2D(d)]);
+    paths.push([path, { x: bx, y: by }, new Path2D(d), d]);
   }
 
-  const outerPaths: SVGPathElement[] = [];
-  for(const [path, starting, _] of paths) {
+  const outerPaths: string[] = [];
+  for(const [path, starting, _, ret] of paths) {
     let outer = true;
     for(const [another, _, repr] of paths) if(another !== path) {
       if(tmpCtx.isPointInPath(repr, starting.x, starting.y)) {
@@ -433,7 +436,7 @@ function splitPathSegs(path: string): SVGPathElement[] {
       }
     }
 
-    if(outer) outerPaths.push(path);
+    if(outer) outerPaths.push(ret);
   }
 
   return outerPaths;
@@ -445,7 +448,7 @@ function rescanSVG(el: SVGElement, buf: HTMLOrSVGElement[], pathCollector: strin
     let d = el.getAttribute('d')?.trim();
     try {
       const segs = splitPathSegs(d!);
-      for(const path of segs) pathCollector.push(path.getAttribute('d')!);
+      pathCollector.push(...segs);
     } catch(e) {
       console.error(e);
       console.log(el);
@@ -624,10 +627,8 @@ function assembleOne(el: HTMLElement, buffer: number[]) {
   } else if(el.classList.contains('darker-text')) {
     let cached = textCache.get(el);
     if(!cached) {
-      const glyph = el.getAttribute('data-glyph')!;
-      const paths = splitPathSegs(glyph);
-      cached = paths.map(e => e.getAttribute('d')!);
-      textCache.set(el, cached);
+      console.warn(`Text not in cache: ${el.id}`);
+      return;
     }
     populated = assemblePath(cached, x, y + window.scrollY, 1);
   }
@@ -653,6 +654,7 @@ function renderLoop() {
   if(search.value !== lastRecordedSearch) {
     lastRecordedSearch = search.value;
     setTimeout(() => {
+      free(staticPathSet);
       staticPathSet = ratify(assembleAll(staticEls));
     }, 10);
   }
