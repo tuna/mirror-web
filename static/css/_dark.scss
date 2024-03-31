@@ -1,9 +1,16 @@
-// TODO: < 768 px width
+// .nav-right {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+// }
 
-.nav-right {
+.navbar .container {
   display: flex;
-  flex-direction: row;
   align-items: center;
+
+  > * {
+    float: none;
+  }
 }
 
 .dark-switch {
@@ -11,6 +18,13 @@
   flex: 1;
   position: relative;
   height: 36px;
+
+  @media (max-width: 991px) and (min-width: 768px) {
+    margin-right: -20px;
+  }
+
+  @media (max-width: 767.999px) {
+  }
 
   &-inner {
     height: 36px;
@@ -59,6 +73,11 @@
       right: 100%;
       bottom: 50%;
       opacity: 0;
+      @media (max-width: 991px) and (min-width: 768px) {
+        right: unset;
+        bottom: calc(100% - 10px);
+        right: 50%;
+      }
     }
   }
 
@@ -103,11 +122,26 @@
           }
         }
 
+        @keyframes hint-reveal-top {
+          0% {
+            transform: translate(50%, 0);
+            opacity: 1;
+          }
+
+          100% {
+            transform: translate(50%, -10px);
+            opacity: 0;
+          }
+        }
+
         &::after {
           content: "#{$mode}";
           animation-fill-mode: both;
           animation-iteration-count: 1;
           animation-name: hint-reveal;
+          @media (max-width: 991px) and (min-width: 768px) {
+            animation-name: hint-reveal-top;
+          }
           animation-duration: .2s;
           animation-delay: 2s;
           @if $mode == "darker" {

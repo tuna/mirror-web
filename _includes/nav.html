@@ -1,14 +1,6 @@
 <div class="navbar navbar-default" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      {% unless page.legacy %}
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      {% endunless %}
 			<a class="navbar-brand" href="/">
 				<span class="thuhidden">
 					{% if site.logo %}
@@ -74,20 +66,20 @@
 					{{ site.school }}</span>开源软件镜像站
 			</a>
     </div>
-		<div class="nav-right">
-			<div class="dark-switch" data-mode="light">
-				<div class="dark-switch-inner" data-mode="light">
-					<span class="dark-switch-icon" data-active="light">{% fa_svg fas.fa-sun %}</span>
-					<span class="dark-switch-icon" data-active="dark">{% fa_svg fas.fa-moon %}</span>
-					<span class="dark-switch-icon" data-active="darker">{% fa_svg fas.fa-lightbulb %}</span>
-					<span class="dark-switch-icon" data-active="lighter">{% fa_svg fas.fa-fire %}</span>
-				</div>
-
-				<div class="dark-switch-hint dark-switch-hint-ack">
-					<strong>主题切换键<sup>Beta</sup></strong><br/>
-					TUNA Mirrors 现已支持在 Light / Dark / Darker / Lighter 模式之间自由切换了！
-				</div>
+		<div class="dark-switch" data-mode="light">
+			<div class="dark-switch-inner" data-mode="light">
+				<span class="dark-switch-icon" data-active="light">{% fa_svg fas.fa-sun %}</span>
+				<span class="dark-switch-icon" data-active="dark">{% fa_svg fas.fa-moon %}</span>
+				<span class="dark-switch-icon" data-active="darker">{% fa_svg fas.fa-lightbulb %}</span>
+				<span class="dark-switch-icon" data-active="lighter">{% fa_svg fas.fa-fire %}</span>
 			</div>
+
+			<div class="dark-switch-hint dark-switch-hint-ack">
+				<strong>主题切换键<sup>Beta</sup></strong><br/>
+				TUNA Mirrors 现已支持在 Light / Dark / Darker / Lighter 模式之间自由切换了！
+			</div>
+		</div>
+		<div class="nav-right">
 			<div class="{% unless page.legacy %}navbar-collapse collapse {% endunless %}navbar-right">
 				<ul class="nav navbar-nav" role="menubar">
 					{% unless site.hide_navbar %}
@@ -105,6 +97,14 @@
 					{% endunless %}
 				</ul>
 			</div><!--/.nav-collapse -->
+      {% unless page.legacy %}
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {% endunless %}
 		</div>
   </div>
 </div>
