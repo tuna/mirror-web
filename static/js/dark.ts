@@ -155,6 +155,7 @@ type PathSet = Float32Array;
 type RatifiedPathSet = [WebGLVertexArrayObjectOES, number];
 
 let staticPathSet: RatifiedPathSet;
+let staticEls: HTMLElement[] = [];
 const tmpPathSets: Map<HTMLElement, RatifiedPathSet> = new Map();
 const tmpPathKeys: HTMLElement[] = [];
 
@@ -198,9 +199,9 @@ async function applyMode(m: string) {
     await allFonts;
     setTimeout(() => {
       ensureCanvas();
-      const els = rescan(document.body);
+      staticEls = rescan(document.body);
       // TODO: async reassemble
-      staticPathSet = ratify(assembleAll(els));
+      staticPathSet = ratify(assembleAll(staticEls));
       ensureObs();
       renderLoop();
       document.body.classList.remove('darker-engaging');
@@ -550,7 +551,6 @@ function ensureObs() {
 
 // Assembly
 const textCache: WeakMap<Element, string[]> = new WeakMap();
-const assembleCache: WeakMap<Element, number[]> = new WeakMap();
 
 // TODO: segmentation
 function assemblePath(paths: string[], sx: number, sy: number, scale: number): number[] {
@@ -582,11 +582,7 @@ function assemblePath(paths: string[], sx: number, sy: number, scale: number): n
 }
 
 function assembleOne(el: HTMLElement, buffer: number[]) {
-  if(assembleCache.has(el)) {
-    const cached = assembleCache.get(el)!;
-    buffer.push(...cached);
-    return;
-  }
+  if(el.getAttribute('display') === 'none') return;
 
   const { x, y, width, height } = el.getBoundingClientRect();
 
@@ -636,7 +632,6 @@ function assembleOne(el: HTMLElement, buffer: number[]) {
     populated = assemblePath(cached, x, y + window.scrollY, 1);
   }
 
-  assembleCache.set(el, populated);
   buffer.push(...populated);
 }
 
@@ -649,9 +644,19 @@ function assembleAll(els: HTMLElement[]): PathSet {
 }
 
 let renderStopped = false;
+let lastRecordedSearch = '';
 function renderLoop() {
   if(renderStopped) return;
   if(!canvas || !onscreen || !shaderCtx.gl) return;
+
+  const search = document.getElementById('search')! as HTMLInputElement;
+  if(search.value !== lastRecordedSearch) {
+    lastRecordedSearch = search.value;
+    setTimeout(() => {
+      staticPathSet = ratify(assembleAll(staticEls));
+    }, 10);
+  }
+
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
@@ -696,7 +701,8 @@ function renderLoop() {
     ctx.fillStyle = bggrad;
     ctx.fillRect(0, 0, onscreen.width, onscreen.height);
 
-    ctx.drawImage(canvas!, 0, 0);
+    if(document.getElementById('isoModal')?.style.display !== 'block')
+      ctx.drawImage(canvas!, 0, 0);
 
     const fggrad = ctx.createRadialGradient(mx, my, 40, mx, my, 60);
     fggrad.addColorStop(0, "rgba(255,255,255,0.4)");

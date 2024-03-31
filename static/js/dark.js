@@ -162,6 +162,7 @@ function discretize(path) {
     return loop;
 }
 var staticPathSet;
+var staticEls = [];
 var tmpPathSets = new Map();
 var tmpPathKeys = [];
 function ratify(ps) {
@@ -208,9 +209,9 @@ function applyMode(m) {
                     _a.sent();
                     setTimeout(function () {
                         ensureCanvas();
-                        var els = rescan(document.body);
+                        staticEls = rescan(document.body);
                         // TODO: async reassemble
-                        staticPathSet = ratify(assembleAll(els));
+                        staticPathSet = ratify(assembleAll(staticEls));
                         ensureObs();
                         renderLoop();
                         document.body.classList.remove('darker-engaging');
@@ -536,7 +537,6 @@ function ensureObs() {
 }
 // Assembly
 var textCache = new WeakMap();
-var assembleCache = new WeakMap();
 // TODO: segmentation
 function assemblePath(paths, sx, sy, scale) {
     var buf = [];
@@ -557,11 +557,8 @@ function assemblePath(paths, sx, sy, scale) {
     return buf;
 }
 function assembleOne(el, buffer) {
-    if (assembleCache.has(el)) {
-        var cached = assembleCache.get(el);
-        buffer.push.apply(buffer, cached);
+    if (el.getAttribute('display') === 'none')
         return;
-    }
     var _a = el.getBoundingClientRect(), x = _a.x, y = _a.y, width = _a.width, height = _a.height;
     var populated = [];
     if (el.tagName === 'use') {
@@ -606,7 +603,6 @@ function assembleOne(el, buffer) {
         }
         populated = assemblePath(cached, x, y + window.scrollY, 1);
     }
-    assembleCache.set(el, populated);
     buffer.push.apply(buffer, populated);
 }
 function assembleAll(els) {
@@ -618,11 +614,20 @@ function assembleAll(els) {
     return new Float32Array(buf);
 }
 var renderStopped = false;
+var lastRecordedSearch = '';
 function renderLoop() {
+    var _a;
     if (renderStopped)
         return;
     if (!canvas || !onscreen || !shaderCtx.gl)
         return;
+    var search = document.getElementById('search');
+    if (search.value !== lastRecordedSearch) {
+        lastRecordedSearch = search.value;
+        setTimeout(function () {
+            staticPathSet = ratify(assembleAll(staticEls));
+        }, 10);
+    }
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     var gl = shaderCtx.gl;
@@ -662,7 +667,8 @@ function renderLoop() {
         bggrad.addColorStop(1, "#111");
         ctx.fillStyle = bggrad;
         ctx.fillRect(0, 0, onscreen.width, onscreen.height);
-        ctx.drawImage(canvas, 0, 0);
+        if (((_a = document.getElementById('isoModal')) === null || _a === void 0 ? void 0 : _a.style.display) !== 'block')
+            ctx.drawImage(canvas, 0, 0);
         var fggrad = ctx.createRadialGradient(mx, my, 40, mx, my, 60);
         fggrad.addColorStop(0, "rgba(255,255,255,0.4)");
         fggrad.addColorStop(1, "rgba(255,255,255,0)");
