@@ -539,8 +539,10 @@ function reassemble() {
             var vbox = sym.viewBox.baseVal;
             // TODO: handle browsers without baseVal
             // TODO: handle origins other than 0,0
-            var scale = width / vbox.width;
-            var vscale = height / vbox.height;
+            // Firefox fucks up its dimension calculation
+            var parentDims = trace.parentElement.getBoundingClientRect();
+            var scale = parentDims.width / vbox.width;
+            var vscale = parentDims.height / vbox.height;
             // if(scale > vscale * 1.01 || scale < vscale * 0.99)
             //   console.warn(`incompatible scales: ${scale}, ${vscale}`);
             var paths = symbolCache[sym.id];

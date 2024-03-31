@@ -553,8 +553,11 @@ function reassemble() {
       // TODO: handle browsers without baseVal
       // TODO: handle origins other than 0,0
 
-      const scale = width / vbox.width;
-      const vscale = height / vbox.height;
+      // Firefox fucks up its dimension calculation
+      const parentDims = trace.parentElement!.getBoundingClientRect();
+
+      const scale = parentDims.width / vbox.width;
+      const vscale = parentDims.height / vbox.height;
       // if(scale > vscale * 1.01 || scale < vscale * 0.99)
       //   console.warn(`incompatible scales: ${scale}, ${vscale}`);
       const paths: string[] | undefined = symbolCache[sym.id];
