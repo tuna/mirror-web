@@ -151,6 +151,42 @@ function discretize(path: string): DiscreteLoop {
   return loop;
 }
 
+type PathSet = Float32Array;
+type RatifiedPathSet = [WebGLVertexArrayObjectOES, number];
+
+let staticPathSet: RatifiedPathSet;
+const tmpPathSets: Map<HTMLElement, RatifiedPathSet> = new Map();
+window.tmpPathSets = tmpPathSets;
+
+function ratify(ps: PathSet): RatifiedPathSet {
+  if(shaderCtx.gl === null) throw new Error('WebGL not initialized!');
+  const gl = shaderCtx.gl;
+
+  const ext = gl.getExtension("OES_vertex_array_object")!;
+  const vao = ext.createVertexArrayOES()!;
+  ext.bindVertexArrayOES(vao);
+
+  const buf = gl.createBuffer()!;
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, ps, gl.DYNAMIC_DRAW);
+
+  const a_pos_loc = gl.getAttribLocation(shaderCtx.prog!, 'a_pos');
+  gl.enableVertexAttribArray(a_pos_loc);
+  gl.vertexAttribPointer(a_pos_loc, 3, gl.FLOAT, false, 0, 0);
+
+  ext.bindVertexArrayOES(null);
+  gl.deleteBuffer(buf);
+
+  return [vao, ps.length / 3];
+}
+
+function free(ps: RatifiedPathSet) {
+  if(shaderCtx.gl === null) throw new Error('WebGL not initialized!');
+  const gl = shaderCtx.gl;
+  const ext = gl.getExtension("OES_vertex_array_object")!;
+  ext.deleteVertexArrayOES(ps[0]);
+}
+
 async function applyMode(m: string) {
   (document.body.parentElement as HTMLElement).classList.remove('forced-light');
   (document.body.parentElement as HTMLElement).classList.remove('forced-dark');
@@ -162,9 +198,9 @@ async function applyMode(m: string) {
     await allFonts;
     setTimeout(() => {
       ensureCanvas();
-      rescanAt(document.body);
+      const els = rescan(document.body);
       // TODO: async reassemble
-      reassemble();
+      staticPathSet = ratify(assembleAll(els));
       ensureObs();
       renderLoop();
       document.body.classList.remove('darker-engaging');
@@ -196,28 +232,45 @@ function tracker(e: MouseEvent) {
   my = e.clientY;
 }
 
-function rescan(mutations: MutationRecord[], obs: MutationObserver) {
+function onMutate(mutations: MutationRecord[], obs: MutationObserver) {
   for(const m of mutations) {
     if(m.type === 'attributes') continue;
     if(m.type === 'characterData') {
-      // TODO: rescan node
       console.log('Don\'t know how to rescan characterData');
       continue;
     }
 
-    for(const n of m.addedNodes) rescanAt(n as HTMLElement);
+    for(const n of m.addedNodes) {
+      // Skip elements added by ourselves
+      if(!(n as HTMLElement).classList.contains('popover')) continue;
+
+      const els = rescan(n as HTMLElement);
+      // Based on n
+      const ps = assembleAll(els);
+      tmpPathSets.set(n as HTMLElement, ratify(ps));
+    }
+    for(const n of m.removedNodes) {
+      const orig = tmpPathSets.get(n as HTMLElement);
+      if(orig) free(orig);
+      tmpPathSets.delete(n as HTMLElement);
+    }
   }
-  setTimeout(() => reassemble());
+}
+
+function rescan(el: HTMLElement): HTMLElement[] {
+  const buf = [];
+  rescanAt(el, buf);
+  return buf;
 }
 
 // TODO: allow scaning arbitrary HTML-side nodes
-function rescanAt(el: HTMLElement) {
+function rescanAt(el: HTMLElement, buf: HTMLElement[]) {
   if(el.classList?.contains('sr-only')) return;
   if(el.classList?.contains('dark-switch-hint')) return;
 
   // Check if is svg
   if(el.tagName === 'svg') {
-    rescanSVG(el as unknown as SVGElement);
+    rescanSVG(el as unknown as SVGElement, buf, []);
     return;
   }
 
@@ -235,20 +288,13 @@ function rescanAt(el: HTMLElement) {
     svg.setAttribute('viewbox', `0 0 ${width} ${height}`);
     svg.style.width = width + 'px';
     svg.style.height = height + 'px';
-    svg.classList.add('darker-rounded-debug');
+    svg.classList.add('darker-rounded-surrogate');
 
     const path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-
     path.setAttribute('d', d);
-    path.classList.add('darker-processed');
-    path.classList.add('darker-surrogate');
 
     svg.appendChild(path);
     el.appendChild(svg);
-
-    svg.classList.add('darker-traced');
-    svg.classList.add('darker-traced-misc');
-    rescanAt(svg as unknown as HTMLElement);
   }
 
   for(const child of el.childNodes) {
@@ -294,7 +340,8 @@ function rescanAt(el: HTMLElement) {
           const glyph = resolveGlyph(first, fsNum, isBold);
           if(!glyph) continue;
 
-          node.classList.add('darker-traced');
+          // node.classList.add('darker-traced');
+          buf.push(node);
           node.setAttribute('data-glyph', glyph);
 
           // console.log(first, glyph);
@@ -326,7 +373,7 @@ function rescanAt(el: HTMLElement) {
       if(el.classList.contains('darker-text-group')) continue;
       if(el.classList.contains('darker-text-svg')) continue;
 
-      rescanAt(child as HTMLElement);
+      rescanAt(child as HTMLElement, buf);
     }
   }
 }
@@ -335,19 +382,19 @@ const symbolCache: Record<string, string[]> = {};
 const svgCache: Record<string, string[]> = {};
 let svgIDGen = 0;
 
+// FIXME: return string instead
 function splitPathSegs(path: string): SVGPathElement[] {
-  let d = path;
+  let d = path.trim();
 
   const segs: string[] = [];
   while(true) {
-    // console.log(d);
     const nextMoveIdx = d.substring(1).toLowerCase().indexOf('m');
     if(nextMoveIdx === -1) {
       segs.push(d);
       break;
     }
     segs.push(d.substring(0, nextMoveIdx + 1));
-    d = d.substring(nextMoveIdx + 1);
+    d = d.substring(nextMoveIdx + 1).trim();
   }
 
   let last = { x: 0, y: 0 };
@@ -389,39 +436,44 @@ function splitPathSegs(path: string): SVGPathElement[] {
 }
 
 // TODO: cache DOM
-function rescanSVG(el: SVGElement) {
-  if(el.classList.contains('darker-processed')) return;
-
+function rescanSVG(el: SVGElement, buf: HTMLOrSVGElement[], pathCollector: string[]) {
   if(el.tagName === 'path') {
-    let d = el.getAttribute('d') ?? '';
-    const segs = splitPathSegs(d);
-    for(const path of segs) el.parentNode!.appendChild(path);
+    let d = el.getAttribute('d')?.trim();
+    try {
+      const segs = splitPathSegs(d!);
+      for(const path of segs) pathCollector.push(path.getAttribute('d')!);
+    } catch(e) {
+      console.error(e);
+      console.log(el);
+    }
   } else if(el.tagName === 'use') {
-    el.classList.add('darker-traced');
+    buf.push(el);
+    // el.classList.add('darker-traced');
     // const xlink = el.getAttribute('xlink:href');
   }
-  // TODO: trace texts
+
+  let childPathCollector = pathCollector;
+  if(el.tagName === 'symbol' && el.id !== '') {
+    childPathCollector = [];
+  } else if(el.tagName === 'svg' && el.getAttribute('display') !== 'none') {
+    childPathCollector = [];
+  }
 
   for(const child of el.children) {
-    rescanSVG(child as SVGElement);
+    rescanSVG(child as SVGElement, buf, childPathCollector);
   }
 
   if(el.tagName === 'symbol' && el.id !== '') {
     // Cache symbol content
-    const allPaths = el.querySelectorAll(".darker-surrogate");
-    const ret: string[] = [];
-    for(const p of allPaths) ret.push(p.getAttribute('d')!);
-    symbolCache[el.id] = ret;
+    symbolCache[el.id] = childPathCollector;
   } else if(el.tagName === 'svg' && el.getAttribute('display') !== 'none') {
     const id = svgIDGen++;
     el.id = `darker-svg-${id}`;
-    const allPaths = el.querySelectorAll(".darker-surrogate");
-    const ret: string[] = [];
-    for(const p of allPaths) ret.push(p.getAttribute('d')!);
-    svgCache[el.id] = ret;
+    // console.log(el.id, childPathCollector)
+    svgCache[el.id] = childPathCollector;
+    buf.push(el);
   }
-
-  el.classList.add('darker-processed');
+  // TODO: Do we need to join childPathCollector to pathCollector if there are not eq?
 }
 
 let obs: MutationObserver | null = null;
@@ -429,14 +481,12 @@ let canvas: HTMLCanvasElement | null = null;
 let backdrop: HTMLCanvasElement | null = null;
 let overlay: HTMLCanvasElement | null = null;
 const shaderCtx = {
-  a_pos: null as WebGLBuffer | null,
-
   u_screen_loc: null as WebGLUniformLocation | null,
   u_mouse_loc: null as WebGLUniformLocation | null,
   u_offset_loc: null as WebGLUniformLocation | null,
 
-  triangleCnt: 0,
   gl: null as WebGLRenderingContext | null,
+  prog: null as WebGLProgram | null,
 };
 
 function ensureCanvas() {
@@ -471,17 +521,12 @@ function ensureCanvas() {
     // TODO: check compile status
 
     const prog = gl.createProgram()!;
+    shaderCtx.prog = prog;
     gl.attachShader(prog, vertShader);
     gl.attachShader(prog, fragShader);
     gl.linkProgram(prog);
 
-    const a_pos_loc = gl.getAttribLocation(prog, 'a_pos');
-    shaderCtx.a_pos = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, shaderCtx.a_pos);
-
     gl.useProgram(prog);
-    gl.enableVertexAttribArray(a_pos_loc);
-    gl.vertexAttribPointer(a_pos_loc, 3, gl.FLOAT, false, 0, 0);
 
     shaderCtx.u_screen_loc = gl.getUniformLocation(prog, 'u_screen');
     shaderCtx.u_mouse_loc = gl.getUniformLocation(prog, 'u_mouse');
@@ -497,7 +542,7 @@ function ensureCanvas() {
 
 function ensureObs() {
   if(obs === null) {
-    obs = new MutationObserver(rescan)
+    obs = new MutationObserver(onMutate)
     obs.observe(document.body, {
       childList: true,
       subtree: true,
@@ -505,105 +550,104 @@ function ensureObs() {
   }
 }
 
+// Assembly
 const textCache: WeakMap<Element, string[]> = new WeakMap();
 const assembleCache: WeakMap<Element, number[]> = new WeakMap();
 
-function reassemble() {
-  const traced = document.getElementsByClassName('darker-traced');
+// TODO: segmentation
+function assemblePath(paths: string[], sx: number, sy: number, scale: number): number[] {
+  const buf: number[] = [];
+  for(const path of paths) {
+    const dpath = discretize(path);
+    if(dpath.length === 1) continue;
 
-  function assemblePath(paths: string[], sx: number, sy: number, scale: number): number[] {
-    const buf: number[] = [];
-    for(const path of paths) {
-      const dpath = discretize(path);
-      if(dpath.length === 1) continue;
+    for(let i = 0; i < dpath.length; ++i) {
+      let cx = dpath[i].x * scale + sx;
+      let cy = dpath[i].y * scale + sy;
 
-      for(let i = 0; i < dpath.length; ++i) {
-        let cx = dpath[i].x * scale + sx;
-        let cy = dpath[i].y * scale + sy;
+      let nx = dpath[(i + 1) % dpath.length].x * scale + sx;
+      let ny = dpath[(i + 1) % dpath.length].y * scale + sy;
 
-        let nx = dpath[(i + 1) % dpath.length].x * scale + sx;
-        let ny = dpath[(i + 1) % dpath.length].y * scale + sy;
+      // Expand a little bit
+      buf.push(
+        cx, cy, -0.01,
+        nx, ny, -0.01,
+        cx, cy, 5,
 
-        // Expand a little bit
-        buf.push(
-          cx, cy, -0.01,
-          nx, ny, -0.01,
-          cx, cy, 5,
-
-          cx, cy, 5,
-          nx, ny, 5,
-          nx, ny, -0.01,
-        );
-      }
+        cx, cy, 5,
+        nx, ny, 5,
+        nx, ny, -0.01,
+      );
     }
-    return buf;
+  }
+  return buf;
+}
+
+function assembleOne(el: HTMLElement, buffer: number[]) {
+  if(assembleCache.has(el)) {
+    const cached = assembleCache.get(el)!;
+    buffer.push(...cached);
+    return;
   }
 
-  const total: number[] = [];
-  for(const trace of traced) {
-    if(assembleCache.has(trace)) {
-      const cached = assembleCache.get(trace)!;
-      total.push(...cached);
-      continue;
+  const { x, y, width, height } = el.getBoundingClientRect();
+
+  let populated: number[] = [];
+
+  if(el.tagName === 'use') {
+    const sym = document.getElementById(el.getAttribute('xlink:href')!.substring(1)) as unknown as SVGSymbolElement;
+    const vbox = sym.viewBox.baseVal;
+    // TODO: handle browsers without baseVal
+    // TODO: handle origins other than 0,0
+
+    // Firefox fucks up its dimension calculation
+    const parentDims = el.parentElement!.getBoundingClientRect();
+
+    const scale = parentDims.width / vbox.width;
+    const vscale = parentDims.height / vbox.height;
+    // if(scale > vscale * 1.01 || scale < vscale * 0.99)
+    //   console.warn(`incompatible scales: ${scale}, ${vscale}`);
+    const paths: string[] | undefined = symbolCache[sym.id];
+    if(paths === undefined) {
+      console.warn(`Symbol not in cache: ${sym.id}`);
+      return;
     }
 
-    const { x, y, width, height } = trace.getBoundingClientRect();
-
-    let populated: number[] = [];
-
-    if(trace.tagName === 'use') {
-      const sym = document.getElementById(trace.getAttribute('xlink:href')!.substring(1)) as unknown as SVGSymbolElement;
-      const vbox = sym.viewBox.baseVal;
-      // TODO: handle browsers without baseVal
-      // TODO: handle origins other than 0,0
-
-      // Firefox fucks up its dimension calculation
-      const parentDims = trace.parentElement!.getBoundingClientRect();
-
-      const scale = parentDims.width / vbox.width;
-      const vscale = parentDims.height / vbox.height;
-      // if(scale > vscale * 1.01 || scale < vscale * 0.99)
-      //   console.warn(`incompatible scales: ${scale}, ${vscale}`);
-      const paths: string[] | undefined = symbolCache[sym.id];
-      if(paths === undefined) {
-        console.warn(`Symbol not in cache: ${sym.id}`);
-        continue;
-      }
-
-      populated = assemblePath(paths, x, y + window.scrollY, scale);
-    } else if(trace.tagName === 'svg') {
-      let scale = 1;
-      const vb = trace.getAttribute('viewBox');
-      if(vb) {
-        const [_, __, vboxw, vboxh] = vb.split(' ').map(e => parseFloat(e))!;
-        scale = width / vboxw;
-      }
-      const paths: string[] | undefined = svgCache[trace.id];
-      if(paths === undefined) {
-        console.warn(`SVG not in cache: ${trace.id}`);
-        continue;
-      }
-      populated = assemblePath(paths, x, y + window.scrollY, scale);
-    } else if(trace.classList.contains('darker-text')) {
-      let cached = textCache.get(trace);
-      if(!cached) {
-        const glyph = trace.getAttribute('data-glyph')!;
-        const paths = splitPathSegs(glyph);
-        cached = paths.map(e => e.getAttribute('d')!);
-        textCache.set(trace, cached);
-      }
-      populated = assemblePath(cached, x, y + window.scrollY, 1);
+    populated = assemblePath(paths, x, y + window.scrollY, scale);
+  } else if(el.tagName === 'svg') {
+    let scale = 1;
+    const vb = el.getAttribute('viewBox');
+    if(vb) {
+      const [_, __, vboxw, vboxh] = vb.split(' ').map(e => parseFloat(e))!;
+      scale = width / vboxw;
     }
-
-    assembleCache.set(trace, populated);
-    total.push(...populated);
+    const paths: string[] | undefined = svgCache[el.id];
+    if(paths === undefined) {
+      console.warn(`SVG not in cache: ${el.id}`);
+      return;
+    }
+    populated = assemblePath(paths, x, y + window.scrollY, scale);
+  } else if(el.classList.contains('darker-text')) {
+    let cached = textCache.get(el);
+    if(!cached) {
+      const glyph = el.getAttribute('data-glyph')!;
+      const paths = splitPathSegs(glyph);
+      cached = paths.map(e => e.getAttribute('d')!);
+      textCache.set(el, cached);
+    }
+    populated = assemblePath(cached, x, y + window.scrollY, 1);
   }
 
-  // TODO: error on me
-  if(!shaderCtx.gl) return;
+  assembleCache.set(el, populated);
+  buffer.push(...populated);
+}
 
-  shaderCtx.gl.bufferData(shaderCtx.gl.ARRAY_BUFFER, new Float32Array(total), shaderCtx.gl.STATIC_DRAW);
-  shaderCtx.triangleCnt = total.length / 3;
+function assembleAll(els: HTMLElement[]): PathSet {
+  const buf = []
+  for(const el of els) assembleOne(el, buf);
+
+  return new Float32Array(buf);
+
 }
 
 let renderStopped = false;
@@ -639,7 +683,21 @@ function renderLoop() {
   // gl.enable(gl.SAMPLE_COVERAGE);
   // gl.sampleCoverage(0.5, false);
 
-  gl.drawArrays(gl.TRIANGLES, 0, shaderCtx.triangleCnt);
+  const ext = gl.getExtension("OES_vertex_array_object")!;
+
+  function drawPathSet(ps: RatifiedPathSet) {
+    ext.bindVertexArrayOES(ps[0]);
+    gl.drawArrays(gl.TRIANGLES, 0, ps[1]);
+  }
+
+  // drawPathSet(staticPathSet);
+  // for(const el of tmpPathSets.keys())
+  //   if(!document.contains(el)) tmpPathSets.delete(el);
+  window.wtf = [...tmpPathSets.keys()];
+  window.wtf2 = tmpPathSets;
+  console.log(tmpPathSets.size);
+  console.log([...tmpPathSets.entries()]);
+  for(const k of tmpPathSets.keys()) console.log(k)
 
   {
     overlay.width = window.innerWidth;

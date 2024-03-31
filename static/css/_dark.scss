@@ -211,11 +211,12 @@
   position: relative;
 }
 
-.darker-rounded-debug, .darker-text-render {
+.darker-rounded-surrogate {
   position: absolute;
   top: 0;
   left: 0;
   pointer-events: none;
+  fill: none;
 }
 
 .input-wrapper {

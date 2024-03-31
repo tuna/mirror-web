@@ -34,6 +34,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 console.log("喵呜喵呜喵");
 var modes = ["light", "dark", "darker", "lighter"];
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -161,6 +170,33 @@ function discretize(path) {
     discretizationCache.set(path, loop);
     return loop;
 }
+var staticPathSet;
+var tmpPathSets = new Map();
+window.tmpPathSets = tmpPathSets;
+function ratify(ps) {
+    if (shaderCtx.gl === null)
+        throw new Error('WebGL not initialized!');
+    var gl = shaderCtx.gl;
+    var ext = gl.getExtension("OES_vertex_array_object");
+    var vao = ext.createVertexArrayOES();
+    ext.bindVertexArrayOES(vao);
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, ps, gl.DYNAMIC_DRAW);
+    var a_pos_loc = gl.getAttribLocation(shaderCtx.prog, 'a_pos');
+    gl.enableVertexAttribArray(a_pos_loc);
+    gl.vertexAttribPointer(a_pos_loc, 3, gl.FLOAT, false, 0, 0);
+    ext.bindVertexArrayOES(null);
+    gl.deleteBuffer(buf);
+    return [vao, ps.length / 3];
+}
+function free(ps) {
+    if (shaderCtx.gl === null)
+        throw new Error('WebGL not initialized!');
+    var gl = shaderCtx.gl;
+    var ext = gl.getExtension("OES_vertex_array_object");
+    ext.deleteVertexArrayOES(ps[0]);
+}
 function applyMode(m) {
     return __awaiter(this, void 0, void 0, function () {
         var tmpl_1, flames_1;
@@ -181,9 +217,9 @@ function applyMode(m) {
                     _a.sent();
                     setTimeout(function () {
                         ensureCanvas();
-                        rescanAt(document.body);
+                        var els = rescan(document.body);
                         // TODO: async reassemble
-                        reassemble();
+                        staticPathSet = ratify(assembleAll(els));
                         ensureObs();
                         renderLoop();
                         document.body.classList.remove('darker-engaging');
@@ -216,25 +252,41 @@ function tracker(e) {
     mx = e.clientX;
     my = e.clientY;
 }
-function rescan(mutations, obs) {
+function onMutate(mutations, obs) {
     for (var _i = 0, mutations_1 = mutations; _i < mutations_1.length; _i++) {
         var m = mutations_1[_i];
         if (m.type === 'attributes')
             continue;
         if (m.type === 'characterData') {
-            // TODO: rescan node
             console.log('Don\'t know how to rescan characterData');
             continue;
         }
         for (var _a = 0, _b = m.addedNodes; _a < _b.length; _a++) {
             var n = _b[_a];
-            rescanAt(n);
+            // Skip elements added by ourselves
+            if (!n.classList.contains('popover'))
+                continue;
+            var els = rescan(n);
+            // Based on n
+            var ps = assembleAll(els);
+            tmpPathSets.set(n, ratify(ps));
+        }
+        for (var _c = 0, _d = m.removedNodes; _c < _d.length; _c++) {
+            var n = _d[_c];
+            var orig = tmpPathSets.get(n);
+            if (orig)
+                free(orig);
+            tmpPathSets.delete(n);
         }
     }
-    setTimeout(function () { return reassemble(); });
+}
+function rescan(el) {
+    var buf = [];
+    rescanAt(el, buf);
+    return buf;
 }
 // TODO: allow scaning arbitrary HTML-side nodes
-function rescanAt(el) {
+function rescanAt(el, buf) {
     var _a, _b, _c, _d, _e, _f;
     if ((_a = el.classList) === null || _a === void 0 ? void 0 : _a.contains('sr-only'))
         return;
@@ -242,7 +294,7 @@ function rescanAt(el) {
         return;
     // Check if is svg
     if (el.tagName === 'svg') {
-        rescanSVG(el);
+        rescanSVG(el, buf, []);
         return;
     }
     if (((_c = el.classList) === null || _c === void 0 ? void 0 : _c.contains('label-status')) || ((_d = el.classList) === null || _d === void 0 ? void 0 : _d.contains('label-new')) || ((_e = el.classList) === null || _e === void 0 ? void 0 : _e.contains('input-wrapper')) || ((_f = el.classList) === null || _f === void 0 ? void 0 : _f.contains('popover'))) {
@@ -253,16 +305,11 @@ function rescanAt(el) {
         svg.setAttribute('viewbox', "0 0 ".concat(width, " ").concat(height));
         svg.style.width = width + 'px';
         svg.style.height = height + 'px';
-        svg.classList.add('darker-rounded-debug');
+        svg.classList.add('darker-rounded-surrogate');
         var path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
         path.setAttribute('d', d);
-        path.classList.add('darker-processed');
-        path.classList.add('darker-surrogate');
         svg.appendChild(path);
         el.appendChild(svg);
-        svg.classList.add('darker-traced');
-        svg.classList.add('darker-traced-misc');
-        rescanAt(svg);
     }
     for (var _i = 0, _h = el.childNodes; _i < _h.length; _i++) {
         var child = _h[_i];
@@ -301,7 +348,8 @@ function rescanAt(el) {
                     var glyph = resolveGlyph(first, fsNum, isBold);
                     if (!glyph)
                         continue;
-                    node.classList.add('darker-traced');
+                    // node.classList.add('darker-traced');
+                    buf.push(node);
                     node.setAttribute('data-glyph', glyph);
                     // console.log(first, glyph);
                     // Debug
@@ -330,25 +378,25 @@ function rescanAt(el) {
                 continue;
             if (el.classList.contains('darker-text-svg'))
                 continue;
-            rescanAt(child);
+            rescanAt(child, buf);
         }
     }
 }
 var symbolCache = {};
 var svgCache = {};
 var svgIDGen = 0;
+// FIXME: return string instead
 function splitPathSegs(path) {
-    var d = path;
+    var d = path.trim();
     var segs = [];
     while (true) {
-        // console.log(d);
         var nextMoveIdx = d.substring(1).toLowerCase().indexOf('m');
         if (nextMoveIdx === -1) {
             segs.push(d);
             break;
         }
         segs.push(d.substring(0, nextMoveIdx + 1));
-        d = d.substring(nextMoveIdx + 1);
+        d = d.substring(nextMoveIdx + 1).trim();
     }
     var last = { x: 0, y: 0 };
     var paths = [];
@@ -391,61 +439,61 @@ function splitPathSegs(path) {
     return outerPaths;
 }
 // TODO: cache DOM
-function rescanSVG(el) {
+function rescanSVG(el, buf, pathCollector) {
     var _a;
-    if (el.classList.contains('darker-processed'))
-        return;
     if (el.tagName === 'path') {
-        var d = (_a = el.getAttribute('d')) !== null && _a !== void 0 ? _a : '';
-        var segs = splitPathSegs(d);
-        for (var _i = 0, segs_2 = segs; _i < segs_2.length; _i++) {
-            var path = segs_2[_i];
-            el.parentNode.appendChild(path);
+        var d = (_a = el.getAttribute('d')) === null || _a === void 0 ? void 0 : _a.trim();
+        try {
+            var segs = splitPathSegs(d);
+            for (var _i = 0, segs_2 = segs; _i < segs_2.length; _i++) {
+                var path = segs_2[_i];
+                pathCollector.push(path.getAttribute('d'));
+            }
+        }
+        catch (e) {
+            console.error(e);
+            console.log(el);
         }
     }
     else if (el.tagName === 'use') {
-        el.classList.add('darker-traced');
+        buf.push(el);
+        // el.classList.add('darker-traced');
         // const xlink = el.getAttribute('xlink:href');
     }
-    // TODO: trace texts
+    var childPathCollector = pathCollector;
+    if (el.tagName === 'symbol' && el.id !== '') {
+        childPathCollector = [];
+    }
+    else if (el.tagName === 'svg' && el.getAttribute('display') !== 'none') {
+        childPathCollector = [];
+    }
     for (var _b = 0, _c = el.children; _b < _c.length; _b++) {
         var child = _c[_b];
-        rescanSVG(child);
+        rescanSVG(child, buf, childPathCollector);
     }
     if (el.tagName === 'symbol' && el.id !== '') {
         // Cache symbol content
-        var allPaths = el.querySelectorAll(".darker-surrogate");
-        var ret = [];
-        for (var _d = 0, allPaths_1 = allPaths; _d < allPaths_1.length; _d++) {
-            var p = allPaths_1[_d];
-            ret.push(p.getAttribute('d'));
-        }
-        symbolCache[el.id] = ret;
+        symbolCache[el.id] = childPathCollector;
     }
     else if (el.tagName === 'svg' && el.getAttribute('display') !== 'none') {
         var id = svgIDGen++;
         el.id = "darker-svg-".concat(id);
-        var allPaths = el.querySelectorAll(".darker-surrogate");
-        var ret = [];
-        for (var _e = 0, allPaths_2 = allPaths; _e < allPaths_2.length; _e++) {
-            var p = allPaths_2[_e];
-            ret.push(p.getAttribute('d'));
-        }
-        svgCache[el.id] = ret;
+        // console.log(el.id, childPathCollector)
+        svgCache[el.id] = childPathCollector;
+        buf.push(el);
     }
-    el.classList.add('darker-processed');
+    // TODO: Do we need to join childPathCollector to pathCollector if there are not eq?
 }
 var obs = null;
 var canvas = null;
 var backdrop = null;
 var overlay = null;
 var shaderCtx = {
-    a_pos: null,
     u_screen_loc: null,
     u_mouse_loc: null,
     u_offset_loc: null,
-    triangleCnt: 0,
     gl: null,
+    prog: null,
 };
 function ensureCanvas() {
     var container = document.createElement('div');
@@ -474,15 +522,11 @@ function ensureCanvas() {
         console.log(gl.getShaderInfoLog(fragShader));
         // TODO: check compile status
         var prog = gl.createProgram();
+        shaderCtx.prog = prog;
         gl.attachShader(prog, vertShader);
         gl.attachShader(prog, fragShader);
         gl.linkProgram(prog);
-        var a_pos_loc = gl.getAttribLocation(prog, 'a_pos');
-        shaderCtx.a_pos = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, shaderCtx.a_pos);
         gl.useProgram(prog);
-        gl.enableVertexAttribArray(a_pos_loc);
-        gl.vertexAttribPointer(a_pos_loc, 3, gl.FLOAT, false, 0, 0);
         shaderCtx.u_screen_loc = gl.getUniformLocation(prog, 'u_screen');
         shaderCtx.u_mouse_loc = gl.getUniformLocation(prog, 'u_mouse');
         shaderCtx.u_offset_loc = gl.getUniformLocation(prog, 'u_offset');
@@ -495,95 +539,95 @@ function ensureCanvas() {
 }
 function ensureObs() {
     if (obs === null) {
-        obs = new MutationObserver(rescan);
+        obs = new MutationObserver(onMutate);
         obs.observe(document.body, {
             childList: true,
             subtree: true,
         });
     }
 }
+// Assembly
 var textCache = new WeakMap();
 var assembleCache = new WeakMap();
-function reassemble() {
-    var traced = document.getElementsByClassName('darker-traced');
-    function assemblePath(paths, sx, sy, scale) {
-        var buf = [];
-        for (var _i = 0, paths_3 = paths; _i < paths_3.length; _i++) {
-            var path = paths_3[_i];
-            var dpath = discretize(path);
-            if (dpath.length === 1)
-                continue;
-            for (var i = 0; i < dpath.length; ++i) {
-                var cx = dpath[i].x * scale + sx;
-                var cy = dpath[i].y * scale + sy;
-                var nx = dpath[(i + 1) % dpath.length].x * scale + sx;
-                var ny = dpath[(i + 1) % dpath.length].y * scale + sy;
-                // Expand a little bit
-                buf.push(cx, cy, -0.01, nx, ny, -0.01, cx, cy, 5, cx, cy, 5, nx, ny, 5, nx, ny, -0.01);
-            }
-        }
-        return buf;
-    }
-    var total = [];
-    for (var _i = 0, traced_1 = traced; _i < traced_1.length; _i++) {
-        var trace = traced_1[_i];
-        if (assembleCache.has(trace)) {
-            var cached = assembleCache.get(trace);
-            total.push.apply(total, cached);
+// TODO: segmentation
+function assemblePath(paths, sx, sy, scale) {
+    var buf = [];
+    for (var _i = 0, paths_3 = paths; _i < paths_3.length; _i++) {
+        var path = paths_3[_i];
+        var dpath = discretize(path);
+        if (dpath.length === 1)
             continue;
+        for (var i = 0; i < dpath.length; ++i) {
+            var cx = dpath[i].x * scale + sx;
+            var cy = dpath[i].y * scale + sy;
+            var nx = dpath[(i + 1) % dpath.length].x * scale + sx;
+            var ny = dpath[(i + 1) % dpath.length].y * scale + sy;
+            // Expand a little bit
+            buf.push(cx, cy, -0.01, nx, ny, -0.01, cx, cy, 5, cx, cy, 5, nx, ny, 5, nx, ny, -0.01);
         }
-        var _a = trace.getBoundingClientRect(), x = _a.x, y = _a.y, width = _a.width, height = _a.height;
-        var populated = [];
-        if (trace.tagName === 'use') {
-            var sym = document.getElementById(trace.getAttribute('xlink:href').substring(1));
-            var vbox = sym.viewBox.baseVal;
-            // TODO: handle browsers without baseVal
-            // TODO: handle origins other than 0,0
-            // Firefox fucks up its dimension calculation
-            var parentDims = trace.parentElement.getBoundingClientRect();
-            var scale = parentDims.width / vbox.width;
-            var vscale = parentDims.height / vbox.height;
-            // if(scale > vscale * 1.01 || scale < vscale * 0.99)
-            //   console.warn(`incompatible scales: ${scale}, ${vscale}`);
-            var paths = symbolCache[sym.id];
-            if (paths === undefined) {
-                console.warn("Symbol not in cache: ".concat(sym.id));
-                continue;
-            }
-            populated = assemblePath(paths, x, y + window.scrollY, scale);
-        }
-        else if (trace.tagName === 'svg') {
-            var scale = 1;
-            var vb = trace.getAttribute('viewBox');
-            if (vb) {
-                var _b = vb.split(' ').map(function (e) { return parseFloat(e); }), _ = _b[0], __ = _b[1], vboxw = _b[2], vboxh = _b[3];
-                scale = width / vboxw;
-            }
-            var paths = svgCache[trace.id];
-            if (paths === undefined) {
-                console.warn("SVG not in cache: ".concat(trace.id));
-                continue;
-            }
-            populated = assemblePath(paths, x, y + window.scrollY, scale);
-        }
-        else if (trace.classList.contains('darker-text')) {
-            var cached = textCache.get(trace);
-            if (!cached) {
-                var glyph = trace.getAttribute('data-glyph');
-                var paths = splitPathSegs(glyph);
-                cached = paths.map(function (e) { return e.getAttribute('d'); });
-                textCache.set(trace, cached);
-            }
-            populated = assemblePath(cached, x, y + window.scrollY, 1);
-        }
-        assembleCache.set(trace, populated);
-        total.push.apply(total, populated);
     }
-    // TODO: error on me
-    if (!shaderCtx.gl)
+    return buf;
+}
+function assembleOne(el, buffer) {
+    if (assembleCache.has(el)) {
+        var cached = assembleCache.get(el);
+        buffer.push.apply(buffer, cached);
         return;
-    shaderCtx.gl.bufferData(shaderCtx.gl.ARRAY_BUFFER, new Float32Array(total), shaderCtx.gl.STATIC_DRAW);
-    shaderCtx.triangleCnt = total.length / 3;
+    }
+    var _a = el.getBoundingClientRect(), x = _a.x, y = _a.y, width = _a.width, height = _a.height;
+    var populated = [];
+    if (el.tagName === 'use') {
+        var sym = document.getElementById(el.getAttribute('xlink:href').substring(1));
+        var vbox = sym.viewBox.baseVal;
+        // TODO: handle browsers without baseVal
+        // TODO: handle origins other than 0,0
+        // Firefox fucks up its dimension calculation
+        var parentDims = el.parentElement.getBoundingClientRect();
+        var scale = parentDims.width / vbox.width;
+        var vscale = parentDims.height / vbox.height;
+        // if(scale > vscale * 1.01 || scale < vscale * 0.99)
+        //   console.warn(`incompatible scales: ${scale}, ${vscale}`);
+        var paths = symbolCache[sym.id];
+        if (paths === undefined) {
+            console.warn("Symbol not in cache: ".concat(sym.id));
+            return;
+        }
+        populated = assemblePath(paths, x, y + window.scrollY, scale);
+    }
+    else if (el.tagName === 'svg') {
+        var scale = 1;
+        var vb = el.getAttribute('viewBox');
+        if (vb) {
+            var _b = vb.split(' ').map(function (e) { return parseFloat(e); }), _ = _b[0], __ = _b[1], vboxw = _b[2], vboxh = _b[3];
+            scale = width / vboxw;
+        }
+        var paths = svgCache[el.id];
+        if (paths === undefined) {
+            console.warn("SVG not in cache: ".concat(el.id));
+            return;
+        }
+        populated = assemblePath(paths, x, y + window.scrollY, scale);
+    }
+    else if (el.classList.contains('darker-text')) {
+        var cached = textCache.get(el);
+        if (!cached) {
+            var glyph = el.getAttribute('data-glyph');
+            var paths = splitPathSegs(glyph);
+            cached = paths.map(function (e) { return e.getAttribute('d'); });
+            textCache.set(el, cached);
+        }
+        populated = assemblePath(cached, x, y + window.scrollY, 1);
+    }
+    assembleCache.set(el, populated);
+    buffer.push.apply(buffer, populated);
+}
+function assembleAll(els) {
+    var buf = [];
+    for (var _i = 0, els_1 = els; _i < els_1.length; _i++) {
+        var el = els_1[_i];
+        assembleOne(el, buf);
+    }
+    return new Float32Array(buf);
 }
 var renderStopped = false;
 function renderLoop() {
@@ -615,7 +659,22 @@ function renderLoop() {
     gl.disable(gl.DEPTH_TEST);
     // gl.enable(gl.SAMPLE_COVERAGE);
     // gl.sampleCoverage(0.5, false);
-    gl.drawArrays(gl.TRIANGLES, 0, shaderCtx.triangleCnt);
+    var ext = gl.getExtension("OES_vertex_array_object");
+    function drawPathSet(ps) {
+        ext.bindVertexArrayOES(ps[0]);
+        gl.drawArrays(gl.TRIANGLES, 0, ps[1]);
+    }
+    // drawPathSet(staticPathSet);
+    // for(const el of tmpPathSets.keys())
+    //   if(!document.contains(el)) tmpPathSets.delete(el);
+    window.wtf = __spreadArray([], tmpPathSets.keys(), true);
+    window.wtf2 = tmpPathSets;
+    console.log(tmpPathSets.size);
+    console.log(__spreadArray([], tmpPathSets.entries(), true));
+    for (var _i = 0, _a = tmpPathSets.keys(); _i < _a.length; _i++) {
+        var k = _a[_i];
+        console.log(k);
+    }
     {
         overlay.width = window.innerWidth;
         overlay.height = window.innerHeight;
