@@ -26,15 +26,15 @@
 <div id="help-page">
 	<div class="container">
 	  <div class="row">
-		  <div class="col-sm-2 hidden-xs">
-				<ul class="nav nav-pills nav-stacked" id="help-nav">
+		  <div class="d-none d-md-block col-md-3">
+				<ul class="nav nav-pills flex-column" id="help-nav">
 					{% for h in help_pages %}
-					<li{% if h.mirrorid == page.mirrorid or h.redirect_help_id == page.mirrorid %} class="active"{%endif%} id="toc-{{h.mirrorid}}"><a href="{{h.url}}">{{h.mirrorid}}</a></li>
+					<li class="nav-item" id="toc-{{h.mirrorid}}"><a href="{{h.url}}" class="nav-link{% if h.mirrorid == page.mirrorid or h.redirect_help_id == page.mirrorid %} active{%endif%}">{{h.mirrorid}}</a></li>
 					{% endfor %}
 				</ul>
 			</div><!-- sidenave -->
-			<div class="col-sm-10">
-				<div class="visible-xs">
+			<div class="col-md-9">
+				<div class="d-block d-md-none">
 					<form class="form-inline">
 						<div class="form-group">
 							<label>选择帮助条目: </label>

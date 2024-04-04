@@ -1,7 +1,6 @@
 ---
 ---
-$(document).ready(() => {
-$('.selectpicker').selectpicker()
+document.addEventListener('DOMContentLoaded', () => {
 
 var global_options = {% include options.json %};
 var label_map = global_options.options.label_map;
@@ -47,7 +46,9 @@ const vmMirList = new Vue({
 		}
 	},
 	updated() {
-		$('.mirror-item-label').popover();
+		Array.from(document.getElementsByClassName('mirror-item-label')).map((el) => {
+			new bootstrap.Popover(el);
+		});
 	},
 	computed: {
 		nowBrowsingMirror: function() {
@@ -84,10 +85,10 @@ const vmMirList = new Vue({
 				return;
 			}
 			var self = this;
-			$.getJSON("/static/tunasync.json", (status_data) => {
+			fetch("/static/tunasync.json").then((res)=>res.json()).then((status_data) => {
 				const unlisted_mir = unlisted.map(d => processMirrorItem(d))
 				status_data = status_data.map(d => processMirrorItem(d));
-				var mir_data = $.merge(unlisted_mir, status_data);
+				var mir_data = unlisted_mir.concat(status_data);
 				mir_data = processLinkItem(mir_data);
 				status_data = sortAndUniqMirrors(status_data);
 				mir_data = sortAndUniqMirrors(mir_data).filter(d => !(d.status == "disabled"));
@@ -174,7 +175,11 @@ const processLinkItem = (mirrors) => {
 
 const processMirrorItem = (d) => {
 	if (options[d.name] != undefined ) {
-		d = $.extend(d, options[d.name]);
+		for( const key of Object.keys(d) ) {
+			if (options[d.name].hasOwnProperty(key)) {
+				d[key] = options[d.name][key];
+			}
+		}
 	}
 	d.help_url = help_url[d.name];
 	d.is_new = Boolean(new_mirrors[d.name]);
@@ -211,13 +216,13 @@ var vmIso = new Vue({
 	},
 	created: function() {
 		var self = this;
-		$.getJSON("/static/status/isoinfo.json", (isoinfo) => {
+		fetch("/static/status/isoinfo.json").then((res)=>res.json()).then((isoinfo) => {
 			self.distroList = isoinfo;
 			self.availableCategories = [... new Set(isoinfo.map((x) => x.category))]
 			self.curCategory = self.availableCategories[0];
 			self.selected = self.curDistroList[0];
 			if (window.location.hash.match(/#iso-download(\?.*)?/)) {
-				$('#isoModal').modal();
+				new bootstrap.Modal(document.getElementById('isoModal')).show();
 			}
 		});
 	},

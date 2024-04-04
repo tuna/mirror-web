@@ -23,7 +23,7 @@ title: 镜像站新闻
 							<div class="head" id="{{news.slug}}">
 								<h3><a href="{{news.url}}"># {{news.title}}</a></h3>
 							</div>
-							<div class="meta">
+							<div class="text-secondary">
 								{% fa_svg fas.fa-calendar %} {{news.date | date: "%Y-%m-%d"}} <span style="margin-left: 1em"> {% fa_svg fas.fa-user %} {{ news.author }}</span>
 							</div>
 							<div class="content">{{news.content | markdownify }}</div>

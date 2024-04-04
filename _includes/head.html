@@ -30,12 +30,8 @@
 
 <title>{{ page_title }}</title>
 {% unless include.nostyle %}
-<link rel="stylesheet" href="/static/css/bootstrap.min.css?{{ site.data['hash'] }}">
-<link rel="stylesheet" href="/static/css/bootstrap-select.min.css?{{ site.data['hash'] }}">
 <link rel="stylesheet" href="/static/css/style.css?{{ site.data['hash'] }}">
-<script src="/static/js/jquery.min.js?{{ site.data['hash'] }}"></script>
 <script src="/static/js/bootstrap.min.js?{{ site.data['hash'] }}"></script>
-<script src="/static/js/bootstrap-select.min.js?{{ site.data['hash'] }}"></script>
 {% unless page.legacy %}
 <script src="/static/js/vue.min.js?{{ site.data['hash'] }}"></script>
 <script src="/static/js/timeago.min.js?{{ site.data['hash'] }}"></script>

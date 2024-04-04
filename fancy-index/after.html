@@ -21,18 +21,20 @@ ref fa-cube icon from before.html
 	{% raw %}
 	<script>
 		document.getElementById("list").setAttribute("class", "table");
-		$(function(){
-			$("#list tbody tr td:nth-child(3)").each(function(k,date){
-				var d = new Date($(date).text());
+		document.addEventListener("DOMContentLoaded", function(){
+			var els = Array.from(document.querySelectorAll("#list tbody tr td:nth-child(3)"))
+			for(var i = 0; i < els.length; i++){
+				var el = els[i];
+				var d = new Date(el.innerText);
 				if(!isNaN(d.getTime())){
 					var date_str = ('000' + d.getFullYear()).substr(-4) + "-"
 					             + ('0' + (d.getMonth() + 1)).substr(-2) + "-"
 					             + ('0' + d.getDate()).substr(-2)
 					             + (" " + ('0' + d.getHours()).substr(-2) + ":"
 					             + ('0' + d.getMinutes()).substr(-2));
-					$(date).text(date_str);
+					el.innerText = date_str;
 				}
-			})
+			}
 		});
 	</script>
 	<style>

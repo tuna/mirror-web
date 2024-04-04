@@ -20,12 +20,12 @@ permalink: /status/
 			</div>
 			<h4># 磁盘状态 </h4>
 			<div class="row" id="disk-usage">{% raw %}
-				<div class="col-xs-12" v-if="diskUsages.length"><strong>磁盘占用</strong>: </div>
+				<div class="col-12" v-if="diskUsages.length"><strong>磁盘占用</strong>: </div>
 				<template v-for="disk in diskUsages">
-				<div class="col-xs-1" v-if="disk.desc">{{ disk.desc }}</div>
-				<div :class="['col-xs-' + (disk.desc ? '11' : '12')]">
-				<div class="progress">
-					<div class="progress-bar" role="progressbar" :aria-valuenow="disk.percentage" aria-valuemin="0" aria-valuemax="100" :style="{width: disk.percentage + '%'}">
+				<div class="col-1" v-if="disk.desc">{{ disk.desc }}</div>
+				<div :class="['col-' + (disk.desc ? '11' : '12')]">
+				<div class="progress mb-3" role="progressbar" :aria-valuenow="disk.percentage" aria-valuemin="0" aria-valuemax="100">
+					<div class="progress-bar" :style="{width: disk.percentage + '%'}">
 						<strong>{{ disk.used }} / {{ disk.total }}</strong>
 					</div>
 				</div>
@@ -41,32 +41,31 @@ permalink: /status/
 			</div>
 			{% endunless %}
 			<h3 id="syncing-status"># 同步状态</h3>
-			<table class="table table-condensed flat-md">
-				<thead class="hidden-xs hidden-sm">
-					<tr>
-						<th class="col-xs-12 col-md-2">Name</th>
-						<th class="col-xs-12 col-md-4" colspan=2>Last Update</th>
-						<th class="col-xs-12 col-md-4">Upstream</th>
-						<th class="col-xs-12 col-md-1">Status</th>
-						<th class="col-xs-12 col-md-1">Size</th>
+			<table class="table text-break flat row d-table table-hover table-borderless">
+				<thead class="">
+					<tr class="d-none d-lg-table-row">
+						<th class="col-2">Name</th>
+						<th class="col-4" colspan=2>Last Update</th>
+						<th class="col-4">Upstream</th>
+						<th class="col-1">Status</th>
+						<th class="col-1">Size</th>
 					</tr>
 				</thead>
-				<tbody id="mirror-list" data-tuna-roll-cur="-1" data-tuna-roll-max="6">
+				<tbody id="mirror-list" data-tuna-roll-cur="-1" data-tuna-roll-max="6" class="table-group-divider">
 					{% raw %}
-					<tr v-for="mir in rawMirrorList" :class="['row', 'status-'+mir.status, mir.last_ended_ts == mir.last_update_ts ? 'last-succ' : 'last-fail']" :key="mir.name">
-						<td class="col-xs-4">Name</td>
-						<td class="col-md-2 col-xs-8">{{mir.name}}{{mir.is_master ? '' : ' [slave]'}}</td>
-						<td class="col-xs-4">Last Success</td>
-						<td class="col-xs-8 hidden-md hidden-lg">{{mir.last_update}}, {{mir.last_update_ago}}</td>
+					<tr v-for="mir in rawMirrorList" :class="['row', 'd-lg-table-row', 'status-'+mir.status, mir.last_ended_ts == mir.last_update_ts ? 'last-succ' : 'last-fail']" :key="mir.name">
+						<th class="col-4 d-lg-none text-end">Name</th>
+						<td class="col-8 col-lg-2">{{mir.name}}{{mir.is_master ? '' : ' [slave]'}}</td>
+						<th class="col-4 d-lg-none text-end">Last Success</th>
+						<td class="col-8 d-lg-none">{{mir.last_update}}, {{mir.last_update_ago}}</td>
 						<template v-if="mir.last_ended_ts != mir.last_update_ts">
-						<td class="col-xs-4">Last Attempt</td>
-						<td class="col-xs-8 hidden-md hidden-lg">{{mir.last_ended}}, {{mir.last_ended_ago}}</td>
+						<th class="col-4 d-lg-none text-end">Last Attempt</th>
+						<td class="col-8 d-lg-none">{{mir.last_ended}}, {{mir.last_ended_ago}}</td>
 						</template>
-						<td class="col-xs-4">Next Sync</td>
-						<td class="col-xs-8 hidden-md hidden-lg" v-if="mir.status != 'syncing'">{{mir.next_schedule}}, {{mir.next_schedule_ago}}</td>
-						<td class="col-xs-8 hidden-md hidden-lg" v-else>Syncing Now</td>
-						<td class="hidden-xs hidden-sm hidden-md hidden-lg"></td>
-						<td class="col-md-2 col-xs-3 rolling-3 text-left-md text-right-xs hidden-xs hidden-sm">
+						<th class="col-4 d-lg-none text-end">Next Sync</th>
+						<td class="col-8 d-lg-none" v-if="mir.status != 'syncing'">{{mir.next_schedule}}, {{mir.next_schedule_ago}}</td>
+						<td class="col-8 d-lg-none" v-else>Syncing Now</td>
+						<td class="col-2 rolling-3 d-none d-lg-table-cell">
 							<div v-if="dateTooltip" class="tuna-roll">&nbsp;
 								<template v-if="mir.last_ended_ts == mir.last_update_ts">
 									<div data-tuna-roll-seq="0 1 2 3">Last Successful Sync</div>
@@ -91,8 +90,7 @@ permalink: /status/
 								<div data-tuna-roll-seq="4 5">Next Scheduled Sync</div>
 							</div>
 						</td>
-						<td class="hidden-xs hidden-sm hidden-md hidden-lg"></td>
-						<td class="col-md-2 col-xs-5 rolling-6 hidden-xs hidden-sm">
+						<td class="col-2 rolling-6 d-none d-lg-table-cell">
 							<div v-if="dateTooltip" class="tuna-roll">&nbsp;
 								<template v-if="mir.last_ended_ts == mir.last_update_ts">
 									<div data-tuna-roll-seq="0 1 2 3">{{mir.last_update_ago}}
@@ -134,12 +132,12 @@ permalink: /status/
 								</template>
 							</div>
 						</td>
-						<td class="col-xs-4">Upstream</td>
-						<td class="col-md-4 col-xs-8">{{mir.upstream}}</td>
-						<td class="col-xs-4">Status</td>
-						<td class="col-md-1 col-xs-8">{{mir.status}}</td>
-						<td class="col-xs-4">Size</td>
-						<td class="col-md-1 col-xs-8">{{mir.size}}</td>
+						<th class="col-4 d-lg-none text-end">Upstream</th>
+						<td class="col-8 col-lg-4">{{mir.upstream}}</td>
+						<th class="col-4 d-lg-none text-end">Status</th>
+						<td class="col-8 col-lg-1">{{mir.status}}</td>
+						<th class="col-4 d-lg-none text-end">Size</th>
+						<td class="col-8 col-lg-1">{{mir.size}}</td>
 					</tr>
 					{% endraw %}
 				</tbody>

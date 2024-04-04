@@ -1,12 +1,12 @@
-<div class="col-md-6 col-xs-12">
-	<picture class="thumbnail">
-	<source 
+<div class="col-lg-6 col-12">
+	<picture>
+	<source
 		srcset="/static/status/{{include.name}}-day-dark.png 1x,
 						/static/status/{{include.name}}-day-dark@2x.png 2x,
 						/static/status/{{include.name}}-day-dark@3x.png 3x,
 						/static/status/{{include.name}}-day-dark@4x.png 4x"
 		media="(prefers-color-scheme: dark)" />
-	<img class="img-responsive" src="/static/status/{{include.name}}-day.png"
+	<img class="img-thumbnail img-fluid w-100" src="/static/status/{{include.name}}-day.png"
 		srcset="/static/status/{{include.name}}-day.png 1x,
 						/static/status/{{include.name}}-day@2x.png 2x,
 						/static/status/{{include.name}}-day@3x.png 3x,

@@ -11,6 +11,6 @@
 /deploy.sh
 /.sass-cache/
 .bundle
-vendor
+/vendor/
 .vscode/
 .DS_Store

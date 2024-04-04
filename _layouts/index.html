@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html {% if site.issue %}class="index-issue"{% endif %}>
 	{% include head.html notArticle=true %}
 	<body>
 		{% unless page.legacy or site.issue %}
@@ -11,11 +11,11 @@
 			<div class="container">
 				<div class="row">
 					{% if site.issue %}
-					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-12 table-responsive">
+					<div class="col-{% if page.legacy %}xs{% else %}lg{% endif %}-12 table-responsive">
 						<div class="alert text-center" id="cover-alert">
 							<h1>{{ site.school }}开源软件镜像站</h1>
 							<h3>暂时无法提供服务</h3>
-							<div class="pull-right">
+							<div class="text-end">
 								<img src="/static/img/candle.jpg"
 									srcset="/static/img/candle.jpg 1x,
 													/static/img/candle@2x.jpg 2x"
@@ -31,21 +31,21 @@
 				</div>
 				<div class="row">
 					{% else %}
-					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-8 table-responsive" id="mirror-list">
-						<div class="row">
-							<h3 id="mirror-title">{% fa_svg fas.fa-cube %} 镜像列表 </h3>
+					<div class="col-lg-8 {% if page.legacy %}col-8{% else %}col-12{% endif %} table-responsive" id="mirror-list">
+						<div class="flex-row d-flex">
+							<h3 id="mirror-title" class="d-inline-flex align-self-center">{% fa_svg fas.fa-cube %} 镜像列表 </h3>
 							{% unless page.legacy %}
-							<input type="search" v-model.trim="filter" id="search" ref="search" placeholder="按 / 搜索" autocomplete="off">
+							<input type="search" v-model.trim="filter" id="search" ref="search" placeholder="按 / 搜索" autocomplete="off" class="ms-auto d-inline-flex align-self-center">
 							{% endunless %}
 						</div>
-						<table class="table" v-if="mirrorList.length">
+						<table class="table row table-hover" v-if="mirrorList.length">
 							<thead>
 								<tr class="row">
-									<th class="col-{% if page.legacy %}xs{% else %}sm{% endif %}-8">Name</th>
-									<th class="col-{% if page.legacy %}xs{% else %}sm{% endif %}-4">Last Update</th>
+									<th class="col-8 col-lg-7 col-xl-8">Name</th>
+									<th class="col-4 col-lg-5 col-xl-4">Last Update</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody class="table-group-divider">
 								{% if page.legacy %}
 								{% raw %}
 								{{mirs}}
@@ -55,14 +55,14 @@
 											{{name}}
 										</a>
 										{{if is_new}}
-										<span class="label label-new">new</span>
+										<span class="badge badge-new">new</span>
 										{{/if}}
 										{{if help_url}}
-										<a href="{{help_url}}"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-circle-question %}{% raw %}</i><span class="sr-only">[Help]</span></a>
+										<a href="{{help_url}}"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-circle-question %}{% raw %}</i><span class="visually-hidden">[Help]</span></a>
 										{{/if}}
 									</td>
 									<td>
-										{{last_update}}{{if show_status}}<span class="label label-status {{label}}">{{status}}</span>{{/if}}
+										{{last_update}}{{if show_status}}<span class="badge badge-status {{label}}">{{status}}</span>{{/if}}
 									</td>
 								</tr>
 								{{/mirs}}
@@ -70,16 +70,16 @@
 								{% else %}
 								{% raw %}
 								<tr v-for="mir in filteredMirrorList" :class="['row', 'status-'+mir.status]" :key="mir.name">
-									<td class="col-md-8">
-										<a class="mirror-item-label"  data-toggle="popover" data-trigger="hover" data-placement="right"
-											:data-content="mir.description" :href="getURL(mir)" :aria-label="mir.name + ', ' + mir.description">
+									<td class="col-8 col-lg-7 col-xl-8">
+										<a class="mirror-item-label"  data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right"
+											:data-bs-content="mir.description" :href="getURL(mir)" :aria-label="mir.name + ', ' + mir.description">
 											{{mir.name}}
-											<span class="label label-new" v-if='mir.is_new'>new</span>
-											<a v-if='mir.help_url' :href="mir.help_url"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-circle-question %}{% raw %}</i><span class="sr-only">[Help]</span></a>
-											<a v-if='mir.github_release' href="javascript:void(0)"><i aria-hidden="true" title="GitHub Release">{% endraw %}{% fa_svg fab.fa-github %}{% raw %}</i><span class="sr-only">[GitHub Release]</span></a>
+											<span class="badge badge-new" v-if='mir.is_new'>new</span>
+											<a v-if='mir.help_url' :href="mir.help_url"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-circle-question %}{% raw %}</i><span class="visually-hidden">[Help]</span></a>
+											<a v-if='mir.github_release' href="javascript:void(0)"><i aria-hidden="true" title="GitHub Release">{% endraw %}{% fa_svg fab.fa-github %}{% raw %}</i><span class="visually-hidden">[GitHub Release]</span></a>
 									</td>
-									<td class="col-md-4">
-										{{mir.last_update}}<span v-if="mir.show_status" :class="['label', 'label-status', mir.label, 'hidden-xs']">{{mir.status}}</span>
+									<td class="col-4 col-lg-5 col-xl-4">
+										{{mir.last_update}}<span v-if="mir.show_status" :class="['badge', 'badge-status', mir.label, 'd-none', 'd-md-inline-block']">{{mir.status}}</span>
 									</td>
 								</tr>
 								{% endraw %}
@@ -98,21 +98,19 @@
 					</div>
 					{% endif %}
 					{% unless site.issue %}
-					<div class="col-{% if page.legacy %}xs{% else %}md{% endif %}-4">
-						<div class="spacing hidden-xs"></div>
-						<div id="wizard">
-						</div>
+					<div class="col-lg-4 {% if page.legacy %}col-4{% else %}col-12{% endif %}">
+						<div class="spacing d-none d-lg-block"></div>
 					{% endunless %}
-						<div id="news" {%if site.issue%}class="col-md-3"{%endif%}>
+						<div id="news" {%if site.issue%}class="col-lg-3"{%endif%}>
 							<h4>{% fa_svg fas.fa-bullhorn %} 新闻公告 </h4>
 							<ul>
 								{% for news in site.categories.news limit: 3%}
 								<li><a href="/news/#{{news.slug}}"><strong>{{news.date | date: "%Y-%m-%d"}}</strong> {{news.title}}</a></li>
 								{% endfor %}
 							</ul>
-							<div class="text-right"><a href="/news/"> more {% fa_svg fas.fa-angles-right %} </a></div>
+							<div class="text-end"><a href="/news/"> more {% fa_svg fas.fa-angles-right %} </a></div>
 						</div>
-						<div class="thuhidden {%if site.issue%}col-md-4{%endif%}">
+						<div class="thuhidden {%if site.issue%}col-lg-4{%endif%}">
 							<h4> {% fa_svg fas.fa-link %} 域名选择 </h4>
 							<ul>
 								<li><a href="{{ site.url }}">{{ site.url }}</a> 自动选择 </li>
@@ -128,12 +126,12 @@
 						<div id="download-link">
 							<h4>{% fa_svg far.fa-file-zipper %} 下载链接 </h4>
 							<p>常用发行版 iso 和应用工具安装包直接下载</p>
-							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#isoModal">
+							<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#isoModal">
 								获取下载链接
 							</button>
 						</div>
 						{% endunless %}
-						<div class="thuhidden {%if site.issue%}col-md-3{%endif%}">
+						<div class="thuhidden {%if site.issue%}col-lg-3{%endif%}">
 							<h4> {% fa_svg far.fa-envelope %} 联系我们 </h4>
 							<ul>
 								<li><strong>意见反馈</strong> <br /> <a href="https://github.com/tuna/issues">https://github.com/tuna/issues</a></li>
@@ -141,7 +139,7 @@
 								<li><strong>在线交流</strong> <br /> <a href="https://web.libera.chat/#tuna"> #tuna at Libera.Chat </a></li>
 							</ul>
 						</div>
-						<div {%if site.issue%}class="col-md-2"{%endif%}>
+						<div {%if site.issue%}class="col-lg-2"{%endif%}>
 							<h4> {% fa_svg fas.fa-arrow-up-right-from-square %} 相关链接 </h4>
 							<ul>
 								<li><a href="/help/">使用帮助</a></li>
@@ -155,7 +153,7 @@
 							</ul>
 						</div>
 						{% unless site.hide_mirrorz %}
-						<div class="thuhidden {%if site.issue%}col-md-2{%endif%}">
+						<div class="thuhidden {%if site.issue%}col-lg-2{%endif%}">
 							<h4> {% fa_svg fas.fa-paperclip %} 友情链接 </h4>
 							<p><a href="{{ site.mirrorz_link }}">{{ site.mirrorz_desc }}</a></p>
 						</div>
@@ -175,32 +173,31 @@
 		  <div class="modal-dialog modal-lg" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
 		        <h4 class="modal-title" id="isoModalLabel">获取安装镜像</h4>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+		        </button>
 		      </div>
 		      <div class="modal-body">
 					<div class="row" v-if="availableCategories.length > 0">
-						<div class="col-md-12">
+						<div class="col-lg-12">
 							<ul class="nav nav-tabs">
-								<li role="presentation"
-									v-for="cat in availableCategories"
-									:class="[curCategory === cat ? 'active' : '']"
-									@click="switchCategory(cat)"
-								>
-									<a href="#">{{ knownCategories[cat] ? knownCategories[cat] : cat  }}</a>
+								<li class="nav-item" role="presentation" v-for="cat in availableCategories">
+									<a
+										:class="[curCategory === cat ? 'active' : '', 'nav-link']"
+										@click="switchCategory(cat)"
+										href="#"
+									>{{ knownCategories[cat] ? knownCategories[cat] : cat  }}</a>
 								</li>
 							</ul>
 						</div>
-						<div class="col-md-3">
-							<ul class="nav nav-pills nav-stacked">
-								<li v-for="distro in curDistroList" :class="[selected.distro == distro.distro ? 'active' : '']">
-									<a href="#" @click="switchDistro(distro)">{{ distro.distro }}</a>
+						<div class="col-lg-3">
+							<ul class="nav nav-pills flex-column">
+								<li class="nav-item" v-for="distro in curDistroList">
+									<a href="#" @click="switchDistro(distro)" :class="[selected.distro == distro.distro ? 'active' : '', 'nav-link']">{{ distro.distro }}</a>
 								</li>
 							</ul>
 						</div>
-						<div class="col-md-9">
+						<div class="col-lg-9">
 							<h3>{{selected.distro}}</h3>
 							<ul>
 								<template v-for="url in selected.urls">

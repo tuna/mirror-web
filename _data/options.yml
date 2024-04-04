@@ -554,9 +554,9 @@ force_redirect_help_mirrors:
   - ohmyzsh.git
 
 label_map:
-  unknown: label-default
-  syncing: label-info
-  success: label-success
-  fail: label-warning
-  failed: label-warning
-  paused: label-warning
+  unknown: text-bg-dummy
+  syncing: text-bg-info
+  success: text-bg-success
+  fail: text-bg-warning
+  failed: text-bg-warning
+  paused: text-bg-warning

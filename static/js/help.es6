@@ -3,17 +3,18 @@
 
 const globalOptions = {% include options.json %}.options;
 
-$(document).ready(() => {
-	$("#help-content")
-		.find('table')
-		.addClass("table table-bordered table-striped");
+document.addEventListener('DOMContentLoaded', () => {
+	Array.from(document.querySelectorAll("#help-content table")).map((el) => {
+		el.classList.add("table", "table-bordered", "table-striped");
+	});
 
 	const update_target = (ev) => {
-		const sel = $(ev.target);
-		const target_selectors = sel.data("target").split(",");
+		const sel = ev.target;
+		const target_selectors = sel.attributes["data-target"].value.split(",");
 		for (const target_selector of target_selectors) {
-			const template_selector = $(target_selector).data("template");
-			const select_selectors = $(target_selector).data("select").split(",");
+			const target = document.querySelector(target_selector);
+			const template_selector = target.attributes["data-template"].value;
+			const select_selectors = target.attributes["data-select"].value.split(",");
 			let url = "/" + window.mirrorId
 			if (window.mirrorId.endsWith(".git")) {
 				url = "/git/" + window.mirrorId
@@ -22,40 +23,43 @@ $(document).ready(() => {
 				"mirror": "{{ site.hostname }}" + url,
 			};
 			for (const select_selector of select_selectors) {
-				const opt = $(select_selector).find('option:selected').data();
-				$.extend(template_data, opt);
+				const opt_attrs = document.querySelector(select_selector).querySelector('option:checked').attributes;
+				for(const attr of opt_attrs) {
+					if(attr.name.startsWith("data-")) {
+						template_data[attr.name.slice(5)] = attr.value;
+					}
+				}
 			}
 			// special hack for case-insensitive
 			if ("sudoe" in template_data) {
 				template_data.sudoE = template_data.sudoe;
 			}
-			const template = $.trim($(template_selector).text());
+			const template = document.querySelector(template_selector).textContent.trim();
 			const content = Mark.up(
 				template,
 				template_data
 			);
-			$(target_selector).html(content);
-			hljs.highlightElement($(target_selector).get(0));
+			target.innerHTML = content;
+			hljs.highlightElement(target);
 		}
 	};
 
-	$("select.content-select").on('change', update_target);
-	$("select.content-select").each((i, e) => {
-		$(e).trigger('change');
-	});
+	Array.from(document.querySelectorAll("select.content-select")).map((el) => {
+		el.addEventListener('change', update_target);
+		el.dispatchEvent(new Event('change'));
+	})
 
-	$('#help-select').on('change', (ev) => {
-		let help_url = $(ev.target).find("option:selected").data('help-url');
+	document.getElementById('help-select').addEventListener('change', (ev) => {
+		let help_url = ev.target.querySelector("option:checked").attributes['data-help-url'].value;
 		window.location = `${window.location.protocol}//${window.location.host}${help_url}`;
 	});
 
-	$.getJSON("/static/tunasync.json", (statusData) => {
+	fetch("/static/tunasync.json").then((resp)=>resp.json()).then((statusData) => {
 		// remove help items for disabled/removed mirrors
 		let availableMirrorIds = new Set(statusData.map(x => x.name));
 		globalOptions.unlisted_mirrors.forEach(elem => {
 			availableMirrorIds.add(elem.name)
 		});
-		console.log(window.mirrorId);
 		if (!availableMirrorIds.has(window.mirrorId)) {
 			if ({{ site.hide_mirrorz }}) {
 				location.href = "/404-help-hidden.html"; // this will break 404 issue submission
@@ -64,8 +68,11 @@ $(document).ready(() => {
 			}
 		}
 
-		$('li').filter((_, node) => node.id && node.id.startsWith("toc-") && !availableMirrorIds.has(node.id.slice(4))).remove();
-		$('option').filter((_, node) => node.id && node.id.startsWith("toc-") && !availableMirrorIds.has(node.id.slice(4))).remove();
+		Array.from(document.querySelectorAll("option[id^=\"toc-\"],li[id^=\"toc-\"]")).forEach((elem) => {
+			if (elem.id.startsWith("toc-") && !availableMirrorIds.has(elem.id.slice(4))) {
+				elem.remove();
+			}
+		});
 	});
 });
 
