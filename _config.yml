@@ -49,6 +49,7 @@ sass:
     sass_dir: static/css
 
 plugins:
+    - jekyll-relative-links
     - jekyll-babel
     - jekyll-sitemap
     - jekyll/fontawesome/svg
@@ -56,7 +57,7 @@ plugins:
 
 babel_js_extensions: 'es6'
 
-exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_robot.sh, gen_desc.py, Dockerfile*]
+exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_desc.py, Dockerfile*]
 
 sponsors:
     megvii:
