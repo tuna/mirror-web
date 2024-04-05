@@ -33,7 +33,7 @@
 					{% else %}
 					<div class="col-lg-8 {% if page.legacy %}col-8{% else %}col-12{% endif %} table-responsive" id="mirror-list">
 						<div class="flex-row d-flex">
-							<h3 id="mirror-title" class="d-inline-flex align-self-center">{% fa_svg fas.fa-cube %} 镜像列表 </h3>
+							<h3 id="mirror-title" class="align-self-center">{% fa_svg fas.fa-cube %} 镜像列表 </h3>
 							{% unless page.legacy %}
 							<input type="search" v-model.trim="filter" id="search" ref="search" placeholder="按 / 搜索" autocomplete="off" class="ms-auto d-inline-flex align-self-center">
 							{% endunless %}
@@ -125,10 +125,12 @@
 						{% unless page.legacy or site.hide_download or site.issue %}
 						<div id="download-link">
 							<h4>{% fa_svg far.fa-file-zipper %} 下载链接 </h4>
-							<p>常用发行版 iso 和应用工具安装包直接下载</p>
-							<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#isoModal">
-								获取下载链接
-							</button>
+							<p>常用发行版 ISO 和应用软件安装包直接下载：</p>
+							<div class="justify-content-center d-flex flex-row flex-grow-1 w-100">
+								<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#isoModal">
+									获取下载链接
+								</button>
+							</div>
 						</div>
 						{% endunless %}
 						<div class="thuhidden {%if site.issue%}col-lg-3{%endif%}">
@@ -155,7 +157,9 @@
 						{% unless site.hide_mirrorz %}
 						<div class="thuhidden {%if site.issue%}col-lg-2{%endif%}">
 							<h4> {% fa_svg fas.fa-paperclip %} 友情链接 </h4>
-							<p><a href="{{ site.mirrorz_link }}">{{ site.mirrorz_desc }}</a></p>
+							<ul>
+								<li><a href="{{ site.mirrorz_link }}">{{ site.mirrorz_desc }}</a></li>
+							<ul>
 						</div>
 						{% endunless %}
 					{% unless site.issue %}

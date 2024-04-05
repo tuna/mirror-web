@@ -17,7 +17,7 @@
 							<div class="head">
 								<h3># {{page.title}}</h3>
 							</div>
-							<div class="text-secondary">
+							<div class="text-secondary post-metadata">
 								{% fa_svg fas.fa-calendar %} {{page.date | date: "%Y-%m-%d"}} <span style="margin-left: 1em"> {% fa_svg fas.fa-user %} {{ page.author }}</span>
 							</div>
 							<div class="content">{{page.content | markdownify }}</div>
