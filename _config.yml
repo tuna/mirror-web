@@ -48,6 +48,10 @@ kramdown:
 sass:
     sass_dir: static/css
 
+vite:
+    config_path: _src/vite.json
+    viteConfig: _vite.config.mjs
+
 plugins:
     - jekyll-relative-links
     - jekyll-babel
@@ -57,7 +61,19 @@ plugins:
 
 babel_js_extensions: 'es6'
 
-exclude: [Gemfile, Gemfile.lock, README.md, gen_robot.sh, vendor, geninfo/, gen_desc.py, Dockerfile*]
+jekyll-minifier:
+    exclude: [ 'assets/**' ]
+
+exclude: [gen_robot.sh, geninfo/, gen_desc.py]
+addition_exclude:
+    - package.json
+    - package-lock.json
+    - node_modules
+    - Gemfile
+    - Gemfile.lock
+    - README.md
+    - vendor/
+    - Dockerfile*
 
 sponsors:
     megvii:

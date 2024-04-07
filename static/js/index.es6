@@ -14,10 +14,6 @@ global_options.options.force_redirect_help_mirrors.forEach((m) => options[m] = {
 var descriptions = {};
 global_options.options.mirror_desc.forEach((m) => descriptions[m.name] = m.desc);
 
-new Vue({
-	el: "#upgrade-mask",
-});
-
 const vmMirList = new Vue({
 	el: "#mirror-list",
 	data: {
