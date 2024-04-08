@@ -1,4 +1,4 @@
-@use "bootstrap" as bs;
+@use "./bootstrap_vars" as bs;
 @use "./utils.scss" as utils;
 
 .status-fail, .status-failed, .status-paused {

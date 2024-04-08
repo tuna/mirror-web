@@ -1,6 +1,6 @@
 @use "./sync-status.scss";
 
-@use "bootstrap" as bs;
+@use "./bootstrap_vars.scss" as bs;
 
 #mirrors {
   tbody {
