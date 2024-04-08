@@ -1,4 +1,5 @@
-{% vite_javascript_tag {{ include.entry }} %}
-{% capture entry_legacy %}{{ include.entry }}-legacy.js{% endcapture %}
+{% capture entry %}{% if layout.jsEntry %}{{ layout.jsEntry }}{% elsif page.jsEntry %}{{ page.jsEntry }}{% else %}default{% endif %}{% endcapture %}
+{% vite_javascript_tag {{ entry }} %}
+{% capture entry_legacy %}{{ entry }}-legacy.js{% endcapture %}
 <script src="{% vite_asset_path /vite/legacy-polyfills-legacy %}" defer nomodule></script>
 <script src="{% vite_asset_path {{ entry_legacy }} %}" defer nomodule></script>

@@ -1,3 +1,6 @@
+---
+jsEntry: app
+---
 <!DOCTYPE html>
 <html {% if site.issue %}class="index-issue"{% endif %}>
 	{% include head.html notArticle=true %}
@@ -180,7 +183,6 @@
 	{% endraw %}
 	{% unless page.legacy or site.issue %}
 	<script src="/static/js/index.js?{{ site.data['hash'] }}"></script>
-	{% include vite_script.html entry="app" %}
 	{% endunless %}
 </html>
 <!--

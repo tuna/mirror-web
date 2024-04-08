@@ -89,3 +89,9 @@ const switchCategory = (category) => {
     </div>
   </div>
 </template>
+
+<style scoped lang="scss">
+.nav-tabs {
+  margin-bottom: .5em;
+}
+</style>

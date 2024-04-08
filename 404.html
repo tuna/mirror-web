@@ -1,5 +1,6 @@
 ---
 permalink: /404.html
+jsEntry: notfound
 ---
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,7 @@ permalink: /404.html
               {% endif %}
             </div>
             <div class="not-found-text thuhidden">
-              如果您认为这一定是出了什么问题，或者正在寻找暂未包含的镜像，欢迎您前往 
+              如果您认为这一定是出了什么问题，或者正在寻找暂未包含的镜像，欢迎您前往
               <a href="https://github.com/tuna/issues/issues/new/choose">
                 {% fa_svg fab.fa-github %} tuna/issues
               </a>
@@ -53,7 +54,7 @@ permalink: /404.html
         var bugURL = new URL(bugLink.href);
         bugURL.searchParams.append("title", tag + "404 at " + location.pathname);
         bugLink.href = bugURL.href;
-        
+
         var mrLink = document.getElementById("new_issue_mr");
         var mrURL = new URL(mrLink.href);
         mrURL.searchParams.append("title", tag + "Mirror Request for new mirror " +
@@ -66,4 +67,3 @@ permalink: /404.html
 <!--
   vim: ts=2 sts=2 sw=2 noexpandtab
 -->
-

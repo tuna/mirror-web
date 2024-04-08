@@ -1,6 +1,8 @@
 import Empty from '../components/Empty.vue'
 import IsoModal from '../components/IsoModal.vue'
 import { createApp } from 'vue';
+import './default'
+import '../styles/main-page.scss'
 
 const empty = createApp(Empty);
 empty.mount("#upgrade-mask");

@@ -1,3 +1,6 @@
+---
+jsEntry: help
+---
 <!DOCTYPE html>
 <html>
 {% capture metaDesc %}{{ page.mirrorid }} 使用帮助{% endcapture %}
@@ -50,8 +53,6 @@
 <script type="text/x-tuna-help-mirrorid">
 	{{page.mirrorid | jsonify}}
 </script>
-{% capture entry %}{% if page.layout == "helpz" %}helpz{% else %}help{% endif %}{% endcapture %}
-{% include vite_script.html entry=entry %}
 
 </html>
 <!--

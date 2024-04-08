@@ -1,0 +1,149 @@
+@use "./utils.scss" as utils;
+@use "sass:map";
+
+@use "bootstrap" as bs with (
+  $color-mode-type: media-query,
+);
+
+$color_thu_purple_dark: #C353D3;
+$font_default: 'Lato', 'Hiragino Sans GB', 'Source Han Sans SC', 'Source Han Sans CN', 'Noto Sans CJK SC', 'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', '微软雅黑', sans-serif;
+$footer_color: #384452;
+
+$color_thu_purple: if(map.get(jekyll-config(), "issue"), $color_thu_purple_dark, #82318E);
+
+@include utils.noissue {
+  :root {
+    color-scheme: light dark;
+  }
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+pre {
+  @extend .border;
+  @extend .rounded;
+  @extend .p-2;
+  @extend .bg-secondary-subtle;
+  code {
+    @extend .p-0;
+  }
+}
+
+code {
+  @extend .p-1;
+  @extend .rounded;
+  @extend .bg-secondary-subtle;
+}
+
+h1, h2, h3, .h1, .h2, .h3 {
+  margin-top: 2rem;
+}
+
+h4, h5, h6, .h4, .h5, .h6 {
+  margin-top: 1rem;
+}
+
+/* Footer */
+#footerwrap {
+  color: bs.$body-color-dark;
+  margin-top: 100px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background: $footer_color;
+  a {
+      color: bs.$link-color-dark;
+  }
+  a:hover {
+      color: bs.$link-hover-color-dark;
+  }
+}
+
+.spacing {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.vbottom {
+    display: inline-block;
+    vertical-align: bottom;
+    float: none;
+}
+
+.nonthu .thuhidden{
+    display: none;
+}
+
+svg.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1.42857143em;
+  fill: currentColor;
+  vertical-align: bottom;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  svg.icon {
+    height: 1.1em;
+  }
+}
+
+.content-select {
+  /* override color of form-control from bootstrap */
+  color: inherit;
+  background-color: transparent;
+}
+
+a {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    -webkit-transition: background-color .4s linear, color .4s linear, border-color .4s linear;
+    -moz-transition: background-color .4s linear, color .4s linea, border-color .4s linear;
+    -o-transition: background-color .4s linear, color .4s linear, border-color .4s linear;
+    -ms-transition: background-color .4s linear, color .4s linear, border-color .4s linear;
+    transition: background-color .4s linear, color .4s linear, border-color .4s linear;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+.navbar-default {
+    --bs-navbar-active-color: #{$color_thu_purple};
+    --bs-navbar-hover-color: #{$color_thu_purple};
+    @include utils.dark{
+        --bs-navbar-active-color: #{$color_thu_purple_dark};
+        --bs-navbar-hover-color: #{$color_thu_purple_dark};
+    }
+    .navbar-nav > li > a.active {
+        border-bottom: 2px solid $color_thu_purple;
+        @include utils.dark{
+            border-bottom-color: $color_thu_purple_dark;
+        }
+    }
+    .navbar-nav > li > a {
+        font-weight: 700;
+        font-size: 12px;
+    }
+    .nav-link {
+        transition-duration: .4s;
+    }
+}
+
+.navbar-brand {
+    font-weight: 900;
+    padding: 0px;
+    line-height: 50px;
+    height: 50px;
+    img {
+        margin-right: 5px;
+    }
+}

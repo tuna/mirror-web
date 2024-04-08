@@ -8,6 +8,7 @@ import hljs from 'highlight.js';
 import Mark from 'markup-js';
 import {TUNASYNC_JSON_PATH} from '../lib/consts'
 import {mirrorId} from '../lib/mirrorid'
+import './default'
 import '../styles/help.scss'
 
 document.addEventListener('DOMContentLoaded', () => {
