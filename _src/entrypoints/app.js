@@ -1,5 +1,6 @@
 import Empty from '../components/Empty.vue'
 import IsoModal from '../components/IsoModal.vue'
+import MainMirrorList from '../components/MainMirrorList.vue'
 import { createApp } from 'vue';
 import './default'
 import '../styles/main-page.scss'
@@ -16,3 +17,5 @@ createApp(IsoModal, {
   	}
 	},
 }).mount(isoModalEl);
+
+createApp(MainMirrorList).mount("#mirror-list");

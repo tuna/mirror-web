@@ -1,0 +1,64 @@
+<div class="flex-row d-flex">
+	<h3 id="mirror-title" class="align-self-center">{% fa_svg fas.fa-cube %} 镜像列表 </h3>
+	{% unless include.legacy %}
+	<SearchBox v-model="filter" />
+	{% endunless %}
+</div>
+<table class="table row table-hover" v-if="mirrorList.length">
+	<thead>
+		<tr class="row">
+			<th class="col-8 col-lg-7 col-xl-8">Name</th>
+			<th class="col-4 col-lg-5 col-xl-4">Last Update</th>
+		</tr>
+	</thead>
+	<tbody class="table-group-divider">
+		{% if include.legacy %}
+		{% raw %}
+		{{mirs}}
+		<tr class="row status-{{status}}">
+			<td>
+				<a class="mirror-item-label" href="{{url}}" title="{{description}}">
+					{{name}}
+				</a>
+				{{if is_new}}
+				<span class="badge badge-new">new</span>
+				{{/if}}
+				{{if help_url}}
+				<a href="{{help_url}}"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-circle-question %}{% raw %}</i><span class="visually-hidden">[Help]</span></a>
+				{{/if}}
+			</td>
+			<td>
+				{{last_update}}{{if show_status}}<span class="badge badge-status {{label}}">{{status}}</span>{{/if}}
+			</td>
+		</tr>
+		{{/mirs}}
+		{% endraw %}
+		{% else %}
+		{% raw %}
+		<tr v-for="mir in filteredMirrorList" :class="['row', 'status-'+mir.status]" :key="mir.name">
+			<td class="col-8 col-lg-7 col-xl-8">
+				<a class="mirror-item-label"  data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right"
+					:data-bs-content="mir.description" :href="getURL(mir)" :aria-label="mir.name + ', ' + mir.description">
+					{{mir.name}}
+				</a>
+				<span class="badge badge-new" v-if='mir.is_new'>new</span>
+				<a v-if='mir.help_url' :href="mir.help_url"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-circle-question %}{% raw %}</i><span class="visually-hidden">[Help]</span></a>
+				<a v-if='mir.github_release' href="javascript:void(0)"><i aria-hidden="true" title="GitHub Release">{% endraw %}{% fa_svg fab.fa-github %}{% raw %}</i><span class="visually-hidden">[GitHub Release]</span></a>
+			</td>
+			<td class="col-4 col-lg-5 col-xl-4">
+				{{mir.last_update}}<span v-if="mir.show_status" :class="['badge', 'badge-status', mir.label, 'd-none', 'd-md-inline-block']">{{mir.status}}</span>
+			</td>
+		</tr>
+		{% endraw %}
+		{% endif %}
+	</tbody>
+</table>
+{% unless include.legacy %}
+<div v-else class="sk-wave">
+	<div class="sk-rect sk-rect1"></div>
+	<div class="sk-rect sk-rect2"></div>
+	<div class="sk-rect sk-rect3"></div>
+	<div class="sk-rect sk-rect4"></div>
+	<div class="sk-rect sk-rect5"></div>
+</div>
+{% endunless %}

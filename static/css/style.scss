@@ -11,21 +11,5 @@ URL: http://alvarez.is
 
 ################################################################# */
 
-@mixin dark {
-  {% unless site.issue %}
-    @media (prefers-color-scheme: dark) {
-        @content
-    }
-  {% else %}
-  @content
-  {% endunless %}
-}
 @import
-"Lato",
-"_spinners/3-wave";
-
-.sk-wave .sk-rect {
-    @include dark{
-        //background-color: $body-secondary-color-dark;
-    }
-}
+"Lato";

@@ -10,7 +10,13 @@
       </div>
  *
  */
-@import "variables";
+
+@use "./utils.scss" as utils;
+@use "./bootstrap_vars.scss" as bs;
+
+$spinkit-spinner-margin: 40px auto !default;
+$spinkit-size: 40px !default;
+$spinkit-spinner-color: #333 !default;
 
 .sk-wave {
   $rectCount: 5;
@@ -29,6 +35,12 @@
     width: 6px;
     display: inline-block;
     animation: sk-waveStretchDelay $animationDuration infinite ease-in-out;
+    @include utils.dark{
+      background-color: bs.$body-secondary-color-dark;
+    }
+    &:not(:last-child) {
+      margin-right: 0.3em;
+    }
   }
 
   @for $i from 1 through $rectCount {

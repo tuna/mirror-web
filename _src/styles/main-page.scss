@@ -3,32 +3,9 @@
 @use "./bootstrap_vars.scss" as bs;
 
 #mirrors {
-  tbody {
-    td {
-      padding: 4px 8px;
-      border-style: none;
-    }
-    font-size: 12pt;
-    .badge.badge-new {
-      padding: .1em .2em;
-      vertical-align: 40%;
-      text-shadow: 1px 1px #888;
-      margin-right: 4px;
-      background-color: #3aa0e6;
-    }
-    .badge.badge-status {
-      vertical-align: 20%;
-      margin-left: .5em;
-    }
-  }
   #download-link {
     margin-bottom: 1em;
   }
-}
-
-#mirror-title {
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .index-issue {
@@ -42,16 +19,6 @@
     --bs-link-color: #{bs.$link-color-dark};
     --bs-link-color-hover: #{bs.$link-hover-color-dark};
   }
-}
-
-#search {
-  line-height: 18px;
-  padding: 8px;
-  border: 1px solid #e3e3e3;
-  max-width: 240px;
-  height: 30px;
-  font-size: 16px;
-  background: transparent;
 }
 
 #upgrade-mask{

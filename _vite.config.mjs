@@ -1,10 +1,11 @@
-import { resolve } from 'path'
+import path, { resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import ruby from 'vite-plugin-ruby'
 import components from 'unplugin-vue-components/vite'
 import legacy from '@vitejs/plugin-legacy'
 import {toSass} from 'sass-cast'
+import {Liquid, Tag as LiquidTag} from 'liquidjs'
 
 
 const exposedData = ['config', 'data', 'categories'];
@@ -56,7 +57,40 @@ export default defineConfig(({mode})=>({
         },
       };
     })(),
-    vue(),
+    vue({
+      template: {
+        preprocessCustomRequire(id){
+          if(id === "liquid"){
+            return {
+              render(source, options, cb){
+                const engine = new Liquid({
+                  root: jekyllData.config.source,
+                  partials: path.join(jekyllData.config.source, jekyllData.config.includes_dir),
+                  globals: jekyllData,
+                  jekyllInclude: true,
+                });
+                engine.registerTag("fa_svg", class extends LiquidTag{
+                  constructor(token, remainTokens, liquid){
+                    super(token, remainTokens, liquid);
+                    this.value = token.args;
+                  }
+                  * render (ctx, emitter){
+                    emitter.write(`<svg class="icon"><use xlink:href="#${this.value}"></use></svg>`);
+                  }
+                });
+                try{
+                  const result = engine.parseAndRenderSync(source, {...options});
+                  cb(null, result);
+                }catch(e){
+                  cb(e);
+                }
+              }
+            }
+          }
+        },
+      },
+
+    }),
     ruby(),
     components({
       dirs: [resolve(__dirname, '_src/components')],
