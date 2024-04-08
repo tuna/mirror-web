@@ -63,7 +63,6 @@ $color-mode-type: media-query;
     }
 }
 
-
 body {
     display: flex;
     min-height: 100vh;
@@ -94,6 +93,9 @@ pre {
     @extend .rounded;
     @extend .p-2;
     @extend .bg-secondary-subtle;
+    code {
+        @extend .p-0;
+    }
 }
 
 code {
