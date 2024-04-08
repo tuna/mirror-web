@@ -1,4 +1,7 @@
 {
+  "name": "mirror-web",
+  "private": true,
+  "homepage": "https://github.com/tuna/mirror-web",
   "devDependencies": {
     "@vitejs/plugin-legacy": "^5.3.2",
     "@vitejs/plugin-vue": "^5.0.4",
