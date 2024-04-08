@@ -38,16 +38,16 @@ omv-salt stage run all
 
 ```bash
 cat <<EOF > /etc/apt/sources.list.d/openmediavault.list
-deb https://{{ site.hostname }}/OpenMediaVault/public shaitan main
-deb https://{{ site.hostname }}/OpenMediaVault/packages shaitan main
+deb [signed-by=/usr/share/keyrings/openmediavault-archive-keyring.gpg] https://{{ site.hostname }}/OpenMediaVault/public sandworm main
+deb [signed-by=/usr/share/keyrings/openmediavault-archive-keyring.gpg] https://{{ site.hostname }}/OpenMediaVault/packages sandworm main
 ## Uncomment the following line to add software from the proposed repository.
-# deb https://{{ site.hostname }}/OpenMediaVault/public shaitan-proposed main
-# deb https://{{ site.hostname }}/OpenMediaVault/packages shaitan-proposed main
+# deb [signed-by=/usr/share/keyrings/openmediavault-archive-keyring.gpg] https://{{ site.hostname }}/OpenMediaVault/public sandworm-proposed main
+# deb [signed-by=/usr/share/keyrings/openmediavault-archive-keyring.gpg] https://{{ site.hostname }}/OpenMediaVault/packages sandworm-proposed main
 ## This software is not part of OpenMediaVault, but is offered by third-party
 ## developers as a service to OpenMediaVault users.
-# deb https://{{ site.hostname }}/OpenMediaVault/public shaitan partner
-# deb https://{{ site.hostname }}/OpenMediaVault/packages shaitan partner
+# deb [signed-by=/usr/share/keyrings/openmediavault-archive-keyring.gpg] https://{{ site.hostname }}/OpenMediaVault/public sandworm partner
+# deb [signed-by=/usr/share/keyrings/openmediavault-archive-keyring.gpg] https://{{ site.hostname }}/OpenMediaVault/packages sandworm partner
 EOF
 ```
 
-其中 `shaitan` 为 Open Media Vault 的 codename（本样例代码为 6.x 的 codename）
+其中 `sandworm` 为 Open Media Vault 的 codename（本样例代码为 7.x 的 codename）
