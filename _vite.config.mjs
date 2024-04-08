@@ -10,6 +10,7 @@ import {Liquid, Tag as LiquidTag} from 'liquidjs'
 
 const exposedData = ['config', 'data', 'categories'];
 const jekyllData = Object.fromEntries(exposedData.map((key) => [key, JSON.parse(process.env[`site_${key}`] || '{}')]));
+jekyllData.config.hasOwnProperty('suffix') || (jekyllData.config.suffix = null);
 
 export default defineConfig(({mode})=>({
   build: {
