@@ -195,53 +195,7 @@ const processMirrorItem = (d) => {
 	[d.last_started, d.last_started_ago] = stringifyTime(d.last_started_ts);
 	[d.next_schedule, d.next_schedule_ago] = stringifyTime(d.next_schedule_ts);
 	return d;
-}
-
-var vmIso = new Vue({
-	el: "#isoModal",
-	data: {
-		distroList: [],
-		selected: {},
-		curCategory: "",
-		knownCategories: {
-			os: "操作系统",
-			app: "应用软件",
-			font: "字体",
-		},
-		availableCategories: []
-	},
-	created: function() {
-		var self = this;
-		fetch("/static/status/isoinfo.json").then((res)=>res.json()).then((isoinfo) => {
-			self.distroList = isoinfo;
-			self.availableCategories = [... new Set(isoinfo.map((x) => x.category))]
-			self.curCategory = self.availableCategories[0];
-			self.selected = self.curDistroList[0];
-			if (window.location.hash.match(/#iso-download(\?.*)?/)) {
-				new bootstrap.Modal(document.getElementById('isoModal')).show();
-			}
-		});
-	},
-	computed: {
-		curDistroList() {
-			return this.distroList
-				.filter((x) => x.category === this.curCategory)
-				.sort(function (a, b) {
-					return a.distro.localeCompare(b.distro);
-				});
-		},
-	},
-	methods: {
-		switchDistro (distro) {
-			this.selected = distro;
-		},
-		switchCategory (category) {
-			this.curCategory = category;
-			this.selected = this.curDistroList[0];
-		}
-	}
-});
-
+};
 });
 
 // vim: ts=2 sts=2 sw=2 noexpandtab
