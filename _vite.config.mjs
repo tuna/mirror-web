@@ -4,6 +4,9 @@ import vue from '@vitejs/plugin-vue'
 import ruby from 'vite-plugin-ruby'
 import components from 'unplugin-vue-components/vite'
 import legacy from '@vitejs/plugin-legacy'
+import {toSass} from 'sass-cast'
+
+
 const exposedData = ['config', 'data', 'categories'];
 const jekyllData = Object.fromEntries(exposedData.map((key) => [key, JSON.parse(process.env[`site_${key}`] || '{}')]));
 
@@ -64,4 +67,15 @@ export default defineConfig(({mode})=>({
       targets: [],
     }),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        functions: {
+          "jekyll-config()": function(){
+            return toSass(jekyllData.config);
+          }
+        }
+      },
+    },
+  }
 }))

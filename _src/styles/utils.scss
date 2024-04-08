@@ -1,0 +1,17 @@
+@use "sass:map";
+@mixin dark {
+    @if map.get(jekyll-config(), "issue") {
+        @content
+    } @else {
+        @media (prefers-color-scheme: dark) {
+            @content
+        }
+    }
+};
+
+@mixin noissue {
+    @if map.get(jekyll-config(), "issue") {
+    } @else {
+        @content
+    }
+};
