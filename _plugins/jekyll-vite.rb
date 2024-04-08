@@ -96,12 +96,12 @@ class Jekyll::Vite::Tag < Jekyll::Tags::IncludeTag
   # Override: Set the context to make the site available in the URLFilters.
   def render(context)
     @context = context
-    @params = @params.is_a?(String) ? parse_params(context).transform_keys(&:to_sym) : @params || {}
-    if @file = render_variable(@file)
-      validate_file_name(@file)
-      track_file_dependency(@file)
+    params = @params.is_a?(String) ? parse_params(context).transform_keys(&:to_sym) : @params || {}
+    if file = render_variable(@file)
+      validate_file_name(file)
+      track_file_dependency(file)
     end
-    block_given? ? yield : raise(NotImplementedError, "Implement render in #{ self.class.name }")
+    block_given? ? yield(file, params) : raise(NotImplementedError, "Implement render in #{ self.class.name }")
   end
 
   # Override: Modified version that can resolve recursive references.
@@ -176,7 +176,7 @@ end
 # Public: Renders a path to a Vite asset.
 class Jekyll::Vite::AssetPathTag < Jekyll::Vite::Tag
   def render(context)
-    super { vite_asset_path(@file, **@params) }
+    super { |file, params| vite_asset_path(file, **params) }
   end
 end
 
@@ -210,12 +210,12 @@ end
 # Public: Renders a <link> tag for the specified stylesheet.
 class Jekyll::Vite::StylesheetTag < Jekyll::Vite::Tag
   def render(context)
-    super {
+    super { |file, params|
       tag :link, **{
         rel: 'stylesheet',
         href: vite_asset_path(@file, type: :stylesheet),
         media: 'screen',
-      }.merge(@params)
+      }.merge(params)
     }
   end
 
@@ -227,18 +227,18 @@ end
 # Public: Renders a <script> tag for the specified file.
 class Jekyll::Vite::JavascriptTag < Jekyll::Vite::Tag
   def render(context)
-    super {
-      media = @params.delete(:media) || 'screen'
-      crossorigin = @params.delete(:crossorigin) || 'anonymous'
-      type = @params.delete(:type) || 'module'
+    super { |file, params|
+      media = params.delete(:media) || 'screen'
+      crossorigin = params.delete(:crossorigin) || 'anonymous'
+      type = params.delete(:type) || 'module'
       asset_type = @tag_name == 'vite_typescript_tag' ? :typescript : :javascript
 
-      entries = vite_manifest.resolve_entries(@file, type: asset_type)
+      entries = vite_manifest.resolve_entries(file, type: asset_type)
 
       [
-        script_tags(entries.fetch(:scripts), crossorigin: crossorigin, type: type, **@params),
-        link_tags(entries.fetch(:imports), rel: 'modulepreload', as: 'script', crossorigin: crossorigin, **@params),
-        link_tags(entries.fetch(:stylesheets), rel: 'stylesheet', media: media, crossorigin: crossorigin, **@params),
+        script_tags(entries.fetch(:scripts), crossorigin: crossorigin, type: type, **params),
+        link_tags(entries.fetch(:imports), rel: 'modulepreload', as: 'script', crossorigin: crossorigin, **params),
+        link_tags(entries.fetch(:stylesheets), rel: 'stylesheet', media: media, crossorigin: crossorigin, **params),
       ].join("\n")
     }
   end

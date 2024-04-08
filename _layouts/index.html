@@ -180,9 +180,7 @@
 	{% endraw %}
 	{% unless page.legacy or site.issue %}
 	<script src="/static/js/index.js?{{ site.data['hash'] }}"></script>
-	{% vite_javascript_tag app %}
-	<script src="{% vite_asset_path /vite/legacy-polyfills-legacy %}" defer nomodule></script>
-	<script src="{% vite_asset_path app-legacy.js %}" defer nomodule></script>
+	{% include vite_script.html entry="app" %}
 	{% endunless %}
 </html>
 <!--
