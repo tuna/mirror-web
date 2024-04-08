@@ -1,5 +1,6 @@
 <script setup>
 import { ref, defineEmits, computed, onMounted, nextTick } from "vue";
+import { ISOINFO_JSON_PATH } from "../lib/consts";
 
 const distroList = ref([]);
 const selected = ref({});
@@ -13,7 +14,7 @@ const knownCategories = {
 
 const emit = defineEmits(["ready"]);
 
-fetch("/static/status/isoinfo.json").then((res) => res.json()).then((isoinfo) => {
+fetch(ISOINFO_JSON_PATH).then((res) => res.json()).then((isoinfo) => {
   distroList.value = isoinfo;
   availableCategories.value = [...new Set(isoinfo.map((x) => x.category))];
   curCategory.value = availableCategories.value[0];
