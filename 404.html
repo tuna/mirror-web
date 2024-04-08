@@ -47,21 +47,6 @@ jsEntry: notfound
       </div><!--/container -->
     </div><!--/mirrors -->
     {% include footer.html %}
-    <script type="application/javascript">
-      (function(){
-        var tag = "[" + "{{ site.issue_tag }}" + "]";
-        var bugLink = document.getElementById("new_issue_bug");
-        var bugURL = new URL(bugLink.href);
-        bugURL.searchParams.append("title", tag + "404 at " + location.pathname);
-        bugLink.href = bugURL.href;
-
-        var mrLink = document.getElementById("new_issue_mr");
-        var mrURL = new URL(mrLink.href);
-        mrURL.searchParams.append("title", tag + "Mirror Request for new mirror " +
-          location.pathname.split('/')[1]);
-        mrLink.href = mrURL.href;
-      })();
-    </script>
   </body>
 </html>
 <!--
