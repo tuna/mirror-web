@@ -30,8 +30,6 @@
 
 <title>{{ page_title }}</title>
 {% unless include.nostyle %}
-<link rel="stylesheet" href="/static/css/style.css?{{ site.data['hash'] }}">
-<script src="/static/js/webfont.js?{{ site.data['hash'] }}"></script>
 {% include vite_script.html %}
 {% if page.legacy %}
 <style>

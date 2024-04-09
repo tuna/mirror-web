@@ -1,0 +1,47 @@
+@use "sass:map";
+
+$lato-font-path: "lato-webfont/fonts";
+
+$weights: (
+  "Hairline": 100,
+  "Thin": 200,
+  "Light": 300,
+  "Regular": 400,
+  "Medium": 500,
+  "Semibold": 600,
+  "Bold": 700,
+  "Heavy": 800,
+  "Black": 900,
+);
+
+$styles: (
+  "Normal": "normal",
+  "Italic": "italic",
+);
+
+@function lato-filename($weight, $style) {
+  $style: if($style == "Normal", "", "#{$style}");
+  @if $weight == "Regular" and $style == "Italic" {
+    $weight: "";
+  }
+  @return "Lato-#{$weight}#{$style}";
+}
+
+@mixin lato-include-font($weight, $style) {
+  @font-face {
+    font-family: Lato;
+    src: url("#{$lato-font-path}/#{lato-filename($weight, $style)}.eot");
+    src:
+      url("#{$lato-font-path}/#{lato-filename($weight, $style)}.eot?#iefix")
+        format("embedded-opentype"),
+      url("#{$lato-font-path}/#{lato-filename($weight, $style)}.woff2")
+        format("woff2"),
+      url("#{$lato-font-path}/#{lato-filename($weight, $style)}.woff")
+        format("woff"),
+      url("#{$lato-font-path}/#{lato-filename($weight, $style)}.ttf")
+        format("truetype");
+    font-style: map.get($styles, $style);
+    font-weight: map.get($weights, $weight);
+    text-rendering: optimizeLegibility;
+  }
+}

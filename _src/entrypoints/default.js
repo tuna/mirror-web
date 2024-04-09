@@ -1,5 +1,6 @@
 import "../styles/global.scss";
 import { suffix as siteSuffix } from "virtual:jekyll-config";
+import WebFont from "webfontloader";
 
 if (siteSuffix) {
   if (
@@ -19,4 +20,10 @@ const lei3Po8h = ["support", ["tuna", "tsinghua", "edu", "cn"].join(".")].join(
 Array.from(document.querySelectorAll("a.eib1gieB")).forEach((el) => {
   el.textContent = lei3Po8h;
   el.href = ["ma", "ilto:"].join("i") + lei3Po8h;
+});
+
+WebFont.load({
+  custom: {
+    families: ["Lato", "Source Code Pro"],
+  },
 });

@@ -1,14 +1,12 @@
 @use "./utils.scss" as utils;
 @use "sass:map";
+@use "./lato.scss" as Lato;
 
 @use "bootstrap" as bs with (
   $color-mode-type: media-query
 );
 
 $color_thu_purple_dark: #c353d3;
-$font_default: "Lato", "Hiragino Sans GB", "Source Han Sans SC",
-  "Source Han Sans CN", "Noto Sans CJK SC", "WenQuanYi Zen Hei",
-  "WenQuanYi Micro Hei", "微软雅黑", sans-serif;
 $footer_color: #384452;
 
 $color_thu_purple: if(
@@ -21,6 +19,29 @@ $color_thu_purple: if(
   :root {
     color-scheme: light dark;
   }
+}
+
+@include Lato.lato-include-font("Bold", "Normal");
+@include Lato.lato-include-font("Regular", "Italic");
+@include Lato.lato-include-font("Regular", "Normal");
+
+@font-face {
+  font-family: "Source Code Pro";
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  src:
+    url("source-code-pro/WOFF2/TTF/SourceCodePro-Regular.ttf.woff2")
+      format("woff2"),
+    url("source-code-pro/WOFF/OTF/SourceCodePro-Regular.otf.woff")
+      format("woff"),
+    url("source-code-pro/OTF/SourceCodePro-Regular.otf") format("opentype"),
+    url("source-code-pro/TTF/SourceCodePro-Regular.ttf") format("truetype");
+}
+
+:root.wf-active {
+  --bs-font-sans-serif: Lato, #{bs.$font-family-sans-serif};
+  --bs-font-monospace: "Source Code Pro", #{bs.$font-family-monospace};
 }
 
 body {
