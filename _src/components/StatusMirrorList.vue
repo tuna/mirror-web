@@ -54,22 +54,26 @@ onMounted(() => {
         <td class="col-8 col-lg-2">
           {{ mir.name }}{{ mir.is_master ? "" : " [slave]" }}
         </td>
-        <th class="col-4 d-lg-none text-end">Last Success</th>
-        <td class="col-8 d-lg-none">
-          {{ mir.last_update }}, {{ mir.last_update_ago }}
+        <td class="col-12 col-lg-4 d-lg-none d-lg-redoce-table-ceil" colspan="2">
+          <div class="row">
+            <th class="col-4 text-end">Last Success</th>
+            <td class="col-8">
+              {{ mir.last_update }}, {{ mir.last_update_ago }}
+            </td>
+            <template v-if="mir.last_ended_ts != mir.last_update_ts">
+              <th class="col-4 text-end">Last Attempt</th>
+              <td class="col-8">
+                {{ mir.last_ended }}, {{ mir.last_ended_ago }}
+              </td>
+            </template>
+            <th class="col-4 text-end">Next Sync</th>
+            <td class="col-8" v-if="mir.status != 'syncing'">
+              {{ mir.next_schedule }}, {{ mir.next_schedule_ago }}
+            </td>
+            <td class="col-8" v-else>Syncing Now</td>
+          </div>
         </td>
-        <template v-if="mir.last_ended_ts != mir.last_update_ts">
-          <th class="col-4 d-lg-none text-end">Last Attempt</th>
-          <td class="col-8 d-lg-none">
-            {{ mir.last_ended }}, {{ mir.last_ended_ago }}
-          </td>
-        </template>
-        <th class="col-4 d-lg-none text-end">Next Sync</th>
-        <td class="col-8 d-lg-none" v-if="mir.status != 'syncing'">
-          {{ mir.next_schedule }}, {{ mir.next_schedule_ago }}
-        </td>
-        <td class="col-8 d-lg-none" v-else>Syncing Now</td>
-        <td class="col-2 rolling-3 d-none d-lg-table-cell">
+        <td class="col-2 rolling-3 d-none d-lg-table-cell d-reduce-none">
           <div class="tuna-roll">
             &nbsp;
             <template v-if="mir.last_ended_ts == mir.last_update_ts">
@@ -85,35 +89,35 @@ onMounted(() => {
             <div v-else data-tuna-roll-seq="4 5">Next Scheduled Sync</div>
           </div>
         </td>
-        <td class="col-2 rolling-6 d-none d-lg-table-cell">
+        <td class="col-2 rolling-6 d-none d-lg-table-cell d-reduce-none">
           <div class="tuna-roll">
             &nbsp;
             <template v-if="mir.last_ended_ts == mir.last_update_ts">
               <div data-tuna-roll-seq="0 1 2 3">
                 {{ mir.last_update_ago }}
-                <div class="tooltiptext">{{ mir.last_update }}</div>
+                <div class="tooltiptext px-1">{{ mir.last_update }}</div>
               </div>
             </template>
             <template v-else>
               <div data-tuna-roll-seq="0 1">
                 {{ mir.last_update_ago }}
-                <div class="tooltiptext">{{ mir.last_update }}</div>
+                <div class="tooltiptext px-1">{{ mir.last_update }}</div>
               </div>
               <div
                 data-tuna-roll-seq="2 3"
                 v-if="mir.last_ended_ts != mir.last_update_ts"
               >
                 {{ mir.last_ended_ago }}
-                <div class="tooltiptext">{{ mir.last_ended }}</div>
+                <div class="tooltiptext px-1">{{ mir.last_ended }}</div>
               </div>
             </template>
             <div v-if="mir.status == 'syncing'" data-tuna-roll-seq="4 5">
               {{ mir.last_started_ago }}
-              <div class="tooltiptext">{{ mir.last_started }}</div>
+              <div class="tooltiptext px-1">{{ mir.last_started }}</div>
             </div>
             <div v-else data-tuna-roll-seq="4 5">
               {{ mir.next_schedule_ago }}
-              <div class="tooltiptext">{{ mir.next_schedule }}</div>
+              <div class="tooltiptext px-1">{{ mir.next_schedule }}</div>
             </div>
           </div>
         </td>
@@ -129,7 +133,10 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+@use "sass:map";
 @use "../styles/sync-status.scss";
+@use "../styles/_bootstrap_vars.scss" as bs;
+
 table {
   & > tbody > tr {
     border-bottom-width: var(--bs-border-width);
@@ -214,4 +221,16 @@ table {
     }
   }
 }
+
+@media (prefers-reduced-motion) {
+  .d-reduce-none {
+    display: none !important;
+  }
+  @media (min-width: map.get(bs.$grid-breakpoints, "lg")) {
+    .d-lg-redoce-table-ceil {
+      display: table-cell !important;
+    }
+  }
+}
+
 </style>
