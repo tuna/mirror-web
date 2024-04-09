@@ -4,6 +4,7 @@ import { options as globalOptions } from "virtual:jekyll-data";
 import HelpPages from "virtual:tuna-help-pages";
 import BootStrapPopover from "bootstrap/js/dist/popover";
 import SearchBox from "./SearchBox.vue";
+import UpdateField from "./UpdateField.vue";
 import { useMirrorList } from "../lib/mirrorList";
 
 const new_mirrors = Object.fromEntries(
@@ -78,10 +79,6 @@ tbody {
     text-shadow: 1px 1px #888;
     margin-right: 4px;
     background-color: #3aa0e6;
-  }
-  .badge.badge-status {
-    vertical-align: 20%;
-    margin-left: 0.5em;
   }
 }
 #mirror-title {

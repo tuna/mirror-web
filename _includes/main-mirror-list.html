@@ -48,7 +48,7 @@
 				<a v-if='mir.github_release' href="javascript:void(0)"><i aria-hidden="true" title="GitHub Release">{% endraw %}{% fa_svg fab.fa-github %}{% raw %}</i><span class="visually-hidden">[GitHub Release]</span></a>
 			</td>
 			<td class="col-4 col-lg-5 col-xl-4">
-				{{mir.last_update}}<span v-if="mir.show_status" :class="['badge', 'badge-status', mir.label, 'd-none', 'd-md-inline-block']">{{mir.status}}</span>
+				<UpdateField :mir="mir"></UpdateField>
 			</td>
 		</tr>
 		{% endraw %}
@@ -64,3 +64,6 @@
 	<div class="sk-rect sk-rect5"></div>
 </div>
 {% endunless %}
+<!--
+	vim: ts=2 sts=2 sw=2 noexpandtab
+-->
