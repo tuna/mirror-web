@@ -1,6 +1,6 @@
 import "./help";
 import "../styles/helpz.scss";
-import hljs from "highlight.js";
+import hljs from "../lib/hljs";
 import { mirrorId } from "../lib/mirrorid";
 import Mustache from "mustache";
 

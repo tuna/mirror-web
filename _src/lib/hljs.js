@@ -1,0 +1,37 @@
+import hljs from "highlight.js/lib/core";
+import yaml from "highlight.js/lib/languages/yaml";
+import json from "highlight.js/lib/languages/json";
+import bash from "highlight.js/lib/languages/bash";
+import python from "highlight.js/lib/languages/python";
+import markdown from "highlight.js/lib/languages/markdown";
+import ini from "highlight.js/lib/languages/ini";
+import nginx from "highlight.js/lib/languages/nginx";
+import plaintext from "highlight.js/lib/languages/plaintext";
+import lisp from "highlight.js/lib/languages/lisp";
+import xml from "highlight.js/lib/languages/xml";
+import julia from "highlight.js/lib/languages/julia";
+import r from "highlight.js/lib/languages/r";
+import perl from "highlight.js/lib/languages/perl";
+import clojure from "highlight.js/lib/languages/clojure";
+import dos from "highlight.js/lib/languages/dos";
+import nix from "highlight.js/lib/languages/nix";
+
+hljs.registerLanguage("yaml", yaml);
+hljs.registerLanguage("json", json);
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("python", python);
+hljs.registerLanguage("markdown", markdown);
+hljs.registerLanguage("ini", ini);
+hljs.registerLanguage("nginx", nginx);
+hljs.registerLanguage("plaintext", plaintext);
+hljs.registerAliases("text", { languageName: "plaintext" });
+hljs.registerLanguage("lisp", lisp);
+hljs.registerLanguage("xml", xml);
+hljs.registerLanguage("julia", julia);
+hljs.registerLanguage("r", r);
+hljs.registerLanguage("perl", perl);
+hljs.registerLanguage("clojure", clojure);
+hljs.registerLanguage("dos", dos);
+hljs.registerLanguage("nix", nix);
+
+export default hljs;

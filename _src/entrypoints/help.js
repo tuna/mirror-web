@@ -4,7 +4,7 @@ import {
 	mirrorz_help_link as MirrorzHelpLink,
 } from "virtual:jekyll-config";
 import { options as globalOptions } from "virtual:jekyll-data";
-import hljs from "highlight.js";
+import hljs from "../lib/hljs";
 import Mark from "markup-js";
 import { TUNASYNC_JSON_PATH } from "../lib/consts";
 import { mirrorId } from "../lib/mirrorid";
