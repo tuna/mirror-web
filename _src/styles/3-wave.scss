@@ -35,7 +35,7 @@ $spinkit-spinner-color: #333 !default;
     width: 6px;
     display: inline-block;
     animation: sk-waveStretchDelay $animationDuration infinite ease-in-out;
-    @include utils.dark{
+    @include utils.dark {
       background-color: bs.$body-secondary-color-dark;
     }
     &:not(:last-child) {
@@ -44,11 +44,21 @@ $spinkit-spinner-color: #333 !default;
   }
 
   @for $i from 1 through $rectCount {
-    .sk-rect#{$i} { animation-delay: - $animationDuration + calc($delayRange / ($rectCount - 1)) * ($i - 1); }
+    .sk-rect#{$i} {
+      animation-delay: -$animationDuration +
+        calc($delayRange / ($rectCount - 1)) *
+        ($i - 1);
+    }
   }
 }
 
 @keyframes sk-waveStretchDelay {
-  0%, 40%, 100% { transform: scaleY(0.4) }
-  20% { transform: scaleY(1.0) }
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1);
+  }
 }

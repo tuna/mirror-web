@@ -1,7 +1,13 @@
 {
   "all": {
     "sourceCodeDir": "_src",
-    "watchAdditionalPaths": ["index.html", "_includes/**/*", "_layouts/**/*", "_config.yml", "vite.config.mjs"],
+    "watchAdditionalPaths": [
+      "index.html",
+      "_includes/**/*",
+      "_layouts/**/*",
+      "_config.yml",
+      "vite.config.mjs"
+    ],
     "publicOutputDir": "",
     "assetsDir": "assets"
   },

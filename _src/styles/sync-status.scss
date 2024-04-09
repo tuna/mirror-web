@@ -1,17 +1,19 @@
 @use "./bootstrap_vars" as bs;
 @use "./utils.scss" as utils;
 
-.status-fail, .status-failed, .status-paused {
-    --bs-table-bg: #fff4e3;
-    --bs-table-hover-bg: var(--bs-table-bg);
-    @include utils.dark{
-        --bs-table-bg: #524841;
-    }
+.status-fail,
+.status-failed,
+.status-paused {
+  --bs-table-bg: #fff4e3;
+  --bs-table-hover-bg: var(--bs-table-bg);
+  @include utils.dark {
+    --bs-table-bg: #524841;
+  }
 }
 .status-syncing {
-    --bs-table-bg: #e3fffd;
-    --bs-table-hover-bg: var(--bs-table-bg);
-    @include utils.dark{
-        --bs-table-bg: #254059;
-    }
+  --bs-table-bg: #e3fffd;
+  --bs-table-hover-bg: var(--bs-table-bg);
+  @include utils.dark {
+    --bs-table-bg: #254059;
+  }
 }
