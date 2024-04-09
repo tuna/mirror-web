@@ -20,18 +20,8 @@ jsEntry: status
 				{% include status-pic.html name="service_traffic_IPv6" %}
 			</div>
 			<h4># 磁盘状态 </h4>
-			<div class="row" id="disk-usage">{% raw %}
-				<div class="col-12" v-if="diskUsages.length"><strong>磁盘占用</strong>: </div>
-				<template v-for="disk in diskUsages">
-				<div class="col-1" v-if="disk.desc">{{ disk.desc }}</div>
-				<div :class="['col-' + (disk.desc ? '11' : '12')]">
-				<div class="progress mb-3" role="progressbar" :aria-valuenow="disk.percentage" aria-valuemin="0" aria-valuemax="100">
-					<div class="progress-bar" :style="{width: disk.percentage + '%'}">
-						<strong>{{ disk.used }} / {{ disk.total }}</strong>
-					</div>
-				</div>
-				</div>
-				</template>{% endraw %}
+			<div class="row">
+				<div id="disk-usage"></div>
 				{% include status-pic.html name="diskstats_iops" %}
 				{% include status-pic.html name="diskstats_throughput" %}
 			</div>
