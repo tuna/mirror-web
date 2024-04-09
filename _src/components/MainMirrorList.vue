@@ -60,30 +60,31 @@ const filteredMirrorList = computed(() => {
   });
 });
 
-const refreshMirrorList = () => {
+const refreshMirrorList = async () => {
   if (document.hidden === true) {
     return;
   }
-  fetch(TUNASYNC_JSON_PATH)
-    .then((res) => res.json())
-    .then((status_data) => {
-      const unlisted_mir = unlisted.map((d) => processMirrorItem(d));
-      status_data = status_data.map((d) => processMirrorItem(d));
-      let mir_data = unlisted_mir.concat(status_data);
-      mir_data = processLinkItem(mir_data);
-      status_data = sortAndUniqMirrors(status_data);
-      mir_data = sortAndUniqMirrors(mir_data).filter(
-        (d) => !(d.status == "disabled"),
-      );
-      mirrorList.value = mir_data;
-      rawMirrorList.value = status_data;
-    })
-    .finally(() => {
-      refreshTimer = setTimeout(refreshMirrorList, 10000);
-    });
+  try{
+    const res = await fetch(TUNASYNC_JSON_PATH);
+    let status_data = await res.json();
+    const unlisted_mir = unlisted.map((d) => processMirrorItem(d));
+    status_data = status_data.map((d) => processMirrorItem(d));
+    let mir_data = unlisted_mir.concat(status_data);
+    mir_data = processLinkItem(mir_data);
+    status_data = sortAndUniqMirrors(status_data);
+    mir_data = sortAndUniqMirrors(mir_data).filter(
+      (d) => !(d.status == "disabled"),
+    );
+    mirrorList.value = mir_data;
+    rawMirrorList.value = status_data;
+  }catch(e){
+    throw e;
+  }finally{
+    refreshTimer = setTimeout(refreshMirrorList, 10000);
+  }
 };
 
-nextTick(() => refreshMirrorList());
+nextTick().then(() => refreshMirrorList());
 
 onMounted(() => {
   window.addEventListener("visibilitychange", () => {
@@ -92,7 +93,7 @@ onMounted(() => {
       refreshTimer = null;
     }
     if (document.visibilityState === "visible") {
-      refreshMirrorList();
+      refreshMirrorList().then();
     }
   });
 });
