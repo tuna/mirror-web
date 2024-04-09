@@ -16,3 +16,5 @@
 .DS_Store
 /node_modules/
 /.jekyll-cache/
+stats.html
+

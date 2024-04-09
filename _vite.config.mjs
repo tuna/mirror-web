@@ -4,9 +4,9 @@ import vue from '@vitejs/plugin-vue'
 import ruby from 'vite-plugin-ruby'
 import components from 'unplugin-vue-components/vite'
 import legacy from '@vitejs/plugin-legacy'
-import {toSass} from 'sass-cast'
-import {Liquid, Tag as LiquidTag} from 'liquidjs'
-
+import { toSass } from 'sass-cast'
+import { Liquid, Tag as LiquidTag } from 'liquidjs'
+import { visualizer } from 'rollup-plugin-visualizer';
 
 const exposedData = ['config', 'data', 'categories'];
 const jekyllData = Object.fromEntries(exposedData.map((key) => [key, JSON.parse(process.env[`site_${key}`] || '{}')]));
@@ -101,6 +101,7 @@ export default defineConfig(({mode})=>({
     legacy({
       targets: [],
     }),
+    visualizer(),
   ],
   css: {
     preprocessorOptions: {

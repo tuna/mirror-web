@@ -10,6 +10,7 @@
     "liquidjs": "^10.10.2",
     "markup-js": "^1.5.21",
     "mustache": "^4.2.0",
+    "rollup-plugin-visualizer": "^5.12.0",
     "sass": "^1.74.1",
     "sass-cast": "^0.5.6",
     "terser": "^5.30.3",
