@@ -62,6 +62,7 @@ const vWithPopover = {
 <style lang="scss" scoped>
 @use "../styles/3-wave.scss" as wave;
 @use "../styles/sync-status.scss";
+@use "../styles/badge-new.scss";
 
 a.mirror-item-label::after {
   content: " ";
@@ -73,13 +74,6 @@ tbody {
     border-style: none;
   }
   font-size: 12pt;
-  .badge.badge-new {
-    padding: 0.1em 0.2em;
-    vertical-align: 40%;
-    text-shadow: 1px 1px #888;
-    margin-right: 4px;
-    background-color: #3aa0e6;
-  }
 }
 #mirror-title {
   margin-top: 10px;

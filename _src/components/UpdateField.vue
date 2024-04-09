@@ -13,8 +13,5 @@ const props = defineProps(["mir"]);
   </span>
 </template>
 <style lang="scss" scoped>
-.badge.badge-status {
-  vertical-align: 20%;
-  margin-left: 0.5em;
-}
+@use "../styles/badge-status.scss";
 </style>

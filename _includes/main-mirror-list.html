@@ -12,47 +12,64 @@
 		</tr>
 	</thead>
 	<tbody class="table-group-divider">
-		{% if include.legacy %}
-		{% raw %}
+    {% if include.legacy %}{% raw %}
 		{{mirs}}
-		<tr class="row status-{{status}}">
-			<td>
-				<a class="mirror-item-label" href="{{url}}" title="{{description}}">
-					{{name}}
-				</a>
-				{{if is_new}}
-				<span class="badge badge-new">new</span>
-				{{/if}}
-				{{if help_url}}
-				<a href="{{help_url}}"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-circle-question %}{% raw %}</i><span class="visually-hidden">[Help]</span></a>
-				{{/if}}
-			</td>
-			<td>
-				{{last_update}}{{if show_status}}<span class="badge badge-status {{label}}">{{status}}</span>{{/if}}
-			</td>
-		</tr>
-		{{/mirs}}
-		{% endraw %}
-		{% else %}
-		{% raw %}
+    <tr class="row status-{{status}}">
+    {% endraw %}{% else %}{% raw %}
 		<tr v-for="mir in filteredMirrorList" :class="['row', 'status-'+mir.status]" :key="mir.name">
+    {% endraw %}{% endif %}
 			<td class="col-8 col-lg-7 col-xl-8">
-				<a class="mirror-item-label"  data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right"
+
+				<a class="mirror-item-label"
+          {% if include.legacy %}{% raw %}
+          href="{{url}}" title="{{description}}"
+          {% endraw %}{% else %}{% raw %}
+          data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right"
 					:data-bs-content="mir.description" :href="getURL(mir)" :aria-label="mir.name + ', ' + mir.description"
 					v-with-popover
+          {% endraw %}{% endif %}
 				>
+          {% if include.legacy %}{% raw %}
+          {{name}}
+          {% endraw %}{% else %}{% raw %}
 					{{mir.name}}
+          {% endraw %}{% endif %}
 				</a>
-				<span class="badge badge-new" v-if='mir.is_new'>new</span>
-				<a v-if='mir.help_url' :href="mir.help_url"><i aria-hidden="true" class="question-circle" title="Help">{% endraw %}{% fa_svg fas.fa-circle-question %}{% raw %}</i><span class="visually-hidden">[Help]</span></a>
+        {% if include.legacy %}{% raw %}
+        {{if is_new}}
+        <span
+        {% endraw %}{% else %}{% raw %}
+				<span v-if='mir.is_new'
+        {% endraw %}{% endif %}
+        class="badge badge-new" >new</span>
+        {% if include.legacy %}{% raw %}
+        {{/if}}
+        {% endraw %}{% endif %}
+        {% if include.legacy %}{% raw %}
+        {{if help_url}}
+        <a href="{{help_url}}"
+        {% endraw %}{% else %}{% raw %}
+				<a v-if='mir.help_url' :href="mir.help_url"
+        {% endraw %}{% endif %}
+        ><i aria-hidden="true" class="question-circle" title="Help">{% fa_svg fas.fa-circle-question %}</i><span class="visually-hidden">[Help]</span></a>
+        {% if include.legacy %}{% raw %}
+        {{/if}}
+        {% endraw %}{% endif %}
+        {% unless include.legacy %}{% raw %}
 				<a v-if='mir.github_release' href="javascript:void(0)"><i aria-hidden="true" title="GitHub Release">{% endraw %}{% fa_svg fab.fa-github %}{% raw %}</i><span class="visually-hidden">[GitHub Release]</span></a>
+        {% endraw %}{% endunless %}
 			</td>
 			<td class="col-4 col-lg-5 col-xl-4">
+        {% if include.legacy %}{% raw %}
+        {{last_update}}{{if show_status}}<span class="badge badge-status {{label}}">{{status}}</span>{{/if}}
+        {% endraw %}{% else %}{% raw %}
 				<UpdateField :mir="mir"></UpdateField>
+        {% endraw %}{% endif %}
 			</td>
 		</tr>
-		{% endraw %}
-		{% endif %}
+    {% if include.legacy %}{% raw %}
+    {{/mirs}}
+    {% endraw %}{% endif %}
 	</tbody>
 </table>
 {% unless include.legacy %}
