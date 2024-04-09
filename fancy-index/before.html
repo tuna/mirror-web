@@ -1,6 +1,7 @@
 ---
 permalink: /fancy-index/before.html
 title: Index of {{url}}
+jsEntry: fancyIndex
 ---
 <!DOCTYPE html>
 <html>
@@ -15,12 +16,11 @@ title: Index of {{url}}
 			<div class="container">
 				<div class="row">
 					{% raw %}
-					<div class="col-12 table-responsive" id="mirror-list">
+					<div class="col-12 table-responsive">
 						<div class="row">
 							<div class="col-lg-8 col-12"><h3>{% endraw %}{% fa_svg fas.fa-cube %}{% raw %} Index of <span id="path">{{url}}</span></h3></div><!--
-							--><div class="col-lg-4 col-12 d-flex align-items-end justify-content-start justify-content-lg-end" v-if="nowBrowsingMirror">
-								<strong>Last Update:</strong> {{open}}nowBrowsingMirror.last_update{{close}}
-								<span v-if="nowBrowsingMirror.show_status" :class="['label', 'label-status', nowBrowsingMirror.label, 'hidden-xs']">{{open}}nowBrowsingMirror.status{{close}}</span>
+							--><div class="col-lg-4 col-12 d-flex align-items-end justify-content-start justify-content-lg-end">
+								<div id="now-browsing-mirror"></div>
 							</div>
 						</div>
 					{% endraw %}

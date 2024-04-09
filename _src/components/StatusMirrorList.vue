@@ -54,7 +54,10 @@ onMounted(() => {
         <td class="col-8 col-lg-2">
           {{ mir.name }}{{ mir.is_master ? "" : " [slave]" }}
         </td>
-        <td class="col-12 col-lg-4 d-lg-none d-lg-redoce-table-ceil" colspan="2">
+        <td
+          class="col-12 col-lg-4 d-lg-none d-lg-redoce-table-ceil"
+          colspan="2"
+        >
           <div class="row">
             <th class="col-4 text-end">Last Success</th>
             <td class="col-8">
@@ -232,5 +235,4 @@ table {
     }
   }
 }
-
 </style>

@@ -15,34 +15,6 @@ ref fa-cube icon from before.html
 		{% include footer.html %}
 
 	</body>
-	{% raw %}
-	{% endraw %}
-	<script src="/static/js/index.js?{{ site.data['hash'] }}"></script>
-	{% raw %}
-	<script>
-		document.getElementById("list").setAttribute("class", "table");
-		document.addEventListener("DOMContentLoaded", function(){
-			var els = Array.from(document.querySelectorAll("#list tbody tr td:nth-child(3)"))
-			for(var i = 0; i < els.length; i++){
-				var el = els[i];
-				var d = new Date(el.innerText);
-				if(!isNaN(d.getTime())){
-					var date_str = ('000' + d.getFullYear()).substr(-4) + "-"
-					             + ('0' + (d.getMonth() + 1)).substr(-2) + "-"
-					             + ('0' + d.getDate()).substr(-2)
-					             + (" " + ('0' + d.getHours()).substr(-2) + ":"
-					             + ('0' + d.getMinutes()).substr(-2));
-					el.innerText = date_str;
-				}
-			}
-		});
-	</script>
-	<style>
-		#list tbody td, #path{
-			font-family: 'Fira Code Retina', 'Fira Code', 'Fira Mono', 'JetBrains Mono', 'Source Code Pro', 'Consolas', 'Menlo', 'Monaco', monospace;
-		}
-	</style>
-	{% endraw %}
 </html>
 <!--
 	vim: ts=2 sts=2 sw=2 noexpandtab

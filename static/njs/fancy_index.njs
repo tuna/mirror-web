@@ -12,8 +12,6 @@ function fancyIndexRender(r, templateUrl){
     var tmpl = rTmpl.responseText;
     var result = Mark.up(tmpl, {
       url: r.variables.request_uri.replace(/\/+/g, '/').replace(/\?.*$/, ''),
-      open: '{{',
-      close: '}}',
     });
     r.status = 200;
     r.headersOut['Content-Type'] = 'text/html';
@@ -24,19 +22,11 @@ function fancyIndexRender(r, templateUrl){
 }
 
 function fancyIndexBeforeRender(r){
-  if(r.variables.isbrowser && r.variables.isbrowser != '0'){
-    return fancyIndexRender(r, '/fancy-index/before.html');
-  }else{
-    return fancyIndexRender(r, '/fancy-index/before-legacy.html');
-  }
+  return fancyIndexRender(r, '/fancy-index/before.html');
 }
 
 function fancyIndexAfterRender(r){
-  if(r.variables.isbrowser && r.variables.isbrowser != '0'){
-    return fancyIndexRender(r, '/fancy-index/after.html');
-  }else{
-    return fancyIndexRender(r, '/fancy-index/after-legacy.html');
-  }
+  return fancyIndexRender(r, '/fancy-index/after.html');
 }
 
 export default {fancyIndexBeforeRender, fancyIndexAfterRender};
