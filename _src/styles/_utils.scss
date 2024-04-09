@@ -1,0 +1,47 @@
+@use "sass:map";
+@use "sass:list";
+@mixin dark {
+  @if map.get(jekyll-config(), "issue") {
+    @content;
+  } @else {
+    @media (prefers-color-scheme: dark) {
+      @content;
+    }
+  }
+}
+
+@mixin noissue {
+  @if map.get(jekyll-config(), "issue") {
+  } @else {
+    @content;
+  }
+}
+
+@mixin imgurl($img, $style: "light", $scales: 4, $ext: "png") {
+  background-image: url("#{getimgName($img, $style, 1, $ext)}");
+  $imgset: ();
+  @for $scale from 1 through $scales {
+    $imgset: list.append(
+      $imgset,
+      url("#{getimgName($img, $style, $scale, $ext)}") #{$scale}x,
+      comma
+    );
+  }
+  @each $pfx in ("-webkit-", "") {
+    background-image: #{$pfx}image-set($imgset);
+  }
+}
+
+@function getimgName($img, $style, $scale, $ext) {
+  @if $scale == 1 {
+    $scale: "";
+  } @else {
+    $scale: "@#{$scale}x";
+  }
+  @if $style == "light" {
+    $style: "";
+  } @else {
+    $style: "-#{$style}";
+  }
+  @return "#{$img}#{$style}#{$scale}.#{$ext}";
+}
