@@ -12,11 +12,11 @@ empty.mount("#upgrade-mask");
 const isoModalEl = document.getElementById("isoModal");
 
 createApp(IsoModal, {
-	onReady: async function () {
-		if (window.location.hash.match(/#iso-download(\?.*)?/)) {
-			new BootStrapModal(isoModalEl).show();
-		}
-	},
+  onReady: async function () {
+    if (window.location.hash.match(/#iso-download(\?.*)?/)) {
+      new BootStrapModal(isoModalEl).show();
+    }
+  },
 }).mount(isoModalEl);
 
 createApp(MainMirrorList).mount("#mirror-list");

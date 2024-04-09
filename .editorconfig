@@ -8,9 +8,9 @@ root = true
 end_of_line = lf
 insert_final_newline = true
 
-[*.{html,md,js}]
+[*.{html,md,js,vue,es6,json}]
 charset = utf-8
-indent_style = tab
+indent_style = space
 indent_size = 2
 
 # Matches the exact files either package.json or .travis.yml

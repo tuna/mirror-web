@@ -11,7 +11,7 @@ bugLink.href = bugURL.href;
 const mrLink = document.getElementById("new_issue_mr");
 const mrURL = new URL(mrLink.href);
 mrURL.searchParams.append(
-	"title",
-	tag + "Mirror Request for new mirror " + location.pathname.split("/")[1],
+  "title",
+  tag + "Mirror Request for new mirror " + location.pathname.split("/")[1],
 );
 mrLink.href = mrURL.href;
