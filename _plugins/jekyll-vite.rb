@@ -132,7 +132,7 @@ protected
 
   # Internal: Renders HTML attributes inside a tag.
   def stringify_attrs(**attrs)
-    attrs.map { |key, value| %(#{ key }="#{ value }") }.join(' ')
+    attrs.map { |key, value| %(#{ key }#{ value && value != "" ? %(="#{value}") : "" }) }.join(' ')
   end
 
   # Internal: Renders an HTML tag of the specified type.
