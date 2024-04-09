@@ -98,11 +98,14 @@ onMounted(() => {
   });
 });
 
-onUpdated(() => {
-  Array.from(document.getElementsByClassName("mirror-item-label")).map((el) => {
-    new BootStrapPopover(el);
-  });
-});
+const vWithPopover = {
+  mounted: (el) => {
+    BootStrapPopover.getOrCreateInstance(el);
+  },
+  beforeUnmount: (el) => {
+    BootStrapPopover.getInstance(el)?.dispose();
+  },
+};
 
 const sortAndUniqMirrors = (mirs) => {
   mirs.sort((a, b) => {
