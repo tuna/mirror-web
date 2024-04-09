@@ -60,6 +60,7 @@ const vWithPopover = {
 
 <style lang="scss" scoped>
 @use "../styles/3-wave.scss" as wave;
+@use "../styles/sync-status.scss";
 
 a.mirror-item-label::after {
   content: " ";
