@@ -14,12 +14,14 @@ const knownCategories = {
 
 const emit = defineEmits(["ready"]);
 
-fetch(ISOINFO_JSON_PATH).then((res) => res.json()).then((isoinfo) => {
-  distroList.value = isoinfo;
-  availableCategories.value = [...new Set(isoinfo.map((x) => x.category))];
-  curCategory.value = availableCategories.value[0];
-  selected.value = curDistroList.value[0];
-});
+fetch(ISOINFO_JSON_PATH)
+  .then((res) => res.json())
+  .then((isoinfo) => {
+    distroList.value = isoinfo;
+    availableCategories.value = [...new Set(isoinfo.map((x) => x.category))];
+    curCategory.value = availableCategories.value[0];
+    selected.value = curDistroList.value[0];
+  });
 
 onMounted(async () => {
   await nextTick();
@@ -49,19 +51,28 @@ const switchCategory = (category) => {
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="isoModalLabel">获取安装镜像</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-        </button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <div class="row" v-if="availableCategories.length > 0">
           <div class="col-lg-12">
             <ul class="nav nav-tabs">
-              <li class="nav-item" role="presentation" v-for="cat in availableCategories">
+              <li
+                class="nav-item"
+                role="presentation"
+                v-for="cat in availableCategories"
+              >
                 <a
-                    :class="[curCategory === cat ? 'active' : '', 'nav-link']"
-                    @click="switchCategory(cat)"
-                    href="#"
-                >{{ knownCategories[cat] ? knownCategories[cat] : cat }}</a>
+                  :class="[curCategory === cat ? 'active' : '', 'nav-link']"
+                  @click="switchCategory(cat)"
+                  href="#"
+                  >{{ knownCategories[cat] ? knownCategories[cat] : cat }}</a
+                >
               </li>
             </ul>
           </div>
@@ -71,16 +82,22 @@ const switchCategory = (category) => {
                 <a
                   href="#"
                   @click="switchDistro(distro)"
-                  :class="[selected.distro == distro.distro ? 'active' : '', 'nav-link']"
-                >{{ distro.distro }}</a>
+                  :class="[
+                    selected.distro == distro.distro ? 'active' : '',
+                    'nav-link',
+                  ]"
+                  >{{ distro.distro }}</a
+                >
               </li>
             </ul>
           </div>
           <div class="col-lg-9">
-            <h3>{{selected.distro}}</h3>
+            <h3>{{ selected.distro }}</h3>
             <ul>
               <template v-for="url in selected.urls">
-              <li><a :href="url.url">{{url.name}}</a></li>
+                <li>
+                  <a :href="url.url">{{ url.name }}</a>
+                </li>
               </template>
             </ul>
           </div>
@@ -92,6 +109,6 @@ const switchCategory = (category) => {
 
 <style scoped lang="scss">
 .nav-tabs {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 </style>

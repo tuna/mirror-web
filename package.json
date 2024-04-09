@@ -2,6 +2,9 @@
   "name": "mirror-web",
   "private": true,
   "homepage": "https://github.com/tuna/mirror-web",
+  "scripts": {
+    "format": "prettier --write \"_src/**/*.js\" \"_src/**/*.vue\""
+  },
   "devDependencies": {
     "@vitejs/plugin-legacy": "^5.3.2",
     "@vitejs/plugin-vue": "^5.0.4",
@@ -10,6 +13,7 @@
     "liquidjs": "^10.10.2",
     "markup-js": "^1.5.21",
     "mustache": "^4.2.0",
+    "prettier": "^3.2.5",
     "rollup-plugin-visualizer": "^5.12.0",
     "sass": "^1.74.1",
     "sass-cast": "^0.5.6",

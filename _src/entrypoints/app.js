@@ -1,21 +1,21 @@
-import Empty from '../components/Empty.vue'
-import IsoModal from '../components/IsoModal.vue'
-import MainMirrorList from '../components/MainMirrorList.vue'
-import { Modal as BootStrapModal } from 'bootstrap';
-import { createApp } from 'vue';
-import './default'
-import '../styles/main-page.scss'
+import Empty from "../components/Empty.vue";
+import IsoModal from "../components/IsoModal.vue";
+import MainMirrorList from "../components/MainMirrorList.vue";
+import { Modal as BootStrapModal } from "bootstrap";
+import { createApp } from "vue";
+import "./default";
+import "../styles/main-page.scss";
 
 const empty = createApp(Empty);
 empty.mount("#upgrade-mask");
 
-const isoModalEl = document.getElementById('isoModal');
+const isoModalEl = document.getElementById("isoModal");
 
 createApp(IsoModal, {
-	onReady: async function() {
+	onReady: async function () {
 		if (window.location.hash.match(/#iso-download(\?.*)?/)) {
-    	new BootStrapModal(isoModalEl).show();
-  	}
+			new BootStrapModal(isoModalEl).show();
+		}
 	},
 }).mount(isoModalEl);
 

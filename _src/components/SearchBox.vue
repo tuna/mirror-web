@@ -1,10 +1,10 @@
 <script setup>
 import { defineModel, ref, onMounted, onBeforeUnmount } from "vue";
-const model = defineModel({type: String, default: ""});
+const model = defineModel({ type: String, default: "" });
 
 const inputRef = ref(null);
 
-const onGlobalKeyPress =  (e) => {
+const onGlobalKeyPress = (e) => {
   if (e.key === "/" && document.activeElement !== inputRef.value) {
     e.preventDefault();
     inputRef.value.focus();
@@ -18,10 +18,16 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("keypress", onGlobalKeyPress);
 });
-
 </script>
 <template>
-    <input type="search" v-model="model" ref="inputRef" placeholder="按 / 搜索" autocomplete="off" class="ms-auto d-inline-flex align-self-center">
+  <input
+    type="search"
+    v-model="model"
+    ref="inputRef"
+    placeholder="按 / 搜索"
+    autocomplete="off"
+    class="ms-auto d-inline-flex align-self-center"
+  />
 </template>
 
 <style scoped>

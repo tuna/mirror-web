@@ -1,2 +1,2 @@
-import "./default"
-import "../styles/status.scss"
+import "./default";
+import "../styles/status.scss";
