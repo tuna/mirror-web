@@ -4,7 +4,7 @@ import { TUNASYNC_JSON_PATH } from "../lib/consts";
 import { options as globalOptions } from "virtual:jekyll-data";
 import HelpPages from "virtual:tuna-help-pages";
 import { format as TimeAgoFormat } from "timeago.js";
-import { Popover as BootStrapPopover } from "bootstrap";
+import BootStrapPopover from "bootstrap/js/dist/popover";
 import SearchBox from "./SearchBox.vue";
 
 const label_map = globalOptions.label_map;
