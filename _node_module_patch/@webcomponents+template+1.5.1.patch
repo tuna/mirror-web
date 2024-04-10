@@ -1,0 +1,25 @@
+diff --git a/node_modules/@webcomponents/template/template.js b/node_modules/@webcomponents/template/template.js
+index cebfac4..a2e534c 100644
+--- a/node_modules/@webcomponents/template/template.js
++++ b/node_modules/@webcomponents/template/template.js
+@@ -41,7 +41,7 @@
+         HTMLElement.prototype.querySelectorAll;
+       DocumentFragment.prototype.querySelector =
+         HTMLElement.prototype.querySelector;
+-
++      try{
+       Object.defineProperties(DocumentFragment.prototype, {
+         'nodeType': {
+           get: function () {
+@@ -64,6 +64,11 @@
+           configurable: true,
+         },
+       });
++      }catch(e){
++        DocumentFragment.prototype.nodeType = Node.DOCUMENT_FRAGMENT_NODE;
++        DocumentFragment.prototype.localName = undefined;
++        DocumentFragment.prototype.nodeName = '#document-fragment';
++      }
+ 
+       var origInsertBefore = Node.prototype.insertBefore;
+       function insertBefore(newNode, refNode) {

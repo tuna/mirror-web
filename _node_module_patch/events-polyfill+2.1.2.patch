@@ -1,0 +1,47 @@
+diff --git a/node_modules/events-polyfill/src/ListenerOptions.js b/node_modules/events-polyfill/src/ListenerOptions.js
+index 7f61598..b775992 100644
+--- a/node_modules/events-polyfill/src/ListenerOptions.js
++++ b/node_modules/events-polyfill/src/ListenerOptions.js
+@@ -15,20 +15,28 @@
+       some: false
+     };
+ 
+-    document.createDocumentFragment().addEventListener('test', function() {}, {
+-      get once() {
+-        _this.supportedOptions.once = true;
+-        return false;
+-      },
+-      get passive() {
+-        _this.supportedOptions.passive = true;
+-        return false;
+-      },
+-      get capture() {
+-        _this.supportedOptions.capture = true;
+-        return false;
+-      }
+-    });
++    try {
++      var options = {};
++      Object.defineProperty(options, 'once', {
++        get: function() {
++          _this.supportedOptions.once = true;
++          return false;
++        }
++      });
++      Object.defineProperty(options, 'passive', {
++        get: function() {
++          _this.supportedOptions.passive = true;
++          return false;
++        }
++      });
++      Object.defineProperty(options, 'capture', {
++        get: function() {
++          _this.supportedOptions.capture = true;
++          return false;
++        }
++      });
++      document.createDocumentFragment().addEventListener('test', function() {}, options);
++    }catch(e) {}
+ 
+     // useful shortcuts to detect if options are all/some supported
+     this.supportedOptions.all  = this.supportedOptions.once && this.supportedOptions.passive && this.supportedOptions.capture;

@@ -1,9 +1,9 @@
-import Es6ProxyPolyfill from "./es6-proxy-polyfill.js";
 import "promise-polyfill/src/polyfill";
 import "whatwg-fetch";
-import "events-polyfill";
+import "events-polyfill/src";
+import "@webcomponents/template";
 import "element-polyfill";
-import "@webcomponents/template/template.min.js";
+import Es6ProxyPolyfill from "./es6-proxy-polyfill.js";
 
 const globalObj =
   (typeof globalThis !== "undefined" && globalThis) ||
