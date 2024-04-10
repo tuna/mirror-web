@@ -107,6 +107,9 @@ export default defineConfig(({mode})=>({
     }),
     legacy({
       targets: [],
+      additionalLegacyPolyfills: [
+        resolve(__dirname, '_src/lib/legacy-polyfill.js'),
+      ],
     }),
     visualizer({
       filename: '_stats.html',
