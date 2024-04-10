@@ -123,6 +123,7 @@ export default defineConfig(({ mode }) => ({
       resolvers: [],
     }),
     legacy({
+      //use empty array to target the oldest browsers possible
       targets: [],
       additionalLegacyPolyfills: [
         resolve(__dirname, "_src/lib/legacy-polyfill.js"),
