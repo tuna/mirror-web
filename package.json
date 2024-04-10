@@ -3,7 +3,7 @@
   "private": true,
   "homepage": "https://github.com/tuna/mirror-web",
   "scripts": {
-    "format": "prettier --write \"_src/**/*.vue\" \"_src/**/*.html\" \"_src/**/*.js\" \"_src/**/*.scss\""
+    "format": "prettier --write \"_src/**/*.vue\" \"_src/**/*.html\" \"_src/**/*.js\" \"_src/**/*.scss\" *.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-legacy": "^5.3.2",
