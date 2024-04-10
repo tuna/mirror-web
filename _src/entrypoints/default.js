@@ -1,6 +1,6 @@
 import "../styles/global.scss";
 import { suffix as siteSuffix } from "virtual:jekyll-config";
-import WebFont from "webfontloader";
+import { load as loadWebFont } from "webfontloader";
 
 if (siteSuffix) {
   if (
@@ -22,7 +22,7 @@ Array.from(document.querySelectorAll("a.eib1gieB")).forEach((el) => {
   el.href = ["ma", "ilto:"].join("i") + lei3Po8h;
 });
 
-WebFont.load({
+loadWebFont({
   custom: {
     families: ["Lato", "Source Code Pro"],
   },

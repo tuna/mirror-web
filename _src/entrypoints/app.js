@@ -1,7 +1,8 @@
 import Empty from "../components/Empty.vue";
 import IsoModal from "../components/IsoModal.vue";
 import MainMirrorList from "../components/MainMirrorList.vue";
-import BootStrapModal from "bootstrap/js/dist/modal";
+
+import { BootStrapModal } from "bootstrap/js/dist/modal";
 import { createApp } from "vue";
 import "./default";
 import "../styles/main-page.scss";
