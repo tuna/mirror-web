@@ -61,12 +61,13 @@ exclude: [gen_robot.sh, geninfo/, gen_desc.py]
 addition_exclude:
     - package.json
     - package-lock.json
-    - node_modules
+    - node_modules/
     - Gemfile
     - Gemfile.lock
     - README.md
     - vendor/
     - Dockerfile*
+    - LICENSE
 
 sponsors:
     megvii:
