@@ -130,6 +130,8 @@ export default defineConfig(({ mode }) => ({
     }),
     visualizer({
       filename: "_stats.html",
+      gzipSize: true,
+      sourcemap: mode === "development",
     }),
   ],
   css: {
