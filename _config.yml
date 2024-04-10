@@ -62,7 +62,7 @@ plugins:
 babel_js_extensions: 'es6'
 
 jekyll-minifier:
-    exclude: [ 'assets/**' ]
+    exclude: [ 'assets/*' ]
 
 exclude: [gen_robot.sh, geninfo/, gen_desc.py]
 addition_exclude:
