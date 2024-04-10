@@ -6,6 +6,8 @@ import components from "unplugin-vue-components/vite";
 import legacy from "@vitejs/plugin-legacy";
 import { toSass } from "sass-cast";
 import { Liquid, Tag as LiquidTag } from "liquidjs";
+import Babel from "@babel/core";
+import BabelPresetEnv from "@babel/preset-env";
 
 const visualizer = await (async () => {
   if (process.env.VISUALIZER) {
@@ -129,6 +131,58 @@ export default defineConfig(({ mode }) => ({
         resolve(__dirname, "_src/lib/legacy-polyfill.js"),
       ],
     }),
+    (() => {
+      const savedConfig = {};
+      const targets = [];
+      return {
+        name: "babel-transform-legacy-polyfill",
+        config(config, env) {
+          savedConfig.minify = !!config.build?.minify;
+        },
+        generateBundle(opts, bundle) {
+          const legacyPolyfill = (() => {
+            for (const key in bundle) {
+              if (
+                key.includes("legacy") &&
+                bundle[key].facadeModuleId === "\0" + "vite/legacy-polyfills"
+              ) {
+                return bundle[key];
+              }
+            }
+            return null;
+          })();
+          if (!legacyPolyfill) {
+            return;
+          }
+          const result = Babel.transform(legacyPolyfill.code, {
+            babelrc: false,
+            configFile: false,
+            compact: savedConfig.minify,
+            sourceMaps: false,
+            inputSourceMap: undefined,
+            presets: [
+              [
+                BabelPresetEnv,
+                {
+                  targets: targets,
+                  bugfixes: true,
+                  loose: false,
+                  modules: false,
+                  useBuiltIns: false,
+                  corejs: undefined,
+                  shippedProposals: true,
+                  ignoreBrowserslistConfig: true,
+                  exclude: [
+                    "@babel/plugin-transform-typeof-symbol",
+                  ],
+                },
+              ],
+            ],
+          });
+          legacyPolyfill.code = result.code;
+        },
+      };
+    })(),
     visualizer({
       filename: "_stats.html",
       gzipSize: true,
