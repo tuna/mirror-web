@@ -44,22 +44,15 @@ kramdown:
     input: GFM
     hard_wrap: false
 
-
-sass:
-    sass_dir: static/css
-
 vite:
     config_path: _src/vite.json
     viteConfig: _vite.config.mjs
 
 plugins:
     - jekyll-relative-links
-    - jekyll-babel
     - jekyll-sitemap
     - jekyll/fontawesome/svg
     - jekyll-minifier
-
-babel_js_extensions: 'es6'
 
 jekyll-minifier:
     exclude: [ 'assets/*' ]

@@ -12,10 +12,8 @@ end
 group :jekyll_plugins do
     gem 'jekyll-paginate', '~> 1.1'
     gem 'jekyll-relative-links', '~> 0.7.0'
-    gem 'jekyll-sass-converter', '~> 3.0'
     gem 'jekyll-sitemap', '~> 1.4'
     gem 'jekyll-titles-from-headings', '~> 0.5.3'
-    gem 'jekyll-babel', '~> 1.1'
     gem 'jekyll-fontawesome-svg', '~> 0.4.0'
     gem 'jekyll-minifier', '~> 0.1.10'
 end
