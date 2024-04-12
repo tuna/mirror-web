@@ -8,9 +8,7 @@ if (siteSuffix) {
     !document.location.hostname.endsWith(siteSuffix + ".")
   ) {
     document.title = document.title.replace(/(清华)|(tsinghua)|(tuna)/gi, "");
-    document.addEventListener("DOMContentLoaded", () => {
-      document.body.classList.add("nonthu");
-    });
+    document.body.classList.add("nonthu");
   }
 }
 

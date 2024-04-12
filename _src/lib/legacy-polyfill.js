@@ -3,6 +3,7 @@ import "whatwg-fetch";
 import "events-polyfill/src";
 import "@webcomponents/template";
 import "element-polyfill";
+import "formdata-polyfill";
 import Es6ProxyPolyfill from "./es6-proxy-polyfill.js";
 
 const globalObj =

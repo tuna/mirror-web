@@ -16,6 +16,7 @@
     "core-js": "^3.36.1",
     "element-polyfill": "^1.1.0",
     "events-polyfill": "^2.1.2",
+    "formdata-polyfill": "^4.0.10",
     "highlight.js": "^11.9.0",
     "lato-webfont": "^2.15.1",
     "liquidjs": "^10.10.2",
