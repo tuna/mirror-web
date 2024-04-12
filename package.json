@@ -13,6 +13,7 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "@webcomponents/template": "^1.5.1",
     "bootstrap": "^5.3.3",
+    "bootstrap-sass": "^3.4.3",
     "core-js": "^3.36.1",
     "element-polyfill": "^1.1.0",
     "events-polyfill": "^2.1.2",

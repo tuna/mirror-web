@@ -26,7 +26,7 @@ onBeforeUnmount(() => {
     ref="inputRef"
     placeholder="按 / 搜索"
     autocomplete="off"
-    class="ms-auto d-inline-flex align-self-center"
+    class="ms-auto d-inline-flex align-self-center d-bs3-none"
   />
 </template>
 

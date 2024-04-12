@@ -23,7 +23,7 @@ onMounted(() => {
 <template>
   <table class="table text-break table-hover table-borderless">
     <thead>
-      <tr class="d-none d-lg-table-row">
+      <tr class="d-none d-lg-table-row d-b3-table-row">
         <th class="col-2">Name</th>
         <th class="col-4" colspan="2">Last Update</th>
         <th class="col-4">Upstream</th>
@@ -50,12 +50,12 @@ onMounted(() => {
         @mouseenter="freezedRows[mir.name] = rollCur"
         @mouseleave="freezedRows[mir.name] = undefined"
       >
-        <th class="col-4 d-lg-none text-end">Name</th>
+        <th class="col-4 d-lg-none d-bs3-none text-end">Name</th>
         <td class="col-8 col-lg-2">
           {{ mir.name }}{{ mir.is_master ? "" : " [slave]" }}
         </td>
         <td
-          class="col-12 col-lg-4 d-lg-none d-lg-reduce-table-cell"
+          class="col-12 col-lg-4 d-lg-none d-bs3-table-cell d-lg-reduce-table-cell"
           colspan="2"
         >
           <div class="row">
@@ -76,7 +76,9 @@ onMounted(() => {
             <td class="col-8" v-else>Syncing Now</td>
           </div>
         </td>
-        <td class="col-2 rolling-3 d-none d-lg-table-cell d-reduce-none">
+        <td
+          class="col-2 rolling-3 d-none d-lg-table-cell d-bs3-none d-reduce-none"
+        >
           <div class="tuna-roll">
             &nbsp;
             <template v-if="mir.last_ended_ts == mir.last_update_ts">
@@ -92,7 +94,9 @@ onMounted(() => {
             <div v-else data-tuna-roll-seq="4 5">Next Scheduled Sync</div>
           </div>
         </td>
-        <td class="col-2 rolling-6 d-none d-lg-table-cell d-reduce-none">
+        <td
+          class="col-2 rolling-6 d-none d-lg-table-cell d-bs3-none d-reduce-none"
+        >
           <div class="tuna-roll">
             &nbsp;
             <template v-if="mir.last_ended_ts == mir.last_update_ts">
@@ -124,11 +128,11 @@ onMounted(() => {
             </div>
           </div>
         </td>
-        <th class="col-4 d-lg-none text-end">Upstream</th>
+        <th class="col-4 d-lg-none d-bs3-none text-end">Upstream</th>
         <td class="col-8 col-lg-4">{{ mir.upstream }}</td>
-        <th class="col-4 d-lg-none text-end">Status</th>
+        <th class="col-4 d-lg-none d-bs3-none text-end">Status</th>
         <td class="col-8 col-lg-1">{{ mir.status }}</td>
-        <th class="col-4 d-lg-none text-end">Size</th>
+        <th class="col-4 d-lg-none d-bs3-none text-end">Size</th>
         <td class="col-8 col-lg-1">{{ mir.size }}</td>
       </tr>
     </tbody>

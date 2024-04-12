@@ -20,22 +20,27 @@ onMounted(async () => {
   if (!Array.isArray(d)) {
     d = [d];
   }
-  diskUsages.value = d.map((disk) => ({
-    desc: disk.desc,
-    used: readableFileSize(disk.used_kb * 1024),
-    total: readableFileSize(disk.total_kb * 1024),
-    percentage: 0,
-    _percentage: Math.round((disk.used_kb * 100) / disk.total_kb),
-  }));
-  await nextTick();
-  await new Promise((resolve) =>
-    setTimeout(() => {
-      resolve();
-    }, 0),
-  );
-  diskUsages.value.forEach((disk) => {
-    disk.percentage = disk._percentage;
+  diskUsages.value = d.map((disk) => {
+    const percentage = Math.round((disk.used_kb * 100) / disk.total_kb);
+    return {
+      desc: disk.desc,
+      used: readableFileSize(disk.used_kb * 1024),
+      total: readableFileSize(disk.total_kb * 1024),
+      percentage: import.meta.env.LEGACY ? percentage : 0,
+      _percentage: percentage,
+    };
   });
+  if (!import.meta.env.LEGACY) {
+    await nextTick();
+    await new Promise((resolve) =>
+      setTimeout(() => {
+        resolve();
+      }, 0),
+    );
+    diskUsages.value.forEach((disk) => {
+      disk.percentage = disk._percentage;
+    });
+  }
 });
 </script>
 <template>

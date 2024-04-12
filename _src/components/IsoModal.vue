@@ -50,6 +50,14 @@ const switchCategory = (category) => {
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <button
+          type="button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          class="close d-none d-bs3-block"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
         <h4 class="modal-title" id="isoModalLabel">获取安装镜像</h4>
         <button
           type="button"

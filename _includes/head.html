@@ -31,6 +31,7 @@
 <title>{{ page_title }}</title>
 {% unless include.nostyle %}
 {% include vite_script.html %}
+<link rel="stylesheet" href="{% vite_asset_path bs3-polyfill.scss %}" media="screen" integrity="sha256-OnlyforlegacybrowsersAAAAAAAAAAAAAAAAAAAAAA=" />
 {% if page.legacy %}
 <style>
 .container {
