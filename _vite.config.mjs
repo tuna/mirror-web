@@ -8,6 +8,7 @@ import { toSass } from "sass-cast";
 import { Liquid, Tag as LiquidTag } from "liquidjs";
 import Babel from "@babel/core";
 import BabelPresetEnv from "@babel/preset-env";
+import fs from "node:fs";
 
 const visualizer = await (async () => {
   if (process.env.VISUALIZER) {
@@ -21,7 +22,20 @@ const exposedData = ["config", "data", "categories"];
 const jekyllData = Object.fromEntries(
   exposedData.map((key) => [
     key,
-    JSON.parse(process.env[`site_${key}`] || "{}"),
+    ((fd) => {
+      if (fd) {
+        const fdNum = parseInt(fd);
+        if (!isNaN(fdNum)) {
+          const buf = Buffer.alloc(fs.fstatSync(fdNum).size);
+          fs.readSync(fdNum, buf);
+          return JSON.parse(buf.toString());
+        } else {
+          return {};
+        }
+      } else {
+        return {};
+      }
+    })(process.env[`site_${key}`]),
   ]),
 );
 jekyllData.config.hasOwnProperty("suffix") || (jekyllData.config.suffix = null);

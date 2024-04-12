@@ -1,6 +1,7 @@
 require 'vite_ruby'
 require "jekyll/filters"
 require "ostruct"
+require 'tempfile'
 
 module Jekyll::Vite
 end
@@ -43,9 +44,21 @@ class Jekyll::Vite::Generator < Jekyll::Generator
       **(site.config['vite'].transform_keys(&:to_sym) || {})
     )
     site.reader.read_data
-    vr.env['site_config'] = Jekyll_Filters.new.jsonify(site.config)
-    vr.env['site_data'] = Jekyll_Filters.new.jsonify(site.data)
-    vr.env['site_categories'] = Jekyll_Filters.new.jsonify(site.categories)
+    exports = [
+      { :name => 'site_config', :data => site.config },
+      { :name => 'site_data', :data => site.data },
+      { :name => 'site_categories', :data => site.categories },
+    ]
+    exports.each do |export|
+      file = Tempfile.new()
+      file.unlink
+      file.write(Jekyll_Filters.new.jsonify(export[:data]))
+      file.flush
+      file.rewind
+      file.close_on_exec = false
+      vr.env[export[:name]] = "#{file.fileno}"
+      export[:file] = file
+    end
     vr.logger = Jekyll.logger
 
     class << site
@@ -61,6 +74,9 @@ class Jekyll::Vite::Generator < Jekyll::Generator
       vr.commands.clobber
     end
     generate_vite_build(site)
+    exports.each do |export|
+      export[:file].close
+    end
   end
 
   class Jekyll_Filters
