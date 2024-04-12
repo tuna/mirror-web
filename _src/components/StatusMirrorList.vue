@@ -55,7 +55,7 @@ onMounted(() => {
           {{ mir.name }}{{ mir.is_master ? "" : " [slave]" }}
         </td>
         <td
-          class="col-12 col-lg-4 d-lg-none d-lg-redoce-table-ceil"
+          class="col-12 col-lg-4 d-lg-none d-lg-reduce-table-cell"
           colspan="2"
         >
           <div class="row">
@@ -230,7 +230,7 @@ table {
     display: none !important;
   }
   @media (min-width: map.get(bs.$grid-breakpoints, "lg")) {
-    .d-lg-redoce-table-ceil {
+    .d-lg-reduce-table-cell {
       display: table-cell !important;
     }
   }
