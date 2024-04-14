@@ -24,6 +24,26 @@ html {
       display: $display !important;
     }
   }
+  .d-bs3-def-none {
+    display: none !important;
+  }
+  @media (min-width: 0) {
+    div.d-bs3-def-none {
+      display: block !important;
+      @media (min-width: $screen-lg-min) {
+        display: none !important;
+      }
+    }
+    td,
+    th {
+      &.d-bs3-def-none {
+        display: table-cell !important;
+        @media (min-width: $screen-lg-min) {
+          display: none !important;
+        }
+      }
+    }
+  }
   .btn-close {
     display: none;
   }
