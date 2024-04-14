@@ -24,3 +24,19 @@
 <script src="{% vite_asset_path /vite/legacy-polyfills-legacy %}" crossorigin="anonymous" id="vite-legacy-polyfill" nomodule></script>
 {% capture legacyFile %}{% vite_asset_path {{ entry }}-legacy.js %}{% endcapture %}
 <script nomodule defer>System.import({{ legacyFile | jsonify }});</script>
+<script type="module">
+  (function(){
+    try{
+      new Function("m","return import(m)");
+    }catch(e){
+      console.warn("vite: loading legacy build because dynamic import is unsupported, syntax error above should be ignored");
+      var polyScript = document.getElementById("vite-legacy-polyfill");
+      var newScript = document.createElement("script");
+      newScript.src = polyScript.src;
+      newScript.onload = function(){
+        System.import({{ legacyFile | jsonify }});
+      };
+      document.body.appendChild(newScript);
+    }
+  })();
+</script>
