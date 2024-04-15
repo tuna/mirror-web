@@ -9,6 +9,9 @@ import { Liquid, Tag as LiquidTag } from "liquidjs";
 import Babel from "@babel/core";
 import BabelPresetEnv from "@babel/preset-env";
 import fs from "node:fs";
+import { build as viteBuild, normalizePath } from "vite";
+import glob from "fast-glob";
+import { getBabelOutputPlugin } from "@rollup/plugin-babel";
 
 const visualizer = await (async () => {
   if (process.env.VISUALIZER) {
@@ -138,6 +141,85 @@ export default defineConfig(({ mode }) => ({
       dirs: [resolve(__dirname, "_src/components")],
       resolvers: [],
     }),
+    (() => {
+      const savedConfig = {
+        njsOutputDir: "static/njs",
+      };
+      return {
+        name: "add-njs",
+        config(config) {
+          savedConfig.minify = config.build?.minify;
+          savedConfig.root = config.root;
+          savedConfig.mode = config.mode;
+          savedConfig.njsFiles = glob.sync("entrypoints-njs/**", {
+            cwd: config.root,
+          });
+          savedConfig.sourcemap = config.build?.sourcemap;
+          savedConfig.logLevel = config.logLevel;
+        },
+        async generateBundle(opts, bundle) {
+          const { minify, root, mode, njsOutputDir, njsFiles, logLevel } =
+            savedConfig;
+          if (opts.format === "system") {
+            const entryChunk = Object.values(bundle).find(
+              (output) => output.type === "chunk" && output.isEntry,
+            );
+            if (!!entryChunk && entryChunk.fileName.includes("-legacy")) {
+              return;
+            }
+          }
+          if (njsFiles.length == 0) {
+            return;
+          }
+          const res = await viteBuild({
+            mode,
+            root,
+            configFile: false,
+            logLevel,
+            plugins: [
+              getBabelOutputPlugin({
+                presets: [
+                  "babel-preset-njs",
+                ],
+                plugins: [
+                ],
+                configFile: false,
+              }),
+            ],
+            build: {
+              write: false,
+              minify,
+              assetsDir: njsOutputDir,
+              sourcemap: savedConfig.sourcemap,
+              rollupOptions: {
+                input: Object.fromEntries(
+                  njsFiles.map((filename) => [
+                    filename,
+                    path.join(root, filename),
+                  ]),
+                ),
+                output: {
+                  format: "esm",
+                  entryFileNames: ({ name }) => {
+                    const shortName = path.basename(name).split(".")[0];
+                    return path.join(njsOutputDir, `${shortName}.njs`);
+                  },
+                  chunkFileNames: `${njsOutputDir}/[name].njs`,
+                },
+                preserveEntrySignatures: "strict",
+              },
+            },
+            esbuild: false,
+          });
+          const outputs = Array.isArray(res) ? res : [res];
+          outputs.forEach((output) => {
+            output.output.forEach((chunk) => {
+              bundle[chunk.fileName] = chunk;
+            });
+          });
+        },
+      };
+    })(),
     legacy({
       //use empty array to target the oldest browsers possible
       targets: [],
