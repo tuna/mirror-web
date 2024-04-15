@@ -182,6 +182,7 @@ export default defineConfig(({ mode }) => ({
                   "babel-preset-njs",
                 ],
                 plugins: [
+                  "./_src/babel-njs/index.mjs",
                 ],
                 configFile: false,
               }),

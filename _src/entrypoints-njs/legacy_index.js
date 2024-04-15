@@ -1,3 +1,4 @@
+import "../lib/njs-polyfill.js";
 import Mark from "markup-js";
 import processingHandlers from "../lib/mirrorListDataProcessing";
 import { TUNASYNC_JSON_PATH } from "../lib/consts";
