@@ -1,5 +1,4 @@
 import "../styles/global.scss";
-// @ts-ignore
 import { suffix as siteSuffix } from "virtual:jekyll-config";
 import { load as loadWebFont } from "webfontloader";
 

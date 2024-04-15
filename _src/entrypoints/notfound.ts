@@ -1,6 +1,5 @@
 import "./default";
 import "../styles/notfound.scss";
-// @ts-ignore
 import { issue_tag as IssueTag } from "virtual:jekyll-config";
 
 const tag = `[${IssueTag}]`;

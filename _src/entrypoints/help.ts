@@ -1,9 +1,8 @@
 import {
   hide_mirrorz as HideMirrorZ,
   hostname as SiteHostname,
-  mirrorz_help_link as MirrorzHelpLink, // @ts-ignore
+  mirrorz_help_link as MirrorzHelpLink,
 } from "virtual:jekyll-config";
-// @ts-ignore
 import { options as globalOptions } from "virtual:jekyll-data";
 import hljs from "../lib/hljs";
 import Mark from "markup-js";
@@ -59,8 +58,8 @@ Array.from(document.querySelectorAll("select.content-select")).map((el) => {
 });
 
 document.getElementById("help-select").addEventListener("change", (ev) => {
-  let help_url =
-    (ev.target as Element).querySelector("option:checked").attributes["data-help-url"].value;
+  let help_url = (ev.target as Element).querySelector("option:checked")
+    .attributes["data-help-url"].value;
   window.location.assign(
     `${window.location.protocol}//${window.location.host}${help_url}`,
   );
