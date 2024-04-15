@@ -24,7 +24,7 @@
 <script src="{% vite_asset_path /vite/legacy-polyfills-legacy %}" crossorigin="anonymous" id="vite-legacy-polyfill" nomodule></script>
 {% capture legacyFile %}{% vite_asset_path {{ entry }}-legacy.js %}{% endcapture %}
 <script nomodule defer>System.import({{ legacyFile | jsonify }});</script>
-<script type="module">
+<script dummytype="application/javascript" type="module">
   (function(){
     try{
       new Function("m","return import(m)");
