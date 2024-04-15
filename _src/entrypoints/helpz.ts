@@ -18,7 +18,7 @@ function generateFormConfig(form) {
     const varConf = GLOBAL_CONFIG.input[x];
     if (!varConf) continue;
     let optConf = null;
-    if ("option" in varConf) optConf = varConf.option[formData[x]];
+    if ("option" in varConf) optConf = varConf.option[formData[x] as string];
     else if ("true" in varConf || "false" in varConf) {
       optConf = formData[x] === "on" ? varConf.true : varConf.false;
     }
@@ -30,7 +30,7 @@ function generateFormConfig(form) {
 
 function renderCode(tmpl) {
   // generate mustache config
-  let conf = {
+  let conf: Record<string, string> = {
     path: (mirrorId.endsWith(".git") ? "/git/" : "/") + mirrorId,
   };
   Array.from(document.querySelectorAll("form.z-global")).forEach((elm) => {
@@ -85,7 +85,7 @@ function renderForm(event) {
 }
 
 // Load project config
-const GLOBAL_CONFIG = JSON.parse(
+const GLOBAL_CONFIG: Record<string, any> = JSON.parse(
   atob(document.getElementById("z-config").textContent),
 );
 

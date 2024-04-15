@@ -60,7 +60,7 @@ Array.from(document.querySelectorAll("select.content-select")).map((el) => {
 
 document.getElementById("help-select").addEventListener("change", (ev) => {
   let help_url =
-    ev.target.querySelector("option:checked").attributes["data-help-url"].value;
+    (ev.target as Element).querySelector("option:checked").attributes["data-help-url"].value;
   window.location.assign(
     `${window.location.protocol}//${window.location.host}${help_url}`,
   );

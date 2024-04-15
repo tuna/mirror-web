@@ -104,7 +104,7 @@ export default function (globalOptions) {
 
   const genMainMirrorList = (
     status_data: MirrorInfo[],
-    helpPages: { [k: string]: string },
+    helpPages: Record<string, string>,
   ) => {
     return status_data
       .filter((d) => !(d.status == "disabled"))
