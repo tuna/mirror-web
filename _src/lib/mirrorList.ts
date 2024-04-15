@@ -1,13 +1,13 @@
 import { TUNASYNC_JSON_PATH } from "../lib/consts";
 // @ts-ignore
 import { options as globalOptions } from "virtual:jekyll-data";
-import { ref, onMounted, nextTick } from "vue";
+import { ref, Ref, onMounted, nextTick } from "vue";
 import processingHandlers from "../lib/mirrorListDataProcessing";
 import { MirrorInfo } from "./types";
 
 const { postProcessStatusData } = processingHandlers(globalOptions);
 
-export const useMirrorList = (additional: MirrorInfo[] = []) => {
+export const useMirrorList = (additional: MirrorInfo[] = []): Ref<MirrorInfo[]> => {
   const mirrorList = ref([] as MirrorInfo[]);
   let refreshTimer = null;
 

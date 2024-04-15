@@ -24,3 +24,16 @@ export interface FullMirrorInfo {
 }
 
 export interface MirrorInfo extends Partial<FullMirrorInfo> {}
+
+export interface MirrorDesc {
+  name: string;
+  desc: string;
+}
+
+export interface GlobalOptions {
+  mirror_desc: MirrorDesc[];
+  new_mirrors: string[];
+  unlisted_mirrors: Partial<MirrorInfo>[];
+  force_redirect_help_mirrors: string[];
+  label_map: Record<string, string>;
+}

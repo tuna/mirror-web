@@ -1,7 +1,7 @@
 import { format as TimeAgoFormat } from "timeago.js";
-import { MirrorInfo } from "./types";
+import { MirrorInfo, GlobalOptions } from "./types";
 
-export default function (globalOptions) {
+export default function (globalOptions: GlobalOptions) {
   const label_map = globalOptions.label_map;
   const new_mirrors = Object.fromEntries(
     globalOptions.new_mirrors.map((x) => [x, true]),
