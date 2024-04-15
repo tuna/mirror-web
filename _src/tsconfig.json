@@ -2,12 +2,13 @@
   "include": ["**/*.ts", "**/*.js", "**/*.vue"],
   "files": [
     "../node_modules/njs-types/ngx_http_js_module.d.ts",
-    "components.d.ts"
+    "components.d.ts",
+    "shims-vue.d.ts"
   ],
   "compilerOptions": {
     "isolatedModules": true,
     "target": "ESNext",
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext"
+    "moduleResolution": "Bundler",
+    "module": "ESNext"
   }
 }

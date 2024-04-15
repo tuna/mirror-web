@@ -94,6 +94,9 @@ export default defineConfig(({ mode }) => ({
         },
       };
     })(),
+    typescript({
+      tsconfig: path.join('_src', "tsconfig.json"),
+    }),
     vue({
       template: {
         preprocessCustomRequire(id) {
