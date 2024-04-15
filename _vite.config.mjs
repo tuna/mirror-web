@@ -95,7 +95,7 @@ export default defineConfig(({ mode }) => ({
       };
     })(),
     typescript({
-      tsconfig: path.join('_src', "tsconfig.json"),
+      tsconfig: path.join("_src", "tsconfig.json"),
     }),
     vue({
       template: {
@@ -185,12 +185,8 @@ export default defineConfig(({ mode }) => ({
                 tsconfig: path.join(root, "tsconfig.json"),
               }),
               getBabelOutputPlugin({
-                presets: [
-                  "babel-preset-njs",
-                ],
-                plugins: [
-                  "./_src/babel-njs/index.mjs",
-                ],
+                presets: ["babel-preset-njs"],
+                plugins: ["./_src/babel-njs/index.mjs"],
                 configFile: false,
               }),
             ],
@@ -276,9 +272,7 @@ export default defineConfig(({ mode }) => ({
                   corejs: undefined,
                   shippedProposals: true,
                   ignoreBrowserslistConfig: true,
-                  exclude: [
-                    "@babel/plugin-transform-typeof-symbol",
-                  ],
+                  exclude: ["@babel/plugin-transform-typeof-symbol"],
                 },
               ],
             ],
