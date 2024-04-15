@@ -6,40 +6,17 @@ import BootStrapPopover from "bootstrap/js/dist/popover";
 import SearchBox from "./SearchBox.vue";
 import UpdateField from "./UpdateField.vue";
 import { useMirrorList } from "../lib/mirrorList";
+import processingHandlers from "../lib/mirrorListDataProcessing";
 
-const new_mirrors = Object.fromEntries(
-  globalOptions.new_mirrors.map((x) => [x, true]),
-);
-const unlisted = globalOptions.unlisted_mirrors;
-const forceHelp = Object.fromEntries(
-  globalOptions.force_redirect_help_mirrors.map((m) => [m, true]),
-);
-const descriptions = Object.fromEntries(
-  globalOptions.mirror_desc.map((m) => [m.name, m.desc]),
-);
+const { unlistedMirrors: unlisted, genMainMirrorList } =
+  processingHandlers(globalOptions);
 
 const rawMirrorList = useMirrorList(unlisted);
 
 const mirrorList = computed(() => {
-  return rawMirrorList.value
-    .filter((d) => !(d.status == "disabled"))
-    .map((d) => ({
-      ...d,
-      url: forceHelp[d.name] ? HelpPages[d.name] : d.url,
-      help_url: HelpPages[d.name],
-      is_new: Boolean(new_mirrors[d.name]),
-      description: descriptions[d.name],
-      github_release: d.url && d.url.startsWith("/github-release/"),
-    }));
+  return genMainMirrorList(rawMirrorList.value, HelpPages);
 });
 const filter = ref("");
-
-const getURL = (mir) => {
-  if (mir.url !== undefined) {
-    return mir.url;
-  }
-  return `/${mir.name}/`;
-};
 
 const filteredMirrorList = computed(() => {
   var filterText = filter.value.toLowerCase();
