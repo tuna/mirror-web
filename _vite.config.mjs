@@ -148,7 +148,7 @@ export default defineConfig(({ mode }) => ({
       return {
         name: "add-njs",
         config(config) {
-          savedConfig.minify = config.build?.minify;
+          savedConfig.minify = config.build?.minify ? 'terser' : false;
           savedConfig.root = config.root;
           savedConfig.mode = config.mode;
           savedConfig.njsFiles = glob.sync("entrypoints-njs/**", {
