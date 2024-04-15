@@ -1,4 +1,5 @@
 import { format as TimeAgoFormat } from "timeago.js";
+import { MirrorInfo } from "./types";
 
 export default function (globalOptions) {
   const label_map = globalOptions.label_map;
@@ -13,8 +14,8 @@ export default function (globalOptions) {
     globalOptions.mirror_desc.map((m) => [m.name, m.desc]),
   );
 
-  const processLinkItem = (mirrors) => {
-    var processed = [];
+  const processLinkItem = (mirrors: MirrorInfo[]) => {
+    var processed: MirrorInfo[] = [];
     for (let d of mirrors) {
       if (d.link_to === undefined) {
         processed.push(d);
@@ -30,8 +31,6 @@ export default function (globalOptions) {
           d.last_update_ago = target.last_update_ago;
           d.last_ended = target.last_ended;
           d.last_ended_ago = target.last_ended_ago;
-          d.last_schedule = target.last_schedule;
-          d.last_schedule_ago = target.last_schedule_ago;
           processed.push(d);
           break;
         }
@@ -40,7 +39,7 @@ export default function (globalOptions) {
     return processed;
   };
 
-  const stringifyTime = (ts) => {
+  const stringifyTime = (ts: number): [string, string] => {
     const date = new Date(ts * 1000);
     let str = "";
     let ago = "";
@@ -56,7 +55,7 @@ export default function (globalOptions) {
     return [str, ago];
   };
 
-  const processMirrorItem = (d) => {
+  const processMirrorItem = (d: MirrorInfo): MirrorInfo => {
     if (d.is_master === undefined) {
       d.is_master = true;
     }
@@ -64,7 +63,7 @@ export default function (globalOptions) {
       return d;
     }
     d.label = label_map[d.status];
-    d.show_status = d.status != "success";
+    d.show_status = d.status !== "success";
     // Strip the second component of last_update
     [d.last_update, d.last_update_ago] = stringifyTime(d.last_update_ts);
     [d.last_ended, d.last_ended_ago] = stringifyTime(d.last_ended_ts);
@@ -73,11 +72,11 @@ export default function (globalOptions) {
     return d;
   };
 
-  const sortAndUniqMirrors = (mirs) => {
+  const sortAndUniqMirrors = (mirs: MirrorInfo[]): MirrorInfo[] => {
     mirs.sort((a, b) => {
       return a.name < b.name ? -1 : 1;
     });
-    return mirs.reduce((acc, cur) => {
+    return mirs.reduce((acc: MirrorInfo[], cur: MirrorInfo) => {
       if (acc.length > 1 && acc[acc.length - 1].name == cur.name) {
         if (acc[acc.length - 1].last_update_ts && cur.last_update_ts) {
           if (acc[acc.length - 1].last_update_ts < cur.last_update_ts) {
@@ -93,23 +92,25 @@ export default function (globalOptions) {
     }, []);
   };
 
-  const postProcessStatusData = (status_data, additional) => {
+  const postProcessStatusData = (
+    status_data: MirrorInfo[],
+    additional: MirrorInfo[],
+  ) => {
     const processed = status_data
       .concat(additional)
       .map((d) => processMirrorItem(d));
     return sortAndUniqMirrors(processLinkItem(processed));
   };
 
-  const genMainMirrorList = (status_data, helpPages) => {
+  const genMainMirrorList = (
+    status_data: MirrorInfo[],
+    helpPages: { [k: string]: string },
+  ) => {
     return status_data
       .filter((d) => !(d.status == "disabled"))
       .map((d) => ({
         ...d,
-        url: forceHelp[d.name]
-          ? helpPages[d.name]
-          : d.url
-            ? d.url
-            : `/${d.name}/`,
+        url: forceHelp[d.name] ? helpPages[d.name] : d.url ?? `/${d.name}/`,
         help_url: helpPages[d.name],
         is_new: Boolean(new_mirrors[d.name]),
         description: descriptions[d.name],

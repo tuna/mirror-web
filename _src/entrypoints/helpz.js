@@ -10,7 +10,7 @@ function generateFormConfig(form) {
     // FormData ignores unchecked checkboxes, workaround
     form.querySelectorAll("input[type=checkbox]:not(:checked)"),
   ).forEach((elm) => {
-    formData[elm.name] = "";
+    formData[elm["name"]] = "";
   });
   let conf = {};
   for (const x in formData) {

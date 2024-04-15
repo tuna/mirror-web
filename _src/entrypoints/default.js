@@ -1,4 +1,5 @@
 import "../styles/global.scss";
+// @ts-ignore
 import { suffix as siteSuffix } from "virtual:jekyll-config";
 import { load as loadWebFont } from "webfontloader";
 
@@ -17,7 +18,7 @@ const lei3Po8h = ["support", ["tuna", "tsinghua", "edu", "cn"].join(".")].join(
 );
 Array.from(document.querySelectorAll("a.eib1gieB")).forEach((el) => {
   el.textContent = lei3Po8h;
-  el.href = ["ma", "ilto:"].join("i") + lei3Po8h;
+  el["href"] = ["ma", "ilto:"].join("i") + lei3Po8h;
 });
 
 loadWebFont({

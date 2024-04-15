@@ -17,4 +17,4 @@
 /node_modules/
 /.jekyll-cache/
 _stats.html
-
+/_src/components.d.ts

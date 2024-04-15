@@ -1,12 +1,14 @@
 import { TUNASYNC_JSON_PATH } from "../lib/consts";
+// @ts-ignore
 import { options as globalOptions } from "virtual:jekyll-data";
 import { ref, onMounted, nextTick } from "vue";
 import processingHandlers from "../lib/mirrorListDataProcessing";
+import { MirrorInfo } from "./types";
 
 const { postProcessStatusData } = processingHandlers(globalOptions);
 
-export const useMirrorList = (additional = []) => {
-  const mirrorList = ref([]);
+export const useMirrorList = (additional: MirrorInfo[] = []) => {
+  const mirrorList = ref([] as MirrorInfo[]);
   let refreshTimer = null;
 
   const refreshMirrorList = async () => {
@@ -15,7 +17,7 @@ export const useMirrorList = (additional = []) => {
     }
     try {
       const res = await fetch(TUNASYNC_JSON_PATH);
-      const status_data = await res.json();
+      const status_data = (await res.json()) as MirrorInfo[];
       mirrorList.value = postProcessStatusData(status_data, additional);
     } catch (e) {
       throw e;

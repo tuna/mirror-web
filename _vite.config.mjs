@@ -12,6 +12,7 @@ import fs from "node:fs";
 import { build as viteBuild, normalizePath } from "vite";
 import glob from "fast-glob";
 import { getBabelOutputPlugin } from "@rollup/plugin-babel";
+import typescript from "@rollup/plugin-typescript";
 
 const visualizer = await (async () => {
   if (process.env.VISUALIZER) {
@@ -148,7 +149,7 @@ export default defineConfig(({ mode }) => ({
       return {
         name: "add-njs",
         config(config) {
-          savedConfig.minify = config.build?.minify ? 'terser' : false;
+          savedConfig.minify = config.build?.minify ? "terser" : false;
           savedConfig.root = config.root;
           savedConfig.mode = config.mode;
           savedConfig.njsFiles = glob.sync("entrypoints-njs/**", {
@@ -177,6 +178,9 @@ export default defineConfig(({ mode }) => ({
             configFile: false,
             logLevel,
             plugins: [
+              typescript({
+                tsconfig: path.join(root, "tsconfig.json"),
+              }),
               getBabelOutputPlugin({
                 presets: [
                   "babel-preset-njs",

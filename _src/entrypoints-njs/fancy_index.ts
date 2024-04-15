@@ -1,6 +1,6 @@
 import Mark from "markup-js";
 
-function fancyIndexRender(r, templateUrl) {
+function fancyIndexRender(r: NginxHTTPRequest, templateUrl: string) {
   r.subrequest(
     templateUrl,
     {
@@ -25,10 +25,10 @@ function fancyIndexRender(r, templateUrl) {
   );
 }
 
-export function fancyIndexBeforeRender(r) {
+export function fancyIndexBeforeRender(r: NginxHTTPRequest) {
   return fancyIndexRender(r, "/fancy-index/before.html");
 }
 
-export function fancyIndexAfterRender(r) {
+export function fancyIndexAfterRender(r: NginxHTTPRequest) {
   return fancyIndexRender(r, "/fancy-index/after.html");
 }

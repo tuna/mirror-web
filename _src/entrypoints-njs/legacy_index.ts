@@ -1,9 +1,9 @@
-import "../lib/njs-polyfill.js";
+import "../lib/njs-polyfill";
 import Mark from "markup-js";
 import processingHandlers from "../lib/mirrorListDataProcessing";
 import { TUNASYNC_JSON_PATH } from "../lib/consts";
 
-export function legacyIndexRender(r) {
+export function legacyIndexRender(r: NginxHTTPRequest) {
   r.subrequest(
     "/legacy_index.html",
     {

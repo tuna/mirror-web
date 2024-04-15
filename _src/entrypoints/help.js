@@ -1,8 +1,9 @@
 import {
   hide_mirrorz as HideMirrorZ,
   hostname as SiteHostname,
-  mirrorz_help_link as MirrorzHelpLink,
+  mirrorz_help_link as MirrorzHelpLink, // @ts-ignore
 } from "virtual:jekyll-config";
+// @ts-ignore
 import { options as globalOptions } from "virtual:jekyll-data";
 import hljs from "../lib/hljs";
 import Mark from "markup-js";
@@ -41,7 +42,7 @@ const update_target = (ev) => {
     }
     // special hack for case-insensitive
     if ("sudoe" in template_data) {
-      template_data.sudoE = template_data.sudoe;
+      template_data["sudoE"] = template_data.sudoe;
     }
     const template = document
       .querySelector(template_selector)
@@ -60,7 +61,9 @@ Array.from(document.querySelectorAll("select.content-select")).map((el) => {
 document.getElementById("help-select").addEventListener("change", (ev) => {
   let help_url =
     ev.target.querySelector("option:checked").attributes["data-help-url"].value;
-  window.location = `${window.location.protocol}//${window.location.host}${help_url}`;
+  window.location.assign(
+    `${window.location.protocol}//${window.location.host}${help_url}`,
+  );
 });
 
 fetch(TUNASYNC_JSON_PATH)
