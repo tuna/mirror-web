@@ -97,4 +97,7 @@ html {
       @extend .col-xs-#{$i};
     }
   }
+  .nav.flex-column {
+    @extend .nav-stacked;
+  }
 }
