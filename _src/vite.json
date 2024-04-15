@@ -6,13 +6,12 @@
       "_includes/**/*",
       "_layouts/**/*",
       "_config.yml",
-      "vite.config.mjs"
+      "_vite.config.mjs"
     ],
     "publicOutputDir": "",
     "assetsDir": "assets"
   },
   "development": {
-    "autoBuild": true,
-    "publicOutputDir": "vite-dev"
+    "autoBuild": true
   }
 }

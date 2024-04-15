@@ -39,7 +39,7 @@ class Jekyll::Vite::Generator < Jekyll::Generator
     cache_dir = site.config['cache_dir'] || '.jekyll-cache'
     vr = ViteRuby.new(
       mode: Jekyll.env,
-      public_dir: cache_dir,
+      public_dir: File.join(cache_dir, 'vite-dist'),
       build_cache_dir: File.join(cache_dir, 'vite-build'),
       **(site.config['vite'].transform_keys(&:to_sym) || {})
     )
