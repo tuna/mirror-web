@@ -1,5 +1,5 @@
 {% capture entry %}{% if page.layout and layout.jsEntry %}{{ layout.jsEntry }}{% elsif page.jsEntry %}{{ page.jsEntry }}{% else %}default{% endif %}{% endcapture %}
-{% vite_javascript_tag {{ entry }} %}
+{% vite_typescript_tag {{ entry }} %}
 <script nomodule>
 (function() {
   var check = document.createElement('script');
@@ -22,7 +22,7 @@
 }());
 </script>
 <script src="{% vite_asset_path /vite/legacy-polyfills-legacy %}" crossorigin="anonymous" id="vite-legacy-polyfill" nomodule></script>
-{% capture legacyFile %}{% vite_asset_path {{ entry }}-legacy.js %}{% endcapture %}
+{% capture legacyFile %}{% vite_asset_path {{ entry }}-legacy.ts %}{% endcapture %}
 <script nomodule defer>System.import({{ legacyFile | jsonify }});</script>
 <script dummytype="application/javascript" type="module">
   (function(){
