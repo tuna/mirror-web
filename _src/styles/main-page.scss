@@ -16,6 +16,8 @@
     --bs-emphasis-color-rgb: white;
     --bs-link-color: #{bs.$link-color-dark};
     --bs-link-color-hover: #{bs.$link-hover-color-dark};
+    --bs-link-color-rgb: #{bs.to-rgb(bs.$link-color-dark)};
+    --bs-link-color-hover-rgb: #{bs.to-rgb(bs.$link-hover-color-dark)};
   }
 }
 
