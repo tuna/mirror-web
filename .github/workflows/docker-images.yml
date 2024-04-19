@@ -33,6 +33,7 @@ jobs:
         name: Prevent from loading rubygems from TUNA
         run: |
           sed -i "/^source/c source 'https://rubygems.org'" Gemfile
+          sed -i '/remote:/s@remote: .*$@remote: https://rubygems.org@' Gemfile.lock
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2

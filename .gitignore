@@ -1,6 +1,5 @@
 *.swp
 *~
-/Gemfile.lock
 /.jekyll-metadata
 /static/tunasync.json
 /static/status/
@@ -17,4 +16,3 @@
 /node_modules/
 /.jekyll-cache/
 _stats.html
-/_src/components.d.ts

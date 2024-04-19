@@ -3,17 +3,24 @@ FROM ruby:3.2
 RUN mkdir /data
 WORKDIR /data
 
-RUN apt-get update
+RUN \
+    apt-get update && \
+    apt-get install --no-install-recommends -y locales && \
+    apt-get clean
 RUN curl -fsSL "https://cdn.jsdelivr.net/gh/tj/n@7.3.0/bin/n#v14.17.1" | bash -s -- lts
 
-COPY Gemfile /data/
+COPY Gemfile Gemfile.lock package.json package-lock.json /data/
+COPY _node_module_patch /data/_node_module_patch
 
-RUN gem install bundler
-RUN bundle install
+RUN \
+    gem install bundler && \
+    bundle install --frozen && \
+    NODE_ENV=production npm ci && \
+    mv node_modules ../ && \
+    rm -rf /data/*
 
-# Fix https://github.com/babel/ruby-babel-transpiler/issues/294
-RUN sed -i 's/@context ||= ExecJS.compile("var self = this; " + File.read(script_path))/@context ||= ExecJS.compile("var self = this; " + File.read(script_path, :encoding => "UTF-8"))/' /usr/local/bundle/gems/babel-transpiler-0.7.0/lib/babel/transpiler.rb
-
-ENV LANG en_US.UTF-8
+ENV LANG C.UTF-8
+ENV JEKYLL_ENV production
+ENV VITE_RUBY_VITE_BIN_PATH /node_modules/.bin/vite
 
 CMD ["jekyll", "build"]

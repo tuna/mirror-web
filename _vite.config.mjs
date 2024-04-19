@@ -13,6 +13,8 @@ import { build as viteBuild, normalizePath } from "vite";
 import glob from "fast-glob";
 import { getBabelOutputPlugin } from "@rollup/plugin-babel";
 import typescript from "@rollup/plugin-typescript";
+import Typescript from "typescript";
+import { fileURLToPath } from "node:url";
 
 const visualizer = await (async () => {
   if (process.env.VISUALIZER) {
@@ -43,6 +45,44 @@ const jekyllData = Object.fromEntries(
   ]),
 );
 jekyllData.config.hasOwnProperty("suffix") || (jekyllData.config.suffix = null);
+
+const tsConfig = (() => {
+  const tsconfigPath = path.join("_src", "tsconfig.json");
+  return {
+    tsconfig: tsconfigPath,
+    filterRoot: false,
+    typescript: {
+      ...Typescript,
+      readConfigFile(filename, readFile) {
+        const result = Typescript.readConfigFile(filename, readFile);
+        if (result.error) {
+          return result;
+        }
+        result.config.files ??= [];
+        result.config.files = result.config.files.map((file) => {
+          const tsconfigDir = resolve(__dirname, path.dirname(tsconfigPath));
+          const resolvedFile = resolve(tsconfigDir, file);
+          const nodeModuleDir = resolve(__dirname, "node_modules");
+          const jekyllCacheDir = resolve(__dirname, ".jekyll-cache");
+
+          const relativeNodeModule = path.relative(nodeModuleDir, resolvedFile);
+          if (!relativeNodeModule.startsWith("../")) {
+            return fileURLToPath(import.meta.resolve(relativeNodeModule));
+          }
+          const relativeJekyllCache = path.relative(
+            jekyllCacheDir,
+            resolvedFile,
+          );
+          if (!relativeJekyllCache.startsWith("../")) {
+            return resolve(jekyllData.config.cache_dir, relativeJekyllCache);
+          }
+          return resolvedFile;
+        });
+        return result;
+      },
+    },
+  };
+})();
 
 export default defineConfig(({ mode }) => ({
   build: {
@@ -94,9 +134,7 @@ export default defineConfig(({ mode }) => ({
         },
       };
     })(),
-    typescript({
-      tsconfig: path.join("_src", "tsconfig.json"),
-    }),
+    typescript(tsConfig),
     vue({
       template: {
         preprocessCustomRequire(id) {
@@ -144,6 +182,7 @@ export default defineConfig(({ mode }) => ({
     components({
       dirs: [resolve(__dirname, "_src/components")],
       resolvers: [],
+      dts: resolve(jekyllData.config.cache_dir, "vite-components.d.ts"),
     }),
     (() => {
       const savedConfig = {
@@ -181,9 +220,7 @@ export default defineConfig(({ mode }) => ({
             configFile: false,
             logLevel,
             plugins: [
-              typescript({
-                tsconfig: path.join(root, "tsconfig.json"),
-              }),
+              typescript(tsConfig),
               getBabelOutputPlugin({
                 presets: ["babel-preset-njs"],
                 plugins: ["./_src/babel-njs/index.mjs"],

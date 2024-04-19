@@ -2,9 +2,9 @@
   "include": ["**/*.ts", "**/*.js", "**/*.vue"],
   "files": [
     "../node_modules/njs-types/ngx_http_js_module.d.ts",
-    "components.d.ts",
+    "../.jekyll-cache/vite-components.d.ts",
     "lib/shims/vue.d.ts",
-    "lib/shims/jekyll.d.ts",
+    "lib/shims/jekyll.d.ts"
   ],
   "compilerOptions": {
     "isolatedModules": true,
