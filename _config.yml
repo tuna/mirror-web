@@ -1,11 +1,5 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
-
 # Site settings
+
 title: 清华大学开源软件镜像站
 # title: 北京外国语大学开源软件镜像站
 school: 清华大学
@@ -37,7 +31,28 @@ mirrorz_desc: 校园网联合镜像站
 mirrorz_link: "https://mirrors.cernet.edu.cn/list"
 mirrorz_help_link: "https://help.mirrors.cernet.edu.cn/"
 
-# Build settings
+sponsors:
+    megvii:
+        name: "旷视科技有限公司"
+        link: "https://megvii.com/"
+        short: "旷视"
+        eng: "Megvii Technology Ltd."
+        logo: "megvii-s"
+    huawei:
+        name: "华为技术有限公司"
+        link: "https://huawei.com/"
+        short: "华为"
+        eng: "Huawei Technologies Co., Ltd."
+        logo: "huawei"
+
+poweredbys:
+    kunpeng: "海思<sup>®</sup> Kunpeng<sup>®</sup> 920 处理器"
+
+
+# ==================================
+# Build settings below, DO NOT TOUCH
+# ==================================
+
 highlighter: rouge
 markdown: kramdown
 kramdown:
@@ -68,22 +83,5 @@ addition_exclude:
     - vendor/
     - Dockerfile*
     - LICENSE
-
-sponsors:
-    megvii:
-        name: "旷视科技有限公司"
-        link: "https://megvii.com/"
-        short: "旷视"
-        eng: "Megvii Technology Ltd."
-        logo: "megvii-s"
-    huawei:
-        name: "华为技术有限公司"
-        link: "https://huawei.com/"
-        short: "华为"
-        eng: "Huawei Technologies Co., Ltd."
-        logo: "huawei"
-
-poweredbys:
-    kunpeng: "海思<sup>®</sup> Kunpeng<sup>®</sup> 920 处理器"
 
 # vim: ts=2 sts=2 sw=2 expandtab

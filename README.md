@@ -1,18 +1,24 @@
-# TUNA mirrors 主页
+# TUNA 镜像站主页
 
 注意：如果使用本项目搭建开源镜像站，**必须**：
 
-* 移除所有与清华大学和 TUNA 相关的内容，包括且不限于站名、logo 和各种文档中出现的所有文本和图形；
+* 移除所有与清华大学和 TUNA 相关的内容，包括且不限于站名、logo 和各种文档中出现的所有相关文本和图形；
 * 在网站首页恰当标注项目来源（`tuna/mirror-web`）；
 * 遵循 GPLv2 协议开放修改后的源代码；
 
-## 注意事项
+## 配置修改
 
-由于本站部分文档使用 submodule 方式嵌入仓库，clone 后构建前请运行 `git submodule update --init`。
+除具体页面内容外，可修改的配置还包括：
+
+* `_config.yml`：Jekyll 配置文件，包括站点名称、描述、链接等；请不要轻易改动构建配置。
+* `_data/options.yml`：Jekyll 数据文件，主要包括各个镜像的简要描述和部分特殊镜像的配置。请仿照已有的配置进行修改。
+* `geninfo/genisolist.ini`：生成直接下载链接的配置文件。请参见已有配置和注释进行修改。
 
 ## 编译方式
 
 本站使用 Jekyll 编写，并使用了 Vue、TypeScript、Vite 等前端框架开发。
+
+由于本站部分文档使用 submodule 方式嵌入仓库，clone 后构建前请运行 `git submodule update --init`。
 
 ### 本地开发
 
