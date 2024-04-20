@@ -1,4 +1,5 @@
 FROM ruby:3.2
+LABEL maintainer="Miao Wang <shankerwangmiao@gmail.com>"
 
 RUN mkdir /data
 WORKDIR /data
@@ -7,7 +8,7 @@ RUN \
     apt-get update && \
     apt-get install --no-install-recommends -y locales && \
     apt-get clean
-RUN curl -fsSL "https://cdn.jsdelivr.net/gh/tj/n@7.3.0/bin/n#v14.17.1" | bash -s -- lts
+RUN curl -fsSL "https://cdn.jsdelivr.net/gh/tj/n/bin/n" | bash -s -- lts
 
 COPY Gemfile Gemfile.lock package.json package-lock.json /data/
 COPY _node_module_patch /data/_node_module_patch
