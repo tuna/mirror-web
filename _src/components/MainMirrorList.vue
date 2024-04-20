@@ -34,7 +34,9 @@ const vWithPopover = {
   },
 };
 </script>
-<template src="./main-mirror-list.html" lang="liquid"></template>
+<template lang="liquid">
+  {% include main-mirror-list.html %}
+</template>
 
 <style lang="scss" scoped>
 @use "../styles/3-wave.scss" as wave;
