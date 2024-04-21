@@ -2,34 +2,36 @@ name: docker-images
 
 on:
   push:
-    branches: 
-    - master
-    - docker-test
   pull_request:
-    branches: 
-    - master
-    - docker-test
 
 jobs:
   multi:
-            
     runs-on: ubuntu-latest
     steps:
-      - 
+      -
         name: Determin docker tag
         env:
           TAG_NAME: ${{ github.ref }}
         run: |
-          if [ "${TAG_NAME##*/}" = "master" ]; then
-            tag=latest
-          else
-            tag=build-test
-          fi
+          case "${TAG_NAME}" in
+            refs/heads/master)
+              tag=latest
+              ;;
+            refs/tags/*)
+              tag=${TAG_NAME#refs/tags/}
+              ;;
+            refs/heads/*)
+              tag=branch-${TAG_NAME#refs/heads/}
+              ;;
+            *)
+              tag="dummy"
+              ;;
+          esac
           echo "docker_tag=${tag}" >> $GITHUB_ENV
       -
         name: Checkout
         uses: actions/checkout@v4
-      - 
+      -
         name: Prevent from loading rubygems from TUNA
         run: |
           sed -i "/^source/c source 'https://rubygems.org'" Gemfile
@@ -48,9 +50,10 @@ jobs:
         if: github.event_name == 'push'
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-mirrorweb-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-mirrorweb-${{ env.docker_tag }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-mirrorweb-
+            ${{ runner.os }}-buildx-mirrorweb-${{ env.docker_tag }}-
+            ${{ runner.os }}-buildx-mirrorweb-latest-
       -
         name: Cache Docker layers
         uses: actions/cache@v4
@@ -60,13 +63,34 @@ jobs:
           key: ${{ runner.os }}-pr-${{ github.event.pull_request.head.user.login }}-buildx-mirrorweb-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-pr-${{ github.event.pull_request.head.user.login }}-buildx-mirrorweb-
-            ${{ runner.os }}-buildx-mirrorweb-
+            ${{ runner.os }}-buildx-mirrorweb-latest-
       -
         name: Cache Docker layers
         if: github.event_name != 'push' && github.event_name != 'pull_request'
         run: |
           echo "I do not know how to setup cache"
           exit -1
+      -
+        name: Test Build Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.build
+          push: false
+          tags: tunathu/mirror-web:localtest
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/local-test-build-cache
+          load: true
+      -
+        name: Test Run Page Build
+        run: |
+          docker run --rm -v $PWD:/data -v $PWD/_site:/data/_site --tmpfs /data/.jekyll-cache tunathu/mirror-web:localtest jekyll build --future
+      -
+        name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: _site
       -
         name: Login to DockerHub
         uses: docker/login-action@v3
@@ -83,5 +107,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name == 'push' }}
           tags: tunathu/mirror-web:${{ env.docker_tag }}
-          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-from: |
+            type=local,src=/tmp/.buildx-cache
+            type=local,src=/tmp/local-test-build-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
