@@ -84,13 +84,26 @@ jobs:
       -
         name: Test Run Page Build
         run: |
-          docker run --rm -v $PWD:/data -v $PWD/_site:/data/_site --tmpfs /data/.jekyll-cache tunathu/mirror-web:localtest jekyll build --future
+          docker run --rm \
+            -v $PWD:/data \
+            -v $PWD/_site:/data/_site \
+            --tmpfs /data/.jekyll-cache \
+            --tmpfs /data/node_modules:exec \
+            --env VISUALIZER=1 \
+            tunathu/mirror-web:localtest \
+            bash -c "npm install rollup-plugin-visualizer && jekyll build --future"
       -
         name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: site
           path: _site
+      -
+        name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: stats.html
+          path: _stats.html
       -
         name: Login to DockerHub
         uses: docker/login-action@v3
