@@ -1,6 +1,7 @@
 import "../styles/global.scss";
 import { suffix as siteSuffix } from "virtual:jekyll-config";
 import { load as loadWebFont } from "webfontloader";
+import "bootstrap/js/dist/collapse";
 
 if (siteSuffix) {
   if (
