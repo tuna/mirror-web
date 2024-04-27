@@ -25,7 +25,7 @@
           href="{{url}}" title="{{description}}"
           {% endraw %}{% else %}{% raw %}
           data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right"
-					:data-bs-content="mir.description" :href="mir.url" :aria-label="mir.name + ', ' + mir.description"
+					:data-bs-content="mir.description" :href="mir.url" :aria-label="mir.name + (mir.description ? ', ' + mir.description : '')"
 					v-with-popover
           {% endraw %}{% endif %}
 				>
