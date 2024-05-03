@@ -184,7 +184,7 @@ def parseSection(items, rsync=False):
             # find last non-wildcard path
             non_regex = []
             for dir in location.split("/"):
-                if re.search("[\?\*\[\]]", dir):
+                if re.search(r"[\?\*\[\]]", dir):
                     break
                 non_regex.append(dir)
             prefix = "/".join(non_regex + [""])
@@ -286,7 +286,7 @@ def getImageList():
 
     prior = {}
     for (name, value) in ini.items("%main%"):
-        if re.match("d\d+$", name):
+        if re.match(r"d\d+$", name):
             prior[value] = int(name[1:])
 
     url_dict = {}
