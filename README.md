@@ -30,7 +30,7 @@ mkdir -p static/status
 wget https://mirrors.tuna.tsinghua.edu.cn/static/status/isoinfo.json -O static/status/isoinfo.json
 ```
 
-编译前，先安装 Ruby (>= 3.0) 和 Node.js (>= 16)，然后执行：
+编译前，先安装 Ruby (>= 3.0) 和 Node.js (>= 18)，然后执行：
 
 ```bash
 bundle install --deployment
