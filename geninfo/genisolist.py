@@ -226,11 +226,11 @@ def parseSection(items, rsync=False):
                 imageinfo["version"] = "0.0"
             sort_by = items.get("sort_by", "")
             if not (sort_by):
-                imageinfo["sort_key"] = (
+                imageinfo["sort_key"] = [
                     imageinfo["version"],
                     imageinfo["platform"],
                     imageinfo["type"],
-                )
+                ]
             else:
                 imageinfo["sort_key"] = getSortKeys(sort_by, result)
 
