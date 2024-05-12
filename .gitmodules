@@ -2,3 +2,6 @@
 	path = help/_posts/mirrorz-help-ng-transpiled
 	url = https://github.com/tuna/mirrorz-help-ng.git
 	branch = transpiled
+[submodule "geninfo/z-geninfo"]
+	path = geninfo/z-geninfo
+	url = https://github.com/mirrorz-org/genisolist.git
