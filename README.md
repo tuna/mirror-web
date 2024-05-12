@@ -12,7 +12,7 @@
 
 * `_config.yml`：Jekyll 配置文件，包括站点名称、描述、链接等；请不要轻易改动构建配置。
 * `_data/options.yml`：Jekyll 数据文件，主要包括各个镜像的简要描述和部分特殊镜像的配置。请仿照已有的配置进行修改。
-* `geninfo/genisolist.ini`：生成直接下载链接的配置文件。请参见已有配置和注释进行修改。
+* `geninfo/genisolist.ini`：生成直接下载链接的配置文件。具体内容修改请提交到 [mirrorz-org/genisolist](https://github.com/mirrorz-org/genisolist)。
 
 ## 编译方式
 
@@ -130,12 +130,18 @@ docker run --rm -v /path/to/mirror-web:/data tunathu/mirror-web
      }
    }
    ```
+
 3. 然后在需要开启目录浏览的 `location` 配置块中添加：
 
    ```nginx
    fancyindex on;
    ```
 
+### `genisolist` 部署
+
+本项目使用 [`mirrorz-org/genisolist`](https://github.com/mirrorz-org/genisolist) 生成供前端渲染的 JSON 文件，请查看该项目的文档进行部署和修改。
+
+如果增加了新的配置，不要忘记在 `geninfo/genisolist.ini` 中增加新的 `!include` 指令。
 
 ## 贡献文档
 
