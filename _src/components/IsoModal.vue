@@ -47,7 +47,7 @@ const switchCategory = (category) => {
 </script>
 
 <template>
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button
@@ -58,7 +58,7 @@ const switchCategory = (category) => {
         >
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title" id="isoModalLabel">获取安装镜像</h4>
+        <h4 class="modal-title" id="isoModalLabel"><a href="#iso-download">获取安装镜像</a></h4>
         <button
           type="button"
           class="btn-close"
