@@ -22,6 +22,7 @@ omv-env set OMV_APT_SECURITY_REPOSITORY_URL "https://{{ site.hostname }}/debian-
 # 如果你有安装 omv-extras 则需要运行如下命令更改源
 omv-env set OMV_EXTRAS_APT_REPOSITORY_URL "https://{{ site.hostname }}/OpenMediaVault/openmediavault-plugin-developers"
 omv-env set OMV_DOCKER_APT_REPOSITORY_URL "https://{{ site.hostname }}/docker-ce/linux/debian"
+sudo omv-env set OMV_DOCKER_KEY_URL "https://{{ site.hostname }}/docker-ce/linux/debian/gpg"
 omv-env set OMV_PROXMOX_APT_REPOSITORY_URL "https://{{ site.hostname }}/proxmox/debian"
 # 使得环境变量更改生效
 omv-salt stage run all
