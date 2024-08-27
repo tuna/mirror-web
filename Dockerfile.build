@@ -14,7 +14,7 @@ COPY Gemfile Gemfile.lock package.json package-lock.json /data/
 COPY _node_module_patch /data/_node_module_patch
 
 RUN \
-    gem install bundler && \
+    gem install bundler -v "$(sed --silent -r '/BUNDLED WITH/,+1 {s/^[\t ]+//; p}' Gemfile.lock | tail -n +2)" && \
     bundle install --frozen && \
     NODE_ENV=production npm ci && \
     mv node_modules ../ && \
