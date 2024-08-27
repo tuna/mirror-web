@@ -93,7 +93,7 @@ jobs:
             --tmpfs /data/node_modules:exec \
             --env VISUALIZER=1 \
             tunathu/mirror-web:localtest \
-            bash -c "npm install rollup-plugin-visualizer && jekyll build --future"
+            bash -c "npm install rollup-plugin-visualizer && bundle exec jekyll build --future"
       -
         name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
