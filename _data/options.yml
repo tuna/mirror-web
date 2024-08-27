@@ -282,6 +282,8 @@ mirror_desc:
     desc: 在本地运行的单节点 Kubernetes 集群安装工具
   - name: mongodb
     desc: 开源的跨平台 NoSQL 文档型数据库
+  - name: mozilla
+    desc: Mozilla APT 软件源
   - name: msys2
     desc: 用于编译原生 Windows 程序的类 Linux 开发环境
   - name: mxlinux
@@ -452,10 +454,8 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - rosdistro
-  - entware
-  - sourceware
-  - crates.io-index
+  - mozilla
+  - debian-elts
 
 unlisted_mirrors:
   - status: 'success'
