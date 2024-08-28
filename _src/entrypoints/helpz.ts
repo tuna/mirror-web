@@ -31,7 +31,7 @@ function generateFormConfig(form) {
 function renderCode(tmpl) {
   // generate mustache config
   let conf: Record<string, string> = {
-    path: (mirrorId.endsWith(".git") ? "/git/" : "/") + mirrorId,
+    path: ((mirrorId.endsWith(".git") || GLOBAL_CONFIG.git) ? "/git/" : "/") + mirrorId,
   };
   Array.from(document.querySelectorAll("form.z-global")).forEach((elm) => {
     Object.assign(conf, generateFormConfig(elm));
