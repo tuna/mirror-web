@@ -14,6 +14,7 @@ echo 'Disallow: /logs' >> robots.txt
   echo "cygwin";
   echo "pub";
   echo "git";
+  echo "linuxbrew-bottles";
 ) | uniq | while read name; do
 	[[ -z ${name} ]] || [[ ${name} = "tuna" ]] && continue
 	echo "Disallow: /${name}" >> robots.txt
