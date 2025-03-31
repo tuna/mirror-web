@@ -42,7 +42,11 @@ function dropTomato(tomato) {
     // Skip tomato
     if(field && field.contains(el)) continue;
     if(ctrl && ctrl.contains(el)) continue;
-    if(el.computedStyleMap().get('pointer-events').toString() === 'none') continue;
+    try {
+      if(el.computedStyleMap().get('pointer-events').toString() === 'none') continue;
+    } catch(e) {
+      console.log('Firefox?', el);
+    }
     console.log(el);
     return el;
   }
