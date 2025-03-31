@@ -86,8 +86,11 @@ document.addEventListener('click', function(event) {
   cnt += 1;
   if(cnt === 10) {
     const ctrl = document.getElementsByClassName('field-ctrl')[0];
-    ctrl.classList.remove('tucked');
-    ctrl.classList.add('hidden');
+    window.localStorage.setItem('tomato-hint', 'true');
+    if(ctrl.classList.contains('tucked')) {
+      ctrl.classList.remove('tucked');
+      ctrl.classList.add('hidden');
+    }
   }
   
 }, {
@@ -120,6 +123,28 @@ function loop(ts) {
 
 requestAnimationFrame(loop);
 
+function setData(key, value) {
+  const input = document.getElementById(`field-${key}`);
+  input.value = value;
+  const ev = new Event('input', {
+    bubbles: true,
+    cancelable: true,
+  });
+  input.dispatchEvent(ev);
+}
+
+function lazerSettings() {
+  setData('variance', 0);
+  setData('gravity', 0);
+  setData('init-vy', 0);
+}
+
+function defaultSettings() {
+  setData('variance', 100);
+  setData('gravity', 400);
+  setData('init-vy', -100);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const toggle = document.getElementsByClassName('field-ctrl-toggle')[0];
   toggle.addEventListener('click', function() {
@@ -127,11 +152,22 @@ document.addEventListener('DOMContentLoaded', function() {
     ctrl.classList.toggle('hidden');
   });
 
+  const defaultBtn = document.getElementById('field-ctrl-default');
+  defaultBtn.addEventListener('click', function() {
+    defaultSettings();
+  });
+
+  const lazer = document.getElementById('field-ctrl-lazer');
+  lazer.addEventListener('click', function() {
+    lazerSettings();
+  });
+
   const variance = document.getElementById('field-variance');
   variance.addEventListener('input', function() {
     VARIANCE = parseInt(variance.value);
     const varianceLabel = document.querySelector('label[for="field-variance"]');
     varianceLabel.innerText = `Variance: ${VARIANCE}`;
+    window.localStorage.setItem('tomato-variance', VARIANCE);
   });
 
   const gravity = document.getElementById('field-gravity');
@@ -139,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
     GRAVITY = parseInt(gravity.value);
     const gravityLabel = document.querySelector('label[for="field-gravity"]');
     gravityLabel.innerText = `Gravity: ${GRAVITY}`;
+    window.localStorage.setItem('tomato-gravity', GRAVITY);
   });
 
   const init_vy = document.getElementById('field-init-vy');
@@ -146,5 +183,16 @@ document.addEventListener('DOMContentLoaded', function() {
     INIT_VY = parseInt(init_vy.value);
     const initVyLabel = document.querySelector('label[for="field-init-vy"]');
     initVyLabel.innerText = `Initial Velocity: ${INIT_VY}`;
+    window.localStorage.setItem('tomato-init-vy', INIT_VY);
   });
+
+  // Recover stored settings
+  setData('variance', parseInt(window.localStorage.getItem('tomato-variance')) || 100);
+  setData('gravity', parseInt(window.localStorage.getItem('tomato-gravity')) || 400);
+  setData('init-vy', parseInt(window.localStorage.getItem('tomato-init-vy')) || -100);
+  if(window.localStorage.getItem('tomato-hint') === 'true') {
+    const ctrl = document.getElementsByClassName('field-ctrl')[0];
+    ctrl.classList.remove('tucked');
+    ctrl.classList.add('hidden');
+  }
 });

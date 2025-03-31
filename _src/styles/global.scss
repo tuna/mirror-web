@@ -302,3 +302,14 @@ body {
 .field-ctrl.hidden {
   transform: translateY(calc(100% - 50px));
 }
+
+.field-ctrl-info {
+  display: flex;
+  align-items: center;
+  > span {
+    flex: 1;
+  }
+  button {
+    margin-left: 10px;
+  }
+}
