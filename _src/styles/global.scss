@@ -268,7 +268,7 @@ body {
   line-height: 40px;
   max-width: 200px;
   background: var(--bs-body-bg);
-  box-shadow: rgba(0,0,0, .3) 0 -2px 3px;
+  box-shadow: rgba(0,0,0, .3) 0 4px 6px;
   font-weight: bold;
   cursor: pointer;
   border-radius: 4px;
@@ -277,7 +277,7 @@ body {
 .field-ctrl-main {
   padding: 10px 20px;
   background: var(--bs-body-bg);
-  box-shadow: rgba(0,0,0, .3) 0 -2px 3px;
+  box-shadow: rgba(0,0,0, .3) 0 4px 6px;
   border-radius: 4px;
 
   > div {
