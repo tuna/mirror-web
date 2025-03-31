@@ -21,3 +21,7 @@ createApp(IsoModal, {
 }).mount(isoModalEl);
 
 createApp(MainMirrorList).mount("#mirror-list");
+
+window.addEventListener('scroll', (e) => {
+  document.body.style.setProperty('--scroll-top', (window.scrollY / window.innerHeight).toString());
+});

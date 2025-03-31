@@ -205,3 +205,74 @@ a {
     margin-right: 5px;
   }
 }
+
+.vtuber-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+
+  .vtuber-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    picture, img {
+      width: 50vw;
+    }
+
+    .vtuber-title {
+      margin-top: 10px;
+      font-size: 42px;
+      font-weight: 700;
+
+      text-align: center;
+      letter-spacing: 0.2em;
+    }
+  }
+}
+
+.vtuber-backdrops {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  height: 100vh;
+
+  z-index: -1;
+  overflow: hidden;
+}
+
+.vtuber-backdrop-1 {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--bs-body-bg);
+}
+
+.vtuber-backdrop-2 {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background-color: blue;
+}
+
+.vtuber-backdrop-3 {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background-color: green;
+}
+
+.vtuber-backdrop-4 {
+  position: absolute;
+  height: 100vh;
+  width: 200vw;
+  background-color: red;
+
+  box-shadow: rgba(0,0,0,.7) 0 -2px 6px;
+
+  transform: rotate(calc(var(--scroll-top) * 20deg + 10deg)) translateX(calc(var(--scroll-top) * 100vh - 10px))
+}
