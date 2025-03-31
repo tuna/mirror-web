@@ -1,3 +1,4 @@
+import "../lib/shoot.js";
 import "./default";
 import "../styles/fancyIndex.scss";
 

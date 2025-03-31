@@ -205,3 +205,100 @@ a {
     margin-right: 5px;
   }
 }
+
+#field {
+  position: absolute;
+  z-index: 100000;
+  pointer-events: none;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.tomato {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  transform-origin: 50% 50%;
+}
+
+.tomato-inner {
+  width: 40px;
+  height: 40px;
+
+  animation: tomato-rotate .5s linear infinite;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+@keyframes tomato-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.tomato.splash svg {
+  transform-origin: 50% 50%;
+  transform: scale(3);
+}
+
+.field-ctrl {
+  position: fixed;
+  z-index: 100005;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 20px 20px 20px;
+  transition: transform .2s ease;
+}
+
+.field-ctrl-toggle {
+  margin-bottom: 20px;
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  max-width: 200px;
+  background: var(--bs-body-bg);
+  box-shadow: rgba(0,0,0, .3) 0 -2px 3px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.field-ctrl-main {
+  padding: 10px 20px;
+  background: var(--bs-body-bg);
+  box-shadow: rgba(0,0,0, .3) 0 -2px 3px;
+  border-radius: 4px;
+
+  > div {
+    display: flex;
+    align-items: center;
+
+    > input {
+      flex: 1;
+    }
+
+    > label {
+      margin-left: 10px;
+    }
+  }
+}
+
+
+.field-ctrl.tucked {
+  transform: translateY(calc(100% + 20px));
+}
+
+.field-ctrl.hidden {
+  transform: translateY(calc(100% - 50px));
+}

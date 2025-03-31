@@ -1,3 +1,4 @@
+import "../lib/shoot.js";
 import Empty from "../components/Empty.vue";
 import IsoModal from "../components/IsoModal.vue";
 import MainMirrorList from "../components/MainMirrorList.vue";
