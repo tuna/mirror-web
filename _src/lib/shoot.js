@@ -167,9 +167,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Recover stored settings
-  setData('variance', parseInt(window.localStorage.getItem('tomato-variance')) ?? 100);
-  setData('gravity', parseInt(window.localStorage.getItem('tomato-gravity')) ?? 400);
-  setData('init-vy', parseInt(window.localStorage.getItem('tomato-init-vy')) ?? -100);
+  setData('variance', parseInt(window.localStorage.getItem('tomato-variance') ?? 100));
+  setData('gravity', parseInt(window.localStorage.getItem('tomato-gravity') ?? 400));
+  setData('init-vy', parseInt(window.localStorage.getItem('tomato-init-vy') ?? -100));
   if(window.localStorage.getItem('tomato-hint') === 'true') {
     const ctrl = document.getElementsByClassName('field-ctrl')[0];
     ctrl.classList.remove('tucked');
