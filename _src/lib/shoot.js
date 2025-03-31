@@ -166,6 +166,16 @@ document.addEventListener('DOMContentLoaded', function() {
     lazerSettings();
   });
 
+  // Recover stored settings
+  setData('variance', parseInt(window.localStorage.getItem('tomato-variance')) ?? 100);
+  setData('gravity', parseInt(window.localStorage.getItem('tomato-gravity')) ?? 400);
+  setData('init-vy', parseInt(window.localStorage.getItem('tomato-init-vy')) ?? -100);
+  if(window.localStorage.getItem('tomato-hint') === 'true') {
+    const ctrl = document.getElementsByClassName('field-ctrl')[0];
+    ctrl.classList.remove('tucked');
+    ctrl.classList.add('hidden');
+  }
+
   const variance = document.getElementById('field-variance');
   variance.addEventListener('input', function() {
     VARIANCE = parseInt(variance.value);
@@ -176,6 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const gravity = document.getElementById('field-gravity');
   gravity.addEventListener('input', function() {
+    console.log('Update gravity: ', gravity.value);
     GRAVITY = parseInt(gravity.value);
     const gravityLabel = document.querySelector('label[for="field-gravity"]');
     gravityLabel.innerText = `Gravity: ${GRAVITY}`;
@@ -189,14 +200,4 @@ document.addEventListener('DOMContentLoaded', function() {
     initVyLabel.innerText = `Initial Velocity: ${INIT_VY}`;
     window.localStorage.setItem('tomato-init-vy', INIT_VY);
   });
-
-  // Recover stored settings
-  setData('variance', parseInt(window.localStorage.getItem('tomato-variance')) ?? 100);
-  setData('gravity', parseInt(window.localStorage.getItem('tomato-gravity')) ?? 400);
-  setData('init-vy', parseInt(window.localStorage.getItem('tomato-init-vy')) ?? -100);
-  if(window.localStorage.getItem('tomato-hint') === 'true') {
-    const ctrl = document.getElementsByClassName('field-ctrl')[0];
-    ctrl.classList.remove('tucked');
-    ctrl.classList.add('hidden');
-  }
 });
