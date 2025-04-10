@@ -28,15 +28,20 @@
 {% capture legacyFile %}{% vite_asset_path {{ entry }}-legacy.ts %}{% endcapture %}
 <script nomodule defer>System.import({{ legacyFile | jsonify }});</script>
 <!--
+  load moduleGuard.ts as a module, to detect whether the browser can correctly
+  load the module.
+  Sometimes if we are behind a proxy, the scripts may be wrapped in a function
+  and the module may not be loaded correctly.
+  In that case, we will load the legacy build.
+-->
+<script src="{% vite_asset_path moduleGuard.ts %}" crossorigin="anonymous" type="module"></script>
+<!--
   jekyll-minifier only minify scripts with type="application/javascript",
   here data-dummytype is added to trick jekyll-minifier to minify the script.
 -->
 <script data-dummytype="application/javascript" type="module">
   (function(){
-    try{
-      new Function("m","return import(m)");
-    }catch(e){
-      console.warn("vite: loading legacy build because dynamic import is unsupported, syntax error above should be ignored");
+    var loadLegacy = function() {
       var polyScript = document.getElementById("vite-legacy-polyfill");
       var newScript = document.createElement("script");
       newScript.src = polyScript.src;
@@ -44,6 +49,18 @@
         System.import({{ legacyFile | jsonify }});
       };
       document.body.appendChild(newScript);
+    }
+    try{
+      new Function("m","return import(m)");
+      document.addEventListener("DOMContentLoaded", function(){
+        if(!document.documentElement.hasAttribute("data-module-loaded")){
+          console.warn("vite: loading legacy build because esm module is not loaded");
+          loadLegacy();
+        }
+      });
+    }catch(e){
+      console.warn("vite: loading legacy build because dynamic import is unsupported, syntax error above should be ignored");
+      loadLegacy();
     }
   })();
 </script>
