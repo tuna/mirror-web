@@ -31,7 +31,57 @@
 <title>{{ page_title }}</title>
 {% unless include.nostyle %}
 {% include vite_script.html %}
-<link rel="stylesheet" href="{% vite_asset_path bs3-polyfill.scss %}" media="screen" integrity="sha256-OnlyforlegacybrowsersAAAAAAAAAAAAAAAAAAAAAA=" />
+<link rel="stylesheet" id="style-polyfill-bs3" title="style-polyfill-bs3" href="{% vite_asset_path bs3-polyfill.scss %}" media="screen" integrity="sha256-OnlyforlegacybrowsersAAAAAAAAAAAAAAAAAAAAAA=" />
+<script>
+  (function(){
+    var s = document.getElementById('style-polyfill-bs3');
+    if(s){
+      /*
+       We first test if the browser supports CSS variables. If it does, we
+        remove the style tag. If it doesn't, or it dosn't support the
+        CSS.supports at all, then ....
+      */
+      try {
+        if(!CSS.supports('color', 'var(--fake-var)')){
+          throw false;
+        }
+        s.disabled = true;
+        s.parentNode.removeChild(s);
+      }catch(e){
+        /*
+          We detect if the polyfill css is loaded. It will not be loaded
+            if the browser supports content integrity.
+        */
+        var found = 0;
+        for(var i = 0; i < document.styleSheets.length; i++){
+          if(document.styleSheets[i].title === s.title){
+            found = 1;
+            break;
+          }
+        }
+        if(!found){
+          var s2 = s.cloneNode();
+          s2.integrity = "";
+          document.head.appendChild(s2);
+        }
+      }
+      /*
+        So the cases are:
+        - Old browsers that cannot run the script before:
+          - They will not support content integrity and will load the
+            polyfill css.
+        - Old browsers that can run the script before, but do not support
+          content integrity:
+          - They will load the polyfill css. and the script before do nothing
+        - Old browsers that support content integrity but do not support
+          CSS variables:
+          - The before script will load the polyfill css.
+        - Modern browers with script disabled:
+          - Content integrity will prevent them from loading the polyfill.
+      */
+    }
+  })();
+</script>
 {% if page.legacy %}
 <style>
 .container {
