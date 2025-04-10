@@ -1,6 +1,9 @@
 {% capture entry %}{% if page.layout and layout.jsEntry %}{{ layout.jsEntry }}{% elsif page.jsEntry %}{{ page.jsEntry }}{% else %}default{% endif %}{% endcapture %}
 {% vite_typescript_tag {{ entry }} %}
 <script nomodule>
+/*
+  Workaround for Safari 10.1, which does not support the `nomodule` attribute.
+*/
 (function() {
   var check = document.createElement('script');
   if (!('noModule' in check) && 'onbeforeload' in check) {
@@ -24,7 +27,11 @@
 <script src="{% vite_asset_path /vite/legacy-polyfills-legacy %}" crossorigin="anonymous" id="vite-legacy-polyfill" nomodule></script>
 {% capture legacyFile %}{% vite_asset_path {{ entry }}-legacy.ts %}{% endcapture %}
 <script nomodule defer>System.import({{ legacyFile | jsonify }});</script>
-<script dummytype="application/javascript" type="module">
+<!--
+  jekyll-minifier only minify scripts with type="application/javascript",
+  here data-dummytype is added to trick jekyll-minifier to minify the script.
+-->
+<script data-dummytype="application/javascript" type="module">
   (function(){
     try{
       new Function("m","return import(m)");
