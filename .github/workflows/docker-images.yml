@@ -65,7 +65,6 @@ jobs:
       -
         name: Build Test Docker Image
         uses: docker/build-push-action@v6
-        id: docker_build
         with:
           context: .
           file: Dockerfile.build
@@ -100,6 +99,7 @@ jobs:
       -
         name: Build and push
         uses: docker/build-push-action@v5
+        id: docker_build
         with:
           context: .
           file: Dockerfile.build
