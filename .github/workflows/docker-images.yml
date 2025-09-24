@@ -3,13 +3,21 @@ name: docker-images
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   multi:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - ubuntu-24.04-arm
+    runs-on: ${{ matrix.os }}
     steps:
       -
-        name: Determin docker tag
+        name: Determine docker tag
+        id: docker_tag
         env:
           TAG_NAME: ${{ github.ref }}
         run: |
@@ -27,10 +35,10 @@ jobs:
               tag="dummy"
               ;;
           esac
-          echo "docker_tag=${tag}" >> $GITHUB_ENV
+          echo "docker_tag=${tag}" | tee -a $GITHUB_OUTPUT
       -
         name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: true
       -
@@ -38,11 +46,6 @@ jobs:
         run: |
           sed -i "/^source/c source 'https://rubygems.org'" Gemfile
           sed -i '/remote:/s@remote: .*$@remote: https://rubygems.org@' Gemfile.lock
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-        with:
-          platforms: arm64
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -52,20 +55,21 @@ jobs:
         if: github.event_name == 'push'
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-mirrorweb-${{ env.docker_tag }}-${{ github.sha }}
+          key: ${{ matrix.os }}-buildx-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-mirrorweb-${{ env.docker_tag }}-
-            ${{ runner.os }}-buildx-mirrorweb-latest-
+            ${{ matrix.os }}-buildx-${{ matrix.os }}-
+            ${{ matrix.os }}-buildx-
       -
         name: Cache Docker layers
         uses: actions/cache@v4
         if: github.event_name == 'pull_request'
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-pr-${{ github.event.pull_request.head.user.login }}-buildx-mirrorweb-${{ github.sha }}
+          key: ${{ matrix.os }}-pr-${{ github.event.pull_request.head.user.login }}-buildx-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-pr-${{ github.event.pull_request.head.user.login }}-buildx-mirrorweb-
-            ${{ runner.os }}-buildx-mirrorweb-latest-
+            ${{ matrix.os }}-pr-${{ github.event.pull_request.head.user.login }}-buildx-
+            ${{ matrix.os }}-buildx-
+            ${{ matrix.os }}-buildx-
       -
         name: Cache Docker layers
         if: github.event_name != 'push' && github.event_name != 'pull_request'
@@ -73,8 +77,16 @@ jobs:
           echo "I do not know how to setup cache"
           exit -1
       -
-        name: Test Build Docker Image
-        uses: docker/build-push-action@v5
+        name: Login to DockerHub
+        uses: docker/login-action@v3
+        if: github.event_name == 'push'
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build Test Docker Image
+        uses: docker/build-push-action@v6
+        id: docker_build
         with:
           context: .
           file: Dockerfile.build
@@ -107,22 +119,88 @@ jobs:
           name: stats.html
           path: _stats.html
       -
-        name: Login to DockerHub
-        uses: docker/login-action@v3
-        if: github.event_name == 'push'
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
         name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: .
           file: Dockerfile.build
-          platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name == 'push' }}
-          tags: tunathu/mirror-web:${{ env.docker_tag }}
+          tags: tunathu/mirror-web:${{ steps.docker_tag.outputs.docker_tag }}
           cache-from: |
             type=local,src=/tmp/.buildx-cache
             type=local,src=/tmp/local-test-build-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
+          outputs: ${{ github.event_name == 'push' && 'type=image,push-by-digest=true,name-canonical=true,push=true' || 'type=image' }}
+      -
+        name: Export digest
+        run: |
+          mkdir -p ${{ runner.temp }}/digests/
+          digest="${{ steps.docker_build.outputs.digest }}"
+          touch "${{ runner.temp }}/digests/${digest#sha256:}"
+      -
+        name: Upload digest
+        uses: actions/upload-artifact@v4
+        with:
+          name: digests-${{ runner.arch }}
+          path: ${{ runner.temp }}/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  merge:
+    runs-on: ubuntu-latest
+    needs:
+      - multi
+    if: always() && github.event_name == 'push'
+    steps:
+      -
+        name: Determine docker tag
+        id: docker_tag
+        env:
+          TAG_NAME: ${{ github.ref }}
+        run: |
+          case "${TAG_NAME}" in
+            refs/heads/master)
+              tag=latest
+              ;;
+            refs/tags/*)
+              tag=${TAG_NAME#refs/tags/}
+              ;;
+            refs/heads/*)
+              tag=branch-${TAG_NAME#refs/heads/}
+              ;;
+            *)
+              tag="dummy"
+              ;;
+          esac
+          echo "docker_tag=${tag}" | tee -a $GITHUB_OUTPUT
+      -
+        name: Download digests
+        uses: actions/download-artifact@v4
+        with:
+          path: ${{ runner.temp }}/digests
+          pattern: digests-*
+          merge-multiple: true
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Create manifest list and push
+        working-directory: ${{ runner.temp }}/digests
+        run: |
+          docker buildx imagetools create -t "tunathu/mirror-web:${{ steps.docker_tag.outputs.docker_tag }}" \
+            $(printf "tunathu/mirror-web@sha256:%s " $(ls .))
+
+      - name: Inspect images
+        working-directory: ${{ runner.temp }}/digests
+        run: |
+          DOCKER_IMG="tunathu/mirror-web:${{ steps.docker_tag.outputs.docker_tag }}"
+          echo "## $DOCKER_IMG" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          docker buildx imagetools inspect "$DOCKER_IMG" | tee -a $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
