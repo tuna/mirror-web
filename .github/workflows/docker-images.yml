@@ -16,27 +16,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       -
-        name: Determine docker tag
-        id: docker_tag
-        env:
-          TAG_NAME: ${{ github.ref }}
-        run: |
-          case "${TAG_NAME}" in
-            refs/heads/master)
-              tag=latest
-              ;;
-            refs/tags/*)
-              tag=${TAG_NAME#refs/tags/}
-              ;;
-            refs/heads/*)
-              tag=branch-${TAG_NAME#refs/heads/}
-              ;;
-            *)
-              tag="dummy"
-              ;;
-          esac
-          echo "docker_tag=${tag}" | tee -a $GITHUB_OUTPUT
-      -
         name: Checkout
         uses: actions/checkout@v5
         with:
@@ -110,13 +89,13 @@ jobs:
         name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: site
+          name: site-${{ matrix.os}}
           path: _site
       -
         name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: stats.html
+          name: stats.html-${{ matrix.os}}
           path: _stats.html
       -
         name: Build and push
@@ -125,7 +104,7 @@ jobs:
           context: .
           file: Dockerfile.build
           push: ${{ github.event_name == 'push' }}
-          tags: tunathu/mirror-web:${{ steps.docker_tag.outputs.docker_tag }}
+          tags: tunathu/mirror-web
           cache-from: |
             type=local,src=/tmp/.buildx-cache
             type=local,src=/tmp/local-test-build-cache

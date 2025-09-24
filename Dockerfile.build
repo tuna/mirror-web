@@ -20,8 +20,8 @@ RUN \
     mv node_modules ../ && \
     rm -rf /data/*
 
-ENV LANG C.UTF-8
-ENV JEKYLL_ENV production
-ENV VITE_RUBY_VITE_BIN_PATH /node_modules/.bin/vite
+ENV LANG=C.UTF-8
+ENV JEKYLL_ENV=production
+ENV VITE_RUBY_VITE_BIN_PATH=/node_modules/.bin/vite
 
 CMD ["bundle", "exec", "jekyll", "build"]
