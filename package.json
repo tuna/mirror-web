@@ -28,7 +28,7 @@
     "markup-js": "^1.5.21",
     "mustache": "^4.2.0",
     "njs-types": "^0.8.2",
-    "patch-package": "^8.0.0",
+    "patch-package": "^8.0.1",
     "promise-polyfill": "^8.3.0",
     "sass": "^1.74.1",
     "sass-cast": "^0.5.6",
