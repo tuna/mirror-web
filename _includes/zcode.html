@@ -15,8 +15,8 @@
     data-z-code="{{codeId}}" {{ '' -}}
     {%- if include.lang %}data-z-lang="{{include.lang}}"{% endif %} {{ '' -}}
   >
-  {%- capture rendered %}{% ztmpl tmpl=include.tmpl globalVars=zglobalVarsObj zconf=page.zconf input=include.input %}{% endcapture -%}
-    {{ rendered | escape }}</
+  {%- capture rendered %}{% ztmpl tmpl=include.tmpl globalVars=zglobalVarsObj zconf=page.zconf input=include.input lang=include.lang %}{% endcapture -%}
+    {{ rendered }}</
   {%- if include.inline == "true" %}code>{% else %}pre>
   {% endif -%}
 {%- endunless -%}

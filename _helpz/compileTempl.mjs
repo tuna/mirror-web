@@ -1,6 +1,7 @@
 import Hogan from "hogan.js";
 import { writeSync } from "fs";
 import { flattenData } from "../_src/lib/helpz-libs.mjs";
+import hljs from "highlight.js";
 
 async function* readInputs(stream) {
   let input = Buffer.alloc(0);
@@ -90,11 +91,19 @@ for await (const inputData of readInputs(process.stdin)) {
   const result = { error: null, result: null };
   try {
     const input = JSON.parse(inputData.toString("utf8"));
-    const { tmpl, globalVars, zconf, input: inputVars } = input;
+    const { tmpl, globalVars, zconf, input: inputVars, lang } = input;
     const renderContext = getRenderContext(globalVars, zconf, inputVars);
     const compiledTemplate = Hogan.compile(tmpl, { asString: true });
     const renderedConfig = Hogan.compile(tmpl).render(renderContext);
-    result.result = { compiled: compiledTemplate, rendered: renderedConfig };
+    let highlighted = "";
+    if (lang && hljs.getLanguage(lang)) {
+      highlighted = hljs.highlight(renderedConfig, { language: lang }).value;
+    } else if (!lang) {
+      highlighted = hljs.highlightAuto(renderedConfig).value;
+    } else {
+      highlighted = hljs.escapeHTML(renderedConfig);
+    }
+    result.result = { compiled: compiledTemplate, rendered: highlighted };
   } catch (error) {
     result.error = error.message;
     console.error("Error processing input:", error);
