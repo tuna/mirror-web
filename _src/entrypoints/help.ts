@@ -5,11 +5,12 @@ import {
 } from "virtual:jekyll-config";
 import { options as globalOptions } from "virtual:jekyll-data";
 import hljs from "../lib/hljs";
+import HoganRuntime from "hogan.js/lib/template";
+import { ref } from "@vue/reactivity";
+import { watchEffect } from "@vue/runtime-core";
 import { TUNASYNC_JSON_PATH } from "../lib/consts";
 import "./default";
 import "../styles/help.scss";
-
-const mirrorId = document.getElementById("zhelp-tmpls")["zhelp-name"] as string;
 
 document.getElementById("help-select").addEventListener("change", (ev) => {
   let help_url = (ev.target as Element).querySelector("option:checked")
@@ -18,6 +19,11 @@ document.getElementById("help-select").addEventListener("change", (ev) => {
     `${window.location.protocol}//${window.location.host}${help_url}`,
   );
 });
+
+const zhelpTmplsElem = document.getElementById("zhelp-tmpls");
+if (!zhelpTmplsElem) {
+  throw new Error("zhelp-tmpls element not found");
+}
 
 fetch(TUNASYNC_JSON_PATH)
   .then((resp) => resp.json())
@@ -46,5 +52,117 @@ fetch(TUNASYNC_JSON_PATH)
       }
     });
   });
+
+type ZInputTextOutput = string;
+type ZInputCheckboxOutput = string | boolean;
+type ZInputSelectOutput = [string, Record<string, string>];
+type ZInputOutput =
+  | ZInputTextOutput
+  | ZInputCheckboxOutput
+  | ZInputSelectOutput;
+type TemplateValue = string | boolean;
+type TemplateData = Record<string, TemplateValue>;
+
+const mirrorId = zhelpTmplsElem["zhelp-name"] as string;
+const ztmpls = zhelpTmplsElem["zhelp-tmpls"] as [any];
+const tmplData = ztmpls.map((x) => ref({} as Record<string, ZInputOutput>));
+const globalData = ref({} as Record<string, ZInputOutput>);
+const debugRestore = ref(false);
+
+[...document.querySelectorAll("[data-z-for-code]")].forEach((elem) => {
+  const refKey = elem.getAttribute("data-z-for-code");
+  const refData = refKey === "-1" ? globalData : tmplData[parseInt(refKey)];
+  const changeHandler = () => {
+    const keyName = elem.getAttribute("data-z-name");
+    let value: ZInputOutput;
+    if (elem instanceof HTMLInputElement) {
+      if (elem.type === "checkbox") {
+        const checked = elem.checked;
+        if (checked) {
+          if (elem.hasAttribute("data-z-true")) {
+            value = elem.getAttribute("data-z-true");
+          } else {
+            value = true;
+          }
+        } else {
+          if (elem.hasAttribute("data-z-false")) {
+            value = elem.getAttribute("data-z-false");
+          } else {
+            value = false;
+          }
+        }
+      } else if (elem.type === "text") {
+        value = elem.value;
+      }
+    } else if (elem instanceof HTMLSelectElement) {
+      const selectedOption = elem.options[elem.selectedIndex];
+      value = [selectedOption.value, {}];
+      [...selectedOption.attributes].forEach((attr) => {
+        if (attr.name.startsWith("data-z-set-")) {
+          const attrKey = attr.name.slice("data-z-set-".length);
+          value[1][attrKey] = attr.value;
+        }
+      });
+    } else {
+      throw new Error("Unsupported element for z-for-code");
+    }
+    refData.value[keyName] = value;
+  };
+  changeHandler();
+  elem.addEventListener("change", changeHandler);
+});
+
+const flattenData = (data: Record<string, ZInputOutput>): TemplateData => {
+  const result = {} as TemplateData;
+  Object.entries(data).forEach(([k, v]) => {
+    if (Array.isArray(v)) {
+      result[k] = v[0];
+    } else {
+      result[k] = v;
+    }
+  });
+  Object.entries(data).forEach(([, v]) => {
+    if (Array.isArray(v)) {
+      Object.entries(v[1]).forEach(([k, v]) => {
+        result[k] = v;
+      });
+    }
+  });
+  return result;
+};
+
+[...document.querySelectorAll("[data-z-code]")].forEach((elem) => {
+  const codeId = parseInt(elem.getAttribute("data-z-code"));
+  const lang = elem.getAttribute("data-z-lang");
+  const tmpl = new HoganRuntime.Template(ztmpls[codeId]);
+  const originalContent = elem.innerHTML;
+  watchEffect(() => {
+    const data = { ...flattenData(globalData.value) };
+    const endpoint = new URL(data.urlpath as string);
+    endpoint.protocol = (data.scheme + ":") as string;
+    data.endpoint = endpoint.toString();
+    Object.entries(flattenData(tmplData[codeId].value)).forEach(([k, v]) => {
+      data[k] = v;
+    });
+    if (debugRestore.value) {
+      elem.innerHTML = originalContent;
+    } else {
+      const renderedConfig = tmpl.render(data);
+      if (lang && hljs.getLanguage(lang)) {
+        elem.innerHTML = hljs.highlight(renderedConfig, {
+          language: lang,
+        }).value;
+      } else if (!lang) {
+        elem.innerHTML = hljs.highlightAuto(renderedConfig).value;
+      } else {
+        elem.textContent = renderedConfig;
+      }
+    }
+  });
+});
+
+document.getElementById("debug-restore").addEventListener("click", () => {
+  debugRestore.value = !debugRestore.value;
+});
 
 // vim: ts=2 sts=2 sw=2 noexpandtab

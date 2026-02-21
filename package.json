@@ -16,6 +16,8 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@vitejs/plugin-legacy": "^5.4.1",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/reactivity": "^3.4.21",
+    "@vue/runtime-core": "^3.4.21",
     "@webcomponents/template": "^1.5.1",
     "babel-preset-njs": "^0.7.0",
     "bootstrap": "^5.3.3",
