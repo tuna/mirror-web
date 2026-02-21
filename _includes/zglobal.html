@@ -42,5 +42,5 @@ git/
   }
 }
 {% endcapture -%}
-{%- assign zglobalVarsObj = zglobalVars | fromjson -%}
+{%- assign zglobalVarsObj = zglobalVars | fromjson | save_on_page: "zglobalVarsObj" -%}
 {%- include zform.html input="scheme sudo ipv6" inputVars=zglobalVarsObj codeId=-1 -%}
