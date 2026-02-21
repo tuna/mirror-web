@@ -1,0 +1,21 @@
+{%- comment -%}
+  This file is included in markdown.
+  If the template is inline, ensure the output contains no newlines.
+  If the template is a block, ensure the output is wrapped in a <pre> and
+    blank lines are inserted at the beginning and end.
+{%- endcomment -%}
+{%- capture codeId %}{% if include.global == "true" %}-1{% else %}{% page_increment zcodeCounter %}{% endif %}{% endcapture -%}
+{%- unless include.inline == "true" %}{% if include.input -%}
+  {%- include zform.html input=include.input codeId=codeId inputVars=page.zconf.input -%}
+{%- endif %}{% endunless -%}
+{%- unless include.global == "true" -%}
+  {%- if include.inline=="true" %}<code {{ ''-}}{% else %}{{ '' }}
+  <pre {{ ''-}}{% endif -%}
+    data-z-code="{{codeId}}" {{ '' -}}
+    {%- if include.lang %}data-z-lang="{{include.lang}}"{% endif %} {{ '' -}}
+  >
+  {%- capture rendered %}{% ztmpl tmpl=include.tmpl %}{% endcapture -%}
+    {{ rendered | escape }}</
+  {%- if include.inline == "true" %}code>{% else %}pre>
+  {% endif -%}
+{%- endunless -%}

@@ -1,0 +1,46 @@
+{%- comment -%}
+  This file is included in markdown.
+  Ensure that no blank lines are output.
+{%- endcomment -%}
+{%- capture path -%}
+{%- assign endswithGit = page.zconf.name | endswith: ".git" -%}
+{%- if page.zconf.git or endswithGit -%}
+git/
+{%- endif -%}
+{{ page.zconf.name }}
+{%- endcapture -%}
+
+{%- capture zglobalVars %}
+{
+  "scheme": {
+    "_": "是否使用 HTTPS",
+    "true": "https",
+    "false": "http"
+  },
+  "sudo": {
+    "_": "是否使用 sudo",
+    "true": "sudo ",
+    "false": ""
+  },
+  "ipv6": {
+    "_": "线路选择",
+    "option": {
+      "auto": {
+        "_": "自动",
+        "urlpath": {{ site.url | append: "/" | append: path | jsonify }},
+        "default": true
+      },
+      "ipv4": {
+        "_": "IPv4",
+        "urlpath": {{ site.urlv4 | append: "/" | append: path | jsonify }}
+      },
+      "ipv6": {
+        "_": "IPv6",
+        "urlpath": {{ site.urlv6 | append: "/" | append: path | jsonify }}
+      }
+    }
+  }
+}
+{% endcapture -%}
+{%- assign zglobalVarsObj = zglobalVars | fromjson -%}
+{%- include zform.html input="scheme sudo ipv6" inputVars=zglobalVarsObj codeId=-1 -%}

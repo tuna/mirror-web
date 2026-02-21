@@ -3,27 +3,27 @@ jsEntry: help
 ---
 <!DOCTYPE html>
 <html lang="zh-Hans">
-{% capture metaDesc %}{{ page.mirrorid }} 使用帮助{% endcapture %}
+{% capture metaDesc %}{{ page.zconf.name }} 使用帮助{% endcapture %}
 	{% include head.html cattitle="镜像站使用帮助" metaDesc=metaDesc %}
 <body>
 	{% include nav.html %}
 
-{% if page.redirect_help_id %}
-{% assign redirect_to_page = site.categories["help"] | where_exp:"p", "p.mirrorid == page.redirect_help_id" %}
+{% if page.zconf.redirect_help_id %}
+{% assign redirect_to_page = site["help"] | where_exp:"p", "p.zconf.name == page.zconf.redirect_help_id" %}
 <script>
 	var redirect_to = window.location.protocol + "//" + window.location.host + "{{redirect_to_page[0].url}}";
 	window.location = redirect_to;
 </script>
 {% endif %}
 
-{% assign help_pages = site.categories["help"] | sort: 'mirrorid' %}
+{% assign help_pages = site["help"] | sort: 'zconf.name' %}
 <div id="help-page">
 	<div class="container">
 	  <div class="row">
 		  <div class="d-none d-md-block col-md-3">
 				<ul class="nav nav-pills flex-column" id="help-nav">
 					{% for h in help_pages %}
-					<li class="nav-item" id="toc-{{h.mirrorid}}"><a href="{{h.url}}" class="nav-link{% if h.mirrorid == page.mirrorid or h.redirect_help_id == page.mirrorid %} active{%endif%}">{{h.mirrorid}}</a></li>
+					<li class="nav-item" id="toc-{{h.zconf.name}}"><a href="{{h.url}}" class="nav-link{% if h.zconf.name == page.zconf.name or h.zconf.redirect_help_id == page.zconf.name %} active{%endif%}">{{h.zconf.name}}</a></li>
 					{% endfor %}
 				</ul>
 			</div><!-- sidenave -->
@@ -34,7 +34,7 @@ jsEntry: help
 							<label>选择帮助条目: </label>
 							<select class="form-control" id="help-select">
 								{% for h in help_pages %}
-								<option data-help-url="{{h.url}}"{% if h.mirrorid == page.mirrorid%} selected{%endif%} id="toc-{{h.mirrorid}}">{{h.mirrorid}}</option>
+								<option data-help-url="{{h.url}}"{% if h.zconf.name == page.zconf.name%} selected{%endif%} id="toc-{{h.zconf.name}}">{{h.zconf.name}}</option>
 								{% endfor %}
 							</select>
 						</div>
@@ -51,8 +51,11 @@ jsEntry: help
 	{% include footer.html %}
 </body>
 <script type="text/x-tuna-help-mirrorid">
-	{{page.mirrorid | jsonify}}
+	{{page.zconf.name | jsonify}}
 </script>
+<pre>
+  {% zcompiled_templates %}
+</pre>
 
 </html>
 <!--

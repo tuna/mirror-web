@@ -3,7 +3,7 @@
 因为 Arch Linux 的软件仓库和 iso 列表是不维护旧版本的，在少数情况下可能会需要安装旧版本的软件或系统，
 
 {% endraw %}
-因此镜像站维护了一个 [Arch Linux Rollback Machine](https://{{ site.arch_archive }}/)来满足这种情况。
+因此镜像站维护了一个 [Arch Linux Rollback Machine](https://{{site.arch_archive}}/)来满足这种情况。
 {% raw %}
 
 Arch Linux Rollback Machine 的使用方法请参照 [wiki](https://wiki.archlinux.org/index.php/Arch_Linux_Archive)。

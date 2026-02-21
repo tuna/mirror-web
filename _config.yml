@@ -84,4 +84,17 @@ addition_exclude:
     - Dockerfile*
     - LICENSE
 
+helpz:
+    language: zh
+    collection:
+        label: help
+
+defaults:
+  - scope:
+      path: ""
+      type: "help"
+    values:
+      layout: "help"
+      excerpt_separator: ""
+
 # vim: ts=2 sts=2 sw=2 expandtab

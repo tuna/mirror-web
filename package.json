@@ -6,6 +6,9 @@
     "format": "prettier --write \"_src/**/*.vue\" \"_src/**/*.html\" \"_src/**/*js\" \"_src/**/*.scss\" \"_src/**/*.ts\" \"*.mjs\" \"_helpz/*js\"",
     "postinstall": "patch-package --patch-dir _node_module_patch"
   },
+  "engines": {
+    "node": "^22.15.0 || >=23.5.0"
+  },
   "dependencies": {
     "@babel/core": "^7.24.4",
     "@babel/preset-env": "^7.24.4",
@@ -23,11 +26,16 @@
     "fast-glob": "^3.3.2",
     "formdata-polyfill": "^4.0.10",
     "highlight.js": "^11.9.0",
+    "hogan.js": "^3.0.2",
     "lato-webfont": "^2.15.1",
     "liquidjs": "^10.10.2",
     "markup-js": "^1.5.21",
+    "mdast-util-from-markdown": "^2.0.2",
+    "mdast-util-to-markdown": "^2.1.2",
     "mustache": "^4.2.0",
     "njs-types": "^0.8.2",
+    "parse5": "^8.0.0",
+    "parse5-utilities": "^1.0.0",
     "patch-package": "^8.0.1",
     "promise-polyfill": "^8.3.0",
     "sass": "^1.74.1",
@@ -37,11 +45,13 @@
     "timeago.js": "^4.0.2",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5",
+    "unist-util-visit": "^5.1.0",
     "unplugin-vue-components": "^0.26.0",
     "vite": "^5.4.21",
     "vite-plugin-ruby": "^5.0.0",
     "webfontloader": "^1.6.28",
-    "whatwg-fetch": "^3.6.20"
+    "whatwg-fetch": "^3.6.20",
+    "yaml": "^2.4.1"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
