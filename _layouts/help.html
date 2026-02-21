@@ -49,14 +49,12 @@ jsEntry: help
 </div><!--/mirrors -->
 
 	{% include footer.html %}
-</body>
-<script type="text/x-tuna-help-mirrorid">
-	{{page.zconf.name | jsonify}}
+<script type="text/x-tuna-zhelp-tmpls" id="zhelp-tmpls"></script>
+<script>
+  document.getElementById("zhelp-tmpls")["zhelp-tmpls"] = {% zcompiled_templates %};
+  document.getElementById("zhelp-tmpls")["zhelp-name"] = {{ page.zconf.name | jsonify }};
 </script>
-<pre>
-  {% zcompiled_templates %}
-</pre>
-
+</body>
 </html>
 <!--
 vim: ts=2 sts=2 sw=2 noexpandtab
