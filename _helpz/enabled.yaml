@@ -29,6 +29,7 @@
 - "dart-pub"
 - "deb-multimedia"
 - "debian"
+- "debian-security"
 - "debian-elts"
 - "docker-ce"
 - "eclipse"
