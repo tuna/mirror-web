@@ -11,6 +11,8 @@ import { watchEffect } from "@vue/runtime-core";
 import { TUNASYNC_JSON_PATH } from "../lib/consts";
 import "./default";
 import "../styles/help.scss";
+import { ZInputOutput } from "../lib/helpz-types";
+import { flattenData } from "../lib/helpz-libs.mjs";
 
 document.getElementById("help-select").addEventListener("change", (ev) => {
   let help_url = (ev.target as Element).querySelector("option:checked")
@@ -52,16 +54,6 @@ fetch(TUNASYNC_JSON_PATH)
       }
     });
   });
-
-type ZInputTextOutput = string;
-type ZInputCheckboxOutput = string | boolean;
-type ZInputSelectOutput = [string, Record<string, string>];
-type ZInputOutput =
-  | ZInputTextOutput
-  | ZInputCheckboxOutput
-  | ZInputSelectOutput;
-type TemplateValue = string | boolean;
-type TemplateData = Record<string, TemplateValue>;
 
 const mirrorId = zhelpTmplsElem["zhelp-name"] as string;
 const ztmpls = zhelpTmplsElem["zhelp-tmpls"] as [any];
@@ -111,25 +103,6 @@ const debugRestore = ref(false);
   changeHandler();
   elem.addEventListener("change", changeHandler);
 });
-
-const flattenData = (data: Record<string, ZInputOutput>): TemplateData => {
-  const result = {} as TemplateData;
-  Object.entries(data).forEach(([k, v]) => {
-    if (Array.isArray(v)) {
-      result[k] = v[0];
-    } else {
-      result[k] = v;
-    }
-  });
-  Object.entries(data).forEach(([, v]) => {
-    if (Array.isArray(v)) {
-      Object.entries(v[1]).forEach(([k, v]) => {
-        result[k] = v;
-      });
-    }
-  });
-  return result;
-};
 
 [...document.querySelectorAll("[data-z-code]")].forEach((elem) => {
   const codeId = parseInt(elem.getAttribute("data-z-code"));
