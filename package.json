@@ -34,7 +34,6 @@
     "markup-js": "^1.5.21",
     "mdast-util-from-markdown": "^2.0.2",
     "mdast-util-to-markdown": "^2.1.2",
-    "mustache": "^4.2.0",
     "njs-types": "^0.8.2",
     "parse5": "^8.0.0",
     "parse5-utilities": "^1.0.0",
