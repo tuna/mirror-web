@@ -130,13 +130,18 @@ class Jekyll::Zhelp::TemplateCompile < Jekyll::Tags::IncludeTag
   def self.stopCompiler(site)
     compiler = @@compilers[site]
     if compiler && compiler[:isRunning]
-      compiler[:stdin].puts('0\n')
-      compiler[:stdin].flush
-      compiler[:stdin].close
-      compiler[:isRunning] = false
-      status = compiler[:wait].value
-      compiler[:stdout].close
-      Jekyll.logger.info "Zhelp:", "Stopping template compiler, exit status: #{status.exitstatus}"
+      begin
+        compiler[:stdin].puts('0\n')
+        compiler[:stdin].flush
+        compiler[:stdin].close
+        status = compiler[:wait].value
+        compiler[:stdout].close
+        Jekyll.logger.info "Zhelp:", "Stopping template compiler, exit status: #{status.exitstatus}"
+      rescue => e
+        Jekyll.logger.warn "Zhelp:", "Error when stopping template compiler: #{e.message}"
+      ensure
+        compiler[:isRunning] = false
+      end
     end
   end
   def self.templateCompiler(site)
