@@ -3,7 +3,7 @@
   "private": true,
   "homepage": "https://github.com/tuna/mirror-web",
   "scripts": {
-    "format": "prettier --write \"_src/**/*.vue\" \"_src/**/*.html\" \"_src/**/*.js\" \"_src/**/*.scss\" \"_src/**/*.ts\" *.mjs",
+    "format": "prettier --write \"_src/**/*.vue\" \"_src/**/*.html\" \"_src/**/*js\" \"_src/**/*.scss\" \"_src/**/*.ts\" \"*.mjs\" \"_helpz/*js\"",
     "postinstall": "patch-package --patch-dir _node_module_patch"
   },
   "dependencies": {
