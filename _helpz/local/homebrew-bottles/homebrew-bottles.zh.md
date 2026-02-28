@@ -2,29 +2,29 @@
 
 ### 临时替换
 
-<tmpl z-lang="bash">
+```{ztmpl lang="bash"}
 export HOMEBREW_API_DOMAIN="{{endpoint}}/api"
 export HOMEBREW_BOTTLE_DOMAIN="{{endpoint}}"
-</tmpl>
+```
 
 ### 长期替换
 
 如果你使用 bash：
 
-<tmpl z-lang="bash">
+```{ztmpl lang="bash"}
 echo 'export HOMEBREW_API_DOMAIN="{{endpoint}}/api"' >> ~/.bash_profile
 echo 'export HOMEBREW_BOTTLE_DOMAIN="{{endpoint}}"' >> ~/.bash_profile
 export HOMEBREW_API_DOMAIN="{{endpoint}}/api"
 export HOMEBREW_BOTTLE_DOMAIN="{{endpoint}}"
-</tmpl>
+```
 
 如果你使用 zsh：
 
-<tmpl z-lang="bash">
+```{ztmpl lang="bash"}
 echo 'export HOMEBREW_API_DOMAIN="{{endpoint}}/api"' >> ~/.zprofile
 echo 'export HOMEBREW_BOTTLE_DOMAIN="{{endpoint}}"' >> ~/.zprofile
 export HOMEBREW_API_DOMAIN="{{endpoint}}/api"
 export HOMEBREW_BOTTLE_DOMAIN="{{endpoint}}"
-</tmpl>
+```
 
 **注：Linuxbrew 核心仓库（`linuxbrew-core`）自 2021 年 10 月 25 日（`brew` 版本 3.3.0 起）被弃用，Linuxbrew 用户应迁移至 `homebrew-core`。Linuxbrew 用户请依本镜像说明重新设置镜像。**
