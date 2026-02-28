@@ -3,7 +3,7 @@
   "private": true,
   "homepage": "https://github.com/tuna/mirror-web",
   "scripts": {
-    "format": "prettier --write \"_src/**/*.vue\" \"_src/**/*.html\" \"_src/**/*js\" \"_src/**/*.scss\" \"_src/**/*.ts\" \"*.mjs\" \"_helpz/*js\"",
+    "format": "prettier --write \"_src/**/*.vue\" \"_src/**/*.html\" \"_src/**/*js\" \"_src/**/*.scss\" \"_src/**/*.ts\" \"*.mjs\" \"_helpz/*js\" \"_helpz/*.jsx\"",
     "postinstall": "patch-package --patch-dir _node_module_patch"
   },
   "engines": {
@@ -31,23 +31,27 @@
     "hogan.js": "^3.0.2",
     "lato-webfont": "^2.15.1",
     "liquidjs": "^10.10.2",
+    "markdown-it": "^13.0.2",
+    "markdown-it-myst": "^1.0.15",
     "markup-js": "^1.5.21",
-    "mdast-util-from-markdown": "^2.0.2",
     "mdast-util-to-markdown": "^2.1.2",
+    "myst-parser": "^1.6.5",
     "njs-types": "^0.8.2",
-    "parse5": "^8.0.0",
-    "parse5-utilities": "^1.0.0",
     "patch-package": "^8.0.1",
     "promise-polyfill": "^8.3.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "sass": "^1.74.1",
     "sass-cast": "^0.5.6",
     "source-code-pro": "^2.38.0",
     "terser": "^5.30.3",
     "timeago.js": "^4.0.2",
     "tslib": "^2.6.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.4.5",
     "unist-util-visit": "^5.1.0",
     "unplugin-vue-components": "^0.26.0",
+    "vfile": "^6.0.3",
     "vite": "^5.4.21",
     "vite-plugin-ruby": "^5.0.0",
     "webfontloader": "^1.6.28",
@@ -57,5 +61,6 @@
   "devDependencies": {
     "prettier": "^3.2.5",
     "rollup-plugin-visualizer": "^5.12.0"
-  }
+  },
+  "type": "module"
 }

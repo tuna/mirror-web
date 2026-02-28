@@ -52,7 +52,7 @@ jsEntry: help
 	{% include footer.html %}
 <script type="text/x-tuna-zhelp-tmpls" id="zhelp-tmpls"></script>
 <script>
-  document.getElementById("zhelp-tmpls")["zhelp-tmpls"] = {% zcompiled_templates %};
+  document.getElementById("zhelp-tmpls")["zhelp-tmpls"] = [{{ page.templates | join: "," }}];
   document.getElementById("zhelp-tmpls")["zhelp-name"] = {{ page.zconf.name | jsonify }};
 </script>
 </body>

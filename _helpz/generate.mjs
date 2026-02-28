@@ -3,71 +3,16 @@ import { parse as yamlParse } from "yaml";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
-import { registerHooks } from "node:module";
-
-const MOCKED_PREFIX = "\x00__mocked_tagname";
-
-const TEMPLATE_TAG_NAME = "tmpl";
-
-registerHooks({
-  resolve(specifier, context, nextResolve) {
-    if (specifier === "micromark-util-html-tag-name") {
-      const resolved = nextResolve(specifier, context);
-      resolved.url = MOCKED_PREFIX + resolved.url;
-      return resolved;
-    }
-    return nextResolve(specifier, context);
-  },
-  load(url, context, nextLoad) {
-    if (url.startsWith(MOCKED_PREFIX)) {
-      const actualUrl = url.slice(MOCKED_PREFIX.length);
-      const result = nextLoad(actualUrl, context);
-      const code = result.source.toString("utf-8");
-      const modifiedCode =
-        code +
-        `
-htmlRawNames.push(${JSON.stringify(TEMPLATE_TAG_NAME)});
-`;
-      result.source = Buffer.from(modifiedCode, "utf-8");
-      return result;
-    }
-    return nextLoad(url, context);
-  },
-});
-
-const { fromMarkdown } = await import("mdast-util-from-markdown");
-const { toMarkdown } = await import("mdast-util-to-markdown");
-const visitor = await import("unist-util-visit");
-
-import {
-  Parser as Parse5Parser,
-  TokenizerMode as Parse5TokenizerMode,
-} from "parse5";
-import {
-  textOf as parse5TextOf,
-  attributesOf as parse5AttributesOf,
-} from "parse5-utilities";
-
-class Parser extends Parse5Parser {
-  _initTokenizerForFragmentParsing() {
-    if (this.fragmentContext) {
-      if (
-        this.treeAdapter.getTagName(this.fragmentContext) == TEMPLATE_TAG_NAME
-      ) {
-        this.tokenizer.state = Parse5TokenizerMode.RAWTEXT;
-        return;
-      }
-    }
-    return super._initTokenizerForFragmentParsing();
-  }
-  _startTagOutsideForeignContent(token) {
-    if (token.tagName == TEMPLATE_TAG_NAME) {
-      this._switchToTextParsing(token, Parse5TokenizerMode.RAWTEXT);
-      return;
-    }
-    return super._startTagOutsideForeignContent(token);
-  }
-}
+import { toMarkdown } from "mdast-util-to-markdown";
+import * as visitor from "unist-util-visit";
+import { tokensToMyst } from "myst-parser";
+import mystPlugin from "markdown-it-myst";
+import MarkdownIt from "markdown-it";
+import { VFile } from "vfile";
+import Hogan from "hogan.js";
+import { flattenData } from "../_src/lib/helpz-libs.mjs";
+import hljs from "highlight.js";
+import { renderZForm } from "./templates.jsx";
 
 const options = parseArgs({
   options: {
@@ -80,6 +25,10 @@ const options = parseArgs({
     "output-dir": {
       type: "string",
       default: "./generated",
+    },
+    "site-config": {
+      type: "string",
+      default: "{}",
     },
   },
 }).values;
@@ -118,6 +67,8 @@ fs.readdirSync(outputDir, { withFileTypes: true }).forEach((file) => {
 const docsDir = path.dirname(fileURLToPath(import.meta.url));
 const language = options["language"];
 
+const siteConfig = JSON.parse(options["site-config"]);
+
 const pathsForPage = (page, file) => ({
   local: path.join(docsDir, "local", page, file),
   global: path.join(docsDir, "global", page, file),
@@ -126,12 +77,12 @@ const pathsForPage = (page, file) => ({
 const loadFile = (page, file, defaultValue) => {
   const { local: localPath, global: globalPath } = pathsForPage(page, file);
   if (fs.existsSync(localPath)) {
-    return fs.readFileSync(localPath, "utf-8");
+    return { path: localPath, content: fs.readFileSync(localPath, "utf-8") };
   } else if (fs.existsSync(globalPath)) {
-    return fs.readFileSync(globalPath, "utf-8");
+    return { path: globalPath, content: fs.readFileSync(globalPath, "utf-8") };
   } else if (defaultValue !== undefined) {
     console.warn(`file ${file} not found in page ${page}`);
-    return defaultValue;
+    return { path: null, content: defaultValue };
   } else {
     console.error(`file ${file} not found in page ${page}`);
     process.exit(1);
@@ -185,128 +136,270 @@ const loadBlock = (page, block, language) => {
   return loadFile(page, `${block}.${language}.md`, "");
 };
 
+function defaultInput(inputDesc) {
+  if (inputDesc.option) {
+    const defaultOption =
+      Object.entries(inputDesc.option).find(([, value]) => value?.default) ||
+      Object.entries(inputDesc.option)[0];
+    const value = {};
+    Object.entries(defaultOption[1] || {}).forEach(([key, val]) => {
+      if (key !== "default" && key !== "_") {
+        value[key] = val;
+      }
+    });
+    return [defaultOption[0], value];
+  } else if (
+    inputDesc["true"] !== undefined ||
+    inputDesc["false"] !== undefined
+  ) {
+    if (inputDesc.default) {
+      return inputDesc["true"] !== undefined && inputDesc["true"] !== null
+        ? inputDesc["true"]
+        : true;
+    } else {
+      return inputDesc["false"] !== undefined && inputDesc["false"] !== null
+        ? inputDesc["false"]
+        : false;
+    }
+  } else {
+    return inputDesc.default || "";
+  }
+}
+
+function getRenderContext(globalVars, zconf, inputVars) {
+  const globalValues = {};
+  Object.entries(globalVars).forEach(([key, value]) => {
+    globalValues[key] = defaultInput(value);
+  });
+  const data = flattenData(globalValues);
+  data.endpoint = data.urlpath;
+  if (inputVars) {
+    const localValues = {};
+    inputVars.split(" ").forEach((inputName) => {
+      const inputDesc = zconf.input[inputName];
+      localValues[inputName] = defaultInput(inputDesc);
+    });
+    Object.entries(flattenData(localValues)).forEach(([key, value]) => {
+      data[key] = value;
+    });
+  }
+  return data;
+}
+
+function renderTemplate(tmpl, globalVars, zconf, inputVars, lang) {
+  const renderContext = getRenderContext(globalVars, zconf, inputVars);
+  const compiledTemplate = Hogan.compile(tmpl, { asString: true });
+  const renderedConfig = Hogan.compile(tmpl).render(renderContext);
+  let highlighted = "";
+  if (lang && hljs.getLanguage(lang)) {
+    highlighted = hljs.highlight(renderedConfig, { language: lang }).value;
+  } else if (!lang) {
+    highlighted = hljs.highlightAuto(renderedConfig).value;
+  } else {
+    highlighted = hljs.escapeHTML(renderedConfig);
+  }
+  return { compiled: compiledTemplate, rendered: highlighted };
+}
+
+function genGlobalVars(site, zconf) {
+  const path =
+    zconf.git || zconf.name.endsWith(".git") ? `git/${zconf.name}` : zconf.name;
+  return {
+    scheme: {
+      _: "是否使用 HTTPS",
+      true: "https",
+      false: "http",
+    },
+    sudo: {
+      _: "是否使用 sudo",
+      true: "sudo ",
+      false: "",
+    },
+    ipv6: {
+      _: "线路选择",
+      option: {
+        auto: {
+          _: "自动",
+          urlpath: `${site.url || ""}/${path}`,
+          default: true,
+        },
+        ipv4: {
+          _: "IPv4",
+          urlpath: `${site.urlv4 || ""}/${path}`,
+        },
+        ipv6: {
+          _: "IPv6",
+          urlpath: `${site.urlv6 || ""}/${path}`,
+        },
+      },
+    },
+  };
+}
+
 enablePages.forEach((page) => {
   const conf = loadConf(page, language);
   const mdContent = [];
-  mdContent.push(
-    `---
-${JSON.stringify({ zconf: conf }, null, 2)}
----
-{% raw %}
-`,
-  );
+  const templates = [];
+  let templateIndex = 0;
+  const globalVars = genGlobalVars(siteConfig, conf);
+  mdContent.push(`{% raw %}`);
   mdContent.push(`# ${conf["_"]}\n`);
-  mdContent.push("{% endraw %}{% include zglobal.html %}{% raw %}\n");
+  let inputCounter = 0;
+  mdContent.push(
+    renderZForm(-1, Object.keys(globalVars), globalVars, () => inputCounter++) +
+      "\n",
+  );
   const blocks = conf.block || ["index"];
   blocks.forEach((block) => {
-    const blockContent = loadBlock(page, block, language);
-    const mdast = fromMarkdown(blockContent);
-    const stack = [];
-    visitor.visit(mdast, "html", (node) => {
-      const html = node.value.trim();
-      if (html === `</${TEMPLATE_TAG_NAME}>`) {
-        if (stack.length === 0) {
+    const { content: blockContent, path: blockPath } = loadBlock(
+      page,
+      block,
+      language,
+    );
+    const tokenizer = new MarkdownIt("commonmark");
+    tokenizer.use(mystPlugin);
+    const mdast = tokensToMyst(
+      blockContent,
+      tokenizer.parse(blockContent, {
+        vfile: new VFile({
+          path: blockPath,
+        }),
+      }),
+    );
+
+    visitor.visit(
+      mdast,
+      ["mystRole", "mystDirective", "mystDirectiveError", "mystRoleError"],
+      (node, index, parent) => {
+        if (
+          node.type === "mystDirectiveError" ||
+          node.type === "mystRoleError"
+        ) {
           console.error(
-            `unexpected closing tag found in page ${page}, block ${block}, at ${node.position.start.line}:${node.position.start.column}`,
+            `Error parsing directive/role on page ${page}, block ${block}: ${node.message} at line ${node.position.start.line}, column ${node.position.start.column}`,
           );
           process.exit(1);
         }
-        node.type = "html";
-        node.value = stack.pop();
-        node.position = null;
-        return visitor.SKIP;
-      }
-      const parser = Parser.getFragmentParser(null);
-      parser.tokenizer.write(html, true);
-      const document = parser.getFragment();
-      if (
-        !document ||
-        !document.childNodes ||
-        document.childNodes.length === 0
-      ) {
-        return visitor.CONTINUE;
-      }
-      if (document.childNodes.length > 1) {
-        return visitor.CONTINUE;
-      }
-      const root = document.childNodes[0];
-      if (root.tagName !== TEMPLATE_TAG_NAME) {
-        return visitor.CONTINUE;
-      }
-      const templateContent = parse5TextOf(root).trim();
-      const hasClosingTag = html.indexOf(`</${TEMPLATE_TAG_NAME}>`) !== -1;
-      let isPureTemplate = !!hasClosingTag;
-      const attribs = parse5AttributesOf(root);
-      if (templateContent.indexOf("{{") !== -1) {
-        isPureTemplate = false;
-      } else if (attribs && attribs["z-global"] !== undefined) {
-        isPureTemplate = false;
-      }
-      if (isPureTemplate) {
-        node.value = templateContent;
-        if (attribs && attribs["z-inline"] !== undefined) {
-          node.type = "inlineCode";
-        } else {
-          node.type = "code";
-          node.lang = attribs && attribs["z-lang"] ? attribs["z-lang"] : null;
-          node.meta = null;
-        }
-        node.position = null;
-        return visitor.SKIP;
-      }
-      const exportedParam = {};
-      if (attribs) {
-        if (attribs["z-global"] !== undefined) {
-          exportedParam.global = "true";
-        }
-        if (attribs["z-lang"] !== undefined) {
-          exportedParam.lang = attribs["z-lang"];
-        }
-        if (attribs["z-inline"] !== undefined) {
-          exportedParam.inline = "true";
-        }
-        if (attribs["z-input"] !== undefined) {
-          exportedParam.input = attribs["z-input"];
-        }
-      }
-      for (const key in exportedParam) {
-        const forbiddenChars = ['"', "'", "\n", "\r"];
-        for (const char of forbiddenChars) {
-          if (exportedParam[key].indexOf(char) !== -1) {
+        if (node.type === "mystDirective" || node.type === "mystRole") {
+          if (node.name !== "ztmpl") {
             console.error(
-              `forbidden char ${char} found in exported param ${key} with value ${exportedParam[key]} in page ${page}, block ${block}`,
+              `Unsupported directive/role ${node.name} on page ${page}, block ${block} at line ${node.position.start.line}, column ${node.position.start.column}`,
             );
             process.exit(1);
           }
         }
-      }
-      node.type = "html";
-      const exportStringBegin = "{% endraw %}{% capture ztmpl %}{% raw %}";
-      let exportStringEnd = "{% endraw %}{% endcapture %}";
-      exportStringEnd += "{% include zcode.html tmpl=ztmpl ";
-      for (const key in exportedParam) {
-        exportStringEnd += `${key}='${exportedParam[key]}' `;
-      }
-      exportStringEnd += "%}{% raw %}";
-      if (hasClosingTag) {
-        node.value = exportStringBegin + templateContent + exportStringEnd;
-      } else {
-        node.value = exportStringBegin + templateContent;
-        stack.push(exportStringEnd);
-      }
-      node.position = null;
-      return visitor.SKIP;
-    });
-    if (stack.length > 0) {
-      console.error(
-        `unclosed tag found during processing page ${page}, block ${block}`,
-      );
-      process.exit(1);
-    }
+        if (node.type === "mystRole") {
+          const roleOptions = {};
+          node.children.forEach((child) => {
+            if (child.type === "mystOption") {
+              roleOptions[child.name] = child.value;
+            }
+          });
+          const templateContent = node.value || "";
+          const isPureTemplate = templateContent.indexOf("{{") === -1;
+          const { compiled, rendered } = renderTemplate(
+            templateContent,
+            globalVars,
+            conf,
+            "",
+            roleOptions.lang,
+          );
+          const templateId = isPureTemplate ? null : templateIndex++;
+          if (!isPureTemplate) {
+            templates.push(compiled);
+          }
+          const newChildern = [];
+          newChildern.push({
+            type: "html",
+            value:
+              "<code " +
+              (templateId !== null ? `data-z-code="${templateId}" ` : "") +
+              (roleOptions.lang ? `data-z-lang="${roleOptions.lang}" ` : "") +
+              ">",
+          });
+          rendered.split(/(<[^>]*>)/).forEach((part) => {
+            if (part) {
+              newChildern.push({
+                type: part.startsWith("<") ? "html" : "text",
+                value: part,
+              });
+            }
+          });
+          newChildern.push({
+            type: "html",
+            value: "</code>",
+          });
+          parent.children.splice(index, 1, ...newChildern);
+          return [visitor.SKIP, index + newChildern.length];
+        } else {
+          const directiveOptions = node.options || {};
+          const templateContent = node.value || "";
+          let renderedHTML = "";
+          if (directiveOptions.global) {
+            if (!directiveOptions.input) {
+              console.error(
+                `Global directive must have input variables on page ${page}, block ${block} at line ${node.position.start.line}, column ${node.position.start.column}`,
+              );
+              process.exit(1);
+            }
+            renderedHTML = renderZForm(
+              -1,
+              directiveOptions.input.split(" "),
+              conf.input,
+              () => inputCounter++,
+            );
+            directiveOptions.input.split(" ").forEach((inputName) => {
+              globalVars[inputName] = conf.input[inputName];
+            });
+          } else if (
+            !directiveOptions.input &&
+            templateContent.indexOf("{{") === -1
+          ) {
+            node.type = "code";
+            node.value = templateContent;
+            node.lang = directiveOptions.lang || "";
+            return visitor.SKIP;
+          } else {
+            const templateId = templateIndex++;
+            const { compiled, rendered } = renderTemplate(
+              templateContent,
+              globalVars,
+              conf,
+              directiveOptions.input,
+              directiveOptions.lang,
+            );
+            templates.push(compiled);
+            if (directiveOptions.input) {
+              renderedHTML =
+                renderZForm(
+                  templateId,
+                  directiveOptions.input.split(" "),
+                  conf.input,
+                  () => inputCounter++,
+                ) + "\n";
+            }
+            renderedHTML +=
+              `<pre data-z-code="${templateId}" ${directiveOptions.lang ? `data-z-lang="${directiveOptions.lang}" ` : ""}>\n` +
+              rendered.trim() +
+              "\n</pre>";
+          }
+          node.type = "html";
+          node.value = renderedHTML;
+          node.position = null;
+          node.children = [];
+          return visitor.SKIP;
+        }
+      },
+    );
     const modifiedContent = toMarkdown(mdast);
     mdContent.push(modifiedContent);
   });
   mdContent.push("{% endraw %}");
+  mdContent.unshift(
+    `---
+${JSON.stringify({ zconf: conf, templates }, null, 2)}
+---`,
+  );
   const finalContent = mdContent.join("\n");
   fs.writeFileSync(path.join(outputDir, `${page}.md`), finalContent, "utf-8");
 });
