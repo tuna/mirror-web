@@ -23,13 +23,7 @@ export function renderZForm(codeId, inputChoices, inputVars, counterGen) {
                 data-z-for-code={codeId}
                 title={toolTip}
                 key={inputId}
-                defaultValue={
-                  (input.option &&
-                    Object.entries(input.option).find(
-                      ([, optionValue]) => optionValue && optionValue.default,
-                    )?.[0]) ||
-                  undefined
-                }
+                defaultValue={(input.option && input.default) || undefined}
               >
                 {input.option &&
                   Object.entries(input.option).map(

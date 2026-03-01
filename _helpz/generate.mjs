@@ -217,11 +217,11 @@ function genGlobalVars(site, zconf) {
     },
     ipv6: {
       _: "线路选择",
+      default: "auto",
       option: {
         auto: {
           _: "自动",
           urlpath: `${site.url || ""}/${path}`,
-          default: true,
         },
         ipv4: {
           _: "IPv4",
