@@ -537,3 +537,7 @@
     pointer-events: auto;
   }
 }
+
+[data-helpz-not-ready] .zhelp-form {
+  display: none !important;
+}

@@ -3,7 +3,7 @@ import React from "react";
 
 export function renderZForm(codeId, inputChoices, inputVars, counterGen) {
   return renderToStaticMarkup(
-    <div className="d-flex flex-wrap align-items-center gap-3 mb-3 mt-3">
+    <div className="d-flex flex-wrap align-items-center gap-3 mb-3 mt-3 zhelp-form">
       {(() => {
         const children = [];
         inputChoices.forEach((inputName) => {

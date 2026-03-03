@@ -134,7 +134,7 @@ const debugRestore = ref(false);
   });
 });
 
-document.getElementById("help-content").setAttribute("data-helpz-ready", "");
+document.getElementById("help-content").removeAttribute("data-helpz-not-ready");
 
 document.getElementById("debug-restore").addEventListener("click", () => {
   debugRestore.value = !debugRestore.value;
