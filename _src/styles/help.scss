@@ -525,3 +525,15 @@
   margin-top: 40px;
   margin-bottom: 40px;
 }
+
+.form-floating {
+  & > .form-control, & > .form-select {
+    min-width: 10rem;
+  }
+  & > .form-switch > input.form-check-input {
+    margin-left: 0;
+  }
+  & > .form-switch ~ label {
+    pointer-events: auto;
+  }
+}

@@ -3,22 +3,20 @@ import React from "react";
 
 export function renderZForm(codeId, inputChoices, inputVars, counterGen) {
   return renderToStaticMarkup(
-    <div>
+    <div className="d-flex flex-wrap align-items-center gap-3 mb-3 mt-3">
       {(() => {
         const children = [];
         inputChoices.forEach((inputName) => {
           const input = inputVars[inputName];
           const inputId = "zhelp-input-" + counterGen();
           const toolTip = input.note || undefined;
-          children.push(
-            <label htmlFor={inputId} title={toolTip} key={inputId}>
-              {input["_"]}
-            </label>,
-          );
+          let control;
           if (input.option) {
-            children.push(
+            control = (
               <select
                 id={inputId}
+                className="form-select"
+                style={{ width: "auto" }}
                 data-z-name={inputName}
                 data-z-for-code={codeId}
                 title={toolTip}
@@ -50,38 +48,51 @@ export function renderZForm(codeId, inputChoices, inputVars, counterGen) {
                       </option>
                     ),
                   )}
-              </select>,
+              </select>
             );
           } else if (
             input["true"] !== undefined ||
             input["false"] !== undefined
           ) {
-            children.push(
-              <input
-                id={inputId}
-                type="checkbox"
-                data-z-name={inputName}
-                data-z-for-code={codeId}
-                title={toolTip}
-                defaultChecked={!!input.default}
-                data-z-true={input["true"]}
-                data-z-false={input["false"]}
-                key={inputId}
-              />,
+            control = (
+              <div className="form-control form-switch form-check">
+                <input
+                  id={inputId}
+                  className="form-check-input"
+                  type="checkbox"
+                  data-z-name={inputName}
+                  data-z-for-code={codeId}
+                  title={toolTip}
+                  defaultChecked={!!input.default}
+                  data-z-true={input["true"]}
+                  data-z-false={input["false"]}
+                  key={inputId}
+                />
+              </div>
             );
           } else {
-            children.push(
+            control = (
               <input
                 id={inputId}
+                className="form-control form-control-sm"
+                style={{ width: "auto" }}
                 type="text"
                 data-z-name={inputName}
                 data-z-for-code={codeId}
                 title={toolTip}
                 defaultValue={input.default || ""}
                 key={inputId}
-              />,
+              />
             );
           }
+          children.push(
+            <div className="form-floating" key={inputId}>
+              {control}
+              <label htmlFor={inputId} title={toolTip}>
+                {input["_"]}
+              </label>
+            </div>,
+          );
         });
         return children;
       })()}
