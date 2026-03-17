@@ -1,0 +1,9 @@
+_: Influxdata 软件仓库
+block:
+- influxdata
+input:
+  release:
+    _: 发行版
+    option:
+      'el7-x86_64':
+        _: CentOS/RHEL 7 (x86_64)

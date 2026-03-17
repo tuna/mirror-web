@@ -1,0 +1,4 @@
+[submodule "global"]
+	path = global
+	url = https://github.com/mirrorz-org/mirrorz-docs.git
+	branch = main
