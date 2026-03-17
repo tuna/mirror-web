@@ -1,4 +1,7 @@
 @use "./utils.scss" as utils;
+@use "./bootstrap_vars" as bs;
+@use "./common-defs" as common;
+@use "sass:map";
 
 @include utils.noissue {
   .highlight {
@@ -527,7 +530,8 @@
 }
 
 .form-floating {
-  & > .form-control, & > .form-select {
+  & > .form-control,
+  & > .form-select {
     min-width: 10rem;
   }
   & > .form-switch > input.form-check-input {
@@ -540,4 +544,80 @@
 
 [data-helpz-not-ready] .zhelp-form {
   display: none !important;
+}
+
+$hover-transition-duration: 0.25s;
+$icon-transition-duration: 0.1s;
+
+pre.codeblock {
+  position: relative;
+  & > button.btn-clipboard {
+    [data-cannot-copy] & {
+      display: none;
+    }
+    display: block;
+    line-height: 1;
+    color: var(--bs-body-color);
+    background-color: inherit;
+    border: 0;
+    transition:
+      color $hover-transition-duration,
+      opacity $hover-transition-duration;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--bs-link-hover-color);
+    }
+    margin-top: 0;
+    margin-right: 0;
+    opacity: 0;
+    position: absolute;
+    span {
+      display: inline-block;
+      width: common.$fa_icon_width;
+      height: common.$fa_icon_height;
+      position: relative;
+      i {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity $icon-transition-duration;
+        /*
+          When the mouse is moved out of the <pre> before
+          the copied class is removed, add the delay to
+          prevent the clipboard icon from flashing back to the
+          original icon during fading out.
+        */
+        transition-delay: $hover-transition-duration;
+      }
+      i[data-checked] {
+        opacity: 0;
+      }
+    }
+    &.copied {
+      i {
+        opacity: 0;
+        transition-delay: 0s;
+      }
+      i[data-checked] {
+        opacity: 1;
+      }
+    }
+    top: 0;
+    right: 0;
+    z-index: 3;
+    padding-top: map.get(bs.$spacers, 2);
+    padding-right: map.get(bs.$spacers, 2);
+    padding-left: 0;
+    padding-bottom: 0;
+  }
+  &:hover > button.btn-clipboard,
+  &:focus-within > button.btn-clipboard,
+  & > button.btn-clipboard.copied {
+    opacity: 1;
+  }
+  code[data-original-code] {
+    display: none;
+  }
 }

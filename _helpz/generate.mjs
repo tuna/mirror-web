@@ -12,7 +12,7 @@ import { VFile } from "vfile";
 import Hogan from "hogan.js";
 import { flattenData } from "../_src/lib/helpz-libs.mjs";
 import hljs from "highlight.js";
-import { renderZForm } from "./templates.jsx";
+import { renderZForm, renderCodeBlock } from "./templates.tsx";
 
 const options = parseArgs({
   options: {
@@ -186,18 +186,23 @@ function getRenderContext(globalVars, zconf, inputVars) {
   return data;
 }
 
+function highlightCode(code, lang) {
+  let highlighted = "";
+  if (lang && hljs.getLanguage(lang)) {
+    highlighted = hljs.highlight(code, { language: lang }).value;
+  } else if (!lang) {
+    highlighted = hljs.highlightAuto(code).value;
+  } else {
+    highlighted = hljs.highlight(code, { language: "plaintext" }).value;
+  }
+  return highlighted;
+}
+
 function renderTemplate(tmpl, globalVars, zconf, inputVars, lang) {
   const renderContext = getRenderContext(globalVars, zconf, inputVars);
   const compiledTemplate = Hogan.compile(tmpl, { asString: true });
   const renderedConfig = Hogan.compile(tmpl).render(renderContext);
-  let highlighted = "";
-  if (lang && hljs.getLanguage(lang)) {
-    highlighted = hljs.highlight(renderedConfig, { language: lang }).value;
-  } else if (!lang) {
-    highlighted = hljs.highlightAuto(renderedConfig).value;
-  } else {
-    highlighted = hljs.escapeHTML(renderedConfig);
-  }
+  const highlighted = highlightCode(renderedConfig, lang);
   return { compiled: compiledTemplate, rendered: highlighted };
 }
 
@@ -378,10 +383,12 @@ enablePages.forEach((page) => {
                   () => inputCounter++,
                 ) + "\n";
             }
-            renderedHTML +=
-              `<pre data-z-code="${templateId}" ${directiveOptions.lang ? `data-z-lang="${directiveOptions.lang}" ` : ""}>\n` +
-              rendered.trim() +
-              "\n</pre>";
+            renderedHTML += renderCodeBlock(null, rendered, {
+              "data-z-code": templateId.toString(),
+              ...(directiveOptions.lang
+                ? { "data-z-lang": directiveOptions.lang }
+                : {}),
+            });
           }
           node.type = "html";
           node.value = renderedHTML;
@@ -391,6 +398,15 @@ enablePages.forEach((page) => {
         }
       },
     );
+    visitor.visit(mdast, "code", (node) => {
+      const highlighted = highlightCode(node.value, node.lang);
+      node.type = "html";
+      node.value = renderCodeBlock(node.value, highlighted, {});
+      delete node.lang;
+      node.children = [];
+      node.position = null;
+      return visitor.SKIP;
+    });
     const modifiedContent = toMarkdown(mdast);
     mdContent.push(modifiedContent);
   });

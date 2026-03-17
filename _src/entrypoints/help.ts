@@ -104,11 +104,40 @@ const debugRestore = ref(false);
   elem.addEventListener("change", changeHandler);
 });
 
+const attachCopyButton = (preElem: Element, getRawCode: () => string) => {
+  const copyButton = preElem.querySelector("button.btn-clipboard");
+  if (copyButton) {
+    copyButton.addEventListener("click", () => {
+      navigator.clipboard.writeText(getRawCode()).then(
+        () => {
+          copyButton.classList.add("copied");
+          setTimeout(() => {
+            copyButton.classList.remove("copied");
+          }, 2000);
+        },
+        () => {
+          document
+            .getElementById("help-content")
+            .setAttribute("data-cannot-copy", "");
+        },
+      );
+    });
+  }
+};
+
 [...document.querySelectorAll("[data-z-code]")].forEach((elem) => {
   const codeId = parseInt(elem.getAttribute("data-z-code"));
   const lang = elem.getAttribute("data-z-lang");
   const tmpl = new HoganRuntime.Template(ztmpls[codeId]);
-  const originalContent = elem.innerHTML;
+  let codeContainer: Element;
+  let rawCode = "";
+  if (elem.tagName.toLowerCase() === "pre") {
+    codeContainer = elem.querySelector("code");
+    attachCopyButton(elem, () => rawCode);
+  } else {
+    codeContainer = elem;
+  }
+  const originalContent = codeContainer.innerHTML;
   watchEffect(() => {
     const data = { ...flattenData(globalData.value) };
     const endpoint = new URL(data.urlpath as string);
@@ -118,23 +147,39 @@ const debugRestore = ref(false);
       data[k] = v;
     });
     if (debugRestore.value) {
-      elem.innerHTML = originalContent;
+      codeContainer.innerHTML = originalContent;
     } else {
       const renderedConfig = tmpl.render(data);
+      rawCode = renderedConfig;
       if (lang && hljs.getLanguage(lang)) {
-        elem.innerHTML = hljs.highlight(renderedConfig, {
+        codeContainer.innerHTML = hljs.highlight(renderedConfig, {
           language: lang,
         }).value;
       } else if (!lang) {
-        elem.innerHTML = hljs.highlightAuto(renderedConfig).value;
+        codeContainer.innerHTML = hljs.highlightAuto(renderedConfig).value;
       } else {
-        elem.textContent = renderedConfig;
+        codeContainer.textContent = renderedConfig;
       }
     }
   });
 });
 
+[...document.querySelectorAll("pre.codeblock:not([data-z-code])")].forEach(
+  (elem) => {
+    const rawCode = elem.querySelector("code[data-original-code]").textContent;
+    attachCopyButton(elem, () => rawCode);
+  },
+);
+
 document.getElementById("help-content").removeAttribute("data-helpz-not-ready");
+if (
+  typeof navigator !== "undefined" &&
+  navigator.clipboard &&
+  navigator.clipboard.writeText &&
+  typeof navigator.clipboard.writeText === "function"
+) {
+  document.getElementById("help-content").removeAttribute("data-cannot-copy");
+}
 
 document.getElementById("debug-restore").addEventListener("click", () => {
   debugRestore.value = !debugRestore.value;

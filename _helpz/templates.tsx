@@ -1,11 +1,16 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import React from "react";
 
-export function renderZForm(codeId, inputChoices, inputVars, counterGen) {
+export function renderZForm(
+  codeId: number,
+  inputChoices: string[],
+  inputVars: Record<string, any>,
+  counterGen: () => number,
+) {
   return renderToStaticMarkup(
     <div className="d-flex flex-wrap align-items-center gap-3 mb-3 mt-3 zhelp-form">
       {(() => {
-        const children = [];
+        const children = [] as React.ReactNode[];
         inputChoices.forEach((inputName) => {
           const input = inputVars[inputName];
           const inputId = "zhelp-input-" + counterGen();
@@ -24,30 +29,30 @@ export function renderZForm(codeId, inputChoices, inputVars, counterGen) {
                 defaultValue={(input.option && input.default) || undefined}
               >
                 {input.option &&
-                  Object.entries(input.option).map(
-                    ([optionName, optionValue]) => (
-                      <option
-                        value={optionName}
-                        key={optionName}
-                        {...(() => {
-                          const attrs = {};
-                          optionValue &&
-                            Object.entries(optionValue).forEach(
-                              ([key, value]) => {
-                                if (key !== "default" && key !== "_") {
-                                  attrs[`data-z-set-${key}`] = value;
-                                }
-                              },
-                            );
-                          return attrs;
-                        })()}
-                      >
-                        {optionValue && optionValue["_"]
-                          ? optionValue["_"]
-                          : optionName}
-                      </option>
-                    ),
-                  )}
+                  Object.entries(
+                    input.option as Record<string, Record<string, any>>,
+                  ).map(([optionName, optionValue]) => (
+                    <option
+                      value={optionName}
+                      key={optionName}
+                      {...(() => {
+                        const attrs: Record<string, string> = {};
+                        optionValue &&
+                          Object.entries(optionValue).forEach(
+                            ([key, value]) => {
+                              if (key !== "default" && key !== "_") {
+                                attrs[`data-z-set-${key}`] = value;
+                              }
+                            },
+                          );
+                        return attrs;
+                      })()}
+                    >
+                      {optionValue && optionValue["_"]
+                        ? optionValue["_"]
+                        : optionName}
+                    </option>
+                  ))}
               </select>
             );
           } else if (
@@ -97,5 +102,30 @@ export function renderZForm(codeId, inputChoices, inputVars, counterGen) {
         return children;
       })()}
     </div>,
+  );
+}
+
+export function renderCodeBlock(
+  code: string | null,
+  renderedCode: string,
+  otherAttrs: Record<string, string>,
+) {
+  return renderToStaticMarkup(
+    <pre {...otherAttrs} className="codeblock">
+      <code dangerouslySetInnerHTML={{ __html: renderedCode }}></code>
+      {code != null && <code data-original-code>{code}</code>}
+      <button
+        type="button"
+        className="btn-clipboard"
+        aria-label="Copy to clipboard"
+      >
+        <span>
+          <i>{`{%endraw%}{% fa_svg far.fa-clipboard %}{%raw%}`}</i>
+          <i
+            data-checked
+          >{`{%endraw%}{% fa_svg fas.fa-clipboard-check %}{%raw%}`}</i>
+        </span>
+      </button>
+    </pre>,
   );
 }

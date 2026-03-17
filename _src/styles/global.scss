@@ -8,6 +8,8 @@
   $link-hover-decoration: none
 );
 
+@use "./common-defs" as common;
+
 $color_thu_purple_dark: #c353d3;
 $footer_color: #384452;
 
@@ -122,8 +124,8 @@ h6,
 
 svg.icon {
   display: inline-block;
-  width: 1em;
-  height: 1.42857143em;
+  width: common.$fa_icon_width;
+  height: common.$fa_icon_height;
   fill: currentColor;
   vertical-align: bottom;
 }
