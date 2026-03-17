@@ -1,0 +1,37 @@
+input:
+  channel:
+    _: 第三方源
+    option:
+      auto:
+      biobakery:
+      bioconda:
+      c4aarch64:
+      caffe2:
+      conda-forge:
+      deepmodeling:
+      dglteam:
+      fastai:
+      fermi:
+      idaholab:
+      matsci:
+      menpo:
+      MindSpore:
+      mordred-descriptor:
+      numba:
+      ohmeta:
+      omnia:
+      Paddle:
+      peterjc123:
+      plotly:
+      psi4:
+      pytorch:
+      pytorch3d:
+      pytorch-lts:
+      pytorch-test:
+      pyviz:
+      qiime2:
+      rapidsai:
+      rdkit:
+      simpleitk:
+      stackless:
+      ursky:

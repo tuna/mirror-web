@@ -48,6 +48,7 @@ class Jekyll::Vite::Generator < Jekyll::Generator
       { :name => 'site_config', :data => site.config },
       { :name => 'site_data', :data => site.data },
       { :name => 'site_categories', :data => site.categories },
+      { :name => 'site_collections', :data => site.collections },
     ]
     exports.each do |export|
       file = Tempfile.new()

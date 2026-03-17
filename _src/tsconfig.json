@@ -1,5 +1,5 @@
 {
-  "include": ["**/*.ts", "**/*.js", "**/*.vue"],
+  "include": ["**/*.ts", "**/*.js", "**/*.vue", "**/*.mjs"],
   "files": [
     "../node_modules/njs-types/ngx_http_js_module.d.ts",
     "../.jekyll-cache/vite-components.d.ts",

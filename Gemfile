@@ -1,5 +1,7 @@
 source 'https://mirrors.tuna.tsinghua.edu.cn/rubygems/'
 
+ruby ">= 2.6"
+
 gem 'jekyll', '~> 4.3', '>= 4.3.3'
 
 group :jekyll_deps do

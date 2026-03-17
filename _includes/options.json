@@ -1,4 +1,4 @@
 {
 "options": {{ site.data.options | jsonify }},
-"helps": {{ site.categories['help'] | select: "mirrorid", "url" | jsonify }}
+"helps": {{ site['help'] | select: "zconf.name:mirrorid", "url" | jsonify }}
 }

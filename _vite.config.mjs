@@ -24,7 +24,7 @@ const visualizer = await (async () => {
   }
 })();
 
-const exposedData = ["config", "data", "categories"];
+const exposedData = ["config", "data", "categories", "collections"];
 const jekyllData = Object.fromEntries(
   exposedData.map((key) => [
     key,
@@ -116,7 +116,7 @@ export default defineConfig(({ mode }) => ({
       };
     })(),
     (() => {
-      const helpPages = jekyllData.categories.help || [];
+      const helpPages = jekyllData.collections.help.docs || [];
       return {
         name: "tuna-help-pages",
         resolveId(id) {
@@ -127,7 +127,7 @@ export default defineConfig(({ mode }) => ({
         load(id) {
           if (id === "\0" + "virtual:tuna-help-pages") {
             const pages = Object.fromEntries(
-              helpPages.map((page) => [page.mirrorid, page.url]),
+              helpPages.map((page) => [page.zconf.name, page.url]),
             );
             return `export default ${JSON.stringify(pages)};`;
           }

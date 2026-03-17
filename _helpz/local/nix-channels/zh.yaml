@@ -1,0 +1,11 @@
+_: Nix Channels
+block:
+- nix-channels
+input:
+  version:
+    _: 系统版本
+    option:
+      '22.11':
+      'unstable':
+      '22.05':
+      '21.11':
