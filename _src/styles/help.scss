@@ -534,6 +534,9 @@
   & > .form-select {
     min-width: 10rem;
   }
+  & > .form-switch {
+    margin: 0;
+  }
   & > .form-switch > input.form-check-input {
     margin-left: 0;
   }
