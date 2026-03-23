@@ -16,10 +16,13 @@ const readableFileSize = (size) => {
 
 onMounted(async () => {
   const res = await fetch(DISKINFO_JSON_PATH);
-  const d = await res.json();
-  if (!Array.isArray(d)) {
-    d = [d];
-  }
+  const d = await (async () => {
+    let d = await res.json();
+    if (!Array.isArray(d)) {
+      d = [d];
+    }
+    return d;
+  })();
   diskUsages.value = d.map((disk) => {
     const percentage = Math.round((disk.used_kb * 100) / disk.total_kb);
     return {
