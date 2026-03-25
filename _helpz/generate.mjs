@@ -214,6 +214,7 @@ function genGlobalVars(site, zconf) {
       _: "是否使用 HTTPS",
       true: "https",
       false: "http",
+      default: true,
     },
     sudo: {
       _: "是否使用 sudo",
