@@ -242,6 +242,8 @@ function genGlobalVars(site, zconf) {
   };
 }
 
+const customIdRegex = / {#(?<id>.+)}$/;
+
 enablePages.forEach((page) => {
   const conf = loadConf(page, language);
   const mdContent = [];
@@ -407,6 +409,18 @@ enablePages.forEach((page) => {
       node.children = [];
       node.position = null;
       return visitor.SKIP;
+    });
+    visitor.visit(mdast, "heading", (node) => {
+      const lastChild = node.children[node.children.length - 1];
+      let id = null;
+      if (lastChild && lastChild.type === "text") {
+        const match = customIdRegex.exec(lastChild.value);
+        if (match) {
+          id = match.groups.id;
+          lastChild.value = lastChild.value.replace(customIdRegex, "");
+        }
+      }
+      // TODO: handle id
     });
     const modifiedContent = toMarkdown(mdast);
     mdContent.push(modifiedContent);
