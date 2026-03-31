@@ -173,6 +173,9 @@ function getRenderContext(globalVars, zconf, inputVars) {
   });
   const data = flattenData(globalValues);
   data.endpoint = data.urlpath;
+  const url = new URL(data.urlpath);
+  data.host = url.host;
+  data.path = url.pathname;
   if (inputVars) {
     const localValues = {};
     inputVars.split(" ").forEach((inputName) => {

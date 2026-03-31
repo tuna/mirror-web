@@ -143,6 +143,8 @@ const attachCopyButton = (preElem: Element, getRawCode: () => string) => {
     const endpoint = new URL(data.urlpath as string);
     endpoint.protocol = (data.scheme + ":") as string;
     data.endpoint = endpoint.toString();
+    data.host = endpoint.host;
+    data.path = endpoint.pathname;
     Object.entries(flattenData(tmplData[codeId].value)).forEach(([k, v]) => {
       data[k] = v;
     });
