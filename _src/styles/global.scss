@@ -217,6 +217,38 @@ a {
   z-index: 1000;
 }
 
+.untranslate-fab {
+  cursor: pointer;
+
+  border-radius: 50%;
+  background: color-mix(in srgb,rgba(128,128,128) 20%,var(--bs-body-bg) 80%);
+  box-shadow: 0 2px 5px rgba(0,0,0,.3);
+
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    transform: scale(0.8);
+  }
+
+  position: absolute;
+  right: 50px;
+  bottom: 0;
+
+  &:not(.shown) {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s ease-in;
+  }
+
+  opacity: 1;
+  transition: opacity .2s ease-out;
+}
+
 .translate-fab {
   transform: scale(1.5);
   transition: transform .2s ease;

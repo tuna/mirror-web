@@ -10,6 +10,9 @@ for (const [k, v] of Object.entries(DICT)) {
   normalizedDict[k.toLowerCase()] = v;
 }
 
+type UndoMap = WeakMap<Node, string[]>;
+const undo: UndoMap = new WeakMap();
+
 // Tokenized (without spaces)
 type WordToken = {
   type: "en",
@@ -224,9 +227,9 @@ function translate(dict: Dict, text: string): string {
   return output;
 }
 
-export function translatePage() {
+function textWalker(): TreeWalker {
   // Create TreeWalker
-  const walker = document.createTreeWalker(
+  return document.createTreeWalker(
     document.body,
     NodeFilter.SHOW_TEXT,
     {
@@ -243,15 +246,50 @@ export function translatePage() {
         return NodeFilter.FILTER_ACCEPT;
       }
     }
-  )
+  );
+}
+
+function translatePage() {
+  const walker = textWalker();
 
   let node: Node;
   while (node = walker.nextNode()) {
     // Preserve whitespaces at front and back
-    const frontWhitespace = node.nodeValue.match(/^\s*/)[0];
-    const backWhitespace = node.nodeValue.match(/\s*$/)[0];
-    const trimmedText = node.nodeValue.trim();
-    node.nodeValue = frontWhitespace + translate(normalizedDict, trimmedText) + backWhitespace;
+    const orig = node.nodeValue;
+    const frontWhitespace = orig.match(/^\s*/)[0];
+    const backWhitespace = orig.match(/\s*$/)[0];
+    const trimmedText = orig.trim();
+    const translated = frontWhitespace + translate(normalizedDict, trimmedText) + backWhitespace; 
+    node.nodeValue = translated;
+
+    const curStack = undo.get(node) || [];
+    curStack.push(orig);
+    undo.set(node, curStack);
+  }
+
+  document.querySelector(".untranslate-fab")?.classList.add("shown");
+}
+
+function undoTranslatePage() {
+  const walker = textWalker();
+  let hasUndo = false;
+  
+  let node: Node;
+  while (node = walker.nextNode()) {
+    const cur = undo.get(node);
+    if (cur && cur.length > 0) {
+      const prev = cur.pop();
+      node.nodeValue = prev;
+
+      if (cur.length === 0)
+        undo.delete(node);
+      else
+        hasUndo = true;
+    }
+  }
+
+  if (!hasUndo) {
+    document.querySelector(".untranslate-fab")?.classList.remove("shown");
   }
 }
 
@@ -302,4 +340,11 @@ export function translateSetup() {
     note.addEventListener('click', () => {
       note.classList.add('dismissed');
     });
+
+  const untranslateFab = document.querySelector(".untranslate-fab");
+  if (untranslateFab) {
+    untranslateFab.addEventListener("click", function() {
+      undoTranslatePage();
+    });
+  }
 }
