@@ -1,6 +1,7 @@
 import "./default";
 import "../styles/notfound.scss";
 import { issue_tag as IssueTag } from "virtual:jekyll-config";
+import { translateSetup } from "../lib/translate";
 
 const tag = `[${IssueTag}]`;
 const bugLink = document.getElementById("new_issue_bug");

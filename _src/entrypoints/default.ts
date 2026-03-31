@@ -2,6 +2,7 @@ import "../styles/global.scss";
 import { suffix as siteSuffix } from "virtual:jekyll-config";
 import { load as loadWebFont } from "webfontloader";
 import "bootstrap/js/dist/collapse";
+import { translatePage, translateSetup } from "../lib/translate";
 
 if (siteSuffix) {
   if (
@@ -26,3 +27,5 @@ loadWebFont({
     families: ["Lato", "Source Code Pro"],
   },
 });
+
+translateSetup();
