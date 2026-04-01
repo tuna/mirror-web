@@ -294,6 +294,10 @@ function undoTranslatePage() {
 }
 
 export function translateSetup() {
+  document.addEventListener("DOMContentLoaded", realTranslateSetup);
+}
+
+export function realTranslateSetup() {
   const translateIcon = document.querySelector(".translate-fab");
   if (translateIcon) {
     console.log('[MEOW] Translator registered')

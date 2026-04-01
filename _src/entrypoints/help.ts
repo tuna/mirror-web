@@ -13,7 +13,6 @@ import "./default";
 import "../styles/help.scss";
 import { ZInputOutput } from "../lib/helpz-types";
 import { flattenData } from "../lib/helpz-libs.mjs";
-import { translateSetup } from "../lib/translate";
 
 document.getElementById("help-select").addEventListener("change", (ev) => {
   let help_url = (ev.target as Element).querySelector("option:checked")
