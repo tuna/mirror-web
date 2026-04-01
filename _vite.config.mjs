@@ -87,7 +87,7 @@ const tsConfig = (() => {
 export default defineConfig(({ mode }) => ({
   build: {
     emptyOutDir: true,
-    sourcemap: mode === "production" ? false : true,
+    sourcemap: true,
     minify: mode === "production",
   },
   plugins: [
