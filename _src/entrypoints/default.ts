@@ -28,7 +28,4 @@ loadWebFont({
   },
 });
 
-
-setTimeout(() => {
-  translateSetup();
-}, 1000);
+translateSetup();
