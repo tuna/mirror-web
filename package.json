@@ -50,7 +50,7 @@
     "tsx": "^4.21.0",
     "typescript": "^5.4.5",
     "unist-util-visit": "^5.1.0",
-    "unplugin-vue-components": "^0.26.0",
+    "unplugin-vue-components": "^32.1.0",
     "vfile": "^6.0.3",
     "vite": "^5.4.21",
     "vite-plugin-ruby": "^5.0.0",
