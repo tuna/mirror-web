@@ -3,6 +3,15 @@
 @use "./lato.scss" as Lato;
 
 @use "bootstrap" as bs with (
+  $utilities: (
+    "display-addition": (
+      responsive: true,
+      print: true,
+      property: display,
+      class: d,
+      values: table-row-group,
+    )
+  ),
   $color-mode-type: media-query,
   $link-decoration: none,
   $link-hover-decoration: none

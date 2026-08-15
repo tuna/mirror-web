@@ -21,9 +21,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <table class="table text-break table-hover table-borderless">
+  <table class="table text-break table-hover table-borderless d-block d-lg-table d-bs3-table">
     <thead>
-      <tr class="d-none d-lg-table-row d-b3-table-row">
+      <tr class="d-none d-lg-table-row d-bs3-table-row">
         <th class="col-2">Name</th>
         <th class="col-4" colspan="2">Last Update</th>
         <th class="col-4">Upstream</th>
@@ -35,7 +35,7 @@ onMounted(() => {
       id="mirror-list"
       :data-tuna-roll-cur="rollCur % rollMax"
       :data-tuna-roll-max="rollMax"
-      class="table-group-divider"
+      class="table-group-divider d-block d-lg-table-row-group d-bs3-table-row-group container"
     >
       <tr
         v-for="mir in rawMirrorList"

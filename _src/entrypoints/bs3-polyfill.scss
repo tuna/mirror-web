@@ -19,7 +19,7 @@ html {
   .d-bs3-block {
     display: block !important;
   }
-  @each $display in block inline-block inline table table-row table-cell none {
+  @each $display in block inline-block inline table table-row table-row-group table-cell none {
     .d-bs3-#{$display} {
       display: $display !important;
     }
