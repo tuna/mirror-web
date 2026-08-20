@@ -1,5 +1,7 @@
 # TUNA 镜像站主页
 
+[![docker-images](https://github.com/tuna/mirror-web/actions/workflows/docker-images.yml/badge.svg)](https://github.com/tuna/mirror-web/actions/workflows/docker-images.yml)
+
 注意：如果使用本项目搭建开源镜像站，**必须**：
 
 * 移除所有与清华大学和 TUNA 相关的内容，包括且不限于站名、logo 和各种文档中出现的所有相关文本和图形；
