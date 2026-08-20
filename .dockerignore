@@ -1,0 +1,9 @@
+**
+!.dockerignore
+!Dockerfile.build
+!Gemfile
+!Gemfile.lock
+!package.json
+!package-lock.json
+!_node_module_patch/
+!_node_module_patch/**

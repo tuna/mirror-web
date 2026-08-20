@@ -3,129 +3,127 @@ name: docker-images
 on:
   push:
     branches:
-    - master
-    - docker-test
+      - master
+      - docker-test
   pull_request:
     branches:
-    - master
-    - docker-test
+      - master
+      - docker-test
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docker-images-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   multi:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-latest
-          - ubuntu-24.04-arm
-    runs-on: ${{ matrix.os }}
+        runner:
+          - name: ubuntu-latest
+            platform: linux/amd64
+          - name: ubuntu-24.04-arm
+            platform: linux/arm64
+
+    runs-on: ${{ matrix.runner.name }}
     if: ${{ !contains(github.event.head_commit.message, '[ci skip]') }}
     steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@v7
         with:
           submodules: true
-      -
-        name: Prevent from loading rubygems from TUNA
+
+      - name: Prevent loading RubyGems from TUNA
         run: |
           sed -i "/^source/c source 'https://rubygems.org'" Gemfile
           sed -i '/remote:/s@remote: .*$@remote: https://rubygems.org@' Gemfile.lock
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      -
-        name: Cache Docker layers
-        uses: actions/cache@v4
-        if: github.event_name == 'push'
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v6
         with:
-          path: /tmp/.buildx-cache
-          key: ${{ matrix.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ matrix.os }}-buildx-${{ matrix.os }}-
-            ${{ matrix.os }}-buildx-
-      -
-        name: Cache Docker layers
-        uses: actions/cache@v4
-        if: github.event_name == 'pull_request'
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ matrix.os }}-pr-${{ github.event.pull_request.head.user.login }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ matrix.os }}-pr-${{ github.event.pull_request.head.user.login }}-buildx-
-            ${{ matrix.os }}-buildx-
-            ${{ matrix.os }}-buildx-
-      -
-        name: Cache Docker layers
-        if: github.event_name != 'push' && github.event_name != 'pull_request'
-        run: |
-          echo "I do not know how to setup cache"
-          exit -1
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@v3
+          images: tunathu/mirror-web
+          labels: |
+            org.opencontainers.image.title=mirror-web
+            org.opencontainers.image.description=Build environment for the TUNA mirror website
+            org.opencontainers.image.vendor=Tsinghua University TUNA Association
+          annotations: |
+            org.opencontainers.image.title=mirror-web
+            org.opencontainers.image.description=Build environment for the TUNA mirror website
+            org.opencontainers.image.vendor=Tsinghua University TUNA Association
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v4
         if: github.event_name == 'push'
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build Test Docker Image
-        uses: docker/build-push-action@v6
+
+      - name: Build test image
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: Dockerfile.build
-          push: false
-          tags: tunathu/mirror-web:localtest
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/local-test-build-cache
+          platforms: ${{ matrix.runner.platform }}
           load: true
-      -
-        name: Test Run Page Build
+          tags: tunathu/mirror-web:localtest
+          labels: ${{ steps.meta.outputs.labels }}
+          annotations: ${{ steps.meta.outputs.annotations }}
+          cache-from: type=gha,scope=mirror-web-${{ runner.arch }}
+          cache-to: type=gha,mode=max,scope=mirror-web-${{ runner.arch }}
+
+      - name: Test page build
         run: |
           docker run --rm \
-            -v $PWD:/data \
-            -v $PWD/_site:/data/_site \
+            --volume "$PWD:/data" \
+            --volume "$PWD/_site:/data/_site" \
             --tmpfs /data/.jekyll-cache \
             --tmpfs /data/node_modules:exec \
             --env VISUALIZER=1 \
             tunathu/mirror-web:localtest \
             bash -c "npm install rollup-plugin-visualizer && bundle exec jekyll build --future"
-      -
-        name: Upload Build Artifacts
-        uses: actions/upload-artifact@v4
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v7
         with:
-          name: site-${{ matrix.os}}
+          name: site-${{ runner.arch }}
           path: _site
-      -
-        name: Upload Build Artifacts
-        uses: actions/upload-artifact@v4
+
+      - name: Upload build statistics
+        uses: actions/upload-artifact@v7
         with:
-          name: stats.html-${{ matrix.os}}
+          name: stats.html-${{ runner.arch }}
           path: _stats.html
-      -
-        name: Build and push
-        uses: docker/build-push-action@v5
+
+      - name: Build and push by digest
+        uses: docker/build-push-action@v7
         id: docker_build
         with:
           context: .
           file: Dockerfile.build
+          platforms: ${{ matrix.runner.platform }}
           push: ${{ github.event_name == 'push' }}
           tags: tunathu/mirror-web
-          cache-from: |
-            type=local,src=/tmp/.buildx-cache
-            type=local,src=/tmp/local-test-build-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
+          labels: ${{ steps.meta.outputs.labels }}
+          annotations: ${{ steps.meta.outputs.annotations }}
+          cache-from: type=gha,scope=mirror-web-${{ runner.arch }}
           outputs: ${{ github.event_name == 'push' && 'type=image,push-by-digest=true,name-canonical=true,push=true' || 'type=image' }}
-      -
-        name: Export digest
+
+      - name: Export digest
         run: |
-          mkdir -p ${{ runner.temp }}/digests/
+          mkdir -p "${{ runner.temp }}/digests"
           digest="${{ steps.docker_build.outputs.digest }}"
           touch "${{ runner.temp }}/digests/${digest#sha256:}"
-      -
-        name: Upload digest
-        uses: actions/upload-artifact@v4
+
+      - name: Upload digest
+        uses: actions/upload-artifact@v7
         with:
           name: digests-${{ runner.arch }}
           path: ${{ runner.temp }}/digests/*
@@ -136,15 +134,14 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - multi
-    if: always() && github.event_name == 'push' && !contains(github.event.head_commit.message, '[ci skip]')
+    if: github.event_name == 'push' && needs.multi.result == 'success'
     steps:
-      -
-        name: Determine docker tag
+      - name: Determine Docker tag
         id: docker_tag
         env:
           TAG_NAME: ${{ github.ref }}
         run: |
-          case "${TAG_NAME}" in
+          case "$TAG_NAME" in
             refs/heads/master)
               tag=latest
               ;;
@@ -155,38 +152,70 @@ jobs:
               tag=branch-${TAG_NAME#refs/heads/}
               ;;
             *)
-              tag="dummy"
+              tag=dummy
               ;;
           esac
-          echo "docker_tag=${tag}" | tee -a $GITHUB_OUTPUT
-      -
-        name: Download digests
-        uses: actions/download-artifact@v4
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+
+      - name: Download digests
+        uses: actions/download-artifact@v8
         with:
           path: ${{ runner.temp }}/digests
           pattern: digests-*
           merge-multiple: true
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Create manifest list and push
-        working-directory: ${{ runner.temp }}/digests
-        run: |
-          docker buildx imagetools create -t "tunathu/mirror-web:${{ steps.docker_tag.outputs.docker_tag }}" \
-            $(printf "tunathu/mirror-web@sha256:%s " $(ls .))
 
-      - name: Inspect images
+      - name: Create manifest list and push
         working-directory: ${{ runner.temp }}/digests
         run: |
-          DOCKER_IMG="tunathu/mirror-web:${{ steps.docker_tag.outputs.docker_tag }}"
-          echo "## $DOCKER_IMG" >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-          docker buildx imagetools inspect "$DOCKER_IMG" | tee -a $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+          created="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          source_url="${{ github.server_url }}/${{ github.repository }}"
+          version="${{ steps.docker_tag.outputs.tag }}"
+          sources=()
+
+          while IFS= read -r digest; do
+            sources+=("tunathu/mirror-web@sha256:$digest")
+          done < <(find . -maxdepth 1 -type f -printf '%f\n' | sort)
+
+          if [ "${#sources[@]}" -ne 2 ]; then
+            echo "Expected two platform digests, found ${#sources[@]}" >&2
+            exit 1
+          fi
+
+          docker buildx imagetools create -t "tunathu/mirror-web:$version" \
+            --annotation "index:org.opencontainers.image.created=$created" \
+            --annotation "index:org.opencontainers.image.description=Build environment for the TUNA mirror website" \
+            --annotation "index:org.opencontainers.image.revision=${{ github.sha }}" \
+            --annotation "index:org.opencontainers.image.source=$source_url" \
+            --annotation "index:org.opencontainers.image.title=mirror-web" \
+            --annotation "index:org.opencontainers.image.url=$source_url" \
+            --annotation "index:org.opencontainers.image.vendor=Tsinghua University TUNA Association" \
+            --annotation "index:org.opencontainers.image.version=$version" \
+            "${sources[@]}"
+
+      - name: Inspect published image
+        run: |
+          ref="tunathu/mirror-web:${{ steps.docker_tag.outputs.tag }}"
+          echo "## $ref" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          docker buildx imagetools inspect "$ref" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          echo '| Platform | Compressed size | Digest |' >> "$GITHUB_STEP_SUMMARY"
+          echo '| --- | ---: | --- |' >> "$GITHUB_STEP_SUMMARY"
+
+          index_json="$(docker buildx imagetools inspect "$ref" --raw)"
+          while IFS=$'\t' read -r platform digest; do
+            manifest_json="$(docker buildx imagetools inspect "tunathu/mirror-web@$digest" --raw)"
+            size_bytes="$(jq '[.layers[]?.size] | add // 0' <<< "$manifest_json")"
+            size="$(numfmt --to=iec-i --suffix=B --format='%.1f' "$size_bytes")"
+            printf '| `%s` | %s | `%s` |\n' "$platform" "$size" "$digest" \
+              >> "$GITHUB_STEP_SUMMARY"
+          done < <(jq -r '.manifests[] | select(.platform.os != "unknown") | [(.platform.os + "/" + .platform.architecture), .digest] | @tsv' <<< "$index_json")

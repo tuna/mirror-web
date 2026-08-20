@@ -1,27 +1,46 @@
-FROM ruby:3.2
-LABEL maintainer="Miao Wang <shankerwangmiao@gmail.com>"
+FROM node:22-bookworm-slim AS node
 
-RUN mkdir /data
+FROM ruby:3.2-slim-bookworm AS dependencies
+
+COPY --from=node /usr/local/ /usr/local/
+
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends build-essential git libatomic1 \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /data
 
-RUN \
-    apt-get update && \
-    apt-get install --no-install-recommends -y locales && \
-    apt-get clean
-RUN curl -fsSL "https://cdn.jsdelivr.net/gh/tj/n/bin/n" | bash -s -- lts
+COPY Gemfile Gemfile.lock package.json package-lock.json ./
+COPY _node_module_patch ./_node_module_patch
 
-COPY Gemfile Gemfile.lock package.json package-lock.json /data/
-COPY _node_module_patch /data/_node_module_patch
+ENV NODE_ENV=production
 
-RUN \
-    gem install bundler -v "$(sed --silent -r '/BUNDLED WITH/,+1 {s/^[\t ]+//; p}' Gemfile.lock | tail -n +2)" && \
-    bundle install --frozen && \
-    NODE_ENV=production npm ci && \
-    mv node_modules ../ && \
-    rm -rf /data/*
+RUN bundler_version="$(sed --silent -r '/BUNDLED WITH/,+1 {s/^[\t ]+//; p}' Gemfile.lock | tail -n 1)" \
+    && gem install bundler --version "$bundler_version" --no-document \
+    && bundle config set deployment true \
+    && bundle config set frozen true \
+    && bundle install --jobs "$(nproc)" --retry 3 \
+    && npm ci --omit=dev \
+    && mv node_modules /node_modules \
+    && rm -rf /root/.bundle/cache /root/.npm /usr/local/bundle/cache
 
-ENV LANG=C.UTF-8
-ENV JEKYLL_ENV=production
-ENV VITE_RUBY_VITE_BIN_PATH=/node_modules/.bin/vite
+FROM ruby:3.2-slim-bookworm
+
+LABEL org.opencontainers.image.authors="Miao Wang <shankerwangmiao@gmail.com>"
+
+COPY --from=node /usr/local/ /usr/local/
+COPY --from=dependencies /usr/local/bundle/ /usr/local/bundle/
+COPY --from=dependencies /node_modules/ /node_modules/
+
+RUN apt-get update \
+    && apt-get install --yes --no-install-recommends libatomic1 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /data
+
+ENV LANG=C.UTF-8 \
+    JEKYLL_ENV=production \
+    NODE_ENV=production \
+    VITE_RUBY_VITE_BIN_PATH=/node_modules/.bin/vite
 
 CMD ["bundle", "exec", "jekyll", "build"]
