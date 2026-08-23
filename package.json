@@ -62,5 +62,8 @@
     "prettier": "^3.2.5",
     "rollup-plugin-visualizer": "^5.12.0"
   },
-  "type": "module"
+  "type": "module",
+  "overrides": {
+    "linkify-it": "5.0.2"
+  }
 }
