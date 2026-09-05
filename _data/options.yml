@@ -22,6 +22,8 @@ mirror_desc:
     desc: NetBSD 的安装镜像和部分系统源码
   - name: OpenBSD
     desc: OpenBSD 的安装镜像和官方软件包仓库
+  - name: Vanilla-OS
+    desc: Vanilla OS 的安装镜像
   - name: VSCodium
     desc: VS Code 的社区编译版本
   - name: adobe-fonts
@@ -526,6 +528,9 @@ unlisted_mirrors:
   - link_to: 'github-release'
     name: "thuthesis"
     url: '/github-release/tuna/thuthesis'
+  - link_to: 'github-release'
+    name: "Vanilla-OS"
+    url: '/github-release/Vanilla-OS/live-iso/'
 
 force_redirect_help_mirrors:
   - AOSP
