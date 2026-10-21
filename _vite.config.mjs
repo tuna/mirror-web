@@ -255,7 +255,11 @@ export default defineConfig(({ mode }) => ({
           const outputs = Array.isArray(res) ? res : [res];
           outputs.forEach((output) => {
             output.output.forEach((chunk) => {
-              bundle[chunk.fileName] = chunk;
+              this.emitFile({
+                type: "asset",
+                fileName: chunk.fileName,
+                source: chunk.type === "chunk" ? chunk.code : chunk.source,
+              });
             });
           });
         },
